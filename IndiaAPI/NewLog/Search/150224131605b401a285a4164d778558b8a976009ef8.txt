@@ -1,0 +1,31 @@
+  :
+---------------------------------------------Original Request1.16.05 PM 15 February 2024---------------------------------------------
+{"SearchURL":null,"userSessionID":"xuxk20irtks5hnsypiugfxph","userSearchID":"150224131605b401a285a4164d778558b8a976009ef8","userLogID":"150224131605b401a285a4164d778558b8a976009ef8","client":0,"segment":[{"originAirport":"DEL","orgArp":{"airportCode":"DEL","airportName":"New Delhi Indira Gandhi Intl","cityCode":"DEL","cityName":"Delhi","countryCode":"IN","countryName":"India"},"destinationAirport":"BOM","destArp":{"airportCode":"BOM","airportName":"Chhatrapati Shivaji","cityCode":"BOM","cityName":"Mumbai","countryCode":"IN","countryName":"India"},"travelDate":"2024-02-29T00:00:00"}],"searchDirectFlight":false,"flexibleSearch":false,"tripType":1,"adults":1,"child":0,"infants":0,"cabinType":1,"airline":"ALL","currencyCode":"INR","siteId":2,"sourceMedia":"1000","sID":null,"rID":null,"locale":null,"isNearBy":false,"limit":null,"page":null,"pageValue":null,"userIP":"::1","serverIP":null,"fareCachingKey":null,"isMetaRequest":false,"fareType":0,"travelType":1,"deepLink":"/flight/searchFlightResult?org=DEL&dest=BOM&depdate=29-02-2024&retdate=&tripType=O&adults=1&child=0&infants=0&cabin=1&utm_source=1000&currency=inr","kayakClickId":null,"wegoClickId":null,"isGetLiveFare":false,"tgy_Request_id":"15022024131605"}
+  :
+---------------------------------------------Tbo Search Request1.16.07 PM 15 February 2024---------------------------------------------
+{"EndUserIp":"::1","TokenId":"4d99cc7b-ca00-45c3-8048-6228b9d6e6ce","AdultCount":1,"ChildCount":0,"InfantCount":0,"DirectFlight":false,"OneStopFlight":false,"JourneyType":1,"PreferredAirlines":[],"Segments":[{"Origin":"DEL","Destination":"BOM","FlightCabinClass":2,"PreferredDepartureTime":"2024-02-29T00:00:00","PreferredArrivalTime":"2024-02-29T00:00:00"}],"Sources":null}
+------------------------------------------------------
+
+
+
+---------------------------------------------Tbo Search Response1.16.53 PM 15 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------TripJack Request1.16.07 PM 15 February 2024---------------------------------------------
+{"searchQuery":{"cabinClass":"ECONOMY","paxInfo":{"ADULT":"1","CHILD":"0","INFANT":"0"},"routeInfos":[{"fromCityOrAirport":{"code":"DEL"},"toCityOrAirport":{"code":"BOM"},"travelDate":"2024-02-29"}],"searchModifiers":{"isDirectFlight":true,"isConnectingFlight":true}}}
+------------------------------------------------------
+
+
+ErrorCatch1: RequestSystem.Net.WebException: The operation has timed out
+   at System.Net.HttpWebRequest.GetResponse()
+   at ServicesHub.TripJack.TripJackServiceMapping.MakeServiceCallPOSTSearch(String uri, String data, StringBuilder& sbLogger) in D:\14-02-2024\IndiaAPI_AirIQ\ServicesHub\TripJack\TripJackServiceMapping.cs:line 366
+---------------------------------------------TripJack Response1.16.53 PM 15 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+

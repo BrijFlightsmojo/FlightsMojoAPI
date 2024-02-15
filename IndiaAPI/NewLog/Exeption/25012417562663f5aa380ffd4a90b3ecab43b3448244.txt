@@ -1,0 +1,19 @@
+  :
+---------------------------------------------SearchFlight Exeption5.56.57 PM 25 January 2024---------------------------------------------
+System.AggregateException: One or more errors occurred. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetFlightResults(FlightSearchRequest request, Boolean isAirIQ) in D:\AirIQ\IndiaAPI_SkyScanner\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 63
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass9_0.<GetSearchResultSatkarTravel>b__0() in D:\AirIQ\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 2677
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at IndiaAPI.Controllers.FlightMapper.GetFlightResultMultiGDS(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 2143
+   at IndiaAPI.Controllers.FlightsController.SearchFlight(String authcode, FlightSearchRequest fsr) in D:\AirIQ\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 712
+---> (Inner Exception #0) System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetFlightResults(FlightSearchRequest request, Boolean isAirIQ) in D:\AirIQ\IndiaAPI_SkyScanner\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 63
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass9_0.<GetSearchResultSatkarTravel>b__0() in D:\AirIQ\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 2677
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()<---
+

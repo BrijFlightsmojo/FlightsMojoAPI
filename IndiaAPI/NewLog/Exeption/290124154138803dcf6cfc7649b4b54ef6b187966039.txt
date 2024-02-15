@@ -1,0 +1,23 @@
+  :
+---------------------------------------------SearchFlight Exeption3.41.55 PM 29 January 2024---------------------------------------------
+System.AggregateException: One or more errors occurred. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.Tbo.TboAuthentication.Authenticate() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 170
+   at ServicesHub.Tbo.TboAuthentication.getTokenID() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 88
+   at ServicesHub.Tbo.TboServiceMapping.GetFlightResults(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboServiceMapping.cs:line 102
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass7_0.<GetSearchResultTbo>b__0() in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2690
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout)
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, TimeSpan timeout)
+   at IndiaAPI.Controllers.FlightMapper.GetFlightResultMultiGDS(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2163
+   at IndiaAPI.Controllers.FlightsController.SearchFlight(String authcode, FlightSearchRequest fsr) in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 712
+---> (Inner Exception #0) System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.Tbo.TboAuthentication.Authenticate() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 170
+   at ServicesHub.Tbo.TboAuthentication.getTokenID() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 88
+   at ServicesHub.Tbo.TboServiceMapping.GetFlightResults(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboServiceMapping.cs:line 102
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass7_0.<GetSearchResultTbo>b__0() in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2690
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()<---
+

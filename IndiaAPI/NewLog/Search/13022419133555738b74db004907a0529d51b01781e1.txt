@@ -1,0 +1,48 @@
+  :
+---------------------------------------------Original Request7.13.39 PM 13 February 2024---------------------------------------------
+{"SearchURL":null,"userSessionID":"3dhvycbpnvfj522sf4lpg2j5","userSearchID":"13022419133555738b74db004907a0529d51b01781e1","userLogID":"13022419133555738b74db004907a0529d51b01781e1","client":0,"segment":[{"originAirport":"DXB","orgArp":{"airportCode":"DXB","airportName":"Dubai Intl Arpt","cityCode":"DXB","cityName":"Dubai","countryCode":"AE","countryName":"United Arab Emirates"},"destinationAirport":"BOM","destArp":{"airportCode":"BOM","airportName":"Chhatrapati Shivaji","cityCode":"BOM","cityName":"Mumbai","countryCode":"IN","countryName":"India"},"travelDate":"2024-02-21T00:00:00"}],"searchDirectFlight":false,"flexibleSearch":false,"tripType":1,"adults":1,"child":0,"infants":0,"cabinType":1,"airline":"ALL","currencyCode":"INR","siteId":2,"sourceMedia":"1000","sID":null,"rID":null,"locale":null,"isNearBy":false,"limit":null,"page":null,"pageValue":null,"userIP":"::1","serverIP":null,"fareCachingKey":null,"isMetaRequest":false,"fareType":0,"travelType":2,"deepLink":"/flight/searchFlightResult?org=DXB&dest=BOM&depdate=21-02-2024&retdate=&tripType=O&adults=1&child=0&infants=0&cabin=1&utm_source=1000&currency=inr","kayakClickId":null,"wegoClickId":null,"isGetLiveFare":false,"tgy_Request_id":"13022024191335"}
+  :
+---------------------------------------------OneDFare errorMsg7.13.45 PM 13 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Tbo Search Request7.13.48 PM 13 February 2024---------------------------------------------
+{"EndUserIp":"::1","TokenId":"a23c361e-17fe-4f93-b0fc-1739a6852715","AdultCount":1,"ChildCount":0,"InfantCount":0,"DirectFlight":false,"OneStopFlight":false,"JourneyType":1,"PreferredAirlines":[],"Segments":[{"Origin":"DXB","Destination":"BOM","FlightCabinClass":2,"PreferredDepartureTime":"2024-02-21T00:00:00","PreferredArrivalTime":"2024-02-21T00:00:00"}],"Sources":null}
+------------------------------------------------------
+
+
+
+---------------------------------------------Tbo Search Response7.13.48 PM 13 February 2024---------------------------------------------
+{"Response":{"ResponseStatus":2,"Error":{"ErrorCode":2,"ErrorMessage":"You are not authorized to access TBO API."},"TraceId":"9a334497-7c13-4984-a5e0-a7f56e44df68"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------AirIQ Request7.13.44 PM 13 February 2024---------------------------------------------
+{"origin":"DXB","destination":"BOM","departure_date":"2024/02/21","adult":1,"child":0,"infant":0,"airline_code":""}
+------------------------------------------------------
+
+
+
+---------------------------------------------AirIQ Response7.13.48 PM 13 February 2024---------------------------------------------
+{"code":"200","status":"success","message":"Data not found"}
+------------------------------------------------------
+
+
+
+---------------------------------------------AirIQ Response 17.13.48 PM 13 February 2024---------------------------------------------
+{"code":200,"status":"success","message":"Data not found","data":null}
+------------------------------------------------------
+
+
+
+---------------------------------------------AirIQ errorMsg7.13.48 PM 13 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+

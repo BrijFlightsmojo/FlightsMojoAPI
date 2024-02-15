@@ -1,0 +1,7 @@
+  :
+---------------------------------------------FB FareQuote Exeption2.04.43 PM 25 January 2024---------------------------------------------
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetTokenResponse(String url, String requestData) in D:\AirIQ\IndiaAPI_SkyScanner\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 319
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.getTokenID() in D:\AirIQ\IndiaAPI_SkyScanner\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 36
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetResponse(String url, String requestData) in D:\AirIQ\IndiaAPI_SkyScanner\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 184
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetFareQuote(PriceVerificationRequest request) in D:\AirIQ\IndiaAPI_SkyScanner\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 94

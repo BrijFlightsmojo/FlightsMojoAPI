@@ -1,0 +1,9 @@
+  :
+---------------------------------------------SearchFlight Exeption3:48:55 PM Thursday, December 21, 2023---------------------------------------------
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at IndiaAPI.Controllers.MarkupCalculator.SetMarkup(FlightSearchRequest& fsr, FlightSearchResponse& flightSearchResponse) in D:\IndiaWebsite\IndiaAPI\IndiaAPI_SkyScanner\IndiaAPI\Controllers\MarkupCalculator.cs:line 51
+   at IndiaAPI.Controllers.FlightMapper.GetFlightResultMultiGDS(FlightSearchRequest request) in D:\IndiaWebsite\IndiaAPI\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 2107
+   at IndiaAPI.Controllers.FlightsController.SearchFlight(String authcode, FlightSearchRequest fsr) in D:\IndiaWebsite\IndiaAPI\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 707

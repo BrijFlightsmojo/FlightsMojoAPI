@@ -1,0 +1,23 @@
+  :
+---------------------------------------------SearchFlight Exeption7.32.45 PM 18 January 2024---------------------------------------------
+System.AggregateException: One or more errors occurred. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.Tbo.TboAuthentication.Authenticate()
+   at ServicesHub.Tbo.TboAuthentication.getTokenID()
+   at ServicesHub.Tbo.TboServiceMapping.GetFlightResults(FlightSearchRequest request)
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass7_0.<GetSearchResultTbo>b__0() in D:\18-01-2023\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 2643
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout)
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, TimeSpan timeout)
+   at IndiaAPI.Controllers.FlightMapper.GetFlightResultMultiGDS(FlightSearchRequest request) in D:\18-01-2023\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 2126
+   at IndiaAPI.Controllers.FlightsController.SearchFlight(String authcode, FlightSearchRequest fsr) in D:\18-01-2023\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 711
+---> (Inner Exception #0) System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.Tbo.TboAuthentication.Authenticate()
+   at ServicesHub.Tbo.TboAuthentication.getTokenID()
+   at ServicesHub.Tbo.TboServiceMapping.GetFlightResults(FlightSearchRequest request)
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass7_0.<GetSearchResultTbo>b__0() in D:\18-01-2023\IndiaAPI_SkyScanner\IndiaAPI\Controllers\FlightsController.cs:line 2643
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()<---
+

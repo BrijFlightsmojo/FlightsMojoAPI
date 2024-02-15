@@ -1,0 +1,55 @@
+﻿{
+  "session_created_on": "0001-01-01T00:00:00",
+  "currency": null,
+  "places": {
+    "name": null,
+    "display_code": null,
+    "place_id": 0
+  },
+  "sorting_type": null,
+  "legs": {
+    "id": null,
+    "segment_ids": null,
+    "origin_place_id": 0,
+    "destination_place_id": 0,
+    "date": null
+  },
+  "segments": {
+    "id": null,
+    "origin_place_id": 0,
+    "destination_place_id": 0,
+    "departure": "0001-01-01T00:00:00",
+    "arrival": "0001-01-01T00:00:00",
+    "marketing_flight_number": null,
+    "marketing_carrier_id": null
+  },
+  "itineraries": {
+    "id": null,
+    "leg_ids": null,
+    "position": {
+      "cheapest_sorting": 0
+    },
+    "total_pricing_options": 0,
+    "pricing_options": {
+      "rank": 0,
+      "price": 0.0,
+      "provider_type": null
+    }
+
+  },
+  "search_result_summary": {
+    "itinerary_count": 0
+  },
+  "search_info": {
+    "legs": null,
+    "market": null,
+    "no_of_adults": 0,
+    "no_of_children": 0,
+    "no_of_infants": 0,
+    "locale": null,
+    "cabin_class": null,
+    "currency": null,
+    "search_kind": null
+  },
+  "uuid": null
+}

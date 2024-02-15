@@ -1,0 +1,32 @@
+  :
+---------------------------------------------SearchFlight Exeption11.36.29 AM 30 January 2024---------------------------------------------
+System.AggregateException: One or more errors occurred. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.Tbo.TboAuthentication.Authenticate() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 170
+   at ServicesHub.Tbo.TboAuthentication.getTokenID() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 103
+   at ServicesHub.Tbo.TboServiceMapping.GetFlightResults(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboServiceMapping.cs:line 102
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass7_0.<GetSearchResultTbo>b__0() in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2693
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, Int32 millisecondsTimeout)
+   at System.Threading.Tasks.Task.WaitAll(Task[] tasks, TimeSpan timeout)
+   at IndiaAPI.Controllers.FlightMapper.GetFlightResultMultiGDS(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2166
+   at IndiaAPI.Controllers.FlightsController.SearchFlight(String authcode, FlightSearchRequest fsr) in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 712
+---> (Inner Exception #0) System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.Tbo.TboAuthentication.Authenticate() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 170
+   at ServicesHub.Tbo.TboAuthentication.getTokenID() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboAuthentication.cs:line 103
+   at ServicesHub.Tbo.TboServiceMapping.GetFlightResults(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\Tbo\TboServiceMapping.cs:line 102
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass7_0.<GetSearchResultTbo>b__0() in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2693
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()<---
+
+---> (Inner Exception #1) System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetTokenResponse(String url, String requestData) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 319
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.getTokenID() in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 36
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetResponse(String url, String requestData, String& Msg) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 262
+   at ServicesHub.SatkarTravel.SatkarTravelServiceMapping.GetFlightResults(FlightSearchRequest request, Boolean isAirIQ) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\SatkarTravel\SatkarTravelServiceMapping.cs:line 54
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass9_0.<GetSearchResultSatkarTravel>b__0() in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2702
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()<---
+

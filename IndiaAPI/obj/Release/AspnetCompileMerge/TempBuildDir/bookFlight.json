@@ -1,0 +1,295 @@
+﻿{
+  "order": {
+    "bookingId": "TJS103300368950",
+    "amount": 200930.00,
+    "markup": 0.00,
+    "deliveryInfo": {
+      "emails": [ "kundan@flightsmojo.com" ],
+      "contacts": [ "+916464646464" ]
+    },
+    "status": "SUCCESS",
+    "createdOn": "2022-10-13T17:06:25.404"
+  },
+  "itemInfos": {
+    "AIR": {
+      "tripInfos": [
+        {
+          "sI": [
+            {
+              "id": "88534",
+              "fD": {
+                "aI": {
+                  "code": "G8",
+                  "name": "Go First",
+                  "isLcc": true
+                },
+                "fN": "101",
+                "eT": "32N"
+              },
+              "stops": 0,
+              "duration": 125,
+              "cT": 70,
+              "da": {
+                "code": "DEL",
+                "name": "Delhi Indira Gandhi Intl",
+                "cityCode": "DEL",
+                "city": "Delhi",
+                "country": "India",
+                "countryCode": "IN",
+                "terminal": "Terminal 2"
+              },
+              "aa": {
+                "code": "CCU",
+                "name": "Netaji Subhas Chandra Bose Intl",
+                "cityCode": "CCU",
+                "city": "Kolkata",
+                "country": "India",
+                "countryCode": "IN",
+                "terminal": "Terminal 2"
+              },
+              "dt": "2022-11-13T05:45",
+              "at": "2022-11-13T07:50",
+              "iand": false,
+              "isRs": false,
+              "sN": 0
+            },
+            {
+              "id": "88535",
+              "fD": {
+                "aI": {
+                  "code": "G8",
+                  "name": "Go First",
+                  "isLcc": true
+                },
+                "fN": "7401",
+                "eT": "32A"
+              },
+              "stops": 0,
+              "duration": 140,
+              "da": {
+                "code": "CCU",
+                "name": "Netaji Subhas Chandra Bose Intl",
+                "cityCode": "CCU",
+                "city": "Kolkata",
+                "country": "India",
+                "countryCode": "IN",
+                "terminal": "Terminal 2"
+              },
+              "aa": {
+                "code": "BOM",
+                "name": "Chhatrapati Shivaji",
+                "cityCode": "BOM",
+                "city": "Mumbai",
+                "country": "India",
+                "countryCode": "IN",
+                "terminal": "Terminal 1"
+              },
+              "dt": "2022-11-13T09:00",
+              "at": "2022-11-13T11:20",
+              "iand": false,
+              "isRs": false,
+              "sN": 1
+            }
+          ]
+        },
+        {
+          "sI": [
+            {
+              "id": "88536",
+              "fD": {
+                "aI": {
+                  "code": "G8",
+                  "name": "Go First",
+                  "isLcc": true
+                },
+                "fN": "329",
+                "eT": "32N"
+              },
+              "stops": 0,
+              "duration": 125,
+              "da": {
+                "code": "BOM",
+                "name": "Chhatrapati Shivaji",
+                "cityCode": "BOM",
+                "city": "Mumbai",
+                "country": "India",
+                "countryCode": "IN",
+                "terminal": "Terminal 1"
+              },
+              "aa": {
+                "code": "DEL",
+                "name": "Delhi Indira Gandhi Intl",
+                "cityCode": "DEL",
+                "city": "Delhi",
+                "country": "India",
+                "countryCode": "IN",
+                "terminal": "Terminal 2"
+              },
+              "dt": "2022-11-20T06:00",
+              "at": "2022-11-20T08:05",
+              "iand": false,
+              "isRs": true,
+              "sN": 0
+            }
+          ]
+        }
+      ],
+      "travellerInfos": [
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Mr",
+          "pt": "ADULT",
+          "fN": "KUNDAN",
+          "lN": "KUMAR",
+          "dob": "1997-10-13"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Mr",
+          "pt": "ADULT",
+          "fN": "OOM",
+          "lN": "KUMAR",
+          "dob": "2001-10-13"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Mr",
+          "pt": "ADULT",
+          "fN": "RANJAN",
+          "lN": "KUMAR",
+          "dob": "1991-10-13"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Mr",
+          "pt": "ADULT",
+          "fN": "CHOTAN",
+          "lN": "KUMAR",
+          "dob": "1989-10-13"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Mr",
+          "pt": "ADULT",
+          "fN": "NILESH",
+          "lN": "KUMAR",
+          "dob": "1981-10-13"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Master",
+          "pt": "CHILD",
+          "fN": "MOHON",
+          "lN": "KUMAR",
+          "dob": "2014-10-13"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Master",
+          "pt": "CHILD",
+          "fN": "SOHAN",
+          "lN": "KUMAR",
+          "dob": "2016-10-24"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Master",
+          "pt": "CHILD",
+          "fN": "ROHAN",
+          "lN": "KUMAR",
+          "dob": "2014-09-12"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Master",
+          "pt": "INFANT",
+          "fN": "GOPAL",
+          "lN": "KUMAR",
+          "dob": "2021-10-13"
+        },
+        {
+          "pnrDetails": {
+            "DEL-CCU": "P3D85V",
+            "CCU-BOM": "P3D85V",
+            "BOM-DEL": "P3D85V"
+          },
+          "ti": "Master",
+          "pt": "INFANT",
+          "fN": "KANHA",
+          "lN": "KUMAR",
+          "dob": "2021-12-23"
+        }
+      ],
+      "totalPriceInfo": {
+        "totalFareDetail": {
+          "fC": {
+            "TF": 200930.00,
+            "IGST": 54.00,
+            "TAF": 29362.00,
+            "NF": 200930.00,
+            "BF": 171568.00
+          },
+          "afC": {
+            "TAF": {
+              "MF": 300.00,
+              "YQ": 12000.00,
+              "AGST": 8944.00,
+              "MFT": 54.00,
+              "OT": 8064.00
+            }
+          }
+        }
+      }
+    }
+  },
+  "gstInfo": {
+    "gstNumber": "07AACCF6706H1ZQ",
+    "email": "SUPPORT@FLIGHTSMOJO.IN",
+    "mobile": "9876543265",
+    "address": "Plot No 83 Sector-28 Gurugram Haryana 122001",
+    "registeredName": "FLIGHTS MOJO BOOKINGS PRIVATE LIMITED",
+    "bookingId": "TJS103300368950",
+    "bookingUserId": "812032",
+    "id": 9147
+  },
+  "status": {
+    "success": true,
+    "httpStatus": 200
+  }
+}

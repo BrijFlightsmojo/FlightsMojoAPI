@@ -1,0 +1,230 @@
+  :Pe Comfort Plus_AI
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Himalaya Airlines_H1
+
+  :Spicejet Economy Class_H1
+
+  :Economy Good Deal_MS
+
+  :Economy Fully Flex_MS
+
+  :Business Platinum_MS
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Himalaya Airlines_H1
+
+  :Spicejet Economy Class_H1
+
+  :Economy Good Deal_MS
+
+  :Economy Fully Flex_MS
+
+  :Business Platinum_MS
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Economy Special_EK
+
+  :Economy Special_EK
+
+  :Economy Special_EK
+
+  :Economy Special_EK
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Economy Hbo_EY
+
+  :Economy Hbo_EY
+
+  :Economy Good Deal_MS
+
+  :Economy Fully Flex_MS
+
+  :Business Titanium_MS
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Plus_XY
+
+  :Economy Good Deal_MS
+
+  :Economy Fully Flex_MS
+
+  :Business Platinum_MS
+
+  :Economy Fully Flex_MS
+
+  :Plus_XY
+
+  :Spicejet Economy Class_H1
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Econ Value_UL
+
+  :Econ Semi Flex_UL
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+

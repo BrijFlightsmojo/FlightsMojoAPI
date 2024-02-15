@@ -1,0 +1,21 @@
+  :
+---------------------------------------------SearchFlight Exeption1.08.40 PM 29 January 2024---------------------------------------------
+System.AggregateException: One or more errors occurred. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.AirIQ.AirIQResponseMapping.getResults(FlightSearchRequest request, FlightResponse& fsr, FlightSearchResponseShort& response) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\AirIQ\AirIQResponseMapping.cs:line 18
+   at ServicesHub.AirIQ.AirIQServiceMapping.GetFlightResults(FlightSearchRequest request, Boolean isAirIQ) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\AirIQ\AirIQServiceMapping.cs:line 57
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass10_0.<GetSearchResultAirIQGDS>b__0() in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2696
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at IndiaAPI.Controllers.FlightMapper.GetFlightResultMultiGDS(FlightSearchRequest request) in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2156
+   at IndiaAPI.Controllers.FlightsController.SearchFlight(String authcode, FlightSearchRequest fsr) in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 712
+---> (Inner Exception #0) System.NullReferenceException: Object reference not set to an instance of an object.
+   at ServicesHub.AirIQ.AirIQResponseMapping.getResults(FlightSearchRequest request, FlightResponse& fsr, FlightSearchResponseShort& response) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\AirIQ\AirIQResponseMapping.cs:line 18
+   at ServicesHub.AirIQ.AirIQServiceMapping.GetFlightResults(FlightSearchRequest request, Boolean isAirIQ) in D:\AirIQ\IndiaAPI_AirIQ\ServicesHub\AirIQ\AirIQServiceMapping.cs:line 57
+   at IndiaAPI.Controllers.FlightMapper.<>c__DisplayClass10_0.<GetSearchResultAirIQGDS>b__0() in D:\AirIQ\IndiaAPI_AirIQ\IndiaAPI\Controllers\FlightsController.cs:line 2696
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()<---
+
