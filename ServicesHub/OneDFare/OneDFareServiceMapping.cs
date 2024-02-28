@@ -93,7 +93,7 @@ namespace ServicesHub.OneDFare
                     #endregion
 
                     #region set flight fare
-                   
+
                     decimal UnitFare = Convert.ToDecimal(dr["UnitFare"]);
                     Core.Flight.Fare fare = new Core.Flight.Fare()
                     {
@@ -188,7 +188,7 @@ namespace ServicesHub.OneDFare
                 foreach (FlightResult fr in request.flightResult)
                 {
                     System.Data.DataSet ds = new DAL.OneDFare.DalOneDFare().getVerify(request.flightResult[ctr].Fare.FB_flight_id, request.adults + request.child);
-                    if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Rows[0]["NoOfSeat"].ToString() != "0")
                     {
                         _response.fareIncreaseAmount = 0;
                         _response.VerifiedTotalPrice = request.flightResult[ctr].Fare.PublishedFare;
@@ -224,7 +224,7 @@ namespace ServicesHub.OneDFare
                         _response.PNR = ds.Tables[0].Rows[0]["PNR"].ToString();
                         bookingLog(ref sbLogger, " OneDFare  PNR ", "_response.PNR:" + _response.PNR);
                         _response.responseStatus.message += "; OutBoundPnr-" + _response.PNR;
-                        _response.invoice.Add(new Invoice() { InvoiceAmount = request.flightResult[ctr].Fare.NetFare, InvoiceNo = _response.PNR});
+                        _response.invoice.Add(new Invoice() { InvoiceAmount = request.flightResult[ctr].Fare.NetFare, InvoiceNo = _response.PNR });
                         _response.bookingStatus = BookingStatus.Ticketed;
                     }
                     else
@@ -232,7 +232,7 @@ namespace ServicesHub.OneDFare
                         _response.bookingStatus = BookingStatus.Failed;
                         _response.responseStatus.message += "; Booking Fail Due to seat not available";
                     }
-                    ctr++;                  
+                    ctr++;
                 }
             }
             catch (Exception ex)
@@ -245,6 +245,42 @@ namespace ServicesHub.OneDFare
             new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Booking");
             //return _response;
         }
+
+
+        public void BookFlightInProgress(FlightBookingRequest request, ref FlightBookingResponse _response)
+        {
+            StringBuilder sbLogger = new StringBuilder();
+            try
+            {
+                int ctr = 0;
+                foreach (var item in request.flightResult)
+                {
+                    System.Data.DataSet ds = new DAL.OneDFare.DalOneDFare().getTicketedInprogress(request.flightResult[ctr].Fare.FB_flight_id, request.adults + request.child);
+                    if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                      
+                        _response.bookingStatus = BookingStatus.InProgress;
+                        _response.responseStatus.message = "InProgress";
+                    }
+                    else
+                    {
+                        _response.bookingStatus = BookingStatus.Failed;
+                        _response.responseStatus.message += "; Booking Fail Due to seat not available";
+                    }
+                    ctr++;
+                }
+            }
+            catch (Exception ex)
+            {
+                bookingLog(ref sbLogger, "OneDFare Exption", ex.ToString());
+                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Error");
+            }
+
+            bookingLog(ref sbLogger, "OneDFare  return Response", JsonConvert.SerializeObject(_response));
+            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Booking");
+            //return _response;
+        }
+
         public void bookingLog(ref StringBuilder sbLogger, string requestTitle, string logText)
         {
             sbLogger.Append(Environment.NewLine + "---------------------------------------------" + requestTitle + "" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------------------------------");

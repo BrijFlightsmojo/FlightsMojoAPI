@@ -39,7 +39,7 @@ namespace ServicesHub.FareBoutique.FB_Booking_Details
         public string booking_date { get; set; }
         public decimal total_amount { get; set; }
         public int return_flight { get; set; }
-        public int infant_price { get; set; }
+        public decimal infant_price { get; set; }
         public string flight_pnrs { get; set; }
         public string contact_name { get; set; }
         public string contact_email { get; set; }
@@ -91,7 +91,7 @@ namespace ServicesHub.FareBoutique.FB_Booking_Details
         public string gender { get; set; }
         public string dob { get; set; }
         public bool status { get; set; }
-        public object ticket_cancel_at { get; set; }
+        public string ticket_cancel_at { get; set; }
         public int age { get; set; }
         public string passport_no { get; set; }
         public object passport_expire_date { get; set; }

@@ -19,10 +19,22 @@ namespace IndiaAPI.Controllers
         [Route("test")]
         public HttpResponseMessage Test()
         {
-            ServicesHub.FareBoutique.FareBoutiqueServiceMapping obj = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping();
-            obj.getSectors();
+            //ServicesHub.FareBoutique.FareBoutiqueServiceMapping obj = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping();
+            //obj.getSectors();
 
-         
+            //ServicesHub.SatkarTravel.SatkarTravelServiceMapping obj = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping();
+            //new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.SatkarTravel);
+            //obj.getSectors();
+
+            ServicesHub.AirIQ.AirIQServiceMapping objAirIQ = new ServicesHub.AirIQ.AirIQServiceMapping();
+            new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.AirIQ);
+            objAirIQ.getSectors();
+
+            //ServicesHub.FareBoutique.FareBoutiqueServiceMapping objFB = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping();
+            //new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.FareBoutique);
+            //objFB.getSectors();
+
+
             return Request.CreateResponse(HttpStatusCode.OK, true);
         }
         [HttpGet]

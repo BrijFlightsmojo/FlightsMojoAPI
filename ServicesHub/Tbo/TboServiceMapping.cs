@@ -388,6 +388,7 @@ namespace ServicesHub.Tbo
                     {
                         if (item.IsLCC)
                         {
+                            #region Make booking for LCC
                             var Url = TboAuthentication.ticketUrl;
                             string strRequest = new TboRequestMappking().getLccTicketingRequest(request, ctr, TokenId);
                             bookingLog(ref sbLogger, "TBO Lcc Ticketing Request", strRequest);
@@ -425,7 +426,7 @@ namespace ServicesHub.Tbo
                                         bookingLog(ref sbLogger, "TBO Return Response Invoice", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
                                         _response.bookingStatus = BookingStatus.Ticketed;
                                     }
-                                    _response.bookingStatus = BookingStatus.Ticketed;
+                                    //_response.bookingStatus = BookingStatus.Ticketed;
                                 }
                                 else
                                 {
@@ -435,10 +436,18 @@ namespace ServicesHub.Tbo
                                     bookingLog(ref sbLogger, "TBO  Else1", "Booking Fail Due to :" + bookResponse.Response.Error.ErrorMessage);
                                 }
                             }
+                            else
+                            {
+                                _response.bookingStatus = BookingStatus.InProgress;
+                                _response.responseStatus.message = "InProgress";
+                                bookingLog(ref sbLogger, "TBO  Else InProgress", "Booking InProgress Due to :" + _response.responseStatus.message);
+                            }
                             _response.isTickted.Add(true);
+                            #endregion
                         }
                         else
                         {
+                            #region Make Booking for GDS
                             var Url = TboAuthentication.bookUrl;
                             string strRequest = new TboRequestMappking().getGdsBookingRequest(request, ctr, TokenId);
                             bookingLog(ref sbLogger, "TBO Gds Booking Request", strRequest);
@@ -561,7 +570,14 @@ namespace ServicesHub.Tbo
                                     bookingLog(ref sbLogger, "TBO  Else4", "Booking Fail Due to :" + bookResponse.Response.Error.ErrorMessage);
                                 }
                             }
+                            else
+                            {
+                                _response.bookingStatus = BookingStatus.InProgress;
+                                _response.responseStatus.message = "InProgress";
+                                bookingLog(ref sbLogger, "TBO  Else InProgress", "Booking InProgress Due to :" + _response.responseStatus.message);
+                            }
                             _response.isTickted.Add(true);
+                            #endregion
                         }
                         ctr++;
                     }
@@ -585,80 +601,80 @@ namespace ServicesHub.Tbo
             //return _response;
         }
 
-        public FlightBookingResponse TicketFlights(FlightBookingRequest request)
-        {
-            StringBuilder sbLogger = new StringBuilder();
-            if (FlightUtility.isWriteLog)
-            {
-                bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
-            }
-            FlightBookingResponse _response = new FlightBookingResponse(request);
+        //public FlightBookingResponse TicketFlights(FlightBookingRequest request)
+        //{
+        //    StringBuilder sbLogger = new StringBuilder();
+        //    if (FlightUtility.isWriteLog)
+        //    {
+        //        bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
+        //    }
+        //    FlightBookingResponse _response = new FlightBookingResponse(request);
            
 
 
-            ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
-            string TokenId = obj.getTokenID();
-            int ctr = 0;
-            foreach (var item in request.flightResult)
-            {
-                if (request.isTickted[ctr] == false)
-                {
-                    var Url = TboAuthentication.ticketUrl;    //ConfigurationManager.AppSettings["ticketUrl"].ToString();
-                    string strRequest = "";// new RequestMappking().getGdsTicketingRequest(request, ctr, TokenId);
+        //    ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
+        //    string TokenId = obj.getTokenID();
+        //    int ctr = 0;
+        //    foreach (var item in request.flightResult)
+        //    {
+        //        if (request.isTickted[ctr] == false)
+        //        {
+        //            var Url = TboAuthentication.ticketUrl;    //ConfigurationManager.AppSettings["ticketUrl"].ToString();
+        //            string strRequest = "";// new RequestMappking().getGdsTicketingRequest(request, ctr, TokenId);
 
-                    if (FlightUtility.isWriteLog)
-                    {
-                        bookingLog(ref sbLogger, "GDS Ticketing Request", strRequest);
-                    }
-                    try
-                    {
-                        var response = GetResponse(Url, strRequest);
-                        if (FlightUtility.isWriteLog)
-                        {
-                            bookingLog(ref sbLogger, "GDS Ticketing Response", response);
-                        }
-                        if (!string.IsNullOrEmpty(response))
-                        {
-                            TboClass.LccTicketingResponse bookResponse = JsonConvert.DeserializeObject<TboClass.LccTicketingResponse>(response.ToString());
-                            if (bookResponse.Response.ResponseStatus == "1")
-                            {
-                                if (ctr == 0)
-                                {
-                                    _response.PNR = bookResponse.Response.Response.PNR;
-                                    _response.TvoBookingID = bookResponse.Response.Response.BookingId;
-                                    if (bookResponse.Response.Response.FlightItinerary != null && bookResponse.Response.Response.FlightItinerary.InvoiceAmount > 0)
-                                        _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponse.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo });
-                                }
-                                else
-                                {
-                                    _response.ReturnPNR = bookResponse.Response.Response.PNR;
-                                    _response.TvoReturnBookingID = bookResponse.Response.Response.BookingId;
-                                    if (bookResponse.Response.Response.FlightItinerary != null && bookResponse.Response.Response.FlightItinerary.InvoiceAmount > 0)
-                                        _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponse.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo });
-                                }
-                                _response.bookingStatus = BookingStatus.Ticketed;
-                            }
-                            else
-                            {
-                                _response.bookingStatus = BookingStatus.Failed;
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        _response.bookingStatus = BookingStatus.Failed;
-                    }
-                }
-                _response.isTickted.Add(true);
-                ctr++;
-            }
-            if (FlightUtility.isWriteLog)
-            {
-                //new LogWriter(sbLogger.ToString(), "Tbo_NonLccTicketing_" + DateTime.Today.ToString("ddMMyy"), "Tbo");
-                LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\Booking", request.userSearchID, "NonLccTicketing.txt");
-            }
-            return _response;
-        }
+        //            if (FlightUtility.isWriteLog)
+        //            {
+        //                bookingLog(ref sbLogger, "GDS Ticketing Request", strRequest);
+        //            }
+        //            try
+        //            {
+        //                var response = GetResponse(Url, strRequest);
+        //                if (FlightUtility.isWriteLog)
+        //                {
+        //                    bookingLog(ref sbLogger, "GDS Ticketing Response", response);
+        //                }
+        //                if (!string.IsNullOrEmpty(response))
+        //                {
+        //                    TboClass.LccTicketingResponse bookResponse = JsonConvert.DeserializeObject<TboClass.LccTicketingResponse>(response.ToString());
+        //                    if (bookResponse.Response.ResponseStatus == "1")
+        //                    {
+        //                        if (ctr == 0)
+        //                        {
+        //                            _response.PNR = bookResponse.Response.Response.PNR;
+        //                            _response.TvoBookingID = bookResponse.Response.Response.BookingId;
+        //                            if (bookResponse.Response.Response.FlightItinerary != null && bookResponse.Response.Response.FlightItinerary.InvoiceAmount > 0)
+        //                                _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponse.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo });
+        //                        }
+        //                        else
+        //                        {
+        //                            _response.ReturnPNR = bookResponse.Response.Response.PNR;
+        //                            _response.TvoReturnBookingID = bookResponse.Response.Response.BookingId;
+        //                            if (bookResponse.Response.Response.FlightItinerary != null && bookResponse.Response.Response.FlightItinerary.InvoiceAmount > 0)
+        //                                _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponse.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo });
+        //                        }
+        //                        _response.bookingStatus = BookingStatus.Ticketed;
+        //                    }
+        //                    else
+        //                    {
+        //                        _response.bookingStatus = BookingStatus.Failed;
+        //                    }
+        //                }
+        //            }
+        //            catch (Exception)
+        //            {
+        //                _response.bookingStatus = BookingStatus.Failed;
+        //            }
+        //        }
+        //        _response.isTickted.Add(true);
+        //        ctr++;
+        //    }
+        //    if (FlightUtility.isWriteLog)
+        //    {
+        //        //new LogWriter(sbLogger.ToString(), "Tbo_NonLccTicketing_" + DateTime.Today.ToString("ddMMyy"), "Tbo");
+        //        LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\Booking", request.userSearchID, "NonLccTicketing.txt");
+        //    }
+        //    return _response;
+        //}
 
         public Core.Flight.FlightBookingResponse GetBookingDetails(FlightBookingRequest request)
         {
@@ -749,35 +765,41 @@ namespace ServicesHub.Tbo
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
                 request.ContentType = "application/json";
-                //request.Headers.Add("Accept-Encoding", "gzip");
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
                 WebResponse webResponse = request.GetResponse();
                 var rsp = webResponse.GetResponseStream();
-                //if (rsp == null)
-                //{
-                //    //throw exception
-                //}
-                //using (StreamReader readStream = new StreamReader(new GZipStream(rsp, CompressionMode.Decompress)))
-                //{
-                //    response = readStream.ReadToEnd();
-                //}
-                using (StreamReader reader = new StreamReader(rsp))
+                 using (StreamReader reader = new StreamReader(rsp))
                 {
-                    // Read the content.
                     response = reader.ReadToEnd();
                 }
-                return response;
+               
             }
             catch (WebException webEx)
             {
-                //WebResponse wresponse = webEx.Response;
-                //Stream stream = wresponse.GetResponseStream();
-                //String responseMessage = new StreamReader(stream).ReadToEnd();
-                //return responseMessage;
-                return "";
+                if (webEx != null)
+                {
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
+                }
             }
+            catch { }
+            return response;
         }
 
 
@@ -801,13 +823,32 @@ namespace ServicesHub.Tbo
                 using (StreamReader reader = new StreamReader(rsp))
                 {
                     response = reader.ReadToEnd();
-                }
-                return response;
+                }               
             }
             catch (WebException webEx)
             {
-                return "";
+                if (webEx != null)
+                {
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
+                }
             }
+            catch { }
+            return response;
         }
     }
 }

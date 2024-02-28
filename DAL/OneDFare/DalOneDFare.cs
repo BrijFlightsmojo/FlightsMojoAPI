@@ -62,5 +62,24 @@ namespace DAL.OneDFare
                 return null;
             }
         }
+
+
+        public DataSet getTicketedInprogress(int id, int totAdtChd)
+        {
+            try
+            {
+                SqlParameter[] prm = new SqlParameter[]
+                {
+                    new SqlParameter("@id",id),
+                    new SqlParameter("@totAdtChd",totAdtChd),
+                     new SqlParameter("@Counter","Inprogress")
+                };
+                return SqlHelper.ExecuteDataset(DataConnection.GetConnection(), CommandType.StoredProcedure, "GetOneDFare_V1", prm);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

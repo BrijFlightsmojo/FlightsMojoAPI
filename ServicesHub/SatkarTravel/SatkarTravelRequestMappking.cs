@@ -55,7 +55,7 @@ namespace ServicesHub.SatkarTravel
                 resultSessionId = request.STSessionID,
                 lcc = false,
                 contactNo = request.phoneNo,
-                email = request.emailID,
+                email = "agency@flightsmojo.in",
                 gSTDetailsRequired = false,
                 passengers = new List<SatkarTravelClass.Passenger>()
             };

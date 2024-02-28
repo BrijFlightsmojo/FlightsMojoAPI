@@ -55,11 +55,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "DEL",
-                orgArp = Core.FlightUtility.GetAirport("DEL"),
+                originAirport = "AYJ",
+                orgArp = Core.FlightUtility.GetAirport("AYJ"),
                 destinationAirport = "BOM",
                 destArp = Core.FlightUtility.GetAirport("BOM"),
-                travelDate = Convert.ToDateTime("2024-02-20") //DateTime.Today.AddDays(61)//
+                travelDate = Convert.ToDateTime("2024-02-22") //DateTime.Today.AddDays(61)//
             });
 
             if (flightSearchReq.tripType != Core.TripType.OneWay)
@@ -79,11 +79,13 @@ namespace IndiaAPI.Controllers
             flightSearchReq.siteId = SiteId.FlightsMojoIN;
             flightSearchReq.sourceMedia = "1000";
             flightSearchReq.userSearchID = getSearchID();
-            return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
-            //        var kkdd = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().GetFlightResults(flightSearchReq, true);
-            //var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq, true);
-            var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq);
-            return Request.CreateResponse(HttpStatusCode.OK, kkdd);
+          //  var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq);
+         //   return Request.CreateResponse(HttpStatusCode.OK, kkdd);
+          //  return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
+                    var kkdd = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().GetFlightResults(flightSearchReq);
+            
+           // var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq);
+            
             //var kkdd = new ServicesHub.Travelogy.TravelogyServiceMapping().GetFlightResults(flightSearchReq);
             //return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
             //ServicesHub.LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\Error\\", "Test.txt");
@@ -1326,12 +1328,12 @@ namespace IndiaAPI.Controllers
                             }
                              else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.SatkarTravel)
                             {
-                                new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call OneDFare");
+                                new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call SatkarTravel");
                                 new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().BookFlight(bookRequest, ref BookResponse);
                             }
                             else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.AirIQ)
                             {
-                                new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call OneDFare");
+                                new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call AirIQ");
                                 new ServicesHub.AirIQ.AirIQServiceMapping().BookFlight(bookRequest, ref BookResponse);
                             }
                         }
@@ -1354,6 +1356,13 @@ namespace IndiaAPI.Controllers
                     else if (action == BookingAction.Inporgress)
                     {
                         new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Booking InProgress due BookingAction.Inporgress else 4");
+
+                        if (bookRequest.flightResult[0].Fare.gdsType == GdsType.OneDFare)
+                        {
+                            new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call OneDFare");
+                            new ServicesHub.OneDFare.OneDFareServiceMapping().BookFlightInProgress(bookRequest, ref BookResponse);
+                        }
+
                         BookResponse.responseStatus.status = TransactionStatus.Success;
                         BookResponse.responseStatus.message = "InProgress";
                         BookResponse.ReturnPNR = "";
@@ -2139,10 +2148,10 @@ namespace IndiaAPI.Controllers
                 isSatkarTravel = false;
                 isAirIQGDS = false;
             }
-            if (request.segment.Count == 1)
-            {
-                isOneDFare = true;
-            }
+            //if (request.segment.Count == 1)
+            //{
+            //    isOneDFare = true;
+            //}
             if (isSatkarTravel || isAirIQGDS|| isfareBoutique)
             {
               

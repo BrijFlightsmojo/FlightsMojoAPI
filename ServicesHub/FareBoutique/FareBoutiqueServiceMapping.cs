@@ -45,7 +45,7 @@ namespace ServicesHub.FareBoutique
             {
                 FareBoutiqueClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<FareBoutiqueClass.FlightResponse>(strResponse);
                 bookingLog(ref sbLogger, "FB search Response2", JsonConvert.SerializeObject(Response));
-                if (Response.errorCode == 0 || (!string.IsNullOrEmpty(Response.replyCode) &&Response.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase)))
+                if (Response.errorCode == 0 || (!string.IsNullOrEmpty(Response.replyCode) && Response.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase)))
                 {
                     new FareBoutiqueResponseMapping().getResults(request, ref Response, ref flightResponse);
                 }
@@ -196,35 +196,41 @@ namespace ServicesHub.FareBoutique
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
                 request.ContentType = "application/json";
-                //request.Headers.Add("Accept-Encoding", "gzip");
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
                 WebResponse webResponse = request.GetResponse();
                 var rsp = webResponse.GetResponseStream();
-                //if (rsp == null)
-                //{
-                //    //throw exception
-                //}
-                //using (StreamReader readStream = new StreamReader(new GZipStream(rsp, CompressionMode.Decompress)))
-                //{
-                //    response = readStream.ReadToEnd();
-                //}
                 using (StreamReader reader = new StreamReader(rsp))
                 {
-                    // Read the content.
                     response = reader.ReadToEnd();
                 }
-                return response;
             }
             catch (WebException webEx)
             {
-                WebResponse wresponse = webEx.Response;
-                Stream stream = wresponse.GetResponseStream();
-                String responseMessage = new StreamReader(stream).ReadToEnd();
-                return responseMessage.ToString();
-                return "";
+                if (webEx != null)
+                {
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "FB GetResponse" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
+                }
             }
+            catch { }
+            return response;
         }
 
         private string GetResponse(string url, string requestData, ref StringBuilder sblogger)
@@ -237,43 +243,42 @@ namespace ServicesHub.FareBoutique
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
                 request.ContentType = "application/json";
-                //request.Headers.Add("Accept-Encoding", "gzip");
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
                 WebResponse webResponse = request.GetResponse();
                 var rsp = webResponse.GetResponseStream();
-                //if (rsp == null)
-                //{
-                //    //throw exception
-                //}
-                //using (StreamReader readStream = new StreamReader(new GZipStream(rsp, CompressionMode.Decompress)))
-                //{
-                //    response = readStream.ReadToEnd();
-                //}
                 using (StreamReader reader = new StreamReader(rsp))
                 {
-                    // Read the content.
                     response = reader.ReadToEnd();
                 }
-                return response;
+               
             }
             catch (WebException webEx)
             {
-                try
+                if (webEx != null)
                 {
-                    WebResponse wresponse = webEx.Response;
-                    Stream stream = wresponse.GetResponseStream();
-                    String responseMessage = new StreamReader(stream).ReadToEnd();
-                    return responseMessage.ToString();
-                }
-                catch (Exception ex)
-                {
-                    bookingLog(ref sblogger, "GetResponse execption2", ex.ToString());
-                    sblogger.Append(ex.ToString());
-                    return "";
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "FB GetResponse1" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
                 }
             }
+            catch { }
+            return response;
         }
 
         private string GetResponse(string url, string requestData, ref string Msg)
@@ -286,36 +291,42 @@ namespace ServicesHub.FareBoutique
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
                 request.ContentType = "application/json";
-                //request.Headers.Add("Accept-Encoding", "gzip");
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
                 WebResponse webResponse = request.GetResponse();
                 var rsp = webResponse.GetResponseStream();
-                //if (rsp == null)
-                //{
-                //    //throw exception
-                //}
-                //using (StreamReader readStream = new StreamReader(new GZipStream(rsp, CompressionMode.Decompress)))
-                //{
-                //    response = readStream.ReadToEnd();
-                //}
                 using (StreamReader reader = new StreamReader(rsp))
                 {
-                    // Read the content.
                     response = reader.ReadToEnd();
                 }
-                return response;
+
             }
             catch (WebException webEx)
             {
-                WebResponse wresponse = webEx.Response;
-                Stream stream = wresponse.GetResponseStream();
-                String responseMessage = new StreamReader(stream).ReadToEnd();
-                Msg = responseMessage;
-                return responseMessage.ToString();
+                if (webEx != null)
+                {
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "FB GetResponse2" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
 
+                    }
+                }
             }
+            catch { }
+            return response;
         }
 
         private string GetResponseSearch(string url, string requestData, ref string Msg)
@@ -329,7 +340,6 @@ namespace ServicesHub.FareBoutique
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 //request.Timeout = 15000;
-                //request.Headers.Add("Accept-Encoding", "gzip");
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
@@ -337,34 +347,48 @@ namespace ServicesHub.FareBoutique
                 var rsp = webResponse.GetResponseStream();
                 using (StreamReader reader = new StreamReader(rsp))
                 {
-                    // Read the content.
                     response = reader.ReadToEnd();
                 }
-                return response;
             }
             catch (WebException webEx)
             {
-                WebResponse wresponse = webEx.Response;
-                Stream stream = wresponse.GetResponseStream();
-                String responseMessage = new StreamReader(stream).ReadToEnd();
-                Msg = responseMessage;
-                return responseMessage.ToString();
+                if (webEx != null)
+                {
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "FB GetResponseSearch" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
 
+                    }
+                }
             }
+            catch { }
+            return response;
         }
-		
-		     public void getSectors()
+
+        public void getSectors()
         {
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
                 string segm = string.Empty;
                 WebClient client = new WebClient();
-              
+
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
-              
-             
-                var kk = client.UploadString(FB_UrlSector + "sector", new FareBoutiqueRequestMappking().getRouteRequest(FB_TokenID,FB_Ip));
+
+
+                var kk = client.UploadString(FB_UrlSector + "sector", new FareBoutiqueRequestMappking().getRouteRequest(FB_TokenID, FB_Ip));
                 var dobj = JsonConvert.DeserializeObject<dynamic>(kk);
                 var sec1 = string.Empty;
                 foreach (var sectors in dobj["data"])

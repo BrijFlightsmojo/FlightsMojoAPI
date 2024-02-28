@@ -241,30 +241,32 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-                return response;
+               
             }
             catch (WebException webEx)
             {
-                //WebResponse wresponse = webEx.Response;
-                //Stream stream = wresponse.GetResponseStream();
-                //String responseMessage = new StreamReader(stream).ReadToEnd();
-                //return responseMessage.ToString();
-                //return "";
+                if (webEx != null)
+                {
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
 
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
-                {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
             }
+            catch { }
+            return response;
         }
 
         public void bookingLog(ref StringBuilder sbLogger, string requestTitle, string logText)
@@ -297,30 +299,31 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-                return response;
             }
             catch (WebException webEx)
             {
-                //WebResponse wresponse = webEx.Response;
-                //Stream stream = wresponse.GetResponseStream();
-                //String responseMessage = new StreamReader(stream).ReadToEnd();
-                //return responseMessage.ToString();
-                //return "";
+                if (webEx != null)
+                {
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
 
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
-                {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
             }
+            catch { }
+            return response;
         }
         private string GetResponse(string url, string requestData, ref StringBuilder sblogger)
         {
@@ -346,37 +349,32 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-                return response;
+               
             }
             catch (WebException webEx)
             {
-                try
+                if (webEx != null)
                 {
-                    //WebResponse wresponse = webEx.Response;
-                    //Stream stream = wresponse.GetResponseStream();
-                    //String responseMessage = new StreamReader(stream).ReadToEnd();
-                    //return responseMessage.ToString();
-                    WebResponse errResp = webEx.Response;
-                    Stream responseStream = null;
-                    if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
                     {
-                        responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
                     }
-                    else
-                    {
-                        responseStream = errResp.GetResponseStream();
-                    }
-                    StreamReader reader = new StreamReader(responseStream);
-                    response = reader.ReadToEnd();
-                    return response;
-                }
-                catch (Exception ex)
-                {
-                    bookingLog(ref sblogger, "GetResponse execption2", ex.ToString());
-                    sblogger.Append(ex.ToString());
-                    return "";
                 }
             }
+            catch { }
+            return response;
         }
         private string GetResponse(string url, string requestData, ref string Msg)
         {
@@ -402,34 +400,33 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-                return response;
+                
             }
             catch (WebException webEx)
             {
-                //WebResponse wresponse = webEx.Response;
-                //Stream stream = wresponse.GetResponseStream();
-                //String responseMessage = new StreamReader(stream).ReadToEnd();
-                //Msg = responseMessage;
-                //return responseMessage.ToString();
-
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
-                }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
 
+                    }
+                }
             }
+            catch { }
+            return response;
         }
-
-
         private string GetResponseSearch(string url, string requestData, ref string Msg)
         {
             if (string.IsNullOrEmpty(AuthToken))
@@ -454,29 +451,33 @@ namespace ServicesHub.SatkarTravel
                 using (StreamReader reader = new StreamReader(rsp))
                 {
                     response = reader.ReadToEnd();
-                }
-                return response;
+                }               
             }
             catch (WebException webEx)
             {
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
             }
+            catch { }
+            return response;
         }
-
-
-
         private string GetTokenResponse(string url, string requestData)
         {
             string response = string.Empty;
@@ -497,30 +498,32 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-                return response;
+               
             }
             catch (WebException webEx)
             {
-                //WebResponse wresponse = webEx.Response;
-                //Stream stream = wresponse.GetResponseStream();
-                //String responseMessage = new StreamReader(stream).ReadToEnd();
-                //return responseMessage.ToString();
-                //return "";
+                if (webEx != null)
+                {
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
 
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
-                {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
             }
+            catch { }
+            return response;
         }
     }
 }

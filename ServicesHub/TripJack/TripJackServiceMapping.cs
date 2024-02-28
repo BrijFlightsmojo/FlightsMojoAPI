@@ -315,32 +315,29 @@ namespace ServicesHub.TripJack
                     }
                 }
             }
-            catch (WebException webex)
+            catch (WebException webEx)
             {
-                WebResponse errResp = webex.Response;
-                Stream responseStream = null;
-                if (errResp != null && errResp.Headers != null && errResp.Headers.Get("Content-Encoding") != null && errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        responseFromServer = reader.ReadToEnd();
+
+                    }
                 }
-                else if (errResp != null)
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                if (responseStream != null)
-                {
-                    StreamReader reader = new StreamReader(responseStream);
-                    responseFromServer = reader.ReadToEnd();
-                }
-                if (string.IsNullOrWhiteSpace(responseFromServer) == false)
-                    sbLogger.Append("ErrorCatch1: Request" + data + "  Response:-" + responseFromServer);
-                else
-                    sbLogger.Append("ErrorCatch1: Request" + webex.ToString());
             }
-            catch (Exception ex)
-            {
-                sbLogger.Append("ErrorCatch2: Error" + ex.ToString());
-            }
+            catch { }
             return responseFromServer;
         }
 
@@ -385,32 +382,29 @@ namespace ServicesHub.TripJack
                     }
                 }
             }
-            catch (WebException webex)
+            catch (WebException webEx)
             {
-                WebResponse errResp = webex.Response;
-                Stream responseStream = null;
-                if (errResp != null && errResp.Headers != null && errResp.Headers.Get("Content-Encoding") != null && errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        responseFromServer = reader.ReadToEnd();
+
+                    }
                 }
-                else if (errResp != null)
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                if (responseStream != null)
-                {
-                    StreamReader reader = new StreamReader(responseStream);
-                    responseFromServer = reader.ReadToEnd();
-                }
-                if (string.IsNullOrWhiteSpace(responseFromServer) == false)
-                    sbLogger.Append("ErrorCatch1: Request" + data + "  Response:-" + responseFromServer);
-                else
-                    sbLogger.Append("ErrorCatch1: Request" + webex.ToString());
             }
-            catch (Exception ex)
-            {
-                sbLogger.Append("ErrorCatch2: Error" + ex.ToString());
-            }
+            catch { }
             return responseFromServer;
         }
 

@@ -52,7 +52,7 @@ namespace ServicesHub.AirIQ
             {
                 AirIQClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<AirIQClass.FlightResponse>(strResponse);
                 bookingLog(ref sbLogger, "AirIQ Response 1", JsonConvert.SerializeObject(Response));
-                if ((Response.code == 200 || Response.status.Equals("success", StringComparison.OrdinalIgnoreCase)) && Response.code != 0)
+                if ((Response.code == 200 || (Response.status!=null&& Response.status.Equals("success", StringComparison.OrdinalIgnoreCase))) && Response.code != 0)
                 {
                     new AirIQResponseMapping().getResults(request, ref Response, ref flightResponse);
                 }
@@ -127,7 +127,6 @@ namespace ServicesHub.AirIQ
                             _response.AirIQ_AirlineCode = bookResponse.airline_code;
                             _response.AirIQ_Msg = bookResponse.message;
 
-
                             WebClient client = new WebClient();
                             var url = Url + "ticket?booking_id=" + bookResponse.booking_id;
                             client.Headers[HttpRequestHeader.ContentType] = "application/json";
@@ -143,7 +142,7 @@ namespace ServicesHub.AirIQ
                         }
                         else
                         {
-                            bookingLog(ref sbLogger, " AirIQ  Else 1 ", "bookResponse.errorCode:" + bookResponse.message + "bookResponse.replyCode:" + bookResponse.message + ("replyMsg:" + bookResponse.message));
+                            bookingLog(ref sbLogger, " AirIQ  Else 1 ", "bookResponse.message:" + bookResponse.message);
                             _response.bookingStatus = BookingStatus.InProgress;
                             _response.responseStatus.message = bookResponse.message;
                         }
@@ -162,9 +161,6 @@ namespace ServicesHub.AirIQ
             bookingLog(ref sbLogger, "AirIQ  return Response", JsonConvert.SerializeObject(_response));
             new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Booking");
         }
-
-
-
 
         private string GetResponse(string url, string requestData)
         {
@@ -191,25 +187,34 @@ namespace ServicesHub.AirIQ
                 {
                     response = reader.ReadToEnd();
                 }
-                return response;
             }
             catch (WebException webEx)
             {
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "AIRIQ GetResponse" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
             }
+            catch { }
+            return response;
         }
+
 
 
         private string GetResponseSearch(string url, string requestData)
@@ -221,6 +226,7 @@ namespace ServicesHub.AirIQ
             string response = string.Empty;
             try
             {
+                StringBuilder sbLogger = new StringBuilder();
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
                 byte[] data = Encoding.UTF8.GetBytes(requestData);
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -228,7 +234,7 @@ namespace ServicesHub.AirIQ
                 request.ContentType = "application/json";
                 request.Headers.Add("api-key", ApiKey);
                 request.Headers.Add("Authorization", AuthToken);
-             //   request.Timeout = 10000;
+                //   request.Timeout = 10000;
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
@@ -238,24 +244,33 @@ namespace ServicesHub.AirIQ
                 {
                     response = reader.ReadToEnd();
                 }
-                return response;
+
             }
             catch (WebException webEx)
             {
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "AIRIQGetResponseSearch" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+                        new ServicesHub.LogWriter_New(response, "AIRIQGetResponseSearch" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
             }
+            catch { }
+            return response;
         }
 
 
@@ -263,6 +278,7 @@ namespace ServicesHub.AirIQ
         private string GetTokenResponse(string url, string requestData)
         {
             string response = string.Empty;
+            StringBuilder sbLogger = new StringBuilder();
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
@@ -276,28 +292,41 @@ namespace ServicesHub.AirIQ
                 dataStream.Close();
                 WebResponse webResponse = request.GetResponse();
                 var rsp = webResponse.GetResponseStream();
+
+
                 using (StreamReader reader = new StreamReader(rsp))
                 {
                     response = reader.ReadToEnd();
+
                 }
-                return response;
             }
             catch (WebException webEx)
             {
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "AIRIQ GetToken" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+                        
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
+
             }
+            catch { }
+            return response;
         }
 
         public void bookingLog(ref StringBuilder sbLogger, string requestTitle, string logText)
@@ -340,7 +369,7 @@ namespace ServicesHub.AirIQ
                         {
                             string dt = DateTime.ParseExact(avldate.ToString(), "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
                             if (date.IndexOf(dt) == -1)
-                                date += (string.IsNullOrEmpty(date) ? dt : ("_" +   dt));
+                                date += (string.IsNullOrEmpty(date) ? dt : ("_" + dt));
                         }
                         new DAL.FixDepartueRoute.RoutesDetails().SaveSatkarRouteswithDate(sectors["origin"].ToString(), sectors["destination"].ToString(), date, (int)GdsType.AirIQ);
                     }
@@ -348,7 +377,7 @@ namespace ServicesHub.AirIQ
             }
             catch (Exception ex)
             {
-                ex.ToString(); 
+                ex.ToString();
 
             }
         }
