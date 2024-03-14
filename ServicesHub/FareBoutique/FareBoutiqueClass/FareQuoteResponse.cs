@@ -15,6 +15,6 @@ namespace ServicesHub.FareBoutique.FB_FareQuote
     {
         public int flight_id { get; set; }
         public int available_seats { get; set; }
-        public int total_amount { get; set; }
+        public decimal total_amount { get; set; }
     }
 }

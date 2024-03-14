@@ -174,7 +174,18 @@ namespace Core.Flight
 
         [DataMember]
         public string AQ_ticket_id { get; set; }
+        [DataMember]
+        public bool isBuyCancellaionPolicy { get; set; }
+        [DataMember]
+        public string isBuyRefundPolicy { get; set; }
 
+        [DataMember]
+        public decimal RefundPolicyAmt { get; set; }
+        [DataMember]
+        public decimal CancellaionPolicyAmt { get; set; }
+		
+		[DataMember]
+        public int E2FBookingID { get; set; }
         public FlightBookingResponse()
         {
 
@@ -237,6 +248,8 @@ namespace Core.Flight
             affiliate = fbr.affiliate;
             userLogID = fbr.userLogID;
             STSessionID = fbr.STSessionID;
+            RefundPolicyAmt = fbr.RefundPolicyAmt;
+            CancellaionPolicyAmt = fbr.CancellaionPolicyAmt;
         }
     }
     [DataContract]

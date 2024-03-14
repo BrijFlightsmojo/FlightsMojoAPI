@@ -8,7 +8,7 @@ namespace ServicesHub.SatkarTravel.ST_BookFlight
 {
     public class BookResponse
     {
-        public int reqId { get; set; }
+        public string reqId { get; set; }
         public string txid { get; set; }
         public string bookingstatus { get; set; }
         public int status { get; set; }

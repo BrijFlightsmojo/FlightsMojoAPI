@@ -237,7 +237,7 @@ namespace DAL.Booking
         }
         private bool SaveFMJ_FlightBookingDetails_WithOutPax(ref FlightBookingRequest flightBookingRequest, DataTable dtAmount, DataTable dtSector, ref string Eft, ref int outEft, ref int inEft, ref DateTime DepDate, ref DateTime arrDate, ref decimal TotalAmount)
         {
-            SqlParameter[] param = new SqlParameter[81];
+            SqlParameter[] param = new SqlParameter[83];
 
             TripType tripType = TripType.OneWay;
             if (flightBookingRequest.flightResult.Count > 1)
@@ -456,6 +456,12 @@ namespace DAL.Booking
 
             param[80] = new SqlParameter("@MarkupRule", SqlDbType.VarChar, 500);
             param[80].Value = flightBookingRequest.flightResult[0].Fare.markupID;
+
+            param[81] = new SqlParameter("@isBuyCancellaionPolicy", SqlDbType.Bit);
+            param[81].Value = flightBookingRequest.isBuyCancellaionPolicy;
+
+            param[82] = new SqlParameter("@isBuyRefundPolicy", SqlDbType.VarChar, 10);
+            param[82].Value = flightBookingRequest.isBuyRefundPolicy;
 
             using (SqlConnection con = DataConnection.GetConnection())
             {
@@ -794,7 +800,7 @@ namespace DAL.Booking
         }
         public ResponseStatus SaveFMJ_FlightBookingTransactionDetailsWithTickNo(ref FlightBookingRequest bookRequest, ref FlightBookingResponse flightBookingResponse)
         {
-            SqlParameter[] param = new SqlParameter[35];
+            SqlParameter[] param = new SqlParameter[39];
 
             param[0] = new SqlParameter("@BookingID", SqlDbType.Int);
             param[0].Value = flightBookingResponse.bookingID;
@@ -938,6 +944,17 @@ namespace DAL.Booking
             param[34] = new SqlParameter("@OnlineStatus", SqlDbType.Int);
             param[34].Value = (int)BookingStatus.Ticketed;
 
+            param[35] = new SqlParameter("@isBuyCancellaionPolicy", SqlDbType.Bit);
+            param[35].Value = bookRequest.isBuyCancellaionPolicy;
+
+            param[36] = new SqlParameter("@isBuyRefundPolicy", SqlDbType.Bit);
+            param[36].Value = bookRequest.isBuyRefundPolicy;
+
+            param[37] = new SqlParameter("@isBuyCancellaionPolicyAmt", SqlDbType.Decimal);
+            param[37].Value = bookRequest.CancellaionPolicyAmt;
+
+            param[38] = new SqlParameter("@isBuyRefundPolicyAmt", SqlDbType.Decimal);
+            param[38].Value = bookRequest.RefundPolicyAmt;
 
             using (SqlConnection con = DataConnection.GetConnection())
             {
@@ -1145,18 +1162,7 @@ namespace DAL.Booking
             {
                 string tjID = fsr.PriceID[itinID];
                 Fare fare = fResult.Fare;
-                //if (fResult.Fare.gdsType == GdsType.TripJack)
-                //{
-                //    fare = fResult.FareList.Where(k => k.tjID == tjID).ToList().FirstOrDefault();
-                //}
-                //else if(0)
-                //{
-                //    fare = fResult.FareList.Where(k => k.Tgy_FareID == tjID).ToList().FirstOrDefault();
-                //}
-                //else
-                //{
-                //    fare = fResult.FareList.Where(k => k.Tgy_FareID == tjID).ToList().FirstOrDefault();
-                //}
+               
 
                 TotalAmount += fare.grandTotal;
                 var adtFare = fare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).FirstOrDefault();
@@ -1170,7 +1176,7 @@ namespace DAL.Booking
                 adtBFare["ChargeID"] = ChargeID.BaseFare;
                 adtBFare["ChargesFor"] = ChargeFor.Adult;
                 adtBFare["TotalUnit"] = fsr.adults;
-                if (fResult.Fare.gdsType == GdsType.Tbo)
+                if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
                 {
                     adtBFare["CostPrice"] = (adtFare.BaseFare / fsr.adults);
                     adtBFare["SellPrice"] = (adtFare.BaseFare / fsr.adults);
@@ -1194,7 +1200,7 @@ namespace DAL.Booking
                 adtBTax["ChargeID"] = ChargeID.Tax;
                 adtBTax["ChargesFor"] = ChargeFor.Adult;
                 adtBTax["TotalUnit"] = fsr.adults;
-                if (fResult.Fare.gdsType == GdsType.Tbo)
+                if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
                 {
                     adtBTax["CostPrice"] = (adtFare.Tax / fsr.adults);
                     adtBTax["SellPrice"] = (adtFare.Tax / fsr.adults);
@@ -1236,7 +1242,7 @@ namespace DAL.Booking
                     chdBFare["ChargeID"] = ChargeID.BaseFare;
                     chdBFare["ChargesFor"] = ChargeFor.Child;
                     chdBFare["TotalUnit"] = fsr.child;
-                    if (fResult.Fare.gdsType == GdsType.Tbo)
+                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
                     {
                         chdBFare["CostPrice"] = (chdFare.BaseFare / fsr.child);
                         chdBFare["SellPrice"] = (chdFare.BaseFare / fsr.child);
@@ -1261,7 +1267,7 @@ namespace DAL.Booking
                     chdBTax["ChargeID"] = ChargeID.Tax;
                     chdBTax["ChargesFor"] = ChargeFor.Child;
                     chdBTax["TotalUnit"] = fsr.child;
-                    if (fResult.Fare.gdsType == GdsType.Tbo)
+                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
                     {
                         chdBTax["CostPrice"] = (chdFare.Tax / fsr.child);
                         chdBTax["SellPrice"] = (chdFare.Tax / fsr.child);
@@ -1302,7 +1308,7 @@ namespace DAL.Booking
                     infBFare["ChargeID"] = ChargeID.BaseFare;
                     infBFare["ChargesFor"] = ChargeFor.Infant;
                     infBFare["TotalUnit"] = fsr.infants;
-                    if (fResult.Fare.gdsType == GdsType.Tbo)
+                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
                     {
                         infBFare["CostPrice"] = (infFare.BaseFare / fsr.infants);
                         infBFare["SellPrice"] = (infFare.BaseFare / fsr.infants);
@@ -1325,7 +1331,7 @@ namespace DAL.Booking
                     infBTax["ChargeID"] = ChargeID.Tax;
                     infBTax["ChargesFor"] = ChargeFor.Infant;
                     infBTax["TotalUnit"] = fsr.infants;
-                    if (fResult.Fare.gdsType == GdsType.Tbo)
+                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
                     {
                         infBTax["CostPrice"] = (infFare.Tax / fsr.infants);
                         infBTax["SellPrice"] = (infFare.Tax / fsr.infants);
@@ -1518,6 +1524,48 @@ namespace DAL.Booking
 
                 TotalAmount = TotalAmount + fsr.convenienceFee;
             }
+
+            if (false && fsr.CancellaionPolicyAmt > 0)
+            {
+                DataRow CPAmt = dt.NewRow();
+                CPAmt["BookingID"] = fsr.bookingID;
+                CPAmt["ProdID"] = fsr.prodID;
+                CPAmt["ItinID"] = 0;
+                CPAmt["ChargeID"] = ChargeID.CancellationPolicyAmount;
+                CPAmt["ChargesFor"] = ChargeFor.NA;
+                CPAmt["TotalUnit"] = 1;
+                CPAmt["CostPrice"] = 0;
+                CPAmt["SellPrice"] = fsr.CancellaionPolicyAmt;
+                CPAmt["ChargesStatus"] = 0;
+                CPAmt["SupplierID"] = 0;
+                CPAmt["ChargesRemarks"] = "";
+                CPAmt["ModifyBy"] = 1000;
+                dt.Rows.Add(CPAmt);
+                TotalAmount = TotalAmount + fsr.CancellaionPolicyAmt;
+            }
+
+            if (false && fsr.RefundPolicyAmt > 0)
+            {
+                DataRow RPAmt = dt.NewRow();
+                RPAmt["BookingID"] = fsr.bookingID;
+                RPAmt["ProdID"] = fsr.prodID;
+                RPAmt["ItinID"] = 0;
+                RPAmt["ChargeID"] = ChargeID.RefundPolicyAmount;
+                RPAmt["ChargesFor"] = ChargeFor.NA;
+                RPAmt["TotalUnit"] = 1;
+                RPAmt["CostPrice"] = 0;
+                RPAmt["SellPrice"] = fsr.RefundPolicyAmt;
+                RPAmt["ChargesStatus"] = 0;
+                RPAmt["SupplierID"] = 0;
+                RPAmt["ChargesRemarks"] = "";
+                RPAmt["ModifyBy"] = 1000;
+                dt.Rows.Add(RPAmt);
+
+                TotalAmount = TotalAmount + fsr.RefundPolicyAmt;
+            }
+
+
+
             return dt;
         }
         private DataTable getpassengerTable(ref FlightBookingRequest fsr)

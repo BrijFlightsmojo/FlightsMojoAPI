@@ -32,6 +32,8 @@ namespace IndiaAPI.Controllers
         [Route("test")]
         public HttpResponseMessage Test()
         {
+            //ServicesHub.Ease2Fly.Ease2FlyServiceMapping obj = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping();
+            //obj.getSectors();
             //  GetSatkarroutes();
             //getSectors();
             //  var kkdd11 = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().getTokenID();
@@ -55,11 +57,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "AYJ",
-                orgArp = Core.FlightUtility.GetAirport("AYJ"),
-                destinationAirport = "BOM",
-                destArp = Core.FlightUtility.GetAirport("BOM"),
-                travelDate = Convert.ToDateTime("2024-02-22") //DateTime.Today.AddDays(61)//
+                originAirport = "DEL",
+                orgArp = Core.FlightUtility.GetAirport("DEL"),
+                destinationAirport = "GAU",
+                destArp = Core.FlightUtility.GetAirport("GAU"),
+                travelDate = Convert.ToDateTime("2024-03-17") //DateTime.Today.AddDays(61)//
             });
 
             if (flightSearchReq.tripType != Core.TripType.OneWay)
@@ -79,13 +81,13 @@ namespace IndiaAPI.Controllers
             flightSearchReq.siteId = SiteId.FlightsMojoIN;
             flightSearchReq.sourceMedia = "1000";
             flightSearchReq.userSearchID = getSearchID();
-          //  var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq);
-         //   return Request.CreateResponse(HttpStatusCode.OK, kkdd);
-          //  return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
-                    var kkdd = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().GetFlightResults(flightSearchReq);
-            
-           // var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq);
-            
+            var kkdd = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().GetFlightResults(flightSearchReq);
+            //   return Request.CreateResponse(HttpStatusCode.OK, kkdd);
+            //  return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
+            //     var kkdd = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().GetFlightResults(flightSearchReq);
+
+            // var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq);
+
             //var kkdd = new ServicesHub.Travelogy.TravelogyServiceMapping().GetFlightResults(flightSearchReq);
             //return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
             //ServicesHub.LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\Error\\", "Test.txt");
@@ -257,7 +259,7 @@ namespace IndiaAPI.Controllers
             FlightBookingResponse BookResponse = new FlightBookingResponse(bookingReq);
             //  StringBuilder sbLogger = new StringBuilder();
             //new ServicesHub.Travelogy.TravelogyServiceMapping().BookFlight(bookingReq, ref BookResponse);
-          //  new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().BookFlight(bookingReq, ref BookResponse);
+            //  new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().BookFlight(bookingReq, ref BookResponse);
             return Request.CreateResponse(HttpStatusCode.OK, BookResponse);
         }
         [HttpGet]
@@ -990,6 +992,10 @@ namespace IndiaAPI.Controllers
                     {
                         priceVResponse = new FlightMapper().AirIQVerifyThePrice(priceVerificationRequest);
                     }
+                    else if (priceVerificationRequest.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
+                    {
+                        priceVResponse = new FlightMapper().E2FVerifyThePrice(priceVerificationRequest);
+                    }
                     else
                     {
                         priceVResponse = new PriceVerificationResponse()
@@ -1043,6 +1049,10 @@ namespace IndiaAPI.Controllers
                         else if (priceVerificationRequest.flightResult[0].Fare.gdsType == GdsType.AirIQ)
                         {
                             priceVResponse = new FlightMapper().AirIQVerifyThePrice(priceVerificationRequest);
+                        }
+                        else if (priceVerificationRequest.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
+                        {
+                            priceVResponse = new FlightMapper().E2FVerifyThePrice(priceVerificationRequest);
                         }
                         else
                         {
@@ -1326,7 +1336,7 @@ namespace IndiaAPI.Controllers
                                 new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call OneDFare");
                                 new ServicesHub.OneDFare.OneDFareServiceMapping().BookFlight(bookRequest, ref BookResponse);
                             }
-                             else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.SatkarTravel)
+                            else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.SatkarTravel)
                             {
                                 new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call SatkarTravel");
                                 new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().BookFlight(bookRequest, ref BookResponse);
@@ -1335,6 +1345,12 @@ namespace IndiaAPI.Controllers
                             {
                                 new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call AirIQ");
                                 new ServicesHub.AirIQ.AirIQServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                            }
+
+                            else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
+                            {
+                                new ServicesHub.LogWriter_New(sbLog2.ToString(), bookRequest.bookingID.ToString(), "Booking", "Call Ease2Fly");
+                                new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().BookFlight(bookRequest, ref BookResponse);
                             }
                         }
                         else
@@ -1464,7 +1480,7 @@ namespace IndiaAPI.Controllers
         }
 
 
-        
+
 
 
         //[HttpPost]
@@ -2049,7 +2065,7 @@ namespace IndiaAPI.Controllers
     public class FlightMapper
     {
         public Core.Flight.FlightSearchResponse GetFlightResultMultiGDS(FlightSearchRequest request)
-         {
+        {
             StringBuilder sbLogger = new StringBuilder();
             Core.Flight.FlightSearchResponse response = new FlightSearchResponse(request);
             Task<FlightSearchResponseShort> tripJack = null;
@@ -2058,6 +2074,7 @@ namespace IndiaAPI.Controllers
             Task<FlightSearchResponseShort> fareBoutique = null;
             Task<FlightSearchResponseShort> satkarTravel = null;
             Task<FlightSearchResponseShort> AirIQGDS = null;
+            Task<FlightSearchResponseShort> Ease2Fly = null;
 
             bool istripJack = false;
             bool isOneDFare = false;
@@ -2065,9 +2082,10 @@ namespace IndiaAPI.Controllers
             bool isfareBoutique = false;
             bool isSatkarTravel = false;
             bool isAirIQGDS = false;
+            bool isEase2Fly = false;
 
-           
-            int tripJackSeq = 0, OneDFareSeq = 0, tboSeq = 0, fareBoutiqueSeq = 0, satkarTravelSeq = 0, AirIQTravelSeq = 0;
+
+            int tripJackSeq = 0, OneDFareSeq = 0, tboSeq = 0, fareBoutiqueSeq = 0, satkarTravelSeq = 0, AirIQTravelSeq = 0, Ease2FlySeq = 0;
             #region CheckSupplier
             if (request.segment[0].orgArp == null)
             {
@@ -2106,7 +2124,7 @@ namespace IndiaAPI.Controllers
                 if (item.Provider == GdsType.FareBoutique)
                 {
                     fareBoutiqueSeq = item.FarePriority;
-                    isfareBoutique = true;                 
+                    isfareBoutique = true;
                 }
 
                 if (item.Provider == GdsType.SatkarTravel)
@@ -2120,8 +2138,14 @@ namespace IndiaAPI.Controllers
                     AirIQTravelSeq = item.FarePriority;
                     isAirIQGDS = true;
                 }
+
+                if (item.Provider == GdsType.Ease2Fly)
+                {
+                    Ease2FlySeq = item.FarePriority;
+                    isEase2Fly = true;
+                }
             }
-            
+
             #endregion
 
             if (request.segment.Count > 1 && (request.sourceMedia == "1016" || request.sourceMedia == "1000" || request.sourceMedia == "1001" || request.sourceMedia == "1004" || request.sourceMedia == "1013" || request.sourceMedia == "1010"))
@@ -2132,6 +2156,7 @@ namespace IndiaAPI.Controllers
                 isfareBoutique = false;
                 isAirIQGDS = false;
                 isSatkarTravel = false;
+                isEase2Fly = false;
                 istripJack = request.travelType == Core.TravelType.International ? false : true;
             }
             if (request.segment.Count > 1)
@@ -2140,6 +2165,7 @@ namespace IndiaAPI.Controllers
                 isOneDFare = false;
                 isAirIQGDS = false;
                 isSatkarTravel = false;
+                isEase2Fly = false;
             }
             if (request.cabinType != Core.CabinType.Economy)
             {
@@ -2147,14 +2173,15 @@ namespace IndiaAPI.Controllers
                 isOneDFare = false;
                 isSatkarTravel = false;
                 isAirIQGDS = false;
+                isEase2Fly = false;
             }
             //if (request.segment.Count == 1)
             //{
             //    isOneDFare = true;
             //}
-            if (isSatkarTravel || isAirIQGDS|| isfareBoutique)
+            if (isSatkarTravel || isAirIQGDS || isfareBoutique || isEase2Fly)
             {
-              
+
                 var kkk = new DAL.FixDepartueRoute.RoutesDetails().GetAvailableProvider(request.segment[0].orgArp.airportCode, request.segment[0].destArp.airportCode, request.segment[0].travelDate.ToString("yyyy-MM-dd"));
                 if (isAirIQGDS)
                 {
@@ -2168,6 +2195,10 @@ namespace IndiaAPI.Controllers
                 {
                     isSatkarTravel = kkk.Contains(GdsType.SatkarTravel);
                 }
+                if (isEase2Fly)
+                {
+                    isEase2Fly = kkk.Contains(GdsType.Ease2Fly);
+                }
             }
             if (istripJack) tripJack = GetSearchResultTripJack(request);
             if (isOneDFare) OneDFare = GetSearchResultOneDFare(request);
@@ -2175,6 +2206,7 @@ namespace IndiaAPI.Controllers
             if (isfareBoutique) fareBoutique = GetSearchResultFareBoutique(request);
             if (isSatkarTravel) satkarTravel = GetSearchResultSatkarTravel(request);
             if (isAirIQGDS) AirIQGDS = GetSearchResultAirIQGDS(request);
+            if (isEase2Fly) Ease2Fly = GetSearchResultEase2Fly(request);
 
 
             List<Task> taskList = new List<Task>();
@@ -2184,6 +2216,7 @@ namespace IndiaAPI.Controllers
             if (isfareBoutique) taskList.Add(fareBoutique);
             if (isSatkarTravel) taskList.Add(satkarTravel);
             if (isAirIQGDS) taskList.Add(AirIQGDS);
+            if (isEase2Fly) taskList.Add(Ease2Fly);
 
             TimeSpan timeSpan = TimeSpan.FromSeconds(15); //TODO Reduce timing to under 10 seconds.
             Task.WaitAll(taskList.ToArray(), timeSpan);
@@ -2192,7 +2225,8 @@ namespace IndiaAPI.Controllers
                 (istbo ? tbo.Result : new FlightSearchResponseShort()),
                 (isfareBoutique ? fareBoutique.Result : new FlightSearchResponseShort()),
                 (isSatkarTravel ? satkarTravel.Result : new FlightSearchResponseShort()),
-                (isAirIQGDS ? AirIQGDS.Result : new FlightSearchResponseShort()));
+                (isAirIQGDS ? AirIQGDS.Result : new FlightSearchResponseShort()),
+                (isEase2Fly ? Ease2Fly.Result : new FlightSearchResponseShort()));
 
 
             if (response != null && response.Results != null && response.Results.Count() > 0 && response.Results[0].Count > 0 && response.Results.LastOrDefault().Count > 0)
@@ -2227,7 +2261,7 @@ namespace IndiaAPI.Controllers
             return response;
         }
         public void DistinctFlightResult(ref FlightSearchResponse OrgResponse, FlightSearchResponseShort oneDRes, FlightSearchResponseShort TjRes, FlightSearchResponseShort TboRes,
-            FlightSearchResponseShort fareBoutique, FlightSearchResponseShort STRes, FlightSearchResponseShort AirIQRes)
+            FlightSearchResponseShort fareBoutique, FlightSearchResponseShort STRes, FlightSearchResponseShort AirIQRes, FlightSearchResponseShort E2FRes)
         {
             try
             {
@@ -2243,7 +2277,8 @@ namespace IndiaAPI.Controllers
                         .Union(fareBoutique.Results != null && fareBoutique.Results.Count > 0 && fareBoutique.Results[0].Count > 0 ? fareBoutique.Results[0] : new List<FlightResult>()).ToList()
                         .Union(TjRes.Results != null && TjRes.Results.Count > 0 && TjRes.Results[0].Count > 0 ? TjRes.Results[0] : new List<FlightResult>()).ToList()
                         .Union(STRes.Results != null && STRes.Results.Count > 0 && STRes.Results[0].Count > 0 ? STRes.Results[0] : new List<FlightResult>()).ToList()
-                        .Union(AirIQRes.Results != null && AirIQRes.Results.Count > 0 && AirIQRes.Results[0].Count > 0 ? AirIQRes.Results[0] : new List<FlightResult>()).ToList();
+                        .Union(AirIQRes.Results != null && AirIQRes.Results.Count > 0 && AirIQRes.Results[0].Count > 0 ? AirIQRes.Results[0] : new List<FlightResult>()
+                        .Union(E2FRes.Results != null && E2FRes.Results.Count > 0 && E2FRes.Results[0].Count > 0 ? E2FRes.Results[0] : new List<FlightResult>())).ToList();
                     var strList = strComb.GroupBy(o => new { o.ResultCombination }).Select(o => o.FirstOrDefault().ResultCombination);
                     List<FlightResult> resutlDep = new List<FlightResult>();
                     foreach (string str in strList)
@@ -2312,7 +2347,8 @@ namespace IndiaAPI.Controllers
                     (TjRes.Results != null && TjRes.Results.Count > 1 && TjRes.Results[1].Count > 0) ||
                     (TboRes.Results != null && TboRes.Results.Count > 1 && TboRes.Results[1].Count > 0) ||
                     (STRes.Results != null && STRes.Results.Count > 1 && STRes.Results[1].Count > 0) ||
-                    (AirIQRes.Results != null && AirIQRes.Results.Count > 1 && AirIQRes.Results[1].Count > 0))
+                    (AirIQRes.Results != null && AirIQRes.Results.Count > 1 && AirIQRes.Results[1].Count > 0) ||
+                    (E2FRes.Results != null && E2FRes.Results.Count > 1 && E2FRes.Results[1].Count > 0))
                 {
                     int ctr = 0;
                     List<FlightResult> strComb = new List<FlightResult>();
@@ -2320,7 +2356,8 @@ namespace IndiaAPI.Controllers
                                 .Union(TboRes.Results != null && TboRes.Results.Count > 1 && TboRes.Results[1].Count > 0 ? TboRes.Results[1] : new List<FlightResult>()).ToList()
                                 .Union(TjRes.Results != null && TjRes.Results.Count > 1 && TjRes.Results[1].Count > 0 ? TjRes.Results[1] : new List<FlightResult>()).ToList()
                                 .Union(STRes.Results != null && STRes.Results.Count > 0 ? STRes.Results[1] : new List<FlightResult>()).ToList()
-                                .Union(AirIQRes.Results != null && AirIQRes.Results.Count > 0 ? AirIQRes.Results[1] : new List<FlightResult>()).ToList();
+                                .Union(AirIQRes.Results != null && AirIQRes.Results.Count > 0 ? AirIQRes.Results[1] : new List<FlightResult>()
+                                .Union(E2FRes.Results != null && E2FRes.Results.Count > 0 ? E2FRes.Results[1] : new List<FlightResult>())).ToList();
                     var strList = strComb.GroupBy(o => new { o.ResultCombination }).Select(o => o.FirstOrDefault().ResultCombination);
                     List<FlightResult> resutlret = new List<FlightResult>();
                     foreach (string str in strList)
@@ -2404,6 +2441,11 @@ namespace IndiaAPI.Controllers
         public Task<FlightSearchResponseShort> GetSearchResultAirIQGDS(FlightSearchRequest searchRequest)
         {
             return Task<FlightSearchResponseShort>.Factory.StartNew(() => new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(searchRequest));
+        }
+
+        public Task<FlightSearchResponseShort> GetSearchResultEase2Fly(FlightSearchRequest searchRequest)
+        {
+            return Task<FlightSearchResponseShort>.Factory.StartNew(() => new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(searchRequest));
         }
 
         #endregion
@@ -2632,6 +2674,12 @@ namespace IndiaAPI.Controllers
             return response;
         }
 
+        public PriceVerificationResponse E2FVerifyThePrice(PriceVerificationRequest request)
+        {
+            PriceVerificationResponse response = new PriceVerificationResponse() { responseStatus = new ResponseStatus() };
+            response.fareQuoteResponse = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFareQuote(request);
+            return response;
+        }
 
         public PriceVerificationResponse TjVerifyThePrice(PriceVerificationRequest request)
         {

@@ -52,7 +52,8 @@ namespace Core
         FareBoutique = 4,
         OneDFare = 8,
         SatkarTravel = 9,
-        AirIQ = 5
+        AirIQ = 5,
+        Ease2Fly = 10
     }
     public enum SubProvider : int
     {
@@ -335,8 +336,9 @@ namespace Core
         CommissionEarned = 12,
         FareIncreaseAmount = 13,
         ServiceFee = 14,
-        CouponIncreaseAmount = 15
-
+        CouponIncreaseAmount = 15,
+        CancellationPolicyAmount = 16,
+        RefundPolicyAmount = 17
     }
     public enum ChargeFor
     {

@@ -141,8 +141,8 @@ namespace ServicesHub.SatkarTravel
                         bookingLog(ref sbLogger, "ST Travel Book Flight Response", JsonConvert.SerializeObject(bookResponse));
                         if (bookResponse.status == 1 || bookResponse.bookingstatus.Equals("Confirmed", StringComparison.OrdinalIgnoreCase))
                         {
-                            _response.ST_Request_id = bookResponse.reqId;
-                            bookingLog(ref sbLogger, "Satkar Travel Request ID", _response.ST_Request_id.ToString());
+                            //_response.ST_Request_id = bookResponse.reqId;
+                            //bookingLog(ref sbLogger, "Satkar Travel Request ID", _response.ST_Request_id);
                             _response.ST_tx_id = bookResponse.txid;
                             WebClient client = new WebClient();
                             var url = ST_UrlGetDetail + bookResponse.txid;

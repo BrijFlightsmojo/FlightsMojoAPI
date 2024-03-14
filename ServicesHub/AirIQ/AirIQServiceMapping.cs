@@ -234,7 +234,7 @@ namespace ServicesHub.AirIQ
                 request.ContentType = "application/json";
                 request.Headers.Add("api-key", ApiKey);
                 request.Headers.Add("Authorization", AuthToken);
-                //   request.Timeout = 10000;
+             //   request.Timeout = 10000;
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
@@ -292,12 +292,9 @@ namespace ServicesHub.AirIQ
                 dataStream.Close();
                 WebResponse webResponse = request.GetResponse();
                 var rsp = webResponse.GetResponseStream();
-
-
                 using (StreamReader reader = new StreamReader(rsp))
                 {
                     response = reader.ReadToEnd();
-
                 }
             }
             catch (WebException webEx)

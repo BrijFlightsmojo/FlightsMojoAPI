@@ -145,7 +145,6 @@ namespace ServicesHub.SatkarTravel
                                     gdsType = GdsType.SatkarTravel,
                                     SeatAvailable = Itin.segments.FirstOrDefault().FirstOrDefault().noOfSeatAvailable,
                                     FareType = FareType.OFFER_FARE_WITH_PNR,
-                                    subProvider = Core.SubProvider.SATKARTRAVELS,
                                     ST_ResultSessionID = Itin.resultSessionId
                                 };
 

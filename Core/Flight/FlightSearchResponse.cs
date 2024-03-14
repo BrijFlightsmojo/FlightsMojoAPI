@@ -331,6 +331,13 @@ namespace Core.Flight
         [DataMember]
         public string  AQ_ticket_id { get; set; }
 
+        [DataMember]
+        public int E2F_id { get; set; }
+
+        [DataMember]
+        public string d_owner { get; set; }
+        [DataMember]
+        public string FlightKey { get; set; }
 
     }
 
