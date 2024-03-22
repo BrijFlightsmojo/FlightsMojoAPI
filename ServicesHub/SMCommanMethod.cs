@@ -270,6 +270,16 @@ namespace ServicesHub
                 else if ("SANJAYTOURANDTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SANJAYTOURANDTRAVELS; }
                 else if ("TRAVELMASTER.IN".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.TRAVELMASTER_IN; }
                 else if ("ALELAHITRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.ALELAHITRAVELS; }
+
+                else if ("AIRTB(ANGRAGVENTURES)".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.AIRTB_ANGRAGVENTURES; }
+                else if ("SASTITICKET".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SASTITICKET; }
+                else if ("STARTRAVELS&HOLIDAY".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.STARTRAVELS_HOLIDAY; }
+                else if ("SAADATTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SAADATTRAVELS; }
+                else if ("CHOUDHARYTRAVELS(AIRBLR)".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.CHOUDHARYTRAVELS_AIRBLR; }
+                else if ("ABHISHEKAIRTICKET(AIRABHI)".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.ABHISHEKAIRTICKET_AIRABHI; }
+                else if ("DEALFARE".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.DEALFARE; }
+                else if ("FREQUENTFLYERS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.FREQUENTFLYERS; }
+                else if ("SKYLINETRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SKYLINETRAVELS; }
             }
             if (sp == SubProvider.None)
             {

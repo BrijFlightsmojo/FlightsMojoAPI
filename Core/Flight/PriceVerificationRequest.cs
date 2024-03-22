@@ -53,5 +53,29 @@ namespace Core.Flight
 
         [DataMember]
         public string ST_ResultSessionID { get; set; }
+
+        [DataMember]
+        public string origin { get; set; }
+        [DataMember]
+        public string destination { get; set; }
+
+        [DataMember]
+        public string depDate { get; set; }
+
+    }
+
+    public class GfPriceVerifyResponse
+    {
+        public ResponseStatus responseStatus { get; set; }
+        public Fare fare { get; set; }
+    }
+
+    public class GfPriceVerifyRequest
+    {
+        public int adults { get; set; }
+        public int child { get; set; }
+        public int infants { get; set; }
+        public int infantsWs { get; set; }
+        public List<FlightResult> flightResult { get; set; }
     }
 }

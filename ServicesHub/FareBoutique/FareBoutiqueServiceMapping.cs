@@ -393,10 +393,6 @@ namespace ServicesHub.FareBoutique
                 var sec1 = string.Empty;
                 foreach (var sectors in dobj["data"])
                 {
-                    //FareBoutiqueClass.FBRoutesResponse seg = new FareBoutiqueClass.FBRoutesResponse();
-                    //seg.origin = sectors["dep_airport_code"];
-                    //seg.destination = sectors["arr_airport_code"];
-                    //segm = JsonConvert.SerializeObject(seg);
                     var sec2 = GetResponse(FB_UrlSector + "onward_dates", new FareBoutiqueRequestMappking().getRouteDateRequest(FB_TokenID, FB_Ip, sectors["departure_city_code"].ToString(), sectors["arrival_city_code"].ToString()));
                     var kk1 = JsonConvert.DeserializeObject<dynamic>(sec2);
                     string date = string.Empty;
@@ -411,13 +407,6 @@ namespace ServicesHub.FareBoutique
                             }
                         }
                         new DAL.FixDepartueRoute.RoutesDetails().SaveSatkarRouteswithDate(sectors["departure_city_code"].ToString(), sectors["arrival_city_code"].ToString(), date, (int)GdsType.FareBoutique);
-                        //foreach (var avldate in kk1["data"])
-                        //{
-                        //    string dt = DateTime.ParseExact(avldate.ToString(), "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
-                        //    if (date.IndexOf(dt) == -1)
-                        //        date += (string.IsNullOrEmpty(date) ? dt : ("_" + dt));
-                        //}
-                        //new DAL.SatkarTravel.RoutesDetails().SaveSatkarRouteswithDate(sectors["origin"].ToString(), sectors["destination"].ToString(), date, (int)GdsType.AirIQ);
                     }
                 }
             }

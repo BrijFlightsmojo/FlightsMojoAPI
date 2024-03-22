@@ -73,7 +73,7 @@ namespace ServicesHub.FareBoutique.FareBoutiqueClass
         public string email_id { get; set; }
         public string mobile { get; set; }
         public string share_id { get; set; }
-        public int balance { get; set; }
+        public decimal balance { get; set; }
         public string logo { get; set; }
     }
 }

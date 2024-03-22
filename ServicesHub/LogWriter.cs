@@ -29,7 +29,7 @@ namespace ServicesHub
         {
             try
             {
-                using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "\\log\\" + FolderName + "\\" + FileName + ".txt"))
+                using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "\\Log\\" + FolderName + "\\" + FileName + ".txt"))
                 {
                     Log(logMessage, w);
                 }

@@ -73,6 +73,7 @@ namespace ServicesHub.Ease2Fly
                         passport_dob = "",
                         passport_exp = "",
                         //age = age == 0 ? 1 : age
+                        age =pax.dateOfBirth.ToString("yyyy-MM-dd")
                     };
                     bookFlight.child_info.Add(_pax);
                 }
@@ -90,7 +91,8 @@ namespace ServicesHub.Ease2Fly
                         passport_nationality = "",
                         passport_dob = "",
                         passport_exp = "",
-                        age = age == 0 ? 0 : 1
+                        // age = age == 0 ? 0 : 1
+                        age = pax.dateOfBirth.ToString("yyyy-MM-dd")
                     };
                     bookFlight.infant_info.Add(_pax);
                 }

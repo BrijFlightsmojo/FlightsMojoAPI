@@ -1,0 +1,116 @@
+﻿<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header>
+    <add:MessageID xmlns:add="http://www.w3.org/2005/08/addressing">99475bad-ed2a-442f-8318-64fdbed54b1e</add:MessageID>
+    <add:Action xmlns:add="http://www.w3.org/2005/08/addressing">http://webservices.amadeus.com/TIBNRQ_18_1_1A</add:Action>
+    <add:To xmlns:add="http://www.w3.org/2005/08/addressing">https://nodeD1.production.webservices.amadeus.com/1ASIWFMOCCB</add:To>
+    <link:TransactionFlowLink xmlns:link="http://wsdl.amadeus.com/2010/06/ws/Link_v1" />
+    <oas:Security xmlns:oas="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:oas1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+      <oas:UsernameToken oas1:Id="UsernameToken-1">
+        <oas:Username>WSCCBFMO</oas:Username>
+        <oas:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">YzJpVWZEcERQbm81</oas:Nonce>
+        <oas:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest">FTik8NL2bGOO98KR/EZYhDB0H8A=</oas:Password>
+        <oas1:Created>2023-07-26T11:21:26.006Z</oas1:Created>
+      </oas:UsernameToken>
+    </oas:Security>
+    <AMA_SecurityHostedUser xmlns="http://xml.amadeus.com/2010/06/Security_v1">
+      <UserID AgentDutyCode="SU" RequestorType="U" PseudoCityCode="DFWZT2437" POS_Type="1" />
+    </AMA_SecurityHostedUser>
+  </s:Header>
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Fare_InformativeBestPricingWithoutPNR xmlns="http://xml.amadeus.com/TIBNRQ_18_1_1A">
+      <passengersGroup>
+        <segmentRepetitionControl>
+          <segmentControlDetails>
+            <quantity>1</quantity>
+            <numberOfUnits>1</numberOfUnits>
+          </segmentControlDetails>
+        </segmentRepetitionControl>
+        <travellersID>
+          <travellerDetails>
+            <measurementValue>1</measurementValue>
+          </travellerDetails>
+        </travellersID>
+        <discountPtc>
+          <valueQualifier>ADT</valueQualifier>
+        </discountPtc>
+      </passengersGroup>
+      <passengersGroup>
+        <segmentRepetitionControl>
+          <segmentControlDetails>
+            <quantity>2</quantity>
+            <numberOfUnits>1</numberOfUnits>
+          </segmentControlDetails>
+        </segmentRepetitionControl>
+        <travellersID>
+          <travellerDetails>
+            <measurementValue>1</measurementValue>
+          </travellerDetails>
+        </travellersID>
+        <discountPtc>
+          <valueQualifier>INF</valueQualifier>
+          <fareDetails>
+            <qualifier>766</qualifier>
+          </fareDetails>
+        </discountPtc>
+      </passengersGroup>
+      <segmentGroup>
+        <segmentInformation>
+          <flightDate>
+            <departureDate>290923</departureDate>
+          </flightDate>
+          <boardPointDetails>
+            <trueLocationId>JFK</trueLocationId>
+          </boardPointDetails>
+          <offpointDetails>
+            <trueLocationId>GRU</trueLocationId>
+          </offpointDetails>
+          <companyDetails>
+            <marketingCompany>LA</marketingCompany>
+          </companyDetails>
+          <flightIdentification>
+            <flightNumber>8181</flightNumber>
+            <bookingClass>N</bookingClass>
+          </flightIdentification>
+          <flightTypeDetails>
+            <flightIndicator>1</flightIndicator>
+          </flightTypeDetails>
+          <itemNumber>1</itemNumber>
+        </segmentInformation>
+      </segmentGroup>
+      <segmentGroup>
+        <segmentInformation>
+          <flightDate>
+            <departureDate>141023</departureDate>
+          </flightDate>
+          <boardPointDetails>
+            <trueLocationId>GRU</trueLocationId>
+          </boardPointDetails>
+          <offpointDetails>
+            <trueLocationId>JFK</trueLocationId>
+          </offpointDetails>
+          <companyDetails>
+            <marketingCompany>LA</marketingCompany>
+          </companyDetails>
+          <flightIdentification>
+            <flightNumber>6349</flightNumber>
+            <bookingClass>N</bookingClass>
+          </flightIdentification>
+          <flightTypeDetails>
+            <flightIndicator>1</flightIndicator>
+          </flightTypeDetails>
+          <itemNumber>2</itemNumber>
+        </segmentInformation>
+      </segmentGroup>
+      <pricingOptionGroup>
+        <pricingOptionKey>
+          <pricingOptionKey>RP</pricingOptionKey>
+        </pricingOptionKey>
+      </pricingOptionGroup>
+      <pricingOptionGroup>
+        <pricingOptionKey>
+          <pricingOptionKey>RU</pricingOptionKey>
+        </pricingOptionKey>
+      </pricingOptionGroup>
+    </Fare_InformativeBestPricingWithoutPNR>
+  </s:Body>
+</s:Envelope>

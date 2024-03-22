@@ -74,7 +74,7 @@ namespace ServicesHub.FareBoutique.FareBoutiqueClass
         public int children { get; set; }
         public int infant { get; set; }
         public int total_book_seats { get; set; }
-        public int total_amount { get; set; }
+        public decimal total_amount { get; set; }
         public string contact_name { get; set; }
         public string contact_email { get; set; }
         public string contact_number { get; set; }

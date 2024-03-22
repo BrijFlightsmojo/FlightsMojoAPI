@@ -50,10 +50,12 @@ namespace Core
         TripJack = 2,
         Travelogy = 3,
         FareBoutique = 4,
+        AirIQ = 5,
+        GFS = 6,
         OneDFare = 8,
         SatkarTravel = 9,
-        AirIQ = 5,
-        Ease2Fly = 10
+        Ease2Fly = 10,
+        Amadeus = 11
     }
     public enum SubProvider : int
     {
@@ -106,7 +108,16 @@ namespace Core
         DOLPHINTRAVELS = 46,
         SANJAYTOURANDTRAVELS = 47,
         TRAVELMASTER_IN = 48,
-        ALELAHITRAVELS=49
+        ALELAHITRAVELS=49,
+        AIRTB_ANGRAGVENTURES=50,
+        SASTITICKET = 51,
+        STARTRAVELS_HOLIDAY = 52,
+        SAADATTRAVELS = 53,
+        CHOUDHARYTRAVELS_AIRBLR=54,
+        ABHISHEKAIRTICKET_AIRABHI=55,
+        DEALFARE = 56,
+        FREQUENTFLYERS=57,
+        SKYLINETRAVELS=58
     }
     public enum TransactionStatus : int
     {

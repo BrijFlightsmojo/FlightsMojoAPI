@@ -339,6 +339,9 @@ namespace Core.Flight
         [DataMember]
         public string FlightKey { get; set; }
 
+        [DataMember]
+        public string GFS_FlightKey { get; set; }
+
     }
 
     [DataContract]
@@ -427,6 +430,8 @@ namespace Core.Flight
 
         [DataMember]
         public bool IsETicketEligible { get; set; }
+        [DataMember]
+        public string resDesignCode { get; set; }
     }
 
     [DataContract]

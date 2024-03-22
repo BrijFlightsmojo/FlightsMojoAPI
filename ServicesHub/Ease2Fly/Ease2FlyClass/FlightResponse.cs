@@ -20,7 +20,7 @@ namespace ServicesHub.Ease2Fly.Ease2FlyClass
         public string sector { get; set; }
         public string origin { get; set; }
         public string destination { get; set; }
-        public int total_fare { get; set; }
+        public decimal total_fare { get; set; }
         public string flight_no { get; set; }
         public string pnr { get; set; }
         public string d_owner { get; set; }

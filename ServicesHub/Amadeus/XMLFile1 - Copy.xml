@@ -1,0 +1,107 @@
+﻿<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header>
+    <add:MessageID xmlns:add="http://www.w3.org/2005/08/addressing">581cd88c-e466-43a3-b1f4-c25ea8a7f53a</add:MessageID>
+    <add:Action xmlns:add="http://www.w3.org/2005/08/addressing">http://webservices.amadeus.com/TIBNRQ_18_1_1A</add:Action>
+    <add:To xmlns:add="http://www.w3.org/2005/08/addressing">https://nodeD2.production.webservices.amadeus.com/1ASIWFLI0SB</add:To>
+    <link:TransactionFlowLink xmlns:link="http://wsdl.amadeus.com/2010/06/ws/Link_v1" />
+    <oas:Security xmlns:oas="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:oas1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+      <oas:UsernameToken oas1:Id="UsernameToken-1">
+        <oas:Username>WS0SBFLI</oas:Username>
+        <oas:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">ZnFJeEtnTkYzNm5Y</oas:Nonce>
+        <oas:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest">GfVk47YVwtFqCb8kZ2yeZLbNKgg=</oas:Password>
+        <oas1:Created>2023-05-25T10:33:40.162Z</oas1:Created>
+      </oas:UsernameToken>
+    </oas:Security>
+    <AMA_SecurityHostedUser xmlns="http://xml.amadeus.com/2010/06/Security_v1">
+      <UserID AgentDutyCode="SU" RequestorType="U" PseudoCityCode="DTW1S2107" POS_Type="1" />
+    </AMA_SecurityHostedUser>
+  </s:Header>
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Fare_InformativeBestPricingWithoutPNR xmlns="http://xml.amadeus.com/TIBNRQ_18_1_1A">
+      <passengersGroup>
+        <segmentRepetitionControl>
+          <segmentControlDetails>
+            <quantity>1</quantity>
+            <numberOfUnits>1</numberOfUnits>
+          </segmentControlDetails>
+        </segmentRepetitionControl>
+        <travellersID>
+          <travellerDetails>
+            <measurementValue>1</measurementValue>
+          </travellerDetails>
+        </travellersID>
+        <discountPtc>
+          <valueQualifier>ADT</valueQualifier>
+        </discountPtc>
+      </passengersGroup>
+      <segmentGroup>
+        <segmentInformation>
+          <flightDate>
+            <departureDate>290523</departureDate>
+          </flightDate>
+          <boardPointDetails>
+            <trueLocationId>LAX</trueLocationId>
+          </boardPointDetails>
+          <offpointDetails>
+            <trueLocationId>VIE</trueLocationId>
+          </offpointDetails>
+          <companyDetails>
+            <marketingCompany>OS</marketingCompany>
+          </companyDetails>
+          <flightIdentification>
+            <flightNumber>82</flightNumber>
+            <bookingClass>V</bookingClass>
+          </flightIdentification>
+          <flightTypeDetails>
+            <flightIndicator>1</flightIndicator>
+          </flightTypeDetails>
+          <itemNumber>1</itemNumber>
+        </segmentInformation>
+      </segmentGroup>
+      <segmentGroup>
+        <segmentInformation>
+          <flightDate>
+            <departureDate>310523</departureDate>
+          </flightDate>
+          <boardPointDetails>
+            <trueLocationId>VIE</trueLocationId>
+          </boardPointDetails>
+          <offpointDetails>
+            <trueLocationId>AMM</trueLocationId>
+          </offpointDetails>
+          <companyDetails>
+            <marketingCompany>OS</marketingCompany>
+          </companyDetails>
+          <flightIdentification>
+            <flightNumber>853</flightNumber>
+            <bookingClass>V</bookingClass>
+          </flightIdentification>
+          <flightTypeDetails>
+            <flightIndicator>1</flightIndicator>
+          </flightTypeDetails>
+          <itemNumber>2</itemNumber>
+        </segmentInformation>
+      </segmentGroup>
+      <pricingOptionGroup>
+        <pricingOptionKey>
+          <pricingOptionKey>RP</pricingOptionKey>
+        </pricingOptionKey>
+      </pricingOptionGroup>
+      <pricingOptionGroup>
+        <pricingOptionKey>
+          <pricingOptionKey>RU</pricingOptionKey>
+        </pricingOptionKey>
+      </pricingOptionGroup>
+      <pricingOptionGroup>
+        <pricingOptionKey>
+          <pricingOptionKey>RLA</pricingOptionKey>
+        </pricingOptionKey>
+      </pricingOptionGroup>
+      <pricingOptionGroup>
+        <pricingOptionKey>
+          <pricingOptionKey>NVO</pricingOptionKey>
+        </pricingOptionKey>
+      </pricingOptionGroup>
+    </Fare_InformativeBestPricingWithoutPNR>
+  </s:Body>
+</s:Envelope>

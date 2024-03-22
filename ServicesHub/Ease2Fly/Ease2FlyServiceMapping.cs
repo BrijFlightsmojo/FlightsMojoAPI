@@ -20,7 +20,7 @@ namespace ServicesHub.Ease2Fly
         string ApiKey = ConfigurationManager.AppSettings["E2F_ApiKey"].ToString();
         public void getTokenID()
         {
-            var strResponse = GetTokenResponse(Url + "/tp-api/login", new Ease2FlyRequestMappking().getSearchToken());
+            var strResponse = GetTokenResponse(Url + "tp-api/login", new Ease2FlyRequestMappking().getSearchToken());
             Ease2FlyClass.TokenResponse res = Newtonsoft.Json.JsonConvert.DeserializeObject<Ease2FlyClass.TokenResponse>(strResponse);
             AuthToken = res.result.token;
         }
@@ -33,7 +33,7 @@ namespace ServicesHub.Ease2Fly
 
             if (FlightUtility.isWriteLogSearch)
             {
-                bookingLog(ref sbLogger, "AirIQ Request", JsonConvert.SerializeObject(request));
+                bookingLog(ref sbLogger, "Ease2Fly Request", JsonConvert.SerializeObject(request));
             }
             string org = request.segment[0].originAirport.ToLower();
             string dest = request.segment[0].destinationAirport.ToLower();
@@ -224,20 +224,28 @@ namespace ServicesHub.Ease2Fly
             }
             catch (WebException webEx)
             {
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                //if (errResp.Headers.Get("Content-Encoding") == "gzip")
-                //{
-                //    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
-                //}
-                //else
-                //{
-                //    responseStream = errResp.GetResponseStream();
-                //}
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
+                if (webEx != null)
+                {
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "E2F GetTokenResponse" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
+                }
             }
+            return response;
         }
 
         private string GetResponse(string url, string requestData)
@@ -269,20 +277,28 @@ namespace ServicesHub.Ease2Fly
             }
             catch (WebException webEx)
             {
-                WebResponse errResp = webEx.Response;
-                Stream responseStream = null;
-                if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                if (webEx != null)
                 {
-                    responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "E2F GetResponse" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
+                    {
+                        WebResponse errResp = webEx.Response;
+                        Stream responseStream = null;
+                        if (errResp.Headers.Get("Content-Encoding") == "gzip")
+                        {
+                            responseStream = new System.IO.Compression.GZipStream(errResp.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress);
+                        }
+                        else
+                        {
+                            responseStream = errResp.GetResponseStream();
+                        }
+                        StreamReader reader = new StreamReader(responseStream);
+                        response = reader.ReadToEnd();
+
+                    }
                 }
-                else
-                {
-                    responseStream = errResp.GetResponseStream();
-                }
-                StreamReader reader = new StreamReader(responseStream);
-                response = reader.ReadToEnd();
-                return response;
             }
+            return response;
         }
 
 

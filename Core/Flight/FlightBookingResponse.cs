@@ -186,6 +186,17 @@ namespace Core.Flight
 		
 		[DataMember]
         public int E2FBookingID { get; set; }
+
+        // GFS
+
+        [DataMember]
+        public string agent_reference { get; set; }
+
+        [DataMember]
+        public string booking_reference { get; set; }
+
+        // GFS
+
         public FlightBookingResponse()
         {
 

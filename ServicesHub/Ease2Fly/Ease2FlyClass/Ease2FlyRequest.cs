@@ -51,7 +51,7 @@ namespace ServicesHub.Ease2Fly.Ease2FlyClass
         public string ttl { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
-        public int age { get; set; }
+        public string age { get; set; }
         public string whlchr { get; set; }
         public string passport_no { get; set; }
         public string passport_nationality { get; set; }
@@ -64,7 +64,7 @@ namespace ServicesHub.Ease2Fly.Ease2FlyClass
         public string ttl { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
-        public int age { get; set; }
+        public string age { get; set; }
         public string whlchr { get; set; }
         public string passport_no { get; set; }
         public string passport_nationality { get; set; }

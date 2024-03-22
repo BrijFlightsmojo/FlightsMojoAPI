@@ -36,7 +36,7 @@ namespace ServicesHub.SatkarTravel
         {
             var strResponse = GetTokenResponse(ST_UrlToken, new SatkarTravelRequestMappking().getSearchToken());
             SatkarTravelClass.TokenResponse res = Newtonsoft.Json.JsonConvert.DeserializeObject<SatkarTravelClass.TokenResponse>(strResponse);
-            AuthToken = res.tokenId;
+            AuthToken =  res.tokenId;
         }
 
         public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
