@@ -161,6 +161,62 @@ namespace IndiaAPI.Controllers
             }
 
         }
+        public void SetNoMarkup(ref Core.Flight.FlightSearchRequest fsr, ref Core.Flight.FlightSearchResponse flightSearchResponse)
+        {
+            
+           
+            if (flightSearchResponse != null && flightSearchResponse.Results != null && flightSearchResponse.Results.Count() > 0
+                && flightSearchResponse.Results[0].Count > 0 && flightSearchResponse.Results.LastOrDefault().Count > 0)
+            {
+                foreach (var res in flightSearchResponse.Results)
+                {
+                    foreach (var item in res)
+                    {
+                        if (item != null)
+                        {
+                            
+                            #region Set Airline and Airport Library
+                            foreach (var fs in item.FlightSegments)
+                            {
+                                foreach (var seg in fs.Segments)
+                                {
+                                    if (flightSearchResponse.airline.Where(o => o.code.Equals(seg.Airline, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airline.Add(Core.FlightUtility.GetAirline(seg.Airline));
+                                    }
+                                    if (flightSearchResponse.airline.Where(o => o.code.Equals(seg.OperatingCarrier, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airline.Add(Core.FlightUtility.GetAirline(seg.OperatingCarrier));
+                                    }
+                                    if (flightSearchResponse.airport.Where(o => o.airportCode.Equals(seg.Origin, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airport.Add(Core.FlightUtility.GetAirport(seg.Origin));
+                                    }
+
+                                    if (flightSearchResponse.airport.Where(o => o.airportCode.Equals(seg.Destination, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airport.Add(Core.FlightUtility.GetAirport(seg.Destination));
+                                    }
+                                }
+                            }
+
+
+                            #endregion
+
+                            if (item.Fare == null)
+                            {
+                                item.Fare = item.FareList.OrderBy(k => k.grandTotal).FirstOrDefault();
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
         public void SetMarkupOld(ref Core.Flight.FlightSearchRequest fsr, ref Core.Flight.FlightSearchResponse flightSearchResponse)
         {
             StringBuilder sbLogger = new StringBuilder();

@@ -110,7 +110,7 @@ namespace DAL.Booking
             param[38].Value = inEft;
             param[39] = new SqlParameter("@MarkupID", SqlDbType.Int);
             param[39].Value = 0;
-            param[40] = new SqlParameter("@FareType", SqlDbType.VarChar,50);
+            param[40] = new SqlParameter("@FareType", SqlDbType.VarChar, 50);
             param[40].Value = flightBookingRequest.flightResult[0].Fare.FareType;
             param[41] = new SqlParameter("@TravelType", SqlDbType.Int);
             param[41].Value = new FlightUtility().isDomestic(flightBookingRequest.flightResult[0].FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin, flightBookingRequest.flightResult[0].FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination) ? (int)TravelType.Domestic : (int)TravelType.International;
@@ -208,7 +208,7 @@ namespace DAL.Booking
             }
             if (flightBookingRequest.flightResult.Count > 1)
             {
-                param[72] = new SqlParameter("@FareTypeReturn", SqlDbType.VarChar,50);
+                param[72] = new SqlParameter("@FareTypeReturn", SqlDbType.VarChar, 50);
                 param[72].Value = flightBookingRequest.flightResult[1].Fare.FareType;
             }
             using (SqlConnection con = DataConnection.GetConnection())
@@ -323,7 +323,7 @@ namespace DAL.Booking
             param[38].Value = inEft;
             param[39] = new SqlParameter("@MarkupID", SqlDbType.Int);
             param[39].Value = 0;
-            param[40] = new SqlParameter("@FareType", SqlDbType.VarChar,50);
+            param[40] = new SqlParameter("@FareType", SqlDbType.VarChar, 50);
             param[40].Value = flightBookingRequest.flightResult[0].Fare.FareType;
             param[41] = new SqlParameter("@TravelType", SqlDbType.Int);
             param[41].Value = new FlightUtility().isDomestic(flightBookingRequest.flightResult[0].FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin, flightBookingRequest.flightResult[0].FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination) ? (int)TravelType.Domestic : (int)TravelType.International;
@@ -421,7 +421,7 @@ namespace DAL.Booking
             }
             if (flightBookingRequest.flightResult.Count > 1)
             {
-                param[72] = new SqlParameter("@FareTypeReturn", SqlDbType.VarChar,50);
+                param[72] = new SqlParameter("@FareTypeReturn", SqlDbType.VarChar, 50);
                 param[72].Value = flightBookingRequest.flightResult[1].Fare.FareType;
             }
             if (!string.IsNullOrEmpty(flightBookingRequest.GSTNo))
@@ -442,7 +442,7 @@ namespace DAL.Booking
             param[76].Value = (int)BookingStatus.Incomplete;
 
             param[77] = new SqlParameter("@MojoFareType", SqlDbType.Int);
-            param[77].Value =(int)flightBookingRequest.flightResult[0].Fare.mojoFareType;
+            param[77].Value = (int)flightBookingRequest.flightResult[0].Fare.mojoFareType;
 
             if (flightBookingRequest.flightResult.Count > 1)
             {
@@ -451,7 +451,7 @@ namespace DAL.Booking
             }
 
             param[79] = new SqlParameter("@FB_Supplier", SqlDbType.Int);
-            param[79].Value =  (int)flightBookingRequest.flightResult[0].Fare.subProvider;
+            param[79].Value = (int)flightBookingRequest.flightResult[0].Fare.subProvider;
 
 
             param[80] = new SqlParameter("@MarkupRule", SqlDbType.VarChar, 500);
@@ -508,7 +508,7 @@ namespace DAL.Booking
 
                 SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_UpdateBookingPaxDetail", param);
                 if (param[5].Value.ToString().ToUpper() == "SUCCESS")
-                {                   
+                {
                     return true;
                 }
                 else
@@ -858,8 +858,8 @@ namespace DAL.Booking
             param[17].Value = flightBookingResponse.paymentDetails.Hash;
             param[18] = new SqlParameter("@RetursHashMatched", SqlDbType.Bit);
             param[18].Value = flightBookingResponse.paymentDetails.IsReturnHashMatched;
-            
-            if (flightBookingResponse.bookingStatus==0)
+
+            if (flightBookingResponse.bookingStatus == 0)
             {
                 param[19] = new SqlParameter("@Booking_Status", SqlDbType.Int);
                 param[19].Value = 7;
@@ -869,7 +869,7 @@ namespace DAL.Booking
                 param[19] = new SqlParameter("@Booking_Status", SqlDbType.Int);
                 param[19].Value = (int)flightBookingResponse.bookingStatus;
             }
-            
+
             param[20] = new SqlParameter("@Payment_Status", SqlDbType.Int);
             param[20].Value = (int)flightBookingResponse.paymentStatus;
             if (!string.IsNullOrEmpty(flightBookingResponse.responseStatus.message))
@@ -1162,7 +1162,7 @@ namespace DAL.Booking
             {
                 string tjID = fsr.PriceID[itinID];
                 Fare fare = fResult.Fare;
-               
+
 
                 TotalAmount += fare.grandTotal;
                 var adtFare = fare.fareBreakdown.Where(k => k.PassengerType == PassengerType.Adult).FirstOrDefault();
@@ -1482,24 +1482,24 @@ namespace DAL.Booking
 
             //if (fsr.sourceMedia == "1000" || fsr.sourceMedia == "1001" || fsr.sourceMedia == "1004" || fsr.sourceMedia == "1016" || fsr.sourceMedia == "1015")
             //{
-                if (!string.IsNullOrEmpty(fsr.CouponCode) && fsr.CouponIncreaseAmount > 0)
-                {
-                    DataRow CouponIncreaseAmount = dt.NewRow();
-                    CouponIncreaseAmount["BookingID"] = fsr.bookingID;
-                    CouponIncreaseAmount["ProdID"] = fsr.prodID;
-                    CouponIncreaseAmount["ItinID"] = 0;
-                    CouponIncreaseAmount["ChargeID"] = ChargeID.CouponIncreaseAmount;
-                    CouponIncreaseAmount["ChargesFor"] = ChargeFor.NA;
-                    CouponIncreaseAmount["TotalUnit"] = 1;
-                    CouponIncreaseAmount["CostPrice"] = 0;
-                    CouponIncreaseAmount["SellPrice"] = (1) * fsr.CouponIncreaseAmount;
-                    CouponIncreaseAmount["ChargesStatus"] = 0;
-                    CouponIncreaseAmount["SupplierID"] = 0;
-                    CouponIncreaseAmount["ChargesRemarks"] = 100;
-                    CouponIncreaseAmount["ModifyBy"] = 1000;
-                    dt.Rows.Add(CouponIncreaseAmount);
-                    TotalAmount = TotalAmount + fsr.CouponIncreaseAmount;
-                }
+            if (!string.IsNullOrEmpty(fsr.CouponCode) && fsr.CouponIncreaseAmount > 0)
+            {
+                DataRow CouponIncreaseAmount = dt.NewRow();
+                CouponIncreaseAmount["BookingID"] = fsr.bookingID;
+                CouponIncreaseAmount["ProdID"] = fsr.prodID;
+                CouponIncreaseAmount["ItinID"] = 0;
+                CouponIncreaseAmount["ChargeID"] = ChargeID.CouponIncreaseAmount;
+                CouponIncreaseAmount["ChargesFor"] = ChargeFor.NA;
+                CouponIncreaseAmount["TotalUnit"] = 1;
+                CouponIncreaseAmount["CostPrice"] = 0;
+                CouponIncreaseAmount["SellPrice"] = (1) * fsr.CouponIncreaseAmount;
+                CouponIncreaseAmount["ChargesStatus"] = 0;
+                CouponIncreaseAmount["SupplierID"] = 0;
+                CouponIncreaseAmount["ChargesRemarks"] = 100;
+                CouponIncreaseAmount["ModifyBy"] = 1000;
+                dt.Rows.Add(CouponIncreaseAmount);
+                TotalAmount = TotalAmount + fsr.CouponIncreaseAmount;
+            }
             //}
 
 
@@ -1705,33 +1705,46 @@ namespace DAL.Booking
                         segment["From_Date_Time"] = seg.DepTime;
                         segment["To_Destination"] = seg.Destination;
                         segment["To_Date_Time"] = seg.ArrTime;
+
+                        //if (seg.FlightNumber.Length > 3)
+                        //{
+                        //    segment["Seg_Remarks"]= seg.FlightNumber;
+                        //    segment["Flight_No"] = "";
+                        //}
+                        //else
+                        //{
+                        //    segment["Seg_Remarks"] = "";
+                        //    segment["Flight_No"] = seg.FlightNumber;
+                        //}
+
                         segment["Flight_No"] = seg.FlightNumber;
+
                         segment["EqupmentType"] = seg.equipmentType;
                         segment["CabinClass"] = (int)seg.CabinClass;
-                        if (fsr.sourceMedia == "1000" || fsr.sourceMedia == "1016")
-                        {
+                        //if (fsr.sourceMedia == "1000" || fsr.sourceMedia == "1016")
+                        //{
                             segment["AClass"] = seg.FareClass;
-                        }
-                        else
-                        {
-                            if ((int)seg.CabinClass == 1)
-                            {
-                                //
-                                segment["AClass"] = "Y";
-                            }
-                            if ((int)seg.CabinClass == 2)
-                            {
-                                segment["AClass"] = "M";
-                            }
-                            if ((int)seg.CabinClass == 3)
-                            {
-                                segment["AClass"] = "C";
-                            }
-                            if ((int)seg.CabinClass == 4)
-                            {
-                                segment["AClass"] = "F";
-                            }
-                        }
+                        //}
+                        //else
+                        //{
+                        //    if ((int)seg.CabinClass == 1)
+                        //    {
+                        //        //
+                        //        segment["AClass"] = "Y";
+                        //    }
+                        //    if ((int)seg.CabinClass == 2)
+                        //    {
+                        //        segment["AClass"] = "M";
+                        //    }
+                        //    if ((int)seg.CabinClass == 3)
+                        //    {
+                        //        segment["AClass"] = "C";
+                        //    }
+                        //    if ((int)seg.CabinClass == 4)
+                        //    {
+                        //        segment["AClass"] = "F";
+                        //    }
+                        //}
                         segment["Terminal_From"] = seg.FromTerminal;
                         segment["Terminal_To"] = seg.ToTerminal;
                         segment["Eft"] = seg.Duration;

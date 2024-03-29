@@ -12,9 +12,9 @@ namespace ServicesHub.FareBoutique
     {
         public void getResults(Core.Flight.FlightSearchRequest request, ref FareBoutiqueClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
-            if (fsr!=null &&fsr.data!=null&& ((fsr.errorCode!=null&& fsr.errorCode == 0) ||(!string.IsNullOrEmpty(fsr.replyCode)&& fsr.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase))))
+            if (fsr != null && fsr.data != null && ((fsr.errorCode != null && fsr.errorCode == 0) || (!string.IsNullOrEmpty(fsr.replyCode) && fsr.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase))))
             {
-                response.FB_booking_token_id = fsr.booking_token_id; 
+                response.FB_booking_token_id = fsr.booking_token_id;
                 int itinCtr = 0;
                 //int ctrError = 0;
 
@@ -67,7 +67,7 @@ namespace ServicesHub.FareBoutique
                                 Destination = Itin.arrival_airport_code,
                                 Duration = 0,
                                 FareClass = "",
-                                FlightNumber = Itin.flight_number,
+                                FlightNumber = Itin.flight_number.Length > 3 ? "" : Itin.flight_number,
                                 FromTerminal = Itin.departure_terminal_no,
                                 ToTerminal = Itin.arrival_terminal_no,
                                 IsETicketEligible = true,
@@ -159,7 +159,7 @@ namespace ServicesHub.FareBoutique
                             #endregion
                             fare.NetFare = fare.grandTotal = fare.PublishedFare + fare.Markup - fare.CommissionEarned;
 
-                            if (result.valCarrier=="6E")
+                            if (result.valCarrier == "6E")
                             {
 
                             }
@@ -190,14 +190,14 @@ namespace ServicesHub.FareBoutique
                         }
                     }
                 }
-               
+
                 response.Results.Add(listFlightResult);
             }
         }
         public void getFareQuoteResponse(ref Core.Flight.PriceVerificationRequest request,
             ref FB_FareQuote.FareQuoteResponse fqr, ref Core.Flight.FareQuoteResponse response, int ctr)
         {
-            if (fqr.data!=null  && (fqr.data.total_amount > request.flightResult[ctr].Fare.PublishedFare))
+            if (fqr.data != null && (fqr.data.total_amount > request.flightResult[ctr].Fare.PublishedFare))
             {
                 response.flightResult.Add(request.flightResult[ctr]);
                 response.VerifiedTotalPrice = fqr.data.total_amount;

@@ -137,10 +137,10 @@ namespace ServicesHub.Tbo
                 new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
                 //LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\TripJack\\Search", request.userSearchID );
             }
-            //if (flightResponse.Results.Count == 0 || (flightResponse.Results.Count > 0 && flightResponse.Results.FirstOrDefault().Count == 0))
-            //{
-            //    new LogWriter("No"+Environment.NewLine, "tbo"+DateTime.Today.ToString("ddMMMyy") , "NoResult");
-            //}
+            if (flightResponse.Results.Count == 0 || (flightResponse.Results.Count > 0 && flightResponse.Results.FirstOrDefault().Count == 0))
+            {
+                new LogWriter("No" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+            }
 
             return flightResponse;
         }

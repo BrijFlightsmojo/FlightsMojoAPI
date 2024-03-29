@@ -43,6 +43,10 @@ namespace ServicesHub.Ease2Fly
             int Inf = request.infants;
             var url = string.Empty;
             WebClient client = new WebClient();
+            client.Credentials = CredentialCache.DefaultCredentials;
+            client.UseDefaultCredentials = true;
+
+
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
             if (string.IsNullOrEmpty(AuthToken))
             {
@@ -71,6 +75,8 @@ namespace ServicesHub.Ease2Fly
             {
                 bookingLog(ref sbLogger, "Ease2Fly Request URL", url);
             }
+            Stream data = client.OpenRead(new Uri(url.Trim()));
+            StreamReader reader = new StreamReader(data);
             var kk = client.DownloadString(url);
             Ease2FlyClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<Ease2FlyClass.FlightResponse>(kk.ToString());
             new Ease2FlyResponseMapping().getResults(request, ref Response, ref flightResponse);
