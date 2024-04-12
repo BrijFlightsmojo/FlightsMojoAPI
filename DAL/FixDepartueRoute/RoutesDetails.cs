@@ -104,5 +104,47 @@ namespace DAL.FixDepartueRoute
             }
             return lst;
         }
+
+        public List<Core.GdsType> GetAvailableProvider(string org, string dest, string date,int tType, string ReturnDate)
+        {
+            List<Core.GdsType> lst = new List<Core.GdsType>();
+            using (SqlConnection conn = DataConnection.GetConFlightsmojoindia_RDS())
+            {
+                try
+                {
+                    using (SqlCommand cmd = new SqlCommand("get_SupplierSectorDate_V2", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Origin", org);
+                        cmd.Parameters.AddWithValue("@Destination", dest);
+                        cmd.Parameters.AddWithValue("@availabledate", date);
+                        cmd.Parameters.AddWithValue("@tripType", tType);
+                        if (tType == 2)
+                        {
+                            cmd.Parameters.AddWithValue("@ReturnDate", ReturnDate);
+                        }
+                       
+                        conn.Open();
+                        SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                lst.Add((Core.GdsType)Convert.ToInt32(dr["supplier"]));
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            return lst;
+        }
     }
 }

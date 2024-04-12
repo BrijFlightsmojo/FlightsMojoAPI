@@ -25,7 +25,7 @@ namespace ServicesHub.AirIQ
             AuthToken = res.token;
         }
 
-        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
+        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request, bool isAirIQGDS, bool isAirIQGDSR)
         {
             string errorMsg = string.Empty;
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);

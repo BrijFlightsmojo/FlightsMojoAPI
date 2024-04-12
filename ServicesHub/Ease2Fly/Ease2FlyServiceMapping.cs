@@ -25,7 +25,7 @@ namespace ServicesHub.Ease2Fly
             AuthToken = res.result.token;
         }
 
-        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
+        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request, bool isEase2Fly, bool isEase2FlyR)
         {
             string errorMsg = string.Empty;
             StringBuilder sbLogger = new StringBuilder();
@@ -35,58 +35,67 @@ namespace ServicesHub.Ease2Fly
             {
                 bookingLog(ref sbLogger, "Ease2Fly Request", JsonConvert.SerializeObject(request));
             }
-            string org = request.segment[0].originAirport.ToLower();
-            string dest = request.segment[0].destinationAirport.ToLower();
-            string DepDate = request.segment[0].travelDate.ToString("yyyy-MM-dd");
-            int adult = request.adults;
-            int Chd = request.child;
-            int Inf = request.infants;
-            var url = string.Empty;
-            WebClient client = new WebClient();
-            client.Credentials = CredentialCache.DefaultCredentials;
-            client.UseDefaultCredentials = true;
+            for (int i = 0; i < request.segment.Count; i++)
+            {
 
-
-            client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            if (string.IsNullOrEmpty(AuthToken))
-            {
-                getTokenID();
-            }
-            client.Headers.Add("Authorization", "Bearer " + AuthToken);
-            client.Headers.Add("efly_api_key", ApiKey);
-            url = Url + "tp-api/search-flights?origin=" + org + "&destination=" + dest + "&airline=&departuredate=" + DepDate + "&adults=" + adult;
-            if (request.child > 0)
-            {
-                url = url + "&child=" + Chd;
-            }
-            else
-            {
-                url = url + "&child=";
-            }
-            if (request.infants > 0)
-            {
-                url = url + "&infant=" + Inf;
-            }
-            else
-            {
-                url = url + "&infant=";
+                if (i == 0 && isEase2Fly == false)
+                {
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                }
+                else if (i == 1 && isEase2FlyR == false)
+                {
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                }
+                else
+                {
+                    string org = request.segment[i].originAirport.ToLower();
+                    string dest = request.segment[i].destinationAirport.ToLower();
+                    string DepDate = request.segment[i].travelDate.ToString("yyyy-MM-dd");
+                    int adult = request.adults;
+                    int Chd = request.child;
+                    int Inf = request.infants;
+                    var url = string.Empty;
+                    WebClient client = new WebClient();
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    if (string.IsNullOrEmpty(AuthToken))
+                    {
+                        getTokenID();
+                    }
+                    client.Headers.Add("Authorization", "Bearer " + AuthToken);
+                    client.Headers.Add("efly_api_key", ApiKey);
+                    url = Url + "tp-api/search-flights?origin=" + org + "&destination=" + dest + "&airline=&departuredate=" + DepDate + "&adults=" + adult;
+                    if (request.child > 0)
+                    {
+                        url = url + "&child=" + Chd;
+                    }
+                    else
+                    {
+                        url = url + "&child=";
+                    }
+                    if (request.infants > 0)
+                    {
+                        url = url + "&infant=" + Inf;
+                    }
+                    else
+                    {
+                        url = url + "&infant=";
+                    }
+                    if (FlightUtility.isWriteLogSearch)
+                    {
+                        bookingLog(ref sbLogger, "Ease2Fly Request URL", url);
+                    }
+                    var kk = client.DownloadString(url);
+                    if (FlightUtility.isWriteLogSearch)
+                    {
+                        bookingLog(ref sbLogger, "Ease2Fly Response", kk.ToString());
+                    }
+                    Ease2FlyClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<Ease2FlyClass.FlightResponse>(kk.ToString());
+                    new Ease2FlyResponseMapping().getResults(request, ref Response, ref flightResponse);
+                }
             }
             if (FlightUtility.isWriteLogSearch)
             {
-                bookingLog(ref sbLogger, "Ease2Fly Request URL", url);
-            }
-            Stream data = client.OpenRead(new Uri(url.Trim()));
-            StreamReader reader = new StreamReader(data);
-            var kk = client.DownloadString(url);
-            Ease2FlyClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<Ease2FlyClass.FlightResponse>(kk.ToString());
-            new Ease2FlyResponseMapping().getResults(request, ref Response, ref flightResponse);
-
-            if (FlightUtility.isWriteLogSearch)
-            {
-                bookingLog(ref sbLogger, "Ease2Fly Response", kk.ToString());
-            }
-            if (FlightUtility.isWriteLogSearch)
-            {
+                flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
                 bookingLog(ref sbLogger, "Ease2Fly errorMsg", errorMsg);
                 new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
             }
@@ -138,7 +147,7 @@ namespace ServicesHub.Ease2Fly
                     {
                         Ease2FlyClass.BookResponse bookResponse = JsonConvert.DeserializeObject<Ease2FlyClass.BookResponse>(response.ToString());
                         bookingLog(ref sbLogger, "Ease2Fly Book bookResponse", JsonConvert.SerializeObject(bookResponse));
-                        if ( bookResponse.status == true)
+                        if (bookResponse.status == true)
                         {
                             if (bookResponse.result.booking_status.Equals("CONFIRMED", StringComparison.OrdinalIgnoreCase))
                             {
@@ -167,9 +176,9 @@ namespace ServicesHub.Ease2Fly
                                 _response.bookingStatus = BookingStatus.InProgress;
                                 _response.responseStatus.message = bookResponse.error;
                             }
-                            
+
                         }
-                        else if (bookResponse.status==false)
+                        else if (bookResponse.status == false)
                         {
                             _response.bookingStatus = BookingStatus.InProgress;
                             _response.responseStatus.message = bookResponse.error;
@@ -230,7 +239,7 @@ namespace ServicesHub.Ease2Fly
             }
             catch (WebException webEx)
             {
-                if (webEx != null)
+                if (webEx != null && webEx.Response != null)
                 {
                     new ServicesHub.LogWriter_New(webEx.ToString(), "E2F GetTokenResponse" + DateTime.Today.ToString("ddMMyy"), "Exeption");
                     if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
@@ -283,7 +292,8 @@ namespace ServicesHub.Ease2Fly
             }
             catch (WebException webEx)
             {
-                if (webEx != null)
+
+                if (webEx != null && webEx.Response != null)
                 {
                     new ServicesHub.LogWriter_New(webEx.ToString(), "E2F GetResponse" + DateTime.Today.ToString("ddMMyy"), "Exeption");
                     if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
@@ -339,7 +349,7 @@ namespace ServicesHub.Ease2Fly
                     client1.Headers.Add("Authorization", "Bearer " + AuthToken);
                     client1.Headers.Add("efly_api_key", ApiKey);
                     var kk1 = client.DownloadString(urlDate);
-                    
+
                     var kk11 = JsonConvert.DeserializeObject<dynamic>(kk1);
                     string date = string.Empty;
                     if (kk11["result"] != null)

@@ -20,7 +20,7 @@ namespace DAL.Booking
         }
         private bool SaveFMJ_FlightBookingDetails(ref FlightBookingRequest flightBookingRequest, DataTable dtAmount, DataTable dtPax, DataTable dtSector, ref string Eft, ref int outEft, ref int inEft, ref DateTime DepDate, ref DateTime arrDate, ref decimal TotalAmount)
         {
-            SqlParameter[] param = new SqlParameter[73];
+            SqlParameter[] param = new SqlParameter[72];
 
             TripType tripType = TripType.OneWay;
             if (flightBookingRequest.flightResult.Count > 1)
@@ -206,11 +206,7 @@ namespace DAL.Booking
                 param[71] = new SqlParameter("@IBPnr", SqlDbType.VarChar, 50);
                 param[71].Value = flightBookingRequest.ReturnPNR;
             }
-            if (flightBookingRequest.flightResult.Count > 1)
-            {
-                param[72] = new SqlParameter("@FareTypeReturn", SqlDbType.VarChar, 50);
-                param[72].Value = flightBookingRequest.flightResult[1].Fare.FareType;
-            }
+            
             using (SqlConnection con = DataConnection.GetConnection())
             {
 
@@ -237,7 +233,7 @@ namespace DAL.Booking
         }
         private bool SaveFMJ_FlightBookingDetails_WithOutPax(ref FlightBookingRequest flightBookingRequest, DataTable dtAmount, DataTable dtSector, ref string Eft, ref int outEft, ref int inEft, ref DateTime DepDate, ref DateTime arrDate, ref decimal TotalAmount)
         {
-            SqlParameter[] param = new SqlParameter[83];
+            SqlParameter[] param = new SqlParameter[84];
 
             TripType tripType = TripType.OneWay;
             if (flightBookingRequest.flightResult.Count > 1)
@@ -463,9 +459,15 @@ namespace DAL.Booking
             param[82] = new SqlParameter("@isBuyRefundPolicy", SqlDbType.VarChar, 10);
             param[82].Value = flightBookingRequest.isBuyRefundPolicy;
 
+            if (flightBookingRequest.flightResult.Count > 1)
+            {
+                param[83] = new SqlParameter("@ProviderIB", SqlDbType.Int);
+                param[83].Value = (int)flightBookingRequest.flightResult[1].Fare.gdsType;
+            }
+
             using (SqlConnection con = DataConnection.GetConnection())
             {
-                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V1", param);
+                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V2", param);
                 if (param[48].Value.ToString().ToUpper() == "SUCCESS")
                 {
                     return true;
