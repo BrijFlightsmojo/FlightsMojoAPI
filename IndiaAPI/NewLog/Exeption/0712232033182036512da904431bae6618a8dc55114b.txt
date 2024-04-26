@@ -1,7 +1,0 @@
-  :
----------------------------------------------SearchFlight Exeption8:33:27 PM Thursday, December 7, 2023---------------------------------------------
-StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
-   at StackExchange.Redis.ConnectionMultiplexer.ConnectImpl(Func`1 multiplexerFactory, TextWriter log)
-   at StackExchange.Redis.ConnectionMultiplexer.Connect(String configuration, TextWriter log)
-   at IndiaAPI.Controllers.CacheRedis.getResult(String SearchID) in D:\IndiaWebsite\IndiaAPI\IndiaAPI_CacheLive\IndiaAPI\Controllers\FlightsController.cs:line 3687
-   at IndiaAPI.Controllers.FlightsController.SearchFlight(String authcode, FlightSearchRequest fsr) in D:\IndiaWebsite\IndiaAPI\IndiaAPI_CacheLive\IndiaAPI\Controllers\FlightsController.cs:line 696

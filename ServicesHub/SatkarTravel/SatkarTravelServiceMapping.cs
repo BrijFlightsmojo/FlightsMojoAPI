@@ -36,48 +36,60 @@ namespace ServicesHub.SatkarTravel
         {
             var strResponse = GetTokenResponse(ST_UrlToken, new SatkarTravelRequestMappking().getSearchToken());
             SatkarTravelClass.TokenResponse res = Newtonsoft.Json.JsonConvert.DeserializeObject<SatkarTravelClass.TokenResponse>(strResponse);
-            AuthToken =  res.tokenId;
+            AuthToken = res.tokenId;
         }
 
-        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
+        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request, bool isSatkarTravel, bool isSatkarTravelR)
         {
-
             string errorMsg = string.Empty;
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);
 
             StringBuilder sbLogger = new StringBuilder();
-
-            string strRequest = new SatkarTravelRequestMappking().getFlightSearchRequest(request);
-            if (FlightUtility.isWriteLog)
+            for (int i = 0; i < request.segment.Count; i++)
             {
-                bookingLog(ref sbLogger, "Satkar Travel Request", strRequest);
-            }
-            var strResponse = GetResponseSearch(ST_UrlSerch, strRequest, ref errorMsg);
-
-            if (FlightUtility.isWriteLog)
-            {
-                bookingLog(ref sbLogger, "Satkar Travel Response", strResponse);
-            }
-            if (!string.IsNullOrEmpty(strResponse))
-            {
-                SatkarTravelClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<SatkarTravelClass.FlightResponse>(strResponse);
-                bookingLog(ref sbLogger, "Satkar Travel Response1", JsonConvert.SerializeObject(Response));
-                if (Response != null && Response.error != null && Response.error.errorCode == 0 && Response.responseStatus == 1)
-                //if ((Response.error.errorCode == 0 || Response.responseStatus == 1) && (Response.error.errorCode != 401) && (Response.responseStatus != 0))
+                if (i == 0 && isSatkarTravel == false)
                 {
-                    new SatkarTravelResponseMapping().getResults(request, ref Response, ref flightResponse);
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                }
+                else if (i == 1 && isSatkarTravelR == false)
+                {
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
                 }
                 else
                 {
-                    errorMsg += "Error";
-                    flightResponse.response.status = Core.TransactionStatus.Error;
-                    flightResponse.response.message = "no result found";
+                    string strRequest = new SatkarTravelRequestMappking().getFlightSearchRequest(request, i);
+                    if (FlightUtility.isWriteLog)
+                    {
+                        bookingLog(ref sbLogger, "Satkar Travel Request", strRequest);
+                    }
+                    var strResponse = GetResponseSearch(ST_UrlSerch, strRequest, ref errorMsg);
+
+                    if (FlightUtility.isWriteLog)
+                    {
+                        bookingLog(ref sbLogger, "Satkar Travel Response", strResponse);
+                    }
+                    if (!string.IsNullOrEmpty(strResponse))
+                    {
+                        SatkarTravelClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<SatkarTravelClass.FlightResponse>(strResponse);
+                        bookingLog(ref sbLogger, "Satkar Travel Response1", JsonConvert.SerializeObject(Response));
+                        if (Response != null && Response.error != null && Response.error.errorCode == 0 && Response.responseStatus == 1)
+                        {
+                            new SatkarTravelResponseMapping().getResults(request, ref Response, ref flightResponse);
+                        }
+                        else
+                        {
+                            flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                            errorMsg += "Error";
+                            flightResponse.response.status = Core.TransactionStatus.Error;
+                            flightResponse.response.message = "no result found";
+                        }
+                    }
                 }
-            }
-            if (FlightUtility.isWriteLog)
-            {
-                bookingLog(ref sbLogger, "Satkar Travel errorMsg", errorMsg);
-                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
+                if (FlightUtility.isWriteLog)
+                {
+                    bookingLog(ref sbLogger, "Satkar Travel errorMsg", errorMsg);
+                    new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
+                }
             }
             return flightResponse;
         }
@@ -241,7 +253,7 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-               
+
             }
             catch (WebException webEx)
             {
@@ -349,7 +361,7 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-               
+
             }
             catch (WebException webEx)
             {
@@ -400,7 +412,7 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-                
+
             }
             catch (WebException webEx)
             {
@@ -442,7 +454,7 @@ namespace ServicesHub.SatkarTravel
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 request.Headers.Add("Authorization", AuthToken);
-              //  request.Timeout = 10000;
+                //  request.Timeout = 10000;
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
@@ -451,7 +463,7 @@ namespace ServicesHub.SatkarTravel
                 using (StreamReader reader = new StreamReader(rsp))
                 {
                     response = reader.ReadToEnd();
-                }               
+                }
             }
             catch (WebException webEx)
             {
@@ -498,7 +510,7 @@ namespace ServicesHub.SatkarTravel
                 {
                     response = reader.ReadToEnd();
                 }
-               
+
             }
             catch (WebException webEx)
             {

@@ -280,6 +280,14 @@ namespace ServicesHub
                 else if ("DEALFARE".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.DEALFARE; }
                 else if ("FREQUENTFLYERS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.FREQUENTFLYERS; }
                 else if ("SKYLINETRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SKYLINETRAVELS; }
+
+                else if ("PLANMYESCAPE".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.PLANMYESCAPE; }
+                else if ("SKYAMARTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SKYAMARTRAVELS; }
+                else if ("BOOKMYFLYINDIAPVTLTD".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.BOOKMYFLYINDIAPVTLTD; }
+                else if ("KUMAWATTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.KUMAWATTRAVELS; }
+                else if ("SAMRATTOURANDTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SAMRATTOURANDTRAVELS; }
+
+                else if ("VINAYAKINTERNATIONAL".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.VINAYAKINTERNATIONAL; }
             }
             if (sp == SubProvider.None)
             {

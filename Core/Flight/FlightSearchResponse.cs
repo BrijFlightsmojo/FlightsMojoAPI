@@ -11,7 +11,7 @@ namespace Core.Flight
     public class FlightSearchResponse
     {
         [DataMember]
-        public ResponseStatus response { get; set; }
+        public ResponseStatus response {  get; set; }
         [DataMember]
         public string TraceId { get; set; }
         [DataMember]

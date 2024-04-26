@@ -10,17 +10,17 @@ namespace ServicesHub.FareBoutique
 {
     public class FareBoutiqueRequestMappking
     {
-        public string getFlightSearchRequest(Core.Flight.FlightSearchRequest fsr, string TokenId, string FB_Ip)
+        public string getFlightSearchRequest(Core.Flight.FlightSearchRequest fsr, string TokenId, string FB_Ip, int i)
         {
             ServicesHub.FareBoutique.FareBoutiqueClass.search flightSearchRequest = new FareBoutiqueClass.search()
             {
                 end_user_ip = FB_Ip,//\\fsr.userIP,
                 token = TokenId,
-                departure_city_code = fsr.segment[0].originAirport,
-                arrival_city_code = fsr.segment[0].destinationAirport,
-                trip_type = (fsr.segment.Count - 1).ToString(),
-                departure_date = fsr.segment[0].travelDate.ToString("yyyy-MM-dd"),
-                return_date = (fsr.segment.Count > 1 ? fsr.segment[0].travelDate.ToString("yyyy-MM-dd") : ""),
+                departure_city_code = fsr.segment[i].originAirport,
+                arrival_city_code = fsr.segment[i].destinationAirport,
+                trip_type = "0",//(fsr.segment.Count - 1).ToString(),
+                departure_date = fsr.segment[i].travelDate.ToString("yyyy-MM-dd"),
+                return_date = "",//(fsr.segment.Count > 1 ? fsr.segment[0].travelDate.ToString("yyyy-MM-dd") : ""),
                 adult = fsr.adults,
                 children = fsr.child,
                 infant = fsr.infants,

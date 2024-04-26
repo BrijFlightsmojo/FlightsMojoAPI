@@ -1178,7 +1178,7 @@ namespace DAL.Booking
                 adtBFare["ChargeID"] = ChargeID.BaseFare;
                 adtBFare["ChargesFor"] = ChargeFor.Adult;
                 adtBFare["TotalUnit"] = fsr.adults;
-                if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
+                if (fResult.Fare.gdsType == GdsType.Tbo)/* || fResult.Fare.gdsType == GdsType.SatkarTravel*/
                 {
                     adtBFare["CostPrice"] = (adtFare.BaseFare / fsr.adults);
                     adtBFare["SellPrice"] = (adtFare.BaseFare / fsr.adults);
@@ -1202,7 +1202,7 @@ namespace DAL.Booking
                 adtBTax["ChargeID"] = ChargeID.Tax;
                 adtBTax["ChargesFor"] = ChargeFor.Adult;
                 adtBTax["TotalUnit"] = fsr.adults;
-                if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
+                if (fResult.Fare.gdsType == GdsType.Tbo)/* || fResult.Fare.gdsType == GdsType.SatkarTravel*/
                 {
                     adtBTax["CostPrice"] = (adtFare.Tax / fsr.adults);
                     adtBTax["SellPrice"] = (adtFare.Tax / fsr.adults);
@@ -1244,7 +1244,7 @@ namespace DAL.Booking
                     chdBFare["ChargeID"] = ChargeID.BaseFare;
                     chdBFare["ChargesFor"] = ChargeFor.Child;
                     chdBFare["TotalUnit"] = fsr.child;
-                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
+                    if (fResult.Fare.gdsType == GdsType.Tbo)/* || fResult.Fare.gdsType == GdsType.SatkarTravel*/
                     {
                         chdBFare["CostPrice"] = (chdFare.BaseFare / fsr.child);
                         chdBFare["SellPrice"] = (chdFare.BaseFare / fsr.child);
@@ -1269,7 +1269,7 @@ namespace DAL.Booking
                     chdBTax["ChargeID"] = ChargeID.Tax;
                     chdBTax["ChargesFor"] = ChargeFor.Child;
                     chdBTax["TotalUnit"] = fsr.child;
-                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
+                    if (fResult.Fare.gdsType == GdsType.Tbo)/* || fResult.Fare.gdsType == GdsType.SatkarTravel*/
                     {
                         chdBTax["CostPrice"] = (chdFare.Tax / fsr.child);
                         chdBTax["SellPrice"] = (chdFare.Tax / fsr.child);
@@ -1310,7 +1310,7 @@ namespace DAL.Booking
                     infBFare["ChargeID"] = ChargeID.BaseFare;
                     infBFare["ChargesFor"] = ChargeFor.Infant;
                     infBFare["TotalUnit"] = fsr.infants;
-                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
+                    if (fResult.Fare.gdsType == GdsType.Tbo)/* || fResult.Fare.gdsType == GdsType.SatkarTravel*/
                     {
                         infBFare["CostPrice"] = (infFare.BaseFare / fsr.infants);
                         infBFare["SellPrice"] = (infFare.BaseFare / fsr.infants);
@@ -1333,7 +1333,7 @@ namespace DAL.Booking
                     infBTax["ChargeID"] = ChargeID.Tax;
                     infBTax["ChargesFor"] = ChargeFor.Infant;
                     infBTax["TotalUnit"] = fsr.infants;
-                    if (fResult.Fare.gdsType == GdsType.Tbo || fResult.Fare.gdsType == GdsType.SatkarTravel)
+                    if (fResult.Fare.gdsType == GdsType.Tbo)/* || fResult.Fare.gdsType == GdsType.SatkarTravel*/
                     {
                         infBTax["CostPrice"] = (infFare.Tax / fsr.infants);
                         infBTax["SellPrice"] = (infFare.Tax / fsr.infants);
@@ -1725,7 +1725,7 @@ namespace DAL.Booking
                         segment["CabinClass"] = (int)seg.CabinClass;
                         //if (fsr.sourceMedia == "1000" || fsr.sourceMedia == "1016")
                         //{
-                            segment["AClass"] = seg.FareClass;
+                        segment["AClass"] = seg.FareClass;
                         //}
                         //else
                         //{

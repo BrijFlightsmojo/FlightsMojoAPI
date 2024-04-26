@@ -139,9 +139,17 @@ namespace ServicesHub.Tbo
             }
             if (flightResponse.Results.Count == 0 || (flightResponse.Results.Count > 0 && flightResponse.Results.FirstOrDefault().Count == 0))
             {
-                new LogWriter("No" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
-            }
+                StringBuilder sbLogger2 = new StringBuilder();
+                bookingLog(ref sbLogger2, "Tbo Search Request", strRequest);
+                bookingLog(ref sbLogger2, "Tbo Search Response", strResponse);
+                // new LogWriter("No" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+                new LogWriter(sbLogger2.ToString(), "tbo" + request.userSearchID, "TboNoResult");
 
+            }
+            if (flightResponse.Results.Count == 1 || (flightResponse.Results.Count > 1 && flightResponse.Results.FirstOrDefault().Count == 1))
+            {
+                new LogWriter("Yes" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+            }
             return flightResponse;
         }
         public Core.Flight.CalendarFareResponse getCalendarFare(FlightSearchRequest request)
@@ -609,7 +617,7 @@ namespace ServicesHub.Tbo
         //        bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
         //    }
         //    FlightBookingResponse _response = new FlightBookingResponse(request);
-           
+
 
 
         //    ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
@@ -770,11 +778,11 @@ namespace ServicesHub.Tbo
                 dataStream.Close();
                 WebResponse webResponse = request.GetResponse();
                 var rsp = webResponse.GetResponseStream();
-                 using (StreamReader reader = new StreamReader(rsp))
+                using (StreamReader reader = new StreamReader(rsp))
                 {
                     response = reader.ReadToEnd();
                 }
-               
+
             }
             catch (WebException webEx)
             {
@@ -813,7 +821,7 @@ namespace ServicesHub.Tbo
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
                 request.ContentType = "application/json";
-              //  request.Timeout = 12000;
+                //  request.Timeout = 12000;
                 //request.Headers.Add("Accept-Encoding", "gzip");
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
@@ -823,7 +831,7 @@ namespace ServicesHub.Tbo
                 using (StreamReader reader = new StreamReader(rsp))
                 {
                     response = reader.ReadToEnd();
-                }               
+                }
             }
             catch (WebException webEx)
             {

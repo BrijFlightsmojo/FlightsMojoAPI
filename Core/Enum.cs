@@ -121,7 +121,9 @@ namespace Core
         PLANMYESCAPE = 59,
         SKYAMARTRAVELS = 60,
         BOOKMYFLYINDIAPVTLTD = 61,
-        KUMAWATTRAVELS = 62
+        KUMAWATTRAVELS = 62,
+        SAMRATTOURANDTRAVELS=63,
+        VINAYAKINTERNATIONAL=64
     }
     public enum TransactionStatus : int
     {
@@ -204,10 +206,7 @@ namespace Core
         Flexi_Saver_Economy = 71,
         Flexible_Economy = 72,
         Business_Comfort = 73,
-        Super_Flexible_Business = 74,
-        //[Description("Economy Lite")]
-        //EconomyLite=65
-        //Super6E = 65
+        Super_Flexible_Business = 74
     }
     public enum MojoFareType : int
     {

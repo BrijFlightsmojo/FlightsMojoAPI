@@ -48,6 +48,8 @@ namespace ServicesHub
         {
             txtWriter.WriteLine("  :{0}", logMessage);
         }
+
+
         public void bookingLog(ref StringBuilder sbLogger, string requestTitle, string logText)
         {
             sbLogger.Append(Environment.NewLine + "---------------------------------------------" + requestTitle + "" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------------------------------");

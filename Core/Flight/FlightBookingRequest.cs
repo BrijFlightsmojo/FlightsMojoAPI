@@ -74,7 +74,7 @@ namespace Core.Flight
         public string CouponCode { get; set; }
         [DataMember]
         public decimal CouponAmount { get; set; }
-      
+
         [DataMember]
         public int AdminID { get; set; }
         [DataMember]
@@ -82,7 +82,7 @@ namespace Core.Flight
         [DataMember]
         public bool isFareChange { get; set; }
         [DataMember]
-        public decimal fareIncreaseAmount { get; set; }       
+        public decimal fareIncreaseAmount { get; set; }
         [DataMember]
         public List<FareRuleResponses> fareRuleResponse { get; set; }
         [DataMember]
@@ -102,7 +102,7 @@ namespace Core.Flight
         [DataMember]
         public BookingStatus bookingStatus { get; set; }
         [DataMember]
-        public PaymentStatus paymentStatus { get; set; }        
+        public PaymentStatus paymentStatus { get; set; }
         [DataMember]
         public string TjBookingID { get; set; }
         [DataMember]
@@ -120,7 +120,7 @@ namespace Core.Flight
         [DataMember]
         public string GSTAddress { get; set; }
         [DataMember]
-        public string razorpayOrderID  { get; set; }
+        public string razorpayOrderID { get; set; }
         [DataMember]
         public string razorpayTransectionID { get; set; }
 
@@ -131,9 +131,9 @@ namespace Core.Flight
         public bool isWhatsapp { get; set; }
         [DataMember]
         public bool isGST { get; set; }
-        
+
         [DataMember]
-        public string tgy_Search_Key { get; set; }      
+        public string tgy_Search_Key { get; set; }
         [DataMember]
         public string tgy_Request_id { get; set; }
         [DataMember]
@@ -160,7 +160,7 @@ namespace Core.Flight
         [DataMember]
         public bool isBuyCancellaionPolicy { get; set; }
         [DataMember]
-        public string isBuyRefundPolicy { get; set; }
+        public bool isBuyRefundPolicy { get; set; }
 
         [DataMember]
         public decimal RefundPolicyAmt { get; set; }
@@ -170,5 +170,13 @@ namespace Core.Flight
 
         //[DataMember]
         //public string AQ_ticket_id { get; set; }
+    }
+
+    public class OfflineBookingRequest
+    {
+        public int BookingID { get; set; }
+        public bool isReutn { get; set; }
+        public Core.GdsType gds { get; set; }
+        public int AdminID { get; set; }
     }
 }

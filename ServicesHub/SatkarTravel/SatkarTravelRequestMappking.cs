@@ -9,11 +9,11 @@ namespace ServicesHub.SatkarTravel
 {
     public class SatkarTravelRequestMappking
     {
-        public string getFlightSearchRequest(Core.Flight.FlightSearchRequest fsr)
+        public string getFlightSearchRequest(Core.Flight.FlightSearchRequest fsr, int i)
         {
             SatkarTravelClass.search flightSearchRequest = new SatkarTravelClass.search()
             {
-                onwarddate = fsr.segment[0].travelDate.ToString("yyyy-MM-dd"),
+                onwarddate = fsr.segment[i].travelDate.ToString("yyyy-MM-dd"),
                 returndate = "",
                 resultCategory = "1",
                 prefclass = "2",
@@ -22,19 +22,19 @@ namespace ServicesHub.SatkarTravel
                 childCount = fsr.child,
                 infantCount = fsr.infants,
                 endUserIp = fsr.userIP,
-                journeyType = (fsr.segment.Count > 1 ? (fsr.segment.Count - 1).ToString() : "1"),
+                journeyType = "1",
                 domIntFlag = fsr.travelType == Core.TravelType.Domestic ? "D" : "I"
             };
 
-            foreach (Core.Flight.SearchSegment ss in fsr.segment)
-            {
+            //foreach (Core.Flight.SearchSegment ss in fsr.segment)
+            //{
                 ServicesHub.SatkarTravel.SatkarTravelClass.Segment seg = new ServicesHub.SatkarTravel.SatkarTravelClass.Segment();
-                seg.origin = ss.originAirport;
-                seg.destination = ss.destinationAirport;
+                seg.origin = fsr.segment[i].originAirport;
+                seg.destination = fsr.segment[i].destinationAirport;
                 seg.flightCabinClass = "2";
-                seg.preferredDepartureTime = ss.travelDate;
+                seg.preferredDepartureTime = fsr.segment[i].travelDate;
                 flightSearchRequest.segments.Add(seg);
-            }
+            //}
             return Newtonsoft.Json.JsonConvert.SerializeObject(flightSearchRequest);
         }
         public string getFareQuoteRequest(Core.Flight.PriceVerificationRequest request)

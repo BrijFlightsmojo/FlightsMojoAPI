@@ -61,13 +61,13 @@ namespace ServicesHub.FareBoutique
                             Core.Flight.Segment segment = new Core.Flight.Segment()
                             {
                                 Airline = Itin.airline_code,
-                                ArrTime = DateTime.ParseExact(Itin.arrival_date + " " + Itin.arrival_time, "yyyy-MM-dd HH:mm", new System.Globalization.CultureInfo("en-US")),
-                                DepTime = DateTime.ParseExact(Itin.departure_date + " " + Itin.departure_time, "yyyy-MM-dd HH:mm", new System.Globalization.CultureInfo("en-US")),
+                                ArrTime = DateTime.ParseExact(Itin.arrival_date + " " + Itin.arrival_time, "yyyy-MM-dd H:mm", new System.Globalization.CultureInfo("en-US")),
+                                DepTime = DateTime.ParseExact(Itin.departure_date + " " + Itin.departure_time, "yyyy-MM-dd H:mm", new System.Globalization.CultureInfo("en-US")),
                                 Origin = Itin.departure_airport_code,
                                 Destination = Itin.arrival_airport_code,
                                 Duration = 0,
                                 FareClass = "",
-                                FlightNumber = Itin.flight_number.Length > 3 ? "" : Itin.flight_number,
+                                FlightNumber = Itin.flight_number.Length > 4 ? "" : Itin.flight_number,
                                 FromTerminal = Itin.departure_terminal_no,
                                 ToTerminal = Itin.arrival_terminal_no,
                                 IsETicketEligible = true,
@@ -192,6 +192,10 @@ namespace ServicesHub.FareBoutique
                 }
 
                 response.Results.Add(listFlightResult);
+            }
+            else
+            {
+                response.Results.Add(new List<Core.Flight.FlightResult>()); 
             }
         }
         public void getFareQuoteResponse(ref Core.Flight.PriceVerificationRequest request,

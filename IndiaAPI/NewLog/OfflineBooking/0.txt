@@ -1,0 +1,15 @@
+  :
+---------------------------------------------Satkar Offline BookFlight Original Response3.54.06 PM 04-26-2024---------------------------------------------
+
+---------------------------------------------SatkarTravel Offline Booking Result3.50.35 PM 04-26-2024---------------------------------------------
+{"response":{"status":0,"message":"no result found","Error_Code":null,"Error_Desc":null,"Error_InnerException":null},"TraceId":null,"tgy_Search_Key":null,"Results":[[]],"result1Index":null,"result2Index":null,"listGroupID":[],"FB_booking_token_id":null,"SearchRequest":{"SearchURL":null,"userSessionID":"oznmtz0chka1ooqba52sfwye","userSearchID":"260424145600721037cac0f841d0aa00bcceded15b6c","userLogID":"260424145600721037cac0f841d0aa00bcceded15b6c","client":0,"segment":[{"originAirport":"DEL","orgArp":{"airportCode":"DEL","airportName":"New Delhi Indira Gandhi Intl","cityCode":"DEL","cityName":"Delhi","countryCode":"IN","countryName":"India"},"destinationAirport":"PAT","destArp":{"airportCode":"PAT","airportName":"Jai Prakash Narayan Arpt","cityCode":"PAT","cityName":"Patna","countryCode":"IN","countryName":"India"},"travelDate":"2024-04-28T18:55:00"}],"searchDirectFlight":false,"flexibleSearch":false,"tripType":1,"adults":1,"child":0,"infants":0,"cabinType":1,"airline":null,"currencyCode":null,"siteId":2,"sourceMedia":"1015","sID":null,"rID":null,"locale":null,"isNearBy":false,"limit":null,"page":null,"pageValue":null,"userIP":"152.58.186.14","serverIP":null,"fareCachingKey":null,"isMetaRequest":false,"fareType":0,"travelType":1,"deepLink":null,"kayakClickId":null,"wegoClickId":null,"isGetLiveFare":false,"tgy_Request_id":null}}
+------------------------------------------------------
+
+
+
+---------------------------------------------Satkar Offline Booking Else Response23.54.05 PM 04-26-2024---------------------------------------------
+success
+------------------------------------------------------
+
+
+

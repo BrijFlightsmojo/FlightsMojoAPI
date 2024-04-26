@@ -45,6 +45,10 @@ namespace IndiaAPI.Controllers
             //ServicesHub.SatkarTravel.SatkarTravelServiceMapping obj = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping();
             //obj.getTokenID();
 
+           // DAL.Booking.Get_BookingDetails obj = new DAL.Booking.Get_BookingDetails();
+            //  obj.Get_BookingSessionID(327552);
+            //obj.GetFsr(327552);
+
             StringBuilder sbLogger = new StringBuilder();
             FlightSearchRequest flightSearchReq = new FlightSearchRequest();
             //flightSearchReq.Sources = new List<string>();
@@ -61,11 +65,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "BLR",
-                orgArp = Core.FlightUtility.GetAirport("BLR"),
-                destinationAirport = "IXC",
-                destArp = Core.FlightUtility.GetAirport("IXC"),
-                travelDate = Convert.ToDateTime("2024-04-15") //DateTime.Today.AddDays(61)//
+                originAirport = "JAI",
+                orgArp = Core.FlightUtility.GetAirport("JAI"),
+                destinationAirport = "BLR",
+                destArp = Core.FlightUtility.GetAirport("BLR"),
+                travelDate = Convert.ToDateTime("2024-04-25") //DateTime.Today.AddDays(61)//
             });
 
             if (flightSearchReq.tripType != Core.TripType.OneWay)
@@ -87,12 +91,12 @@ namespace IndiaAPI.Controllers
             flightSearchReq.userSearchID = getSearchID();
             return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
             //       var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq);
-                var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq,true, false);
+           //     var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq,true, false);
             //   return Request.CreateResponse(HttpStatusCode.OK, kkdd);
             //  return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
            // var kkdd = new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().GetFlightResults(flightSearchReq,true,true);
             //   var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq);
-            //       var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq);
+                   var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq, true, false);
             //   var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
             //var kkdd = new ServicesHub.Travelogy.TravelogyServiceMapping().GetFlightResults(flightSearchReq);
             //return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
@@ -575,7 +579,6 @@ namespace IndiaAPI.Controllers
 
                 if (!string.IsNullOrEmpty(fsr.sID) && !string.IsNullOrEmpty(fsr.rID) && fsr.isGetLiveFare == false)
                 {
-
                     int ctr = 0;
                     DAL.DALFlightCache objDal = new DAL.DALFlightCache();
                     Research:
@@ -2534,7 +2537,6 @@ namespace IndiaAPI.Controllers
                 {
                     isGFS = kkk.Contains(GdsType.GFS);
                 }
-
             }
             if (istripJack) tripJack = GetSearchResultTripJack(request);
             if (isOneDFare) OneDFare = GetSearchResultOneDFare(request);

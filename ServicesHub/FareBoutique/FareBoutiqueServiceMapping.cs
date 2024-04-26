@@ -19,7 +19,7 @@ namespace ServicesHub.FareBoutique
         string FB_UrlSector = ConfigurationManager.AppSettings["FB_UrlSector"].ToString();
         string FB_Ip = ConfigurationManager.AppSettings["FB_Ip"].ToString();
         string FB_TokenID = ConfigurationManager.AppSettings["FB_TokenID"].ToString();
-        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
+        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request, bool isfareBoutique, bool isfareBoutiqueR)
         {
             string errorMsg = string.Empty;
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);
@@ -29,31 +29,45 @@ namespace ServicesHub.FareBoutique
             //{
             //    bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
             //}
-
-            string strRequest = new FareBoutiqueRequestMappking().getFlightSearchRequest(request, FB_TokenID, FB_Ip);
-            if (FlightUtility.isWriteLogSearch)
+            for (int i = 0; i < request.segment.Count; i++)
             {
-                bookingLog(ref sbLogger, "FareBoutique Request", strRequest);
-            }
-            var strResponse = GetResponseSearch(FB_Url + "search", strRequest, ref errorMsg);
-
-            if (FlightUtility.isWriteLogSearch)
-            {
-                bookingLog(ref sbLogger, "FareBoutique Response", strResponse);
-            }
-            if (!string.IsNullOrEmpty(strResponse))
-            {
-                FareBoutiqueClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<FareBoutiqueClass.FlightResponse>(strResponse);
-                bookingLog(ref sbLogger, "FB search Response2", JsonConvert.SerializeObject(Response));
-                if (Response.errorCode == 0 || (!string.IsNullOrEmpty(Response.replyCode) && Response.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase)))
+                if (i == 0 && isfareBoutique == false)
                 {
-                    new FareBoutiqueResponseMapping().getResults(request, ref Response, ref flightResponse);
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                }
+                else if (i == 1 && isfareBoutiqueR == false)
+                {
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
                 }
                 else
                 {
-                    errorMsg += Response.errorMessage;
-                    flightResponse.response.status = Core.TransactionStatus.Error;
-                    flightResponse.response.message = "no result found";
+                    string strRequest = new FareBoutiqueRequestMappking().getFlightSearchRequest(request, FB_TokenID, FB_Ip, i);
+                    if (FlightUtility.isWriteLogSearch)
+                    {
+                        bookingLog(ref sbLogger, "FareBoutique Request", strRequest);
+                    }
+                    var strResponse = GetResponseSearch(FB_Url + "search", strRequest, ref errorMsg);
+
+                    if (FlightUtility.isWriteLogSearch)
+                    {
+                        bookingLog(ref sbLogger, "FareBoutique Response", strResponse);
+                    }
+                    if (!string.IsNullOrEmpty(strResponse))
+                    {
+                        FareBoutiqueClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<FareBoutiqueClass.FlightResponse>(strResponse);
+                        bookingLog(ref sbLogger, "FB search Response2", JsonConvert.SerializeObject(Response));
+                        if (Response.errorCode == 0 || (!string.IsNullOrEmpty(Response.replyCode) && Response.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase)))
+                        {
+                            new FareBoutiqueResponseMapping().getResults(request, ref Response, ref flightResponse);
+                        }
+                        else
+                        {
+                            flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                            errorMsg += Response.errorMessage;
+                            flightResponse.response.status = Core.TransactionStatus.Error;
+                            flightResponse.response.message = "no result found";
+                        }
+                    }
                 }
             }
             if (FlightUtility.isWriteLogSearch)
@@ -252,7 +266,7 @@ namespace ServicesHub.FareBoutique
                 {
                     response = reader.ReadToEnd();
                 }
-               
+
             }
             catch (WebException webEx)
             {

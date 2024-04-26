@@ -164,6 +164,10 @@ namespace ServicesHub.GFS
                 }
                 response.Results.Add(listFlightResult);
             }
+            else
+            {
+                response.Results.Add(new List<Core.Flight.FlightResult>());
+            }
         }
 
         public void getFareQuoteResponse(ref Core.Flight.PriceVerificationRequest request,

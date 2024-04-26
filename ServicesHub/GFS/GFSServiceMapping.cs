@@ -18,7 +18,7 @@ namespace ServicesHub.GFS
         string Url = ConfigurationManager.AppSettings["GFS_Url"].ToString();
         string ApiKey = ConfigurationManager.AppSettings["GFS_ApiKey"].ToString();
         string GetUrl = ConfigurationManager.AppSettings["GFS_GetUrl"].ToString();
-        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
+        public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request, bool isGFS, bool isGFSR)
         {
             string errorMsg = string.Empty;
             StringBuilder sbLogger = new StringBuilder();
@@ -28,33 +28,50 @@ namespace ServicesHub.GFS
             {
                 bookingLog(ref sbLogger, "GFS Request", JsonConvert.SerializeObject(request));
             }
-            string org = request.segment[0].originAirport.ToLower();
-            string dest = request.segment[0].destinationAirport.ToLower();
-            string DepDate = request.segment[0].travelDate.ToString("yyyyMMdd");
-            int adult = request.adults;
-            int Chd = request.child;
-            int Inf = request.infants;
-            var url = string.Empty;
-            WebClient client = new WebClient();
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
-            client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            client.Headers.Add("api-key", ApiKey);
-            url = Url + "series-search?segment=" + org + "-" + dest + "-" + DepDate + "&pax=" + adult + "-" + Chd + "-" + Inf + "";
-            if (FlightUtility.isWriteLogSearch)
+            for (int i = 0; i < request.segment.Count; i++)
             {
-                bookingLog(ref sbLogger, "GFS Request URL", url);
+
+                if (i == 0 && isGFS == false)
+                {
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                }
+                else if (i == 1 && isGFSR == false)
+                {
+                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                }
+                else
+                {
+                    string org = request.segment[i].originAirport.ToLower();
+                    string dest = request.segment[i].destinationAirport.ToLower();
+                    string DepDate = request.segment[i].travelDate.ToString("yyyyMMdd");
+                    int adult = request.adults;
+                    int Chd = request.child;
+                    int Inf = request.infants;
+                    var url = string.Empty;
+                    WebClient client = new WebClient();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    client.Headers.Add("api-key", ApiKey);
+                    url = Url + "series-search?segment=" + org + "-" + dest + "-" + DepDate + "&pax=" + adult + "-" + Chd + "-" + Inf + "";
+                    if (FlightUtility.isWriteLogSearch)
+                    {
+                        bookingLog(ref sbLogger, "GFS Request URL", url);
+                    }
+                    var responseStream = new System.IO.Compression.GZipStream(client.OpenRead(url), System.IO.Compression.CompressionMode.Decompress);
+                    var reader = new System.IO.StreamReader(responseStream);
+                    var kk = reader.ReadToEnd();
+                    if (FlightUtility.isWriteLogSearch)
+                    {
+                        bookingLog(ref sbLogger, "GFS Response", kk.ToString());
+                    }
+                    GFSClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<GFSClass.FlightResponse>(kk.ToString());
+                    new GFSResponseMapping().getResults(request, ref Response, ref flightResponse);
+                }
             }
-            var responseStream = new System.IO.Compression.GZipStream(client.OpenRead(url), System.IO.Compression.CompressionMode.Decompress);
-            var reader = new System.IO.StreamReader(responseStream);
-            var kk = reader.ReadToEnd();
-            GFSClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<GFSClass.FlightResponse>(kk.ToString());
-            new GFSResponseMapping().getResults(request, ref Response, ref flightResponse);
+           
             if (FlightUtility.isWriteLogSearch)
             {
-                bookingLog(ref sbLogger, "GFS Response", kk.ToString());
-            }
-            if (FlightUtility.isWriteLogSearch)
-            {
+                //flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
                 bookingLog(ref sbLogger, "GFS errorMsg", errorMsg);
                 new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
             }
@@ -71,7 +88,7 @@ namespace ServicesHub.GFS
                 foreach (FlightResult fr in request.flightResult)
                 {
 
-                    string strRequest = new GFSRequestMappking().getFareQuoteRequest(request);
+                    string strRequest = new GFSRequestMappking().getFareQuoteRequest(request, ctr);
 
                     bookingLog(ref sbLogger, "GFS FareQuote Request", strRequest);
 

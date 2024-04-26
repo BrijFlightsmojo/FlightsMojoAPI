@@ -8,16 +8,16 @@ namespace ServicesHub.GFS
 {
     public class GFSRequestMappking
     {
-        public string getFareQuoteRequest(Core.Flight.PriceVerificationRequest request)
+        public string getFareQuoteRequest(Core.Flight.PriceVerificationRequest request, int i)
         {
             GFSFareQuoteRequestClass.FareQuoteRequest fareQuote = new GFSFareQuoteRequestClass.FareQuoteRequest()
             {
                 currency = "INR",
-                total_price = request.flightResult[0].Fare.NetFare,
+                total_price = request.flightResult[i].Fare.NetFare,
                 flight_keys=new List<string>(),
                 query=new GFSFareQuoteRequestClass.Query()
         };
-            fareQuote.flight_keys.Add(request.flightResult[0].Fare.GFS_FlightKey);
+            fareQuote.flight_keys.Add(request.flightResult[i].Fare.GFS_FlightKey);
             fareQuote.query.nAdt = request.adults;
             fareQuote.query.nChd = request.child;
             fareQuote.query.nInf = request.infants;

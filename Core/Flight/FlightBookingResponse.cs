@@ -271,4 +271,14 @@ namespace Core.Flight
         [DataMember]
         public string InvoiceNo { get; set; }
     }
+
+    public class BookingRemark
+    {
+        public int Id { get; set; }
+        public int BookingID { get; set; }
+        public int ProdID { get; set; }
+        public string Booking_Remarks { get; set; }
+        public int ModifiedBy { get; set; }
+        public DateTime Created { get; set; }
+    }
 }
