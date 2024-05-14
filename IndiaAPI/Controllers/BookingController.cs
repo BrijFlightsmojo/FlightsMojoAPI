@@ -42,7 +42,7 @@ namespace IndiaAPI.Controllers
             {
                 if (request.gds == Core.GdsType.FareBoutique)
                 {
-                    #region FareBoutiqueBooking 
+                    #region FareBoutiqueBooking  
                     ServicesHub.FareBoutique.FareBoutiqueServiceMapping objfb = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping();
                     Core.Flight.FlightSearchResponseShort result = objfb.GetFlightResults(fsr, true, false);
                     bookingLog(ref sbLogger, "FareBoutique Offline Booking Result", JsonConvert.SerializeObject(result));

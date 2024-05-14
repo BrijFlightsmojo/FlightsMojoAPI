@@ -84,12 +84,10 @@ namespace ServicesHub.Tbo
                                         FromTerminal = seg.Origin.Airport.Terminal,
                                         ToTerminal = seg.Destination.Airport.Terminal,
                                         IsETicketEligible = seg.IsETicketEligible,
-                                        OperatingCarrier = seg.Airline.OperatingCarrier,
+                                        OperatingCarrier =string.IsNullOrEmpty( seg.Airline.OperatingCarrier) ?seg.Airline.AirlineCode: seg.Airline.OperatingCarrier  ,
                                         SegmentIndicator = seg.SegmentIndicator,
                                         equipmentType = seg.Craft,
                                         CabinClass = request.cabinType,
-
-
                                     };
                                     seatAvail = seatAvail < seg.NoOfSeatAvailable ? seg.NoOfSeatAvailable : seatAvail;
                                     result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
@@ -153,7 +151,7 @@ namespace ServicesHub.Tbo
                                 YQTax = Itin.Fare.YQTax,
                                 FareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
                                 mojoFareType = Core.FlightUtility.GetFmFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : "", result.valCarrier, GdsType.Tbo),
-                               // FareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
+                                // FareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
                                 //  Itin.FareClassification != null ? Itin.FareClassification.Type : ""
                                 cabinType = result.cabinClass,
                                 gdsType = GdsType.Tbo,
@@ -163,7 +161,7 @@ namespace ServicesHub.Tbo
                             };
                             if (fare.mojoFareType == MojoFareType.None || fare.mojoFareType == MojoFareType.Unknown)
                             {
-                                LogCreater.CreateLogFile(Itin.FareClassification != null ? Itin.FareClassification.Type : "" + "~" + result.valCarrier, "Log\\FareType", "tbo"+DateTime.Today.ToString("ddMMyyy") + ".txt");
+                                LogCreater.CreateLogFile(Itin.FareClassification != null ? Itin.FareClassification.Type : "" + "~" + result.valCarrier, "Log\\FareType", "tbo" + DateTime.Today.ToString("ddMMyyy") + ".txt");
                             }
 
                             fare.fareBreakdown = new List<Core.Flight.FareBreakdown>();

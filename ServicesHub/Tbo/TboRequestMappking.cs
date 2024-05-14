@@ -278,13 +278,10 @@ namespace ServicesHub.Tbo
             };
             int i = 0;
             Core.Flight.FareBreakdown adtFare = null, chdFare = null, infFare = null;
-            //   adtFare = request.bookResult[ctr].Fare.fareBreakdown.Where(k => k.PassengerType == Core.PassengerType.Adult).FirstOrDefault();
             adtFare = request.flightResult[ctr].Fare.fareBreakdown.Where(k => k.PassengerType == Core.PassengerType.Adult).FirstOrDefault();
             if (request.child > 0)
-                //       chdFare = request.bookResult[ctr].Fare.fareBreakdown.Where(k => k.PassengerType == Core.PassengerType.Child).FirstOrDefault();
                 chdFare = request.flightResult[ctr].Fare.fareBreakdown.Where(k => k.PassengerType == Core.PassengerType.Child).FirstOrDefault();
             if (request.infants > 0)
-                //        infFare = request.bookResult[ctr].Fare.fareBreakdown.Where(k => k.PassengerType == Core.PassengerType.Infant).FirstOrDefault();
                 infFare = request.flightResult[ctr].Fare.fareBreakdown.Where(k => k.PassengerType == Core.PassengerType.Infant).FirstOrDefault();
             foreach (var item in request.passengerDetails)
             {
@@ -318,8 +315,6 @@ namespace ServicesHub.Tbo
                         AdditionalTxnFeeOfrd = adtFare.AdditionalTxnFeeOfrd / request.adults,
                         AdditionalTxnFeePub = adtFare.AdditionalTxnFeePub / request.adults,
                         BaseFare = adtFare.BaseFare / request.adults,
-                        //Currency = request.bookResult[ctr].Fare.Currency,
-                        //OtherCharges = request.bookResult[ctr].Fare.OtherCharges,
                         Currency = request.flightResult[ctr].Fare.Currency,
                         OtherCharges = request.flightResult[ctr].Fare.OtherCharges,
                         Tax = adtFare.Tax / request.adults,

@@ -1,0 +1,6 @@
+  :PREMIUM_ECONOMY~AI
+  :PREMIUM_ECONOMY~AI
+  :PREMIUM_ECONOMY~AI
+  :NDC_FLEXI~AI
+  :NDC_Economy Flexi~AI
+  :NDC_Economy Flexi~AI

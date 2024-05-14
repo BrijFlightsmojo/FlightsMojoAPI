@@ -149,10 +149,10 @@ namespace ServicesHub.Amadeus
                     soapAction = "TIUNRQ_16_1_1A";
                     break;
               
+               
                 case AmadeusSoapActionType.Fare_InformativeBestPricingWithoutPNR:
-                    soapAction = "TIBNRQ_14_1_1A";
+                    soapAction = "TIBNRQ_18_1_1A";
                     break;
-             
                 case AmadeusSoapActionType.Ticket_ProcessEDoc:
                     soapAction = "TATREQ_15_2_1A";
                     break;

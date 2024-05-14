@@ -193,7 +193,6 @@ namespace ServicesHub.SatkarTravel
 
         public void getSectors()
         {
-
             string segm = string.Empty;
             WebClient client = new WebClient();
             var url = ST_UrlGetDetail + "sectors";

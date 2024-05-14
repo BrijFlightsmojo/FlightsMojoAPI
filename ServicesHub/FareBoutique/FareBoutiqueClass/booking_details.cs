@@ -45,8 +45,8 @@ namespace ServicesHub.FareBoutique.FB_Booking_Details
         public string contact_email { get; set; }
         public string contact_number { get; set; }
         public Onward onward { get; set; }
-        public List<object> @return { get; set; }
-        public List<object> price_breakup { get; set; }
+        //public List<object> @return { get; set; }
+        //public List<object> price_breakup { get; set; }
         public Baggage baggage { get; set; }
         public List<Traveller> travellers { get; set; }
         public SellerInfo seller_info { get; set; }
@@ -94,7 +94,7 @@ namespace ServicesHub.FareBoutique.FB_Booking_Details
         public string ticket_cancel_at { get; set; }
         public int age { get; set; }
         public string passport_no { get; set; }
-        public object passport_expire_date { get; set; }
+        public string passport_expire_date { get; set; }
     }
 
 

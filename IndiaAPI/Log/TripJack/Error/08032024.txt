@@ -1,0 +1,896 @@
+  :Pe Comfort Plus_AI
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :Economy Plus_KC
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Himalaya Airlines_H1
+
+  :Economy Plus_KC
+
+  :Economy Plus_KC
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Economy Plus_KC
+
+  :Econ Semi Flex_UL
+
+  :Eco Flexplus_UK
+
+  :Economy Class_BG
+
+  :Economy Class_BG
+
+  :Eco Flexplus_EK
+
+  :Eco Flexplus_EK
+
+  :Eco Flexplus_EK
+
+  :Business Flexplus_EK
+
+  :First Flexplus_EK
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Business Choice_EY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Eco Flexplus_UK
+
+  :Spicejet Economy Class_H1
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Business Comfort_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Business Comfort_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Business Comfort_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Biz_IX
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+
+  :Economy Plus_KC
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Himalaya Airlines_H1
+
+  :Economy Plus_KC
+
+  :Economy Plus_KC
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Economy Plus_KC
+
+  :Econ Semi Flex_UL
+
+  :Eco Flexplus_UK
+
+  :Economy Class_BG
+
+  :Economy Class_BG
+
+  :Eco Flexplus_EK
+
+  :Eco Flexplus_EK
+
+  :Eco Flexplus_EK
+
+  :Business Flexplus_EK
+
+  :First Flexplus_EK
+
+  :Basic Eco_SV
+
+  :Semi Flex Eco_SV
+
+  :Flex Eco_SV
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Eco Flexplus_UK
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Eco Saver_UK
+
+  :Eco Flexplus_UK
+
+  :Eco Flexplus_UK
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Main Cabin Flexible_AA
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :SUPER_6E_6E
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Biz_IX
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY PRIME_WY
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC_ECONOMY COMFORT_QR
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+

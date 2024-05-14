@@ -2221,3 +2221,1238 @@ https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
 
 
 
+  :
+---------------------------------------------Authentication Url12.27.29 PM 16 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request12.27.29 PM 16 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response12.27.29 PM 16 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.25.10 PM 16 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.25.21 PM 16 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.25.21 PM 16 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.24.30 PM 16 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.26.08 PM 16 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.26.08 PM 16 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url12.08.48 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request12.08.48 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response12.08.48 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url12.12.35 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request12.12.46 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response12.12.46 PM 20 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.10.50 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.10.50 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.10.50 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.20.40 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.20.41 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.20.41 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.26.36 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.26.51 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.26.51 PM 20 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.29.01 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.29.02 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.29.02 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url2.47.20 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request2.47.21 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response2.47.21 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url2.50.04 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request2.50.05 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response2.50.05 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.21.19 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.21.19 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.21.19 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.21.43 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.21.44 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.21.44 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.27.05 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.27.05 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.27.05 PM 20 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.27.34 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.27.34 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.27.34 PM 20 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.27.40 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.27.47 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.27.47 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.30.48 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.30.54 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.30.54 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.49.51 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.49.51 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.49.51 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.51.15 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.51.24 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.51.24 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.53.41 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.54.04 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.54.04 PM 20 February 2024---------------------------------------------
+
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.54.12 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.54.19 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.54.19 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.55.09 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.55.10 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.55.10 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.55.38 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.56.05 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.56.05 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.57.39 PM 20 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.57.47 PM 20 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.57.47 PM 20 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url12.20.21 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request12.20.21 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response12.20.21 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.33.15 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.33.15 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.33.15 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.36.56 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.36.57 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.36.57 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.37.11 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.37.11 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.37.11 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.39.39 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.39.39 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.39.39 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.46.54 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.46.54 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.46.54 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.56.58 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.56.58 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.56.58 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.58.57 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.59.02 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.59.02 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url7.03.12 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request7.03.16 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response7.03.16 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url7.59.58 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request7.59.58 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response7.59.58 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url8.03.35 PM 21 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request8.03.36 PM 21 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response8.03.36 PM 21 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.41.09 PM 22 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.41.12 PM 22 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.41.12 PM 22 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.42.16 PM 22 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.42.16 PM 22 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.42.16 PM 22 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.42.20 PM 22 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.42.20 PM 22 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.42.20 PM 22 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.26.39 PM 23 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.26.40 PM 23 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.26.40 PM 23 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url5.26.52 PM 23 February 2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request5.26.52 PM 23 February 2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response5.26.52 PM 23 February 2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.38.00 PM 03/01/2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.38.02 PM 03/01/2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.38.02 PM 03/01/2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url4.08.22 PM 03-18-2024---------------------------------------------
+http://api.tektravels.com/SharedServices/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request4.08.22 PM 03-18-2024---------------------------------------------
+{"ClientId":"ApiIntegrationNew","UserName":"mojo","Password":"mojo@1234","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response4.08.22 PM 03-18-2024---------------------------------------------
+{"Status":1,"TokenId":"648fd35e-7362-4365-888a-453e7491530f","Error":{"ErrorCode":0,"ErrorMessage":""},"Member":{"FirstName":"Harsh","LastName":"Khemani","Email":"","MemberId":49944,"AgencyId":49988,"LoginName":"mojo","LoginDetails":"Login Success at#@ 1\/7\/2019 12:39:49 PM #@ IPAddress: 192.168.10.252","isPrimaryAgent":false}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url5.16.38 PM 03-19-2024---------------------------------------------
+http://api.tektravels.com/SharedServices/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request5.16.38 PM 03-19-2024---------------------------------------------
+{"ClientId":"ApiIntegrationNew","UserName":"mojo","Password":"mojo@1234","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response5.16.38 PM 03-19-2024---------------------------------------------
+{"Status":1,"TokenId":"7464406b-c5c9-4449-b436-c32e939ef149","Error":{"ErrorCode":0,"ErrorMessage":""},"Member":{"FirstName":"Harsh","LastName":"Khemani","Email":"","MemberId":49944,"AgencyId":49988,"LoginName":"mojo","LoginDetails":"Login Success at#@ 1\/7\/2019 12:39:49 PM #@ IPAddress: 192.168.10.252","isPrimaryAgent":false}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url6.33.47 PM 03-20-2024---------------------------------------------
+http://api.tektravels.com/SharedServices/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request6.33.48 PM 03-20-2024---------------------------------------------
+{"ClientId":"ApiIntegrationNew","UserName":"mojo","Password":"mojo@1234","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response6.33.48 PM 03-20-2024---------------------------------------------
+{"Status":1,"TokenId":"6244c555-685f-48ea-83a4-f01c2ae6cea4","Error":{"ErrorCode":0,"ErrorMessage":""},"Member":{"FirstName":"Harsh","LastName":"Khemani","Email":"","MemberId":49944,"AgencyId":49988,"LoginName":"mojo","LoginDetails":"Login Success at#@ 1\/7\/2019 12:39:49 PM #@ IPAddress: 192.168.10.252","isPrimaryAgent":false}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url8.20.59 PM 03-20-2024---------------------------------------------
+http://api.tektravels.com/SharedServices/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request8.20.59 PM 03-20-2024---------------------------------------------
+{"ClientId":"ApiIntegrationNew","UserName":"mojo","Password":"mojo@1234","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response8.20.59 PM 03-20-2024---------------------------------------------
+{"Status":1,"TokenId":"ce6a353c-48c5-4147-9844-0459fcdb36c0","Error":{"ErrorCode":0,"ErrorMessage":""},"Member":{"FirstName":"Harsh","LastName":"Khemani","Email":"","MemberId":49944,"AgencyId":49988,"LoginName":"mojo","LoginDetails":"Login Success at#@ 1\/7\/2019 12:39:49 PM #@ IPAddress: 192.168.10.252","isPrimaryAgent":false}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.25.15 PM 04-02-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.25.15 PM 04-02-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.25.15 PM 04-02-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.09.34 PM 04-03-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.09.40 PM 04-03-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.09.40 PM 04-03-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url4.52.49 PM 04-04-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request4.52.50 PM 04-04-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response4.52.50 PM 04-04-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url2.51.28 PM 04-09-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request2.51.28 PM 04-09-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response2.51.28 PM 04-09-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.55.01 PM 04-09-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.55.01 PM 04-09-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.55.01 PM 04-09-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.47.34 PM 04-11-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.47.35 PM 04-11-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.47.35 PM 04-11-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url4.33.53 PM 04-11-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request4.33.55 PM 04-11-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response4.33.55 PM 04-11-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.12.50 PM 04-12-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.12.50 PM 04-12-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.12.50 PM 04-12-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url7.30.34 PM 04-12-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request7.30.34 PM 04-12-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response7.30.34 PM 04-12-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.05.14 PM 04-16-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.05.15 PM 04-16-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.05.15 PM 04-16-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url12.55.08 PM 04-18-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request12.55.08 PM 04-18-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response12.55.08 PM 04-18-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url1.56.30 PM 04-29-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request1.56.30 PM 04-29-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response1.56.30 PM 04-29-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.10.33 PM 04-29-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.10.33 PM 04-29-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.10.33 PM 04-29-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url4.18.37 PM 04-29-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request4.18.37 PM 04-29-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response4.18.37 PM 04-29-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url5.00.39 PM 04-29-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request5.00.40 PM 04-29-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response5.00.40 PM 04-29-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url5.32.26 PM 04-30-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request5.32.27 PM 04-30-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response5.32.27 PM 04-30-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url3.07.57 PM 05-13-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request3.07.57 PM 05-13-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response3.07.57 PM 05-13-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url4.59.58 PM 05-13-2024---------------------------------------------
+https://api.travelboutiqueonline.com/SharedAPI/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request4.59.58 PM 05-13-2024---------------------------------------------
+{"ClientId":"tboprod","UserName":"DELF792","Password":"@nApi#Live-0190","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response4.59.58 PM 05-13-2024---------------------------------------------
+{"Status":2,"TokenId":null,"Error":{"ErrorCode":1,"ErrorMessage":"You are not authorized to access TBO API"}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url4.26.26 PM 05-14-2024---------------------------------------------
+http://api.tektravels.com/SharedServices/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request4.26.27 PM 05-14-2024---------------------------------------------
+{"ClientId":"ApiIntegrationNew","UserName":"mojo","Password":"mojo@1234","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response4.26.27 PM 05-14-2024---------------------------------------------
+{"Status":1,"TokenId":"8c81c84a-6ce6-4e07-b83b-ebf54f187e7f","Error":{"ErrorCode":0,"ErrorMessage":""},"Member":{"FirstName":"Harsh","LastName":"Khemani","Email":"","MemberId":49944,"AgencyId":49988,"LoginName":"mojo","LoginDetails":"Login Success at#@ 1\/7\/2019 12:39:49 PM #@ IPAddress: 192.168.10.252","isPrimaryAgent":false}}
+------------------------------------------------------
+
+
+
+  :
+---------------------------------------------Authentication Url5.52.46 PM 05-14-2024---------------------------------------------
+http://api.tektravels.com/SharedServices/SharedData.svc/rest/Authenticate
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Request5.52.46 PM 05-14-2024---------------------------------------------
+{"ClientId":"ApiIntegrationNew","UserName":"mojo","Password":"mojo@1234","EndUserIp":"103.160.243.202"}
+------------------------------------------------------
+
+
+
+---------------------------------------------Authentication Response5.52.46 PM 05-14-2024---------------------------------------------
+{"Status":1,"TokenId":"6f57ebfb-fcb3-442e-9681-d079ded26388","Error":{"ErrorCode":0,"ErrorMessage":""},"Member":{"FirstName":"Harsh","LastName":"Khemani","Email":"","MemberId":49944,"AgencyId":49988,"LoginName":"mojo","LoginDetails":"Login Success at#@ 1\/7\/2019 12:39:49 PM #@ IPAddress: 192.168.10.252","isPrimaryAgent":false}}
+------------------------------------------------------
+
+
+

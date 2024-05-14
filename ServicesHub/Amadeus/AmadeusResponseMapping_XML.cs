@@ -18,7 +18,7 @@ namespace ServicesHub.Amadeus
     public class AmadeusResponseMapping_XML
     {
 
-      
+
         public void getPriceVerifyResponse(string xmlResponse, GfPriceVerifyRequest request, ref GfPriceVerifyResponse Response, ref int adtQnty, ref int chdQnty, ref int infQnty)
         {
             Response.fare.fareBreakdown = new List<Core.Flight.FareBreakdown>();
@@ -37,9 +37,9 @@ namespace ServicesHub.Amadeus
                             decimal BaseFare = Convert.ToDecimal(xmlNode.SelectSingleNode("fareInfoGroup/fareAmount/monetaryDetails/amount").InnerText);
                             decimal Tax = totAmt - BaseFare;
 
-                            Response.fare.BaseFare += BaseFare;
-                            Response.fare.Tax += Tax;
-                            Core.Flight.FareBreakdown fb=new Core.Flight.FareBreakdown() { BaseFare=BaseFare,Tax=Tax, PassengerType=PassengerType.Adult};
+                            Response.fare.BaseFare += (BaseFare * request.adults);
+                            Response.fare.Tax += (Tax * request.adults);
+                            Core.Flight.FareBreakdown fb = new Core.Flight.FareBreakdown() { BaseFare = BaseFare, Tax = Tax, PassengerType = PassengerType.Adult };
                             Response.fare.fareBreakdown.Add(fb);
                         }
                         if (Convert.ToInt32(xmlNode.SelectSingleNode("numberOfPax/segmentControlDetails/quantity").InnerText) == chdQnty)
@@ -48,8 +48,8 @@ namespace ServicesHub.Amadeus
                             decimal BaseFare = Convert.ToDecimal(xmlNode.SelectSingleNode("fareInfoGroup/fareAmount/monetaryDetails/amount").InnerText);
                             decimal Tax = totAmt - BaseFare;
 
-                            Response.fare.BaseFare += BaseFare;
-                            Response.fare.Tax += Tax;
+                            Response.fare.BaseFare += (BaseFare * request.child);
+                            Response.fare.Tax += (Tax * request.child);
                             Core.Flight.FareBreakdown fb = new Core.Flight.FareBreakdown() { BaseFare = BaseFare, Tax = Tax, PassengerType = PassengerType.Child };
                             Response.fare.fareBreakdown.Add(fb);
                         }
@@ -59,21 +59,21 @@ namespace ServicesHub.Amadeus
                             decimal BaseFare = Convert.ToDecimal(xmlNode.SelectSingleNode("fareInfoGroup/fareAmount/monetaryDetails/amount").InnerText);
                             decimal Tax = totAmt - BaseFare;
 
-                            Response.fare.BaseFare += BaseFare;
-                            Response.fare.Tax += Tax;
+                            Response.fare.BaseFare += (BaseFare * request.infants);
+                            Response.fare.Tax += (Tax * request.infants);
                             Core.Flight.FareBreakdown fb = new Core.Flight.FareBreakdown() { BaseFare = BaseFare, Tax = Tax, PassengerType = PassengerType.Infant };
                             Response.fare.fareBreakdown.Add(fb);
                         }
                     }
                 }
-                Response.fare.NetFare = Response.fare.grandTotal = Response.fare.PublishedFare + Response.fare.Markup - Response.fare.CommissionEarned;
+                Response.fare.NetFare = Response.fare.grandTotal = Response.fare.BaseFare + Response.fare.Tax;
             }
             else
             {
                 Response.responseStatus.status = TransactionStatus.Error;
             }
         }
-    
+
         private static CabinType GetCabinType(string cabin)
         {
             CabinType cabinReturn = CabinType.Economy;

@@ -139,12 +139,11 @@ namespace ServicesHub.Tbo
             }
             if (flightResponse.Results.Count == 0 || (flightResponse.Results.Count > 0 && flightResponse.Results.FirstOrDefault().Count == 0))
             {
-                StringBuilder sbLogger2 = new StringBuilder();
-                bookingLog(ref sbLogger2, "Tbo Search Request", strRequest);
-                bookingLog(ref sbLogger2, "Tbo Search Response", strResponse);
-                // new LogWriter("No" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
-                new LogWriter(sbLogger2.ToString(), "tbo" + request.userSearchID, "TboNoResult");
-
+                //StringBuilder sbLogger2 = new StringBuilder();
+                //bookingLog(ref sbLogger2, "Tbo Search Request", strRequest);
+                //bookingLog(ref sbLogger2, "Tbo Search Response", strResponse);
+                //  new LogWriter(sbLogger2.ToString(), "tbo" + request.userSearchID, "TboNoResult");
+                new LogWriter("No" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
             }
             if (flightResponse.Results.Count == 1 || (flightResponse.Results.Count > 1 && flightResponse.Results.FirstOrDefault().Count == 1))
             {
@@ -160,8 +159,6 @@ namespace ServicesHub.Tbo
             {
                 // bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
             }
-
-
             Start:
             ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
             string TokenId = obj.getTokenID();
@@ -377,7 +374,7 @@ namespace ServicesHub.Tbo
                 bookingLog(ref sbLogger, "Exception", ex.ToString());
                 new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "TBO FareRule Exeption");
             }
-            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
+            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID,"Search");
             return _response;
         }
 

@@ -194,6 +194,21 @@ namespace ServicesHub.FareBoutique
             new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Booking");
             //return _response;
         }
+
+        public void testJson(string str)
+        {
+            try
+            {
+                FB_Booking_Details.Booking_Details BookingDetails = JsonConvert.DeserializeObject<FB_Booking_Details.Booking_Details>(str);
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+
+
+        }
         public void bookingLog(ref StringBuilder sbLogger, string requestTitle, string logText)
         {
             sbLogger.Append(Environment.NewLine + "---------------------------------------------" + requestTitle + "" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------------------------------");

@@ -1,0 +1,5782 @@
+  :Business Sale_QF
+
+  :NDC_Economy Saver_QF
+
+  :Business Sale_QF
+
+  :NDC_Economy Saver_QF
+
+  :Business Sale_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Saver_QF
+
+  :Business Sale_QF
+
+  :NDC_Economy Saver_QF
+
+  :Business Sale_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Skyboss_VJ
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_STANDARD_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :NDC_STANDARD_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_STANDARD_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_STANDARD_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_STANDARD_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :PREMIUM_ECONOMY_AI
+
+  :PREMIUM_ECONOMY_AI
+
+  :PREMIUM_ECONOMY_AI
+
+  :PREMIUM_ECONOMY_AI
+
+  :PREMIUM_ECONOMY_AI
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Premium Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_Premium Economy Flexi_SQ
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_Economy Standard_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Economy Value_EY
+
+  :NDC_Economy Comfort_EY
+
+  :NDC_Economy Deluxe_EY
+
+  :NDC_Business Value_EY
+
+  :NDC_Business Comfort_EY
+
+  :NDC_Economy Value_EY
+
+  :NDC_Economy Comfort_EY
+
+  :NDC_Economy Deluxe_EY
+
+  :NDC_Business Value_EY
+
+  :NDC_Business Comfort_EY
+
+  :NDC_Economy Value_EY
+
+  :NDC_Economy Comfort_EY
+
+  :NDC_Economy Deluxe_EY
+
+  :NDC_Business Comfort_EY
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Saver_QF
+
+  :NDC_Economy Flex_QF
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Premium Economy FlexPlus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Premium Economy FlexPlus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :Business Lowest_AC
+
+  :Business Lowest_UK
+
+  :Business Lowest_UK
+
+  :Flagship Business Flexible_AA
+
+  :NDC_STANDARD ECONOMY_BA
+
+  :NDC_ECONOMY SELECT_BA
+
+  :NDC_BASIC ECONOMY_BA
+
+  :Basic Economy_BA
+
+  :Economy Fully Flex_BA
+
+  :NDC_BASIC ECONOMY_BA
+
+  :NDC_STANDARD ECONOMY_BA
+
+  :NDC_ECONOMY SELECT_BA
+
+  :Basic Economy_BA
+
+  :Economy Fully Flex_BA
+
+  :NDC_BASIC ECONOMY_BA
+
+  :NDC_STANDARD ECONOMY_BA
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Economy Fully Flex_BA
+
+  :Business Comfort_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :Business Comfort_QR
+
+  :Business Elite_QR
+
+  :NDC_COMFORT_QR
+
+  :Economy Full Flex_UK
+
+  :Business Lowest_UK
+
+  :Business Lowest_UK
+
+  :Business Lowest_UK
+
+  :ECONOMY DELUXE_EY
+
+  :Business Choice_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Business Choice_EY
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Business Elite_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Basic Economy_BA
+
+  :Economy Fully Flex_BA
+
+  :Economy Full Flex_LO
+
+  :Economy Full Flex_AI
+
+  :Economy Full Flex_AI
+
+  :Economy Full Flex_AI
+
+  :Economy Full Flex_AI
+
+  :Economy Full Flex_AI
+
+  :Economy Full Flex_AI
+
+  :Business Lowest_AI
+
+  :NDC_STANDARD ECONOMY_BA
+
+  :NDC_ECONOMY SELECT_BA
+
+  :NDC_BASIC ECONOMY_BA
+
+  :NDC_STANDARD ECONOMY_BA
+
+  :NDC_ECONOMY SELECT_BA
+
+  :NDC_BASIC ECONOMY_BA
+
+  :NDC_STANDARD ECONOMY_BA
+
+  :NDC_ECONOMY SELECT_BA
+
+  :NDC_BASIC ECONOMY_BA
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Main Cabin Flexible_AA
+
+  :NDC_Economy Comfort_EY
+
+  :NDC_Economy Deluxe_EY
+
+  :NDC_Business Comfort_EY
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Comfort_EY
+
+  :NDC_Economy Deluxe_EY
+
+  :NDC_Business Comfort_EY
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_Light_AF
+
+  :NDC_Standard_AF
+
+  :NDC_Flex_AF
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_Light_KL
+
+  :NDC_Standard_KL
+
+  :NDC_Flex_KL
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Business Comfort_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY FLEX_GF
+
+  :NDC_FALCON GOLD SMART_GF
+
+  :NDC_FALCON GOLD FLEX_GF
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Special_EK
+
+  :Business Classic_QR
+
+  :Economy Classic Flex_AI
+
+  :Economy Classic Flex_AI
+
+  :Economy Classic Flex_VS
+
+  :Economy Classic Flex_VS
+
+  :Economy Classic Flex_VS
+
+  :Economy Classic Flex_VS
+
+  :Economy Classic Flex_VS
+
+  :Economy Classic Flex_VS
+
+  :Economy Classic Flex_VS
+
+  :Economy Classic Flex_VS
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Econ Semi Flex_UL
+
+  :Business Promo Restricted_UL
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_Economy Flexi_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_FLEXI_SQ
+
+  :NDC_FLEXI_SQ
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Business Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :Economy Deluxe_EY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Saver_EK
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Business Saver_EK
+
+  :Spicejet Economy Class_H1
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :Economy Best Buy_MS
+
+  :Economy Good Deal_MS
+
+  :Economy Best Offer_MS
+
+  :Economy Best Offer_MS
+
+  :Economy Best Buy_MS
+
+  :Economy Good Deal_MS
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Biz_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :Spicejet Economy Class_H1
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_COMFORT_QR
+
+  :Economy Best Buy_MS
+
+  :Economy Good Deal_MS
+
+  :Economy Best Offer_MS
+
+  :Economy Best Offer_MS
+
+  :Economy Best Buy_MS
+
+  :Economy Good Deal_MS
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :ECONOMY DELUXE_EY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Plus_XY
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Spicejet Economy Class_H1
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :Economy Hand Baggage Only_EY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_COMFORT_QR
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Flex_IX
+
+  :Xpress_Biz_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_IX
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :Xpress_Value_I5
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Saver_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Business Special_EK
+
+  :NDC_Economy Flex_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_Economy Flex Plus_EK
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY SMART_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY LITE_WY
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY SMART_GF
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY CLASSIC_QR
+
+  :NDC_ECONOMY CONVENIENCE_QR
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC_ECONOMY LIGHT_GF
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Economy Saver_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Business Special_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
+  :NDC Economy Flex Plus_EK
+
