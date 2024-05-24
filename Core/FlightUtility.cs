@@ -25,6 +25,7 @@ namespace Core
         public static bool isWriteLog = false;
         public static bool isWriteLogSearch = false;
         public static bool isMasterDataLoaded = false;
+        public static bool isTboWhiteListed = true; 
         public static void LoadMasterData()
         {
             FlightUtility obj = new FlightUtility();
@@ -41,6 +42,7 @@ namespace Core
             isMasterDataLoaded = true;
             isWriteLog = Convert.ToBoolean(ConfigurationManager.AppSettings["isWriteLog"] != null ? ConfigurationManager.AppSettings["isWriteLog"] : "false");
             isWriteLogSearch = Convert.ToBoolean(ConfigurationManager.AppSettings["isWriteLogSearch"] != null ? ConfigurationManager.AppSettings["isWriteLogSearch"] : "false");
+            isTboWhiteListed = Convert.ToBoolean(ConfigurationManager.AppSettings["isTboWhiteListed"] != null ? ConfigurationManager.AppSettings["isTboWhiteListed"] : "true");
         }
         public static Airport GetAirport(string AirportCode)
         {

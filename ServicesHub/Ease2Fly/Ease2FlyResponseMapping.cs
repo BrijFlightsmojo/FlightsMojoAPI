@@ -65,7 +65,7 @@ namespace ServicesHub.Ease2Fly
                                 Duration = 0,
                                 FareClass = "",
                                 // FlightNumber = System.Text.RegularExpressions.Regex.Replace(Itin.flight_no, "[^0-9a-zA-Z]+", ""),// Itin.flight_number.Remove(0, 3),
-                                FlightNumber = Itin.flight_no.Remove(0, 3),
+                                FlightNumber = Itin.flight_no.Remove(0, 2),
                                 FromTerminal = "",
                                 ToTerminal = "",
                                 IsETicketEligible = true,

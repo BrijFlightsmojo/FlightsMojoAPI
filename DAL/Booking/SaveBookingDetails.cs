@@ -1421,7 +1421,14 @@ namespace DAL.Booking
                 //    }
                 //}
                 // Travelogy Case
-                if (fResult.gdsType == Core.GdsType.Travelogy)
+
+                //if (fsr.adults > 0)
+                //{
+                //    fare.ServiceFee = adtFare.ServiceFee;
+                //}
+
+
+                if ( fare.gdsType == Core.GdsType.Travelopedia)/*fResult.gdsType == Core.GdsType.Travelogy ||*/
                 {
                     if (fare.ServiceFee > 0)
                     {

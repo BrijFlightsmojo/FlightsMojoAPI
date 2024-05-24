@@ -38,7 +38,8 @@ namespace Core.Markup
     }
     public class skyScannerMetaRankData
     {
-      public string flightNo { get; set; }      
+        public string Airline { get; set; }
+        public string flightNo { get; set; }      
         public decimal Amount { get; set; }
       
     }

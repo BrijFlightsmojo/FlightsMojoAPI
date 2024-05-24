@@ -47,15 +47,12 @@ namespace IndiaAPI.Controllers
                     {
                         if (item != null)
                         {
-                            List<Core.Markup.skyScannerMetaRankData> md = metaData.Where(x => x.flightNo.Equals(item.FlightSegments[0].Segments[0].FlightNumber)).ToList();
+                            List<Core.Markup.skyScannerMetaRankData> md = metaData.Where(x => x.flightNo.Equals(item.FlightSegments[0].Segments[0].FlightNumber) && x.Airline.Equals(item.FlightSegments[0].Segments[0].Airline)).ToList();
                             foreach (var itemFare in item.FareList)
                             {
                                 itemFare.scComprefare = 0;
-                                if (itemFare.gdsType == GdsType.AirIQ)
-                                {
-
-                                }
-                                if (md.Count > 0 &&(fsr.sourceMedia=="1015" ||(itemFare.gdsType==GdsType.FareBoutique)))
+                              
+                                if (md.Count > 0 && (fsr.sourceMedia == "1015" || (itemFare.gdsType == GdsType.FareBoutique)))
                                 {
                                     decimal totFare = md[0].Amount;
                                     totFare = (totFare * (fsr.adults + fsr.child)) + (1500 * fsr.infants);
@@ -163,8 +160,8 @@ namespace IndiaAPI.Controllers
         }
         public void SetNoMarkup(ref Core.Flight.FlightSearchRequest fsr, ref Core.Flight.FlightSearchResponse flightSearchResponse)
         {
-            
-           
+
+
             if (flightSearchResponse != null && flightSearchResponse.Results != null && flightSearchResponse.Results.Count() > 0
                 && flightSearchResponse.Results[0].Count > 0 && flightSearchResponse.Results.LastOrDefault().Count > 0)
             {
@@ -174,7 +171,7 @@ namespace IndiaAPI.Controllers
                     {
                         if (item != null)
                         {
-                            
+
                             #region Set Airline and Airport Library
                             foreach (var fs in item.FlightSegments)
                             {

@@ -53,6 +53,17 @@ namespace IndiaAPI.Controllers
         }
 
 
+        [HttpGet]
+        [Route("testTP")]
+        public HttpResponseMessage TestTP()
+        {
+            ServicesHub.Travelopedia.TravelopediaServiceMapping objTP = new ServicesHub.Travelopedia.TravelopediaServiceMapping();
+            new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.Travelopedia);
+            objTP.getSectors();
+
+            return Request.CreateResponse(HttpStatusCode.OK, true);
+        }
+
 
         [HttpGet]
         [Route("testFB")]

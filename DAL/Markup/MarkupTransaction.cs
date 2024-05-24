@@ -86,12 +86,13 @@ namespace DAL.Markup
                         new SqlParameter("@dest",Dest),
                         new SqlParameter("@depDate",TravelType)
                     };
-                    DataSet ds1 = SqlHelper.ExecuteDataset(DataConnection.GetConnectionMetaRank(), CommandType.StoredProcedure, "Get_MetaRank", prm1);
+                    DataSet ds1 = SqlHelper.ExecuteDataset(DataConnection.GetConnectionMetaRank(), CommandType.StoredProcedure, "get_MetaRankWithAirline", prm1);
                     if (ds1 != null && ds1.Tables.Count > 0)
                     {
                         foreach (DataRow dr in ds1.Tables[0].Rows)
                         {
                             Core.Markup.skyScannerMetaRankData objMetaRank = new Core.Markup.skyScannerMetaRankData();
+                            objMetaRank.Airline = dr["Airline"].ToString();
                             objMetaRank.flightNo = dr["flightNo"].ToString();
                             objMetaRank.Amount = Convert.ToDecimal(dr["minFare"]);
                             metaData.Add(objMetaRank);

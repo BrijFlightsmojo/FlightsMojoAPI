@@ -69,7 +69,7 @@ namespace ServicesHub.GFS
                                 FromTerminal = "",
                                 ToTerminal = "",
                                 IsETicketEligible = true,
-                                OperatingCarrier = Itin.segments[0].legs[0].flight_number,
+                                OperatingCarrier = Itin.segments[0].legs[0].airline,
                                 SegmentIndicator = 0,
                                 equipmentType = "",
                                 CabinClass = request.cabinType,

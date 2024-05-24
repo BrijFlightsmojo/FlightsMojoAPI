@@ -13,39 +13,39 @@ namespace ServicesHub.Tbo.TboClass
         [DataMember]
         public string Currency { get; set; }
         [DataMember]
-        public double BaseFare { get; set; }
+        public decimal BaseFare { get; set; }
         [DataMember]
         public double Tax { get; set; }
         [DataMember]
-        public double YQTax { get; set; }
+        public decimal YQTax { get; set; }
         [DataMember]
-        public double AdditionalTxnFeeOfrd { get; set; }
+        public decimal AdditionalTxnFeeOfrd { get; set; }
         [DataMember]
-        public double AdditionalTxnFeePub { get; set; }
+        public decimal AdditionalTxnFeePub { get; set; }
         [DataMember]
-        public double OtherCharges { get; set; }
+        public decimal OtherCharges { get; set; }
         [DataMember]
         public List<ChargeBU> ChargeBU { get; set; }
         [DataMember]
-        public double Discount { get; set; }
+        public decimal Discount { get; set; }
         [DataMember]
-        public double PublishedFare { get; set; }
+        public decimal PublishedFare { get; set; }
         [DataMember]
-        public double CommissionEarned { get; set; }
+        public decimal CommissionEarned { get; set; }
         [DataMember]
-        public double PLBEarned { get; set; }
+        public decimal PLBEarned { get; set; }
         [DataMember]
-        public double IncentiveEarned { get; set; }
+        public decimal IncentiveEarned { get; set; }
         [DataMember]
-        public double OfferedFare { get; set; }
+        public decimal OfferedFare { get; set; }
         [DataMember]
-        public double TdsOnCommission { get; set; }
+        public decimal TdsOnCommission { get; set; }
         [DataMember]
-        public double TdsOnPLB { get; set; }
+        public decimal TdsOnPLB { get; set; }
         [DataMember]
-        public double TdsOnIncentive { get; set; }
+        public decimal TdsOnIncentive { get; set; }
         [DataMember]
-        public double ServiceFee { get; set; }
+        public decimal ServiceFee { get; set; }
     }
     [DataContract]
     public class BaggageLTRes
