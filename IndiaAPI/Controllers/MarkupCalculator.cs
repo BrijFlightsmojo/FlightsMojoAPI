@@ -56,8 +56,8 @@ namespace IndiaAPI.Controllers
                                 {
                                     decimal totFare = md[0].Amount;
                                     totFare = (totFare * (fsr.adults + fsr.child)) + (1500 * fsr.infants);
-                                    decimal diff = totFare - itemFare.grandTotal;
-
+                                      decimal diff = totFare - (itemFare.grandTotal-itemFare.CommissionEarned);
+                                   // decimal diff = totFare - itemFare.grandTotal;
                                     if (diff > 100)
                                     {
                                         int num = rnd.Next(1,10);

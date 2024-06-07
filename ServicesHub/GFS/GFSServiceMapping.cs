@@ -171,7 +171,7 @@ namespace ServicesHub.GFS
 
                             //  if ((Response.success == true) && (Response._data.status.Equals("confirmed", StringComparison.OrdinalIgnoreCase)))
                             // if ((Response.success == true) && (Response._data.status.Equals("test", StringComparison.OrdinalIgnoreCase)))
-                            if ((Response.success == true) && (Response._data != null))
+                            if ((Response.success == true) && (Response._data != null) && (Response._data.booking_items[0].status.Equals("confirmed", StringComparison.OrdinalIgnoreCase)))
                             {
                                 _response.PNR = Response._data.booking_items[0].confirmations[0].pnr;
                                 bookingLog(ref sbLogger, "GFS PNR", _response.PNR);
