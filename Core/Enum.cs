@@ -34,6 +34,13 @@ namespace Core
         CRM = 3,
         Meta = 4
     }
+
+    public enum Device : int
+    {
+        None = 0,
+        Desktop = 1,
+        Mobile = 2
+    }
     public enum CabinType : int
     {
         None = 0,
@@ -43,6 +50,8 @@ namespace Core
         First = 4,
         ALL = 5
     }
+
+
     public enum GdsType : int
     {
         None = 0,
@@ -126,7 +135,10 @@ namespace Core
         SAMRATTOURANDTRAVELS=63,
         VINAYAKINTERNATIONAL=64,
         DOLPHINENTERPRISE=65,
-        SAMAARAINTERNATIONALTOUR_TRAVELS=66
+        SAMAARAINTERNATIONALTOUR_TRAVELS=66,
+        DTYHOLIDAYSLLP=67,
+        AIRHSPRIVATELIMITED=68
+
     }
     public enum TransactionStatus : int
     {

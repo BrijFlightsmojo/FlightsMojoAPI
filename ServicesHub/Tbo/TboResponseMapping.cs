@@ -154,6 +154,7 @@ namespace ServicesHub.Tbo
                                 // FareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
                                 //  Itin.FareClassification != null ? Itin.FareClassification.Type : ""
                                 cabinType = result.cabinClass,
+                                pLBEarned=Itin.Fare.PLBEarned,
                                 gdsType = GdsType.Tbo,
                                 tboResultIndex = Itin.ResultIndex,
                                 SeatAvailable = seatAvail,
@@ -202,7 +203,7 @@ namespace ServicesHub.Tbo
                                 fare.fareBreakdown.Add(infFare);
                             }
 
-                            fare.grandTotal = fare.PublishedFare + fare.Markup - fare.CommissionEarned;
+                            fare.grandTotal = fare.PublishedFare + fare.Markup - (fare.CommissionEarned+fare.pLBEarned);
                             if (request.cabinType == fare.cabinType)
                             {
                                 #region BlockAirlines
