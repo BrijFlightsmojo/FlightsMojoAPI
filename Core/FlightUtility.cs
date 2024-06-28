@@ -367,7 +367,10 @@ namespace Core
                                         }
                                     }
                                 }
-
+                                if (!string.IsNullOrEmpty(Convert.ToString(dr["Device"])))
+                                {
+                                    objBLA.device = (Device)Convert.ToInt32(dr["Device"]);
+                                }
                                 objBLA.Action = (AirlineBlockAction)Convert.ToInt32(dr["Action"]);
                                 bla.Add(objBLA);
                             }
@@ -471,6 +474,10 @@ namespace Core
                                     objSupp.isAirIQ = string.IsNullOrEmpty(dr["IsAirIQ"].ToString()) ? false : Convert.ToBoolean(dr["IsAirIQ"]);
                                     objSupp.FarePriority = Convert.ToInt16(dr["Priority"]);
                                     objSupp.siteId = (SiteId)Convert.ToInt32(dr["SiteId"]);
+                                    if (!string.IsNullOrEmpty(Convert.ToString(dr["Device"])) )
+                                    {
+                                        objSupp.device = (Device)Convert.ToInt32(dr["Device"]);
+                                    }
                                     lstFlightSupplier.Add(objSupp);
                                 }
                                 catch (Exception)

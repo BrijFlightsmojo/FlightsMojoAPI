@@ -667,7 +667,7 @@ namespace ServicesHub.TripJack
                                        (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                        ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                         ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count == 0)
+                                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                                 {
 
                                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
@@ -882,7 +882,7 @@ namespace ServicesHub.TripJack
                                          (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                          ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                           ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count == 0)
+                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                                 {
                                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                                     {
@@ -1086,7 +1086,7 @@ namespace ServicesHub.TripJack
                                          (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                          ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                           ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count == 0)
+                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                                 {
                                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                                     {

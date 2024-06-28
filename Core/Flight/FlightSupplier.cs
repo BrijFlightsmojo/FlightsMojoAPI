@@ -40,6 +40,7 @@ namespace Core.Flight
         public List<string> SourceMedia_Not { get; set; }
         public int FarePriority { get; set; }
         public bool isAirIQ { get; set; }
+        public Device device { get; set; }
         public FlightSupplierNew()
         {
 

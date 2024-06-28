@@ -81,6 +81,12 @@ namespace Core.Flight
         public bool isGetLiveFare { get; set; }
         [DataMember]
         public string tgy_Request_id { get; set; }
+        [DataMember]
+        public Device device { get; set; }
+        [DataMember]
+        public string utm_campaign { get; set; }
+        [DataMember]
+        public string utm_medium { get; set; }
     }
     [DataContract]
     public class SearchSegment

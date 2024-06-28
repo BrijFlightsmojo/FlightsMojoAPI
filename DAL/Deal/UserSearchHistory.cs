@@ -21,7 +21,7 @@ namespace DAL.Deal
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[23];
+                SqlParameter[] param = new SqlParameter[24];
 
                 param[0] = new SqlParameter("@siteID", SqlDbType.Int);
                 param[0].Value = (int)fsr.siteId;
@@ -72,8 +72,9 @@ namespace DAL.Deal
                 param[21].Value = totalResult;
                 param[22] = new SqlParameter("@isCommingMeta", SqlDbType.Bit);
                 param[22].Value = isCommingMeta;
-
-                using (SqlConnection con = DataConnection.GetConnection())
+                param[23] = new SqlParameter("@device", SqlDbType.Int);
+                param[23].Value = (int)fsr.device;
+                using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
                 {
                     SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "usp_UserSearchHistoryInsert", param);
                 }
@@ -84,29 +85,13 @@ namespace DAL.Deal
             }
 
         }
-        private DataTable getSearchSegmentTable(FlightSearchRequest fsr)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("origin", typeof(string));
-            dt.Columns.Add("destination", typeof(string));
-            dt.Columns.Add("travelDate", typeof(DateTime));
-
-            foreach (var item in fsr.segment)
-            {
-                DataRow dtSeg = dt.NewRow();
-                dtSeg["origin"] = item.originAirport;
-                dtSeg["destination"] = item.destinationAirport;
-                dtSeg["travelDate"] = item.travelDate;
-                dt.Rows.Add(dtSeg);
-            }
-            return dt;
-        }
+       
 
         public async System.Threading.Tasks.Task SaveUserSearchHistoryMeta(FlightSearchRequest fsr, int totalResult, string Provider, string serverIP)
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[13];
+                SqlParameter[] param = new SqlParameter[16];
 
                 param[0] = new SqlParameter("@siteID", SqlDbType.Int);
                 param[0].Value = (int)fsr.siteId;
@@ -116,25 +101,34 @@ namespace DAL.Deal
                 param[2].Value = fsr.segment[0].originAirport;
                 param[3] = new SqlParameter("@destination", SqlDbType.VarChar, 3);
                 param[3].Value = fsr.segment[0].destinationAirport;
-                param[4] = new SqlParameter("@tripType", SqlDbType.SmallInt);
-                param[4].Value = (int)fsr.tripType;
-                param[5] = new SqlParameter("@cabinClass", SqlDbType.SmallInt);
-                param[5].Value = (int)fsr.cabinType;
-                param[6] = new SqlParameter("@adult", SqlDbType.SmallInt);
-                param[6].Value = fsr.adults;
-                param[7] = new SqlParameter("@child", SqlDbType.SmallInt);
-                param[7].Value = fsr.child;
-                param[8] = new SqlParameter("@infatnt", SqlDbType.SmallInt);
-                param[8].Value = fsr.infants;
-                param[9] = new SqlParameter("@userIP", SqlDbType.VarChar, 20);
-                param[9].Value = fsr.userIP;
-                param[10] = new SqlParameter("@serverIP", SqlDbType.VarChar, 20);
-                param[10].Value = serverIP;
-                param[11] = new SqlParameter("@totalResult", SqlDbType.Int);
-                param[11].Value = totalResult;
-                param[12] = new SqlParameter("@provider", SqlDbType.VarChar, 20);
-                param[12].Value = Provider;
-                using (SqlConnection con = DataConnection.GetConnection())
+                param[4] = new SqlParameter("@depDate", SqlDbType.DateTime);
+                param[4].Value = fsr.segment[0].travelDate;
+                if (fsr.segment.Count > 1)
+                {
+                    param[5] = new SqlParameter("@retDate", SqlDbType.DateTime);
+                    param[5].Value = fsr.segment[1].travelDate;
+                }
+                param[6] = new SqlParameter("@tripType", SqlDbType.SmallInt);
+                param[6].Value = (int)fsr.tripType;
+                param[7] = new SqlParameter("@cabinClass", SqlDbType.SmallInt);
+                param[7].Value = (int)fsr.cabinType;
+                param[8] = new SqlParameter("@adult", SqlDbType.SmallInt);
+                param[8].Value = fsr.adults;
+                param[9] = new SqlParameter("@child", SqlDbType.SmallInt);
+                param[9].Value = fsr.child;
+                param[10] = new SqlParameter("@infatnt", SqlDbType.SmallInt);
+                param[10].Value = fsr.infants;
+                param[11] = new SqlParameter("@userIP", SqlDbType.VarChar, 20);
+                param[11].Value = fsr.userIP;
+                param[12] = new SqlParameter("@serverIP", SqlDbType.VarChar, 20);
+                param[12].Value = serverIP;
+                param[13] = new SqlParameter("@totalResult", SqlDbType.Int);
+                param[13].Value = totalResult;
+                param[14] = new SqlParameter("@device", SqlDbType.Int);
+                param[14].Value = (int)fsr.device;
+                param[15] = new SqlParameter("@provider", SqlDbType.VarChar, 20);
+                param[15].Value = Provider;
+                using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
                 {
                     SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Set_UserSearchHistory_Meta", param);
                 }

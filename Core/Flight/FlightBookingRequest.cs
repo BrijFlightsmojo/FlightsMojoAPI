@@ -167,9 +167,14 @@ namespace Core.Flight
         [DataMember]
         public decimal CancellaionPolicyAmt { get; set; }
 
-
+        [DataMember]
+        public Device device { get; set; }
         //[DataMember]
         //public string AQ_ticket_id { get; set; }
+        [DataMember]
+        public string utm_campaign { get; set; }
+        [DataMember]
+        public string utm_medium { get; set; }
     }
 
     public class OfflineBookingRequest

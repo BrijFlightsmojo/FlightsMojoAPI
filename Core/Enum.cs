@@ -50,8 +50,6 @@ namespace Core
         First = 4,
         ALL = 5
     }
-
-
     public enum GdsType : int
     {
         None = 0,

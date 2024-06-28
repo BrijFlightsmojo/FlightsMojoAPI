@@ -45,5 +45,11 @@ public class DataConnection
         Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConFlightsmojoindia_RDS"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
         return Con;
     }
+    public static SqlConnection GetConSearchHistoryAndDeal_RDS()
+    {
+        SqlConnection Con = new SqlConnection();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConSearchHistoryAndDeal_RDS"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
+        return Con;
+    }
     
 }

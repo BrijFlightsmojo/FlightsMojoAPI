@@ -172,6 +172,8 @@ namespace Core.Flight
     public class Fare
     {
         [DataMember]
+        public string FM_FareID { get; set; }
+        [DataMember]
         public int FB_flight_id { get; set; }
         [DataMember]
         public string FB_static { get; set; }

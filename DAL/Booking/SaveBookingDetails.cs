@@ -233,8 +233,8 @@ namespace DAL.Booking
         }
         private bool SaveFMJ_FlightBookingDetails_WithOutPax(ref FlightBookingRequest flightBookingRequest, DataTable dtAmount, DataTable dtSector, ref string Eft, ref int outEft, ref int inEft, ref DateTime DepDate, ref DateTime arrDate, ref decimal TotalAmount)
         {
+            //SqlParameter[] param = new SqlParameter[86];
             SqlParameter[] param = new SqlParameter[84];
-
             TripType tripType = TripType.OneWay;
             if (flightBookingRequest.flightResult.Count > 1)
                 tripType = TripType.RoundTrip;
@@ -464,6 +464,12 @@ namespace DAL.Booking
                 param[83] = new SqlParameter("@ProviderIB", SqlDbType.Int);
                 param[83].Value = (int)flightBookingRequest.flightResult[1].Fare.gdsType;
             }
+
+            //param[84] = new SqlParameter("@utm_campaign", SqlDbType.VarChar,50);
+            //param[84].Value = flightBookingRequest.utm_campaign;
+
+            //param[85] = new SqlParameter("@utm_medium", SqlDbType.VarChar, 50);
+            //param[85].Value = flightBookingRequest.utm_medium;
 
             using (SqlConnection con = DataConnection.GetConnection())
             {

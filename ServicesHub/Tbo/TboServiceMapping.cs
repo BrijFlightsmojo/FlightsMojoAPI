@@ -14,79 +14,6 @@ namespace ServicesHub.Tbo
 {
     public class TboServiceMapping
     {
-        //public void GetFlightResults(FlightSearchRequest request, ref FlightSearchResponse flightResponse)
-        //{
-        //    bool isTvo = false;
-        //    #region CheckSupplier
-        //    if (request.segment[0].orgArp == null)
-        //    {
-        //        request.segment[0].orgArp = FlightUtility.GetAirport(request.segment[0].originAirport);
-        //    }
-        //    if (request.segment[0].destArp == null)
-        //    {
-        //        request.segment[0].destArp = FlightUtility.GetAirport(request.segment[0].destinationAirport);
-        //    }
-        //    var supplierData = FlightUtility.lstFlightProviderList.Where(o => (o.siteId == request.siteId) &&
-        //       ((o.FromCountry.Any() && o.FromCountry.Contains(request.segment[0].orgArp.countryCode)) || o.FromCountry.Any() == false) &&
-        //       ((o.ToCountry.Any() && o.ToCountry.Contains(request.segment[0].destArp.countryCode)) || o.ToCountry.Any() == false) &&
-        //       (o.FromCountry_Not.Contains(request.segment.ElementAt(0).orgArp.countryCode) == false) &&
-        //       (o.ToCountry_Not.Contains(request.segment.ElementAt(0).destArp.countryCode) == false) &&
-        //       ((o.SourceMedia.Any() && o.SourceMedia.Contains(request.sourceMedia)) || o.SourceMedia.Any() == false) &&
-        //       (o.SourceMedia_Not.Contains(request.sourceMedia) == false) && o.Provider == GdsType.Tbo).ToList();
-        //    if (supplierData.Count > 0)
-        //    {
-        //        isTvo = true;
-        //    }
-        //    #endregion
-        //    StringBuilder sbLogger = new StringBuilder();
-        //    if (FlightUtility.isWriteLog)
-        //    {
-        //        bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
-        //    }
-        //    if (isTvo)
-        //    {
-        //        Start:
-        //        ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
-        //        string TokenId = obj.getTokenID();
-        //        var Url = TboAuthentication.airSearchUrl;
-        //        string strRequest = new RequestMappking().getFlightSearchRequest(request, TokenId);
-        //        if (FlightUtility.isWriteLog)
-        //        {
-        //            bookingLog(ref sbLogger, "Tbo Request", strRequest);
-        //        }
-        //        var strResponse = GetResponse(Url, strRequest);
-        //        if (request.isMetaRequest == false && FlightUtility.isWriteLog)
-        //        {
-        //            bookingLog(ref sbLogger, "Tbo Response", strResponse);
-        //            new LogWriter(sbLogger.ToString(), ("Tbo_" + request.segment[0].originAirport + "_" + request.segment[0].destinationAirport), "Tbo");
-        //        }
-        //        if (!string.IsNullOrEmpty(strResponse))
-        //        {
-        //            TboClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<TboClass.FlightResponse>(strResponse);
-        //            if (Response.Response.ResponseStatus == 3 && Response.Response.Error.ErrorCode == 3 && Response.Response.Error.ErrorMessage.ToUpper() == "INVALID SESSION")
-        //            {
-        //                new DAL.Tbo.Tbo_DataSetGet().setLogoutByTokenID(TokenId);
-        //                System.Web.HttpRuntime.Cache["TokenID"] = new TboClass.TboToken();
-        //                goto Start;
-        //            }
-        //            else if (Response.Response.ResponseStatus == 1 && Response.Response.Error.ErrorCode == 0)
-        //            {
-        //                new ResponseMapping().getResult(ref request, ref Response, ref flightResponse);
-        //            }
-        //            else
-        //            {
-        //                flightResponse.response.status = Core.TransactionStatus.Error;
-        //                flightResponse.response.message = "no result found";
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        flightResponse.response.status = Core.TransactionStatus.Error;
-        //        flightResponse.response.message = "no result found";
-        //    }
-        //}
-
         public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
         {
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);
@@ -508,22 +435,31 @@ namespace ServicesHub.Tbo
                                             _response.responseStatus.message += "; Booking Fail Due to Fare Change In Booking Time";
                                             isMakeBooking = false;
                                             bookingLog(ref sbLogger, "TBO  Else5", "Booking Fail Due to :  Fare Change In Booking Time");
-                                        }
+                                        }                                        
                                         else
                                         {
-                                            #region Ticketing Non Lcc
-                                            var UrlTicketing = TboAuthentication.ticketUrl;
-                                            string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
-                                            bookingLog(ref sbLogger, "TBO GDS Ticketing Request", strRequest);
-                                            var responseTicketing = GetResponse(UrlTicketing, strRequestTicketing);
-                                            bookingLog(ref sbLogger, "TBO GDS Ticketing Response", responseTicketing);
-                                            if (!string.IsNullOrEmpty(responseTicketing))
+                                            if (request.travelType == TravelType.International)
                                             {
-                                                TboClass.LccTicketingResponse bookResponseTicketing = JsonConvert.DeserializeObject<TboClass.LccTicketingResponse>(responseTicketing.ToString());
-                                                if (bookResponseTicketing.Response.ResponseStatus == "1")
+                                                _response.bookingStatus = BookingStatus.InProgress;
+                                                _response.responseStatus.message += "; Pnr Genrated but Not Ticketed";
+                                                isMakeBooking = true;
+                                                //bookingLog(ref sbLogger, "TBO  Else5", "Booking Fail Due to :  Fare Change In Booking Time");
+                                            }
+                                            else
+                                            {
+                                                #region Ticketing Non Lcc
+                                                var UrlTicketing = TboAuthentication.ticketUrl;
+                                                string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
+                                                bookingLog(ref sbLogger, "TBO GDS Ticketing Request", strRequest);
+                                                var responseTicketing = GetResponse(UrlTicketing, strRequestTicketing);
+                                                bookingLog(ref sbLogger, "TBO GDS Ticketing Response", responseTicketing);
+                                                if (!string.IsNullOrEmpty(responseTicketing))
                                                 {
-                                                    //if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount > 0)
-                                                    //    _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
+                                                    TboClass.LccTicketingResponse bookResponseTicketing = JsonConvert.DeserializeObject<TboClass.LccTicketingResponse>(responseTicketing.ToString());
+                                                    if (bookResponseTicketing.Response.ResponseStatus == "1")
+                                                    {
+                                                        //if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount > 0)
+                                                        //    _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
 
                                                     if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare > 0)
                                                         _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
@@ -540,6 +476,7 @@ namespace ServicesHub.Tbo
                                                 }
                                             }
                                             #endregion
+                                            }
                                         }
                                     }
                                     else
@@ -564,10 +501,19 @@ namespace ServicesHub.Tbo
                                         }
                                         else
                                         {
-                                            #region Ticketing Non Lcc
-                                            var UrlTicketing = TboAuthentication.ticketUrl;    //ConfigurationManager.AppSettings["ticketUrl"].ToString();
-                                            string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
-                                            bookingLog(ref sbLogger, "Else TBO Gds Ticketing Request", strRequestTicketing);
+                                            if (request.travelType == TravelType.International)
+                                            {
+                                                _response.bookingStatus = BookingStatus.InProgress;
+                                                _response.responseStatus.message += "; Pnr Genrated but Not Ticketed";
+                                                isMakeBooking = true;
+                                                //bookingLog(ref sbLogger, "TBO  Else5", "Booking Fail Due to :  Fare Change In Booking Time");
+                                            }
+                                            else
+                                            {
+                                                #region Ticketing Non Lcc
+                                                var UrlTicketing = TboAuthentication.ticketUrl;    //ConfigurationManager.AppSettings["ticketUrl"].ToString();
+                                                string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
+                                                bookingLog(ref sbLogger, "Else TBO Gds Ticketing Request", strRequestTicketing);
 
                                             var responseTicketing = GetResponse(UrlTicketing, strRequestTicketing);
                                             bookingLog(ref sbLogger, "Else TBO Gds Ticketing Response", responseTicketing);
@@ -583,19 +529,20 @@ namespace ServicesHub.Tbo
                                                     if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare > 0)
                                                         _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
 
-                                                    _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
-                                                    _response.bookingStatus = BookingStatus.Ticketed;
-                                                    bookingLog(ref sbLogger, "Else TBO Gds Ticketing TvoInvoiceNo", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
+                                                        _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
+                                                        _response.bookingStatus = BookingStatus.Ticketed;
+                                                        bookingLog(ref sbLogger, "Else TBO Gds Ticketing TvoInvoiceNo", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
+                                                    }
+                                                    else
+                                                    {
+                                                        _response.bookingStatus = BookingStatus.Failed;
+                                                        _response.responseStatus.message += "; Booking Fail Due to" + bookResponseTicketing.Response.Error.ErrorMessage;
+                                                        isMakeBooking = false;
+                                                        bookingLog(ref sbLogger, "TBO  Else3", "Booking Fail Due to :" + bookResponse.Response.Error.ErrorMessage);
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    _response.bookingStatus = BookingStatus.Failed;
-                                                    _response.responseStatus.message += "; Booking Fail Due to" + bookResponseTicketing.Response.Error.ErrorMessage;
-                                                    isMakeBooking = false;
-                                                    bookingLog(ref sbLogger, "TBO  Else3", "Booking Fail Due to :" + bookResponse.Response.Error.ErrorMessage);
-                                                }
+                                                #endregion
                                             }
-                                            #endregion
                                         }
                                     }
                                     //_response.bookingStatus = BookingStatus.Ticketed;

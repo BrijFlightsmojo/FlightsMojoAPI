@@ -73,7 +73,7 @@ namespace DAL.Markup
             return markList;
         }
         public List<Core.Markup.FlightMarkupNew> getFlightMarkupWithSkyScanner(int cabinType, int journeyType, string sourceMedia, string Org,
-            string Dest, DateTime TravelType, ref List<Core.Markup.skyScannerMetaRankData> metaData)
+            string Dest, DateTime TravelType,Core.Device device, ref List<Core.Markup.skyScannerMetaRankData> metaData)
         {
             List<Core.Markup.FlightMarkupNew> markList = new List<Core.Markup.FlightMarkupNew>();
             try
@@ -103,10 +103,11 @@ namespace DAL.Markup
                {
                     new SqlParameter("@cabinType",cabinType),
                     new SqlParameter("@journeyType",journeyType),
-                    new SqlParameter("@AffiliateId",sourceMedia)
+                    new SqlParameter("@AffiliateId",sourceMedia),
+                    new SqlParameter("@device",(int)device)
                };
 
-                DataSet ds = SqlHelper.ExecuteDataset(DataConnection.GetConnection(), CommandType.StoredProcedure, "usp_GetFlightMarkupNew", prm);
+                DataSet ds = SqlHelper.ExecuteDataset(DataConnection.GetConnection(), CommandType.StoredProcedure, "usp_GetFlightMarkupNew_V1", prm);
                 if (ds != null && ds.Tables.Count > 0)
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows)

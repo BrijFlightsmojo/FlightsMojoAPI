@@ -35,7 +35,7 @@ namespace IndiaAPI.Controllers
             }
             List<Core.Markup.skyScannerMetaRankData> metaData = new List<Core.Markup.skyScannerMetaRankData>();
             //List<Core.Markup.FlightMarkupNew> lstMarkup = new DAL.Markup.MarkupTransaction().getFlightMarkupNew((int)fsr.cabinType, ((int)travelType), fsr.sourceMedia);
-            List<Core.Markup.FlightMarkupNew> lstMarkup = new DAL.Markup.MarkupTransaction().getFlightMarkupWithSkyScanner((int)fsr.cabinType, ((int)travelType), fsr.sourceMedia, fsr.segment[0].originAirport, fsr.segment[0].destinationAirport, fsr.segment[0].travelDate, ref metaData);
+            List<Core.Markup.FlightMarkupNew> lstMarkup = new DAL.Markup.MarkupTransaction().getFlightMarkupWithSkyScanner((int)fsr.cabinType, ((int)travelType), fsr.sourceMedia, fsr.segment[0].originAirport, fsr.segment[0].destinationAirport, fsr.segment[0].travelDate,fsr.device, ref metaData);
 
             int totpax = (fsr.adults + fsr.child + fsr.infants);
             if (flightSearchResponse != null && flightSearchResponse.Results != null && flightSearchResponse.Results.Count() > 0
@@ -52,15 +52,15 @@ namespace IndiaAPI.Controllers
                             {
                                 itemFare.scComprefare = 0;
                               
-                                if (md.Count > 0 && (fsr.sourceMedia == "1015" || (itemFare.gdsType == GdsType.FareBoutique)))
+                                if (md.Count > 0 && (fsr.sourceMedia == "1015" || (itemFare.gdsType == GdsType.FareBoutique)) && item.FlightSegments[0].Segments.Count==1)
                                 {
                                     decimal totFare = md[0].Amount;
                                     totFare = (totFare * (fsr.adults + fsr.child)) + (1500 * fsr.infants);
-                                      decimal diff = totFare - (itemFare.grandTotal-itemFare.CommissionEarned);
+                                      decimal diff = totFare - (itemFare.grandTotal-(itemFare.CommissionEarned));
                                    // decimal diff = totFare - itemFare.grandTotal;
                                     if (diff > 100)
                                     {
-                                        int num = rnd.Next(1,10);
+                                        int num = rnd.Next(1, 10);
                                         itemFare.scComprefare = md[0].Amount;
                                         itemFare.Markup = diff - num;
                                         itemFare.markupID = "=>RankingMarkup: " + itemFare.Markup + " Diff=>" + diff;
@@ -74,7 +74,7 @@ namespace IndiaAPI.Controllers
                                     {
                                         StringBuilder sb = new StringBuilder();
                                         #region setMarkup
-                                        if (item.valCarrier == "SG" || item.FlightSegments[0].Segments[0].Airline == "SG")
+                                        if (item.valCarrier == "QP" || item.FlightSegments[0].Segments[0].Airline == "QP")
                                         {
 
                                         }

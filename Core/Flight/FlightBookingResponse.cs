@@ -196,7 +196,8 @@ namespace Core.Flight
         public string booking_reference { get; set; }
 
         // GFS
-
+        [DataMember]
+        public Device device { get; set; }
         public FlightBookingResponse()
         {
 
@@ -261,6 +262,7 @@ namespace Core.Flight
             STSessionID = fbr.STSessionID;
             RefundPolicyAmt = fbr.RefundPolicyAmt;
             CancellaionPolicyAmt = fbr.CancellaionPolicyAmt;
+            device = fbr.device;
         }
     }
     [DataContract]
