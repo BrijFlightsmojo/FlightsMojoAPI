@@ -139,8 +139,8 @@ namespace ServicesHub.FareBoutique
                     {
                         FB_BookFlight.BookResponse bookResponse = JsonConvert.DeserializeObject<FB_BookFlight.BookResponse>(response.ToString());
                         bookingLog(ref sbLogger, "FareBoutique Book Flight BookingResponse", JsonConvert.SerializeObject(bookResponse));
-                        //if (bookResponse.errorCode == 0 || bookResponse.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase))
-                        if (bookResponse.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase))
+                        if (bookResponse.errorCode == 0 || bookResponse.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase))
+                      //  if (bookResponse.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase))
                         {
                             _response.Fb_Reference_id = bookResponse.data.reference_id;
                             bookingLog(ref sbLogger, "FareBoutique reference_id", bookResponse.data.reference_id);

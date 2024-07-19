@@ -44,7 +44,10 @@ namespace ServicesHub.TripJack.TripJackClass.BookingRequest
         public string lN { get; set; }
         public string pt { get; set; }
         public string dob { get; set; }
+        public string pNum { get; set; }
+        public string eD { get; set; }
+        public string pid { get; set; }
+        public string pNat { get; set; }
+
     }
-
-
 }

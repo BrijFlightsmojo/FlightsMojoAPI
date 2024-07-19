@@ -73,5 +73,8 @@ namespace Core
         public bool IsReturnHashMatched { get; set; }
         [DataMember]
         public string razorpayOrderID { get; set; }
+
+        [DataMember]
+        public string Rz_Amt { get; set; }
     }
 }

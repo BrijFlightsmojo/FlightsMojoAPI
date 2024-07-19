@@ -28,11 +28,11 @@ namespace ServicesHub.TripJack
                         isDirectFlight = true
                     },
                     routeInfos = new List<TripJackClass.RouteInfo>()
-                }                
+                }
             };
             if (fsr.searchDirectFlight)
             {
-                request.searchQuery.searchModifiers.isConnectingFlight = false;              
+                request.searchQuery.searchModifiers.isConnectingFlight = false;
             }
             foreach (Core.Flight.SearchSegment seg in fsr.segment)
             {
@@ -82,11 +82,22 @@ namespace ServicesHub.TripJack
             //request.deliveryInfo.emails.Add(fbr.emailID);
             request.deliveryInfo.emails.Add("flightsmojollc@gmail.com");
             request.deliveryInfo.contacts.Add("+91" + fbr.phoneNo);
-            TripJackClass.BookingRequest.PaymentInfo pi = new TripJackClass.BookingRequest.PaymentInfo() { amount=fbr.VerifiedTotalPrice};
+            TripJackClass.BookingRequest.PaymentInfo pi = new TripJackClass.BookingRequest.PaymentInfo() { amount = fbr.VerifiedTotalPrice };
             request.paymentInfos.Add(pi);
             foreach (Core.PassengerDetails pax in fbr.passengerDetails)
             {
-                TripJackClass.BookingRequest.TravellerInfo tinfo = new TripJackClass.BookingRequest.TravellerInfo { dob = pax.dateOfBirth.ToString("yyyy-MM-dd"), fN = pax.firstName, lN = pax.lastName, ti = pax.title, pt = getPaxType(pax.passengerType) };
+                TripJackClass.BookingRequest.TravellerInfo tinfo = new TripJackClass.BookingRequest.TravellerInfo
+                {
+                    dob = pax.dateOfBirth.ToString("yyyy-MM-dd"),
+                    fN = pax.firstName,
+                    lN = pax.lastName,
+                    ti = pax.title,
+                    pt = getPaxType(pax.passengerType),
+                    pNum = pax.passportNumber,
+                    eD = pax.expiryDate.Value.ToString("yyyy-MM-dd"),
+                    pid = pax.passportIssueDate.Value.ToString("yyyy-MM-dd"),
+                    pNat = "IN"
+                };
                 request.travellerInfo.Add(tinfo);
             }
             return Newtonsoft.Json.JsonConvert.SerializeObject(request);
@@ -97,8 +108,8 @@ namespace ServicesHub.TripJack
             TripJack.TripJackClass.BookingDetails.TripJackBookingDetailsRequest request = new TripJackClass.BookingDetails.TripJackBookingDetailsRequest()
             {
                 bookingId = fbr.TjBookingID,
-             };
-          
+            };
+
             return Newtonsoft.Json.JsonConvert.SerializeObject(request);
         }
         public string getCabinType(Core.CabinType ct)
@@ -114,7 +125,7 @@ namespace ServicesHub.TripJack
             }
             else if (ct == Core.CabinType.Business)
             {
-                CabinName = "BUSINESS ";
+                CabinName = "BUSINESS";
             }
             else if (ct == Core.CabinType.First)
             {

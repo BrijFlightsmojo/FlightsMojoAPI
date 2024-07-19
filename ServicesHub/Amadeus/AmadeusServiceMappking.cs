@@ -51,43 +51,258 @@ namespace ServicesHub.Amadeus
             return response;
         }
 
-        //public FareQuoteResponse Fare_QuoteItinerary(FareQuoteRequest request)
-        //{
-        //    StringBuilder sbLogger = new StringBuilder();
-        //    string controlNumber = string.Empty;
-        //    AmadeusRequestMapping objAmadeusRequestMapping = new AmadeusRequestMapping();
+        public void BookFlight(FlightBookingRequest BookingRequest, ref FlightBookingResponse bookingResponse)
+        {
+            StringBuilder sbLogger = new StringBuilder();
+            string controlNumber = string.Empty;
+            AmadeusRequestMapping objAmadeusRequestMapping = new AmadeusRequestMapping();
+            //bookingLog(ref sbLogger, "Booking Original Request", JsonConvert.SerializeObject(BookingRequest));
 
-        //    string Fare_QuoteItineraryRequest = objAmadeusRequestMapping.Fare_QuoteItinerary(request);
-        //    string response = GetResponseStr(Fare_QuoteItineraryRequest, AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Fare_QuoteItinerary),ref sbLogger);
-        //    FareQuoteResponse kk = new AmadeusResponseMapping_XML().FareQuote(response, request);
-        //    return kk;
-        //}
-        //public FareQuoteResponse Fare_QuoteItinerary(FareQuoteRequest request)
-        //{
-        //    StringBuilder sbLogger = new StringBuilder();
-        //    try
-        //    {
-        //        bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
+            AmadeusSessionTemplate objCurrentSession = null;
+            #region 1- Air_SellFromRecommendation
+            string AirSellRequest = objAmadeusRequestMapping.Air_SellFromRecommendation_1(BookingRequest);
+            XDocument AirSellResponse = GetResponse(AirSellRequest, AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Air_SellFromRecommendation));
 
-        //        string controlNumber = string.Empty;
-        //        AmadeusRequestMapping objDanRequestMapping = new AmadeusRequestMapping();
 
-        //        string Fare_QuoteItineraryRequest = objDanRequestMapping.Fare_QuoteItinerary(request);
-        //        string response = GetResponseStr(Fare_QuoteItineraryRequest, AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Fare_QuoteItinerary), ref sbLogger);
-        //        FareQuoteResponse kk = new AmadeusResponseMapping_XML().FareQuote(response, request);
-        //        return kk;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        bookingLog(ref sbLogger, "Exeption", ex.ToString());
-        //        new LogWriter(sbLogger.ToString(), "FareQuote" + DateTime.Today.ToString("ddMMyyy"), "Exeption");
-        //        return new FareQuoteResponse() { responsStatus = new ResponseStatus() { status = TransactionStatus.Error } };
-        //    }
+            bookingLog(ref sbLogger, "Air_SellFromRecommendation Request", AirSellRequest);
+            if (AirSellResponse != null)
+                bookingLog(ref sbLogger, "Air_SellFromRecommendation response", AirSellResponse.ToString(SaveOptions.DisableFormatting));
 
-        //}
-     
+            objCurrentSession = getSessionInformation(AirSellResponse);
+            #endregion
 
-     
+            if (verifySeatAvailabilityAirSell(AirSellResponse, ref sbLogger) == true)
+            {
+                #region 2-PNR_AddElementRequest
+                string PNR_AddElementRequest = objAmadeusRequestMapping.PNR_AddElementRequest_New(BookingRequest, objCurrentSession);
+                XDocument PNR_AddElementResponse = GetResponse(PNR_AddElementRequest, AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.PNR_AddMultiElements));
+
+                bookingLog(ref sbLogger, "PNR_AddElementRequest Request", PNR_AddElementRequest);
+                bookingLog(ref sbLogger, "PNR_AddElementRequest response", PNR_AddElementResponse.ToString(SaveOptions.DisableFormatting));
+                #endregion
+                if (PNR_AddElementResponse != null)
+                {
+                    #region getSessionSequenceNo
+                    objCurrentSession = getSessionInformation(PNR_AddElementResponse);
+                    #endregion
+
+                    #region 3-Fare_PricePNRWithBookingClassRequest
+
+                    string Fare_PricePNRWithBookingClassRequest = objAmadeusRequestMapping.FarePricePNRWithBookingClassRequest3(BookingRequest.flightResult[0].valCarrier, objCurrentSession, BookingRequest);
+                    XDocument Fare_PricePNRWithBookingClass_Response = GetResponse(Fare_PricePNRWithBookingClassRequest, AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Fare_PricePNRWithBookingClass));
+
+
+                    bookingLog(ref sbLogger, "Fare_PricePNRWithBookingClass Request", Fare_PricePNRWithBookingClassRequest);
+                    bookingLog(ref sbLogger, "Fare_PricePNRWithBookingClass response", Fare_PricePNRWithBookingClass_Response.ToString(SaveOptions.DisableFormatting));
+                    #endregion
+                    if (Fare_PricePNRWithBookingClass_Response != null)
+                    {
+                        #region getSessionSequenceNo
+                        objCurrentSession = getSessionInformation(Fare_PricePNRWithBookingClass_Response);
+                        #endregion
+                        XNamespace ns = "http://xml.amadeus.com/TPCBRR_18_1_1A";
+                        Boolean isErrorExist = Fare_PricePNRWithBookingClass_Response.Descendants(ns + "applicationError").Any();
+                        Boolean isPriceChanged = false;
+                        if (isErrorExist == false)
+                        {
+                            StringBuilder strTST = new StringBuilder();
+                            #region getTstReferenceFrom_FarePricingInformation
+                            var fareReference = from fdata in Fare_PricePNRWithBookingClass_Response.Descendants(ns + "fareReference")
+                                                where fdata.Element(ns + "referenceType").Value == "TST"
+                                                select new
+                                                {
+                                                    referenceType = fdata.Element(ns + "referenceType").Value,
+                                                    uniqueReference = fdata.Element(ns + "uniqueReference").Value
+                                                };
+                            if (fareReference != null && fareReference.ToList().Count > 0)
+                            {
+                                foreach (var item in fareReference)
+                                {
+
+                                    strTST.Append("<psaList>");
+                                    strTST.Append("<itemReference>");
+                                    strTST.Append("<referenceType>" + item.referenceType + "</referenceType>");
+                                    strTST.Append("<uniqueReference>" + item.uniqueReference + "</uniqueReference>");
+                                    strTST.Append("</itemReference>");
+                                    strTST.Append("</psaList>");
+                                }
+                            }
+                            #endregion
+                            #region fareDataInformation
+                            if (true)
+                            {
+                                //try
+                                //{
+                                //    decimal amount = (from fareDataInfo in Fare_PricePNRWithBookingClass_Response.Descendants(ns + "fareDataSupInformation")
+                                //                      where fareDataInfo.Element(ns + "fareDataQualifier").Value == "712"
+                                //                      select new
+                                //                      {
+                                //                          fareAmount = Convert.ToDecimal(fareDataInfo.Element(ns + "fareAmount").Value),
+                                //                          //  fareCurrency = fareDataInfo.Element(ns + "fareCurrency").Value,
+                                //                      }).Sum(x => x.fareAmount);
+
+                                //    decimal publisFare = BookingRequest.updatedBookingAmount > 0 ? BookingRequest.updatedBookingAmount : (((BookingRequest.adults * (BookingRequest.flightResult.fare.adultFare + BookingRequest.flightResult.fare.adultTax))) +
+                                //        ((BookingRequest.child * (BookingRequest.flightResult[0].Fare.childFare + BookingRequest.flightResult.fare.childTax))) +
+                                //        ((BookingRequest.infants * (BookingRequest.flightResult.fare.infantFare + BookingRequest.flightResult.fare.infantFare))) +
+                                //        ((BookingRequest.infantsWs * (BookingRequest.flightResult.fare.infantWsFare + BookingRequest.flightResult.fare.infantWsTax))));
+                                //    if (amount - publisFare > 2)
+                                //    {
+                                //        bookingResponse.responseStatus.status = TransactionStatus.Error;
+                                //        bookingResponse.responseStatus.message = "Increase Passenger Fare";
+                                //        bookingResponse.updatedBookingAmount = amount;
+                                //        isErrorExist = false; isPriceChanged = true;
+                                //    }
+                                //}
+                                //catch (Exception)
+                                //{
+
+                                //}
+                            }
+                            #endregion
+
+
+
+                            if (string.IsNullOrEmpty(strTST.ToString().Trim()) == false)
+                            {
+                                #region 4-Ticket_CreateTSTFromPricing
+                                StringBuilder strXml = new StringBuilder();
+                                strXml.Append("<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">");
+                                strXml.Append(objAmadeusRequestMapping.GetSessionSoapHeader(AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Ticket_CreateTSTFromPricing), objCurrentSession, "InSeries"));
+                                strXml.Append("<s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">");
+                                strXml.Append("<Ticket_CreateTSTFromPricing xmlns=\"http://xml.amadeus.com/TAUTCQ_04_1_1A\">");
+                                strXml.Append(strTST.ToString());
+                                strXml.Append("</Ticket_CreateTSTFromPricing>");
+                                strXml.Append("</s:Body>");
+                                strXml.Append("</s:Envelope>");
+
+                                XDocument Ticket_CreateTSTResponse = GetResponse(strXml.ToString(), AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Ticket_CreateTSTFromPricing));
+
+                                bookingLog(ref sbLogger, "Ticket_CreateTSTFromPricing Request", strXml.ToString());
+                                bookingLog(ref sbLogger, "Ticket_CreateTSTFromPricing response", Ticket_CreateTSTResponse.ToString(SaveOptions.DisableFormatting));
+                                if (Ticket_CreateTSTResponse != null)
+                                {
+                                    #region getSessionSequenceNo
+                                    objCurrentSession = getSessionInformation(Ticket_CreateTSTResponse);
+                                    #endregion
+                                    ns = "http://xml.amadeus.com/TAUTCR_04_1_1A";
+                                    isErrorExist = Ticket_CreateTSTResponse.Descendants(ns + "applicationError").Any();
+                                }
+                                #endregion
+                            }
+                            if (isErrorExist == false)
+                            {
+                                #region 5-PNRSave
+                                StringBuilder strPnrSave = new StringBuilder();
+                                strPnrSave.Append("<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">");
+                                strPnrSave.Append(objAmadeusRequestMapping.GetSessionSoapHeader(AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.PNR_AddMultiElements), objCurrentSession, "InSeries"));
+                                strPnrSave.Append("<s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">");
+                                strPnrSave.Append("<PNR_AddMultiElements xmlns=\"http://xml.amadeus.com/PNRADD_16_1_1A\">");
+                                strPnrSave.Append("<pnrActions>");
+                                strPnrSave.Append("<optionCode>11</optionCode>");
+                                strPnrSave.Append("</pnrActions>");
+                                strPnrSave.Append("</PNR_AddMultiElements>");
+                                strPnrSave.Append("</s:Body>");
+                                strPnrSave.Append("</s:Envelope>");
+
+                                XDocument PNRSaveResponse = GetResponse(strPnrSave.ToString(), AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.PNR_AddMultiElements));
+
+                                bookingLog(ref sbLogger, "PNR_AddMultiElements Request", strPnrSave.ToString());
+                                bookingLog(ref sbLogger, "PNR_AddMultiElements response", PNRSaveResponse.ToString(SaveOptions.DisableFormatting));
+
+                                if (PNRSaveResponse != null)
+                                {
+                                    //bookingLog(ref sbLogger, "PNR_AddMultiElements-Save-Response", PNRSaveResponse.ToString(SaveOptions.DisableFormatting));
+                                    #region getSessionSequenceNo
+                                    objCurrentSession = getSessionInformation(PNRSaveResponse);
+                                    #endregion
+                                    try
+                                    {
+                                        #region ExtractPNRfromResponse
+                                        ns = "http://xml.amadeus.com/PNRACC_17_1_1A";
+                                        var PNR_Reply = from allokseg in PNRSaveResponse.Descendants(ns + "reservationInfo").Descendants(ns + "reservation")
+                                                        select new
+                                                        {
+                                                            controlNumber = allokseg.Element(ns + "controlNumber").Value
+                                                        };
+
+                                        if (PNR_Reply != null && PNR_Reply.ToList().Count > 0)
+                                        {
+                                            foreach (var pnrData in PNR_Reply)
+                                            {
+                                                controlNumber = (controlNumber == string.Empty ? pnrData.controlNumber : (controlNumber + "|" + pnrData.controlNumber));
+                                            }
+                                        }
+                                        bookingResponse.PNR = controlNumber;
+                                        #endregion
+                                    }
+                                    catch //(Exception ex)
+                                    {
+
+                                    }
+                                    if (string.IsNullOrEmpty(controlNumber) == false)
+                                    {
+                                        bookingResponse.responseStatus.status = TransactionStatus.Success;
+                                        bookingResponse.responseStatus.message = "Success";
+                                    }
+                                    else
+                                    {
+                                        bookingResponse.responseStatus.status = TransactionStatus.Error;
+                                        bookingResponse.responseStatus.message = "PNR Creation Failed";
+                                    }
+                                }
+                                else
+                                {
+                                    bookingResponse.responseStatus.status = TransactionStatus.Error;
+                                    bookingResponse.responseStatus.message = "PNR Save Error";
+                                }
+                                #endregion
+                            }
+                            else
+                            {
+                                if (isPriceChanged == false)
+                                {
+                                    bookingResponse.responseStatus.status = TransactionStatus.Error;
+                                    bookingResponse.responseStatus.message = "TST Error";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            bookingResponse.responseStatus.status = TransactionStatus.Error;
+                            bookingResponse.responseStatus.message = "Unable to Search Price";
+                        }
+                    }
+                }
+                else
+                {
+                    bookingResponse.responseStatus.status = TransactionStatus.Error;
+                    bookingResponse.responseStatus.message = "Add Passenger XML is null";
+                }
+            }
+            else
+            {
+                bookingResponse.responseStatus.status = TransactionStatus.Error;
+                bookingResponse.responseStatus.message = "Segment Not Available";
+            }
+            #region SignOut
+            StringBuilder strSignOut = new StringBuilder();
+            strSignOut.Append("<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">");
+            strSignOut.Append(objAmadeusRequestMapping.GetSessionSoapHeader(AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Security_SignOut), objCurrentSession, "End"));
+            strSignOut.Append("<s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">");
+            strSignOut.Append("<Security_SignOut xmlns=\"http://xml.amadeus.com/VLSSOQ_04_1_1A\"></Security_SignOut>");
+            strSignOut.Append("</s:Body>");
+            strSignOut.Append("</s:Envelope>");
+
+
+            XDocument signOutRes = GetResponse(strSignOut.ToString(), AmadeusConfiguration.GetAmadeusSoapAction(AmadeusSoapActionType.Security_SignOut));
+            bookingLog(ref sbLogger, "Security_SignOut Request", strSignOut.ToString());
+            bookingLog(ref sbLogger, "Security_SignOut response", signOutRes.ToString(SaveOptions.DisableFormatting));
+            #endregion
+            new ServicesHub.LogWriter_New(sbLogger.ToString(), BookingRequest.bookingID.ToString(), "Booking");
+        }
+
+      
+
         private string returnSiteName(SiteId SiteId)
         {
             switch (SiteId)

@@ -11,9 +11,10 @@ namespace ServicesHub.Ease2Fly
     {
         public void getResults(Core.Flight.FlightSearchRequest request, ref Ease2FlyClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
+            int totPax = request.adults + request.child + request.infants;
             //if ((fsr.status = true || fsr.flightresult.Count > 0) && fsr.flightresult != null)
             //{
-                int itinCtr = 0;
+            int itinCtr = 0;
                 List<Core.Flight.FlightResult> listFlightResult = new List<Core.Flight.FlightResult>();
 
                 foreach (Ease2FlyClass.FlightResult Itin in fsr.result)
@@ -26,6 +27,8 @@ namespace ServicesHub.Ease2Fly
                        (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                        ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                        ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                            (o.AffiliateId_Not.Contains(request.sourceMedia) == false) &&
+                                    ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
                        (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                     {
                         //if (Itin.seat >= request.adults + request.child)
@@ -65,16 +68,17 @@ namespace ServicesHub.Ease2Fly
                                 Duration = 0,
                                 FareClass = "",
                                 // FlightNumber = System.Text.RegularExpressions.Regex.Replace(Itin.flight_no, "[^0-9a-zA-Z]+", ""),// Itin.flight_number.Remove(0, 3),
-                                FlightNumber = Itin.flight_no.Remove(0, 2),
+                                FlightNumber = System.Text.RegularExpressions.Regex.Replace(Itin.flight_no, "[^a-zA-Z0-9_.]+", "", System.Text.RegularExpressions.RegexOptions.Compiled),//Itin.flight_no.Remove(0, 2).Trim(),
                                 FromTerminal = "",
                                 ToTerminal = "",
                                 IsETicketEligible = true,
-                                OperatingCarrier = Itin.flight_no.Substring(0, 2),
+                                OperatingCarrier = Itin.flight_no.Substring(0, 2).Trim(),
                                 SegmentIndicator = 0,
                                 equipmentType = "",
                                 CabinClass = request.cabinType,
 
                             };
+                    segment.FlightNumber = segment.FlightNumber.Remove(0, 2).Trim();
                             if (FlightUtility.GetAirport(segment.Origin).countryCode.Equals("IN", StringComparison.OrdinalIgnoreCase) && FlightUtility.GetAirport(segment.Destination).countryCode.Equals("IN", StringComparison.OrdinalIgnoreCase))
                             {
                                 segment.Duration = (int)(segment.ArrTime - segment.DepTime).TotalMinutes;
@@ -149,6 +153,8 @@ namespace ServicesHub.Ease2Fly
                                              (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                              ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                              ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                               ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
                                              (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                 {
                                     fare.isBlock = true;

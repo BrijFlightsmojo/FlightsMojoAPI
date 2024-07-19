@@ -26,9 +26,9 @@ namespace IndiaAPI.Controllers
             //new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.SatkarTravel);
             //obj.getSectors();
 
-            //ServicesHub.AirIQ.AirIQServiceMapping objAirIQ = new ServicesHub.AirIQ.AirIQServiceMapping();
-            //new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.AirIQ);
-            //objAirIQ.getSectors();
+            ServicesHub.AirIQ.AirIQServiceMapping objAirIQ = new ServicesHub.AirIQ.AirIQServiceMapping();
+            new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.AirIQ);
+            objAirIQ.getSectors();
 
             //ServicesHub.FareBoutique.FareBoutiqueServiceMapping objFB = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping();
             //new DAL.FixDepartueRoute.RoutesDetails().DeleteSatkarRouteswithDate((int)Core.GdsType.FareBoutique);

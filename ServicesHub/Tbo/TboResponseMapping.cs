@@ -12,6 +12,7 @@ namespace ServicesHub.Tbo
     {
         public void getResults(Core.Flight.FlightSearchRequest request, ref TboClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
+            int totPax = request.adults + request.child + request.infants;
             if (fsr.Response != null && fsr.Response.Results != null && fsr.Response.Results.Count > 0)
             {
                 response.TraceId = fsr.Response.TraceId;
@@ -32,8 +33,10 @@ namespace ServicesHub.Tbo
                                    (o.CountryFrom_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                    (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                    ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
-                                    ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                   (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                                   ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                   ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                   (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&&
+                                   (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                         {
                             Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                             {
@@ -202,7 +205,11 @@ namespace ServicesHub.Tbo
                                 infFare.PassengerType = Core.PassengerType.Infant;
                                 fare.fareBreakdown.Add(infFare);
                             }
-
+                            if (fare.PublishedFare>(fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee))
+                            {
+                                fare.Tax += (fare.PublishedFare - (fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee));
+                            }
+                               
                             fare.grandTotal = fare.PublishedFare + fare.Markup - (fare.CommissionEarned+fare.pLBEarned);
                             if (request.cabinType == fare.cabinType)
                             {
@@ -215,7 +222,9 @@ namespace ServicesHub.Tbo
                                              (o.CountryFrom_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                              (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                              ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
-                                              ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                             ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                             ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
                                              (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                 {
                                     fare.isBlock = true;
@@ -229,6 +238,10 @@ namespace ServicesHub.Tbo
                                 {
                                     fare.isBlock = true;
                                 }
+                                //if (request.sourceMedia == "1037" && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                //{
+                                //    fare.isBlock = true;
+                                //}
 
 
                                 result.FareList.Add(fare);
@@ -248,50 +261,7 @@ namespace ServicesHub.Tbo
                 }
                 //string kk = Newtonsoft.Json.JsonConvert.SerializeObject(fc);
             }
-            //#region set CouponFareFaimly
-            //if (response.listGroupID.Count > 0 && response.Results != null && response.Results.Count > 0 && response.Results[0].Count > 0)
-            //{
-            //    foreach (var groupID in response.listGroupID.Where(k => k.StartsWith("TboOB", StringComparison.OrdinalIgnoreCase)))
-            //    {
-            //        Core.Flight.FlightResult faimlyResult = response.Results[0].Where(k => k.groupID.Equals(groupID, StringComparison.OrdinalIgnoreCase) /*&& k.fareType != Core.FareType.PUBLISH*/).ToList().OrderByDescending(k => k.Fare.grandTotal).ToList().LastOrDefault();
-            //        if (faimlyResult != null)
-            //        {
-            //            foreach (var item in response.Results[0].Where(k => k.groupID.Equals(groupID, StringComparison.OrdinalIgnoreCase) /*&& k.fareType == Core.FareType.PUBLISH*/).ToList())
-            //            {
-            //                item.Fare.ffDiscount = item.Fare.grandTotal - faimlyResult.Fare.grandTotal;
-            //                if (item.Fare.ffDiscount > 0)
-            //                {
-            //                    item.isPreCuponAvailable = true;
-            //                    item.ffResultIndex = faimlyResult.ResultIndex;
-            //                    //item.ffFareType = faimlyResult.fareType;
-            //                    //item.Fare.showGrandTotal = item.Fare.grandTotal - item.Fare.ffDiscount;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //if (response.listGroupID.Count > 0 && response.Results != null && response.Results.Count > 1 && response.Results[1].Count > 0)
-            //{
-            //    foreach (var groupID in response.listGroupID.Where(k => k.StartsWith("TboIB", StringComparison.OrdinalIgnoreCase)))
-            //    {
-            //        Core.Flight.FlightResult faimlyResult = response.Results[1].Where(k => k.groupID.Equals(groupID, StringComparison.OrdinalIgnoreCase) /*&& k.fareType != Core.FareType.Publish*/).ToList().OrderByDescending(k => k.Fare.grandTotal).ToList().LastOrDefault();
-            //        if (faimlyResult != null)
-            //        {
-            //            foreach (var item in response.Results[1].Where(k => k.groupID.Equals(groupID, StringComparison.OrdinalIgnoreCase) /*&& k.fareType == Core.FareType.Publish*/).ToList())
-            //            {
-            //                item.Fare.ffDiscount = item.Fare.grandTotal - faimlyResult.Fare.grandTotal;
-            //                if (item.Fare.ffDiscount > 0)
-            //                {
-            //                    item.isPreCuponAvailable = true;
-            //                    item.ffResultIndex = faimlyResult.ResultIndex;
-            //                    //item.ffFareType = faimlyResult.fareType;
-            //                    //item.Fare.showGrandTotal = item.Fare.grandTotal - item.Fare.ffDiscount;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //#endregion
+           
         }
 
         //public void getResult(ref Core.Flight.FlightSearchRequest request, ref TboClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponse response)
@@ -817,7 +787,7 @@ namespace ServicesHub.Tbo
                     case "sme": ft = Core.FareType.CORPORATE; break;
                     case "sale": ft = Core.FareType.PUBLISH; break;
                     case "Cluster/TBF": ft = Core.FareType.CLUSTER; break;
-
+                    case "ndc": ft = Core.FareType.NDC; break;
                     default: ft = Core.FareType.NONE; break;
                 }
             }

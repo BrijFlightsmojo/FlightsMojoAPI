@@ -34,13 +34,23 @@ namespace Core.Flight
         public GdsType Provider { get; set; }
         public List<string> FromAirport { get; set; }
         public List<string> ToAirport { get; set; }
+
+        public List<string> FromAirportNot { get; set; }
+        public List<string> ToAirportNot { get; set; }
+
         public List<string> FromCountry { get; set; }
         public List<string> ToCountry { get; set; }
+
+        public List<string> FromCountryNot { get; set; }
+        public List<string> ToCountryNot { get; set; }
+
         public List<string> SourceMedia { get; set; }
         public List<string> SourceMedia_Not { get; set; }
         public int FarePriority { get; set; }
         public bool isAirIQ { get; set; }
         public Device device { get; set; }
+        public int PaxCountFrom { get; set; }
+        public int PaxCountTo { get; set; }
         public FlightSupplierNew()
         {
 
@@ -93,6 +103,7 @@ namespace Core.Flight
     public class AirlineCommissionRule
     {
         public List<string> Airline { get; set; }
+        public List<string> AirlineNot { get; set; }
         public List<string> SourceMedia { get; set; }
         public List<GdsType> Provider { get; set; }
     }

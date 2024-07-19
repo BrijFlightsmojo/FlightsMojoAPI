@@ -30,12 +30,10 @@ namespace ServicesHub.Tbo
             {
                 flightSearchRequest.PreferredAirlines.Add(fsr.airline);
             }
-            if (fsr.travelType == Core.TravelType.Domestic)
+            if (fsr.travelType == Core.TravelType.International)
             {
-                //flightSearchRequest.Sources.Add("GDS");
-                //flightSearchRequest.Sources.Add("6E");
-                //flightSearchRequest.Sources.Add("SG");
-                //flightSearchRequest.Sources.Add("G8");
+                flightSearchRequest.Sources = new List<string>();
+                flightSearchRequest.Sources.Add("GDS");
             }
             else
             {
@@ -163,9 +161,10 @@ namespace ServicesHub.Tbo
         {
             ServicesHub.Tbo.TboClass.BookRequest bookRequest = new ServicesHub.Tbo.TboClass.BookRequest()
             {
-                EndUserIp = request.userIP,
-                Passengers = new List<TboClass.PassengerBQ>(),
                 ResultIndex = request.flightResult[ctr].Fare.tboResultIndex,
+                AgentReferenceNo=null,
+                Passengers = new List<TboClass.PassengerBQ>(),
+                EndUserIp = request.userIP,
                 TokenId = TokenId,
                 TraceId = request.TvoTraceId
             };
@@ -200,6 +199,9 @@ namespace ServicesHub.Tbo
                 pax.IsLeadPax = (i == 0 ? true : false);
                 pax.ContactNo = request.phoneNo;
                 pax.Email = request.emailID;
+                pax.CellCountryCode = "+91";
+                pax.PassportIssueDate = "2020-05-15";
+                pax.PassportIssueCountryCode = "IN";
                 if (item.passengerType == Core.PassengerType.Adult)
                 {
                     pax.Fare = new TboClass.FareBQ()
@@ -376,18 +378,19 @@ namespace ServicesHub.Tbo
             };
             return Newtonsoft.Json.JsonConvert.SerializeObject(TktRequest);
         }
-        //public string GetBookingDetailsRequestStr(Core.Flight.FlightBookingRequest request, int ctr, string TokenId)
-        //{
-        //    ServicesHub.Tbo.TboClass.GetBookingDetailsRequest BdetailsRequest = new ServicesHub.Tbo.TboClass.GetBookingDetailsRequest()
-        //    {
-        //        EndUserIp = request.userIP,
-        //        TokenId = TokenId,
-        //        PNR = ctr == 0 ? request.PNR : request.ReturnPNR,
-        //        BookingId = ctr == 0 ? request.TvoBookingID : request.TvoReturnBookingID
-        //    };
+        public string GetBookingDetailsRequestStr(Core.Flight.FlightBookingRequest request, int ctr, string TokenId)
+        {
+            ServicesHub.Tbo.TboClass.GetBookingDetailsRequest BdetailsRequest = new ServicesHub.Tbo.TboClass.GetBookingDetailsRequest()
+            {
+                EndUserIp = request.userIP,
+                TokenId = TokenId,
+                TraceId = request.TvoTraceId,
+                PNR = ctr == 0 ? request.PNR : request.ReturnPNR,
+                BookingId = ctr == 0 ? request.TvoBookingID : request.TvoReturnBookingID
+            };
 
-        //    return Newtonsoft.Json.JsonConvert.SerializeObject(BdetailsRequest);
-        //}
+            return Newtonsoft.Json.JsonConvert.SerializeObject(BdetailsRequest);
+        }
 
         public string GetFareRuleRequest(Core.Flight.PriceVerificationRequest request, int ctr, string TokenId)
         {

@@ -28,6 +28,8 @@ namespace ServicesHub.Tbo
             ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
             string TokenId = obj.getTokenID();
             var Url = TboAuthentication.airSearchUrl;
+            bookingLog(ref sbLogger, "Tbo Search Url", Url);
+
             string strRequest = new TboRequestMappking().getFlightSearchRequest(request, TokenId);
             if (FlightUtility.isWriteLogSearch)
             {
@@ -222,7 +224,7 @@ namespace ServicesHub.Tbo
                 foreach (FlightResult fr in request.flightResult)
                 {
                     var Url = TboAuthentication.FareQuoteUrl;
-
+                    bookingLog(ref sbLogger, "TBO fareQuote Url", Url);
                     string strRequest = new TboRequestMappking().getFareQuoteRequest(fr.Fare.tboResultIndex, request.TvoTraceId, request.userIP, TokenId);
 
                     bookingLog(ref sbLogger, "TBO fareQuote Request", strRequest);
@@ -295,21 +297,22 @@ namespace ServicesHub.Tbo
                 ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
                 string TokenId = obj.getTokenID();
                 var Url = TboAuthentication.fareRuleUrl;
+                bookingLog(ref sbLogger, "TBO FareRule Url", Url);
                 int ctr = 0;
                 foreach (var item in request.flightResult)
                 {
                     string strRequest = new TboRequestMappking().GetFareRuleRequest(request, ctr, TokenId);
-                    if (FlightUtility.isWriteLog)
-                    {
+                    //if (FlightUtility.isWriteLog)
+                    //{
                         bookingLog(ref sbLogger, "TBO FareRule Request", strRequest);
                         // bookingLog(ref sbLogger, "FareRule Request", strRequest);
-                    }
+                    //}
                     var strResponse = GetResponse(Url, strRequest);
-                    if (FlightUtility.isWriteLog)
-                    {
+                    //if (FlightUtility.isWriteLog)
+                    //{
                         bookingLog(ref sbLogger, "TBO FareRule Response", strResponse);
                         // bookingLog(ref sbLogger, "FareRule Response", strResponse);
-                    }
+                   // }
                     new TboResponseMapping().getFareRuleResponse(strResponse, ref _response);
                     ctr++;
                 }
@@ -407,6 +410,7 @@ namespace ServicesHub.Tbo
                         {
                             #region Make Booking for GDS
                             var Url = TboAuthentication.bookUrl;
+                            bookingLog(ref sbLogger, "TBO GDS Book Request URL", Url);
                             string strRequest = new TboRequestMappking().getGdsBookingRequest(request, ctr, TokenId);
                             bookingLog(ref sbLogger, "TBO Gds Booking Request", strRequest);
                             var response = GetResponse(Url, strRequest);
@@ -419,15 +423,15 @@ namespace ServicesHub.Tbo
                                     if (ctr == 0)
                                     {
                                         _response.PNR = bookResponse.Response.Response.PNR;
-                                        bookingLog(ref sbLogger, "TBO Gds Booking PNR", bookResponse.Response.Response.PNR);
+                                        request.PNR = _response.PNR;
+                                        bookingLog(ref sbLogger, "TBO Gds Booking PNR", _response.PNR);
                                         _response.TvoBookingID = bookResponse.Response.Response.BookingId;
+                                        request.TvoBookingID = _response.TvoBookingID;
                                         bookingLog(ref sbLogger, "TBO Gds BookingID", bookResponse.Response.Response.BookingId.ToString());
-                                        _response.responseStatus.message += "; OutBoundPnr-" + bookResponse.Response.Response.PNR;
-                                        bookingLog(ref sbLogger, "TBO Gds Booking Message OutBoundPnr", bookResponse.Response.Response.PNR);
-                                        //if (bookResponse.Response.Response.FlightItinerary != null && bookResponse.Response.Response.FlightItinerary.InvoiceAmount > 0)
-                                        //{
-                                        //    _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponse.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo });
-                                        //}
+                                        _response.responseStatus.message += "; OutBoundPnr-" + _response.PNR;
+                                        bookingLog(ref sbLogger, "TBO Gds Booking Message OutBoundPnr", _response.PNR);
+                                      
+
                                         _response.bookingStatus = BookingStatus.Ticketed;
                                         if (bookResponse.Response.Response.IsPriceChanged == true)
                                         {
@@ -435,7 +439,7 @@ namespace ServicesHub.Tbo
                                             _response.responseStatus.message += "; Booking Fail Due to Fare Change In Booking Time";
                                             isMakeBooking = false;
                                             bookingLog(ref sbLogger, "TBO  Else5", "Booking Fail Due to :  Fare Change In Booking Time");
-                                        }                                        
+                                        }
                                         else
                                         {
                                             if (request.travelType == TravelType.International)
@@ -447,10 +451,11 @@ namespace ServicesHub.Tbo
                                             }
                                             else
                                             {
-                                                #region Ticketing Non Lcc
-                                                var UrlTicketing = TboAuthentication.ticketUrl;
-                                                string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
-                                                bookingLog(ref sbLogger, "TBO GDS Ticketing Request", strRequest);
+                                            #region Ticketing Non Lcc
+                                            var UrlTicketing = TboAuthentication.ticketUrl;
+                                            bookingLog(ref sbLogger, "TBO GDS Ticketing Request URL", UrlTicketing);
+                                            string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
+                                            bookingLog(ref sbLogger, "TBO GDS Ticketing Request", strRequestTicketing);
                                                 var responseTicketing = GetResponse(UrlTicketing, strRequestTicketing);
                                                 bookingLog(ref sbLogger, "TBO GDS Ticketing Response", responseTicketing);
                                                 if (!string.IsNullOrEmpty(responseTicketing))
@@ -466,6 +471,7 @@ namespace ServicesHub.Tbo
                                                     _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
                                                     bookingLog(ref sbLogger, "TBO GDS Ticketing Response InvoiceNo", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
                                                     _response.bookingStatus = BookingStatus.Ticketed;
+                                                    GetBookingDetails(request);
                                                 }
                                                 else
                                                 {
@@ -665,46 +671,50 @@ namespace ServicesHub.Tbo
         {
             StringBuilder sbLogger = new StringBuilder();
 
-            var Url = TboAuthentication.BookingDetailsUrl; //ConfigurationManager.AppSettings["BookingDetailsUrl"].ToString();
+            var Url = TboAuthentication.BookingDetailsUrl; 
+            bookingLog(ref sbLogger, "GetBookingDetails Url", Url);
             ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
             string TokenId = obj.getTokenID();
             int ctr = 0;
             if (!string.IsNullOrEmpty(request.PNR))
             {
-                string strRequest = "";// new RequestMappking().GetBookingDetailsRequestStr(request, ctr, TokenId);
-
+                string strRequest = new TboRequestMappking().GetBookingDetailsRequestStr(request, ctr, TokenId);
+                bookingLog(ref sbLogger, "GetBookingDetails Request", strRequest);
                 if (FlightUtility.isWriteLog)
                 {
                     bookingLog(ref sbLogger, "GetBookingDetails Request", strRequest);
                 }
                 var response = GetResponse(Url, strRequest);
+                bookingLog(ref sbLogger, "GetBookingDetails Response", response);
                 if (FlightUtility.isWriteLog)
                 {
                     bookingLog(ref sbLogger, "GetBookingDetails Response", response);
                 }
-
                 ctr++;
             }
             if (!string.IsNullOrEmpty(request.ReturnPNR))
             {
-                string strRequest = "";// new TboRequestMappking().GetBookingDetailsRequestStr(request, ctr, TokenId);
-
+                // string strRequest = ""; new TboRequestMappking().GetBookingDetailsRequestStr(request, ctr, TokenId);
+                string strRequest1 = new TboRequestMappking().GetBookingDetailsRequestStr(request, ctr, TokenId);
+                bookingLog(ref sbLogger, "GetBookingDetails Request", strRequest1);
                 if (FlightUtility.isWriteLog)
                 {
-                    bookingLog(ref sbLogger, "GetBookingDetails Request", strRequest);
+                    bookingLog(ref sbLogger, "GetBookingDetails Request", strRequest1);
                 }
-                var response = GetResponse(Url, strRequest);
+                var response1 = GetResponse(Url, strRequest1);
+                bookingLog(ref sbLogger, "GetBookingDetails Response", response1);
                 if (FlightUtility.isWriteLog)
                 {
-                    bookingLog(ref sbLogger, "GetBookingDetails Response", response);
+                    bookingLog(ref sbLogger, "GetBookingDetails Response", response1);
                 }
-
                 ctr++;
             }
             if (FlightUtility.isWriteLog)
             {
                 //new LogWriter(sbLogger.ToString(), "Tbo_GetBookingDetails_" + DateTime.Today.ToString("ddMMyy"), "Tbo");
-                LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\Booking", request.userSearchID, "GetBookingDetails.txt");
+                //LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\Booking", request.bookingID.ToString(), "GetBookingDetails.txt");
+
+                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "tbo");
             }
             return null;
         }

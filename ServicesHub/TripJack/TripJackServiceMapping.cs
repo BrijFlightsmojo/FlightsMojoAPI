@@ -120,10 +120,10 @@ namespace ServicesHub.TripJack
                 bookingLog(ref sbLogger, "Exception", ex.ToString());
                 new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "tripjack FareQuote Exeption");
             }
-            if (FlightUtility.isWriteLogSearch)
-            {
+            //if (FlightUtility.isWriteLogSearch)
+            //{
                 new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
-            }
+            //}
                 return response;
         }
 
@@ -137,7 +137,7 @@ namespace ServicesHub.TripJack
                 bookingLog(ref sbLogger, "Trip Jack BookFlight Request", strRequest);
 
                 string strResponse = MakeServiceCallPOST(TripJackBookUrl, strRequest, ref sbLogger);
-                bookingLog(ref sbLogger, "Trip Jack BookFlight Request", strResponse);
+                bookingLog(ref sbLogger, "Trip Jack BookFlight Response", strResponse);
 
                 if (!string.IsNullOrEmpty(strResponse))
                 {
@@ -192,59 +192,68 @@ namespace ServicesHub.TripJack
                         }
                         else
                         {
-                            string strRequestGetBookingDetails = new TripJackRequestMapping().getFlightBookingDetailsRequest(request);
-                            bookingLog(ref sbLogger, "Trip Jack GetBookingDetails Request", strRequestGetBookingDetails);
-                            string strResponseGetBookingDetails = MakeServiceCallPOST(TripJackBookingDetailsUrl, strRequest, ref sbLogger);
-                            bookingLog(ref sbLogger, "Trip Jack GetBookingDetails Response", strResponseGetBookingDetails);
-                            if (!string.IsNullOrEmpty(strResponseGetBookingDetails))
+                            if (request.travelType != Core.TravelType.International)
                             {
-                                var daynamicObj = JsonConvert.DeserializeObject<dynamic>(strResponseGetBookingDetails);
-                                if (((string)daynamicObj["status"]["success"]).Equals("true", StringComparison.OrdinalIgnoreCase) && (daynamicObj["order"] != null && ((string)daynamicObj["order"]["status"]).Equals("SUCCESS", StringComparison.OrdinalIgnoreCase)))
+                                string strRequestGetBookingDetails = new TripJackRequestMapping().getFlightBookingDetailsRequest(request);
+                                bookingLog(ref sbLogger, "Trip Jack GetBookingDetails Request", strRequestGetBookingDetails);
+                                string strResponseGetBookingDetails = MakeServiceCallPOST(TripJackBookingDetailsUrl, strRequest, ref sbLogger);
+                                bookingLog(ref sbLogger, "Trip Jack GetBookingDetails Response", strResponseGetBookingDetails);
+                                if (!string.IsNullOrEmpty(strResponseGetBookingDetails))
                                 {
-                                    List<string> str = new List<string>();
-                                    List<string> tktList = new List<string>();
-                                    foreach (var travellerInfos in daynamicObj["itemInfos"]["AIR"]["travellerInfos"])
+                                    var daynamicObj = JsonConvert.DeserializeObject<dynamic>(strResponseGetBookingDetails);
+                                    if (((string)daynamicObj["status"]["success"]).Equals("true", StringComparison.OrdinalIgnoreCase) && (daynamicObj["order"] != null && ((string)daynamicObj["order"]["status"]).Equals("SUCCESS", StringComparison.OrdinalIgnoreCase)))
                                     {
-                                        foreach (var pnrDetails in travellerInfos["pnrDetails"])
+                                        List<string> str = new List<string>();
+                                        List<string> tktList = new List<string>();
+                                        foreach (var travellerInfos in daynamicObj["itemInfos"]["AIR"]["travellerInfos"])
                                         {
-                                            if (!str.Contains((string)pnrDetails.First))
+                                            foreach (var pnrDetails in travellerInfos["pnrDetails"])
                                             {
-                                                str.Add((string)pnrDetails.First);
-                                            }
-                                        }
-                                        if (travellerInfos["ticketNumberDetails"] != null)
-                                        {
-                                            List<string> tkt = new List<string>();
-                                            foreach (var tktNo in travellerInfos["ticketNumberDetails"])
-                                            {
-                                                if (!tkt.Contains((string)tktNo.First))
+                                                if (!str.Contains((string)pnrDetails.First))
                                                 {
-                                                    tkt.Add((string)tktNo.First);
+                                                    str.Add((string)pnrDetails.First);
                                                 }
                                             }
-                                            string strTkt = string.Empty;
-                                            foreach (var t in tkt)
+                                            if (travellerInfos["ticketNumberDetails"] != null)
                                             {
-                                                strTkt += (string.IsNullOrEmpty(strTkt) ? t : ("," + t));
+                                                List<string> tkt = new List<string>();
+                                                foreach (var tktNo in travellerInfos["ticketNumberDetails"])
+                                                {
+                                                    if (!tkt.Contains((string)tktNo.First))
+                                                    {
+                                                        tkt.Add((string)tktNo.First);
+                                                    }
+                                                }
+                                                string strTkt = string.Empty;
+                                                foreach (var t in tkt)
+                                                {
+                                                    strTkt += (string.IsNullOrEmpty(strTkt) ? t : ("," + t));
+                                                }
+                                                if (!string.IsNullOrEmpty(strTkt))
+                                                    tktList.Add(strTkt);
                                             }
-                                            if (!string.IsNullOrEmpty(strTkt))
-                                                tktList.Add(strTkt);
                                         }
+                                        if (str.Count >= 1) { response.PNR = str[0]; }
+                                        if (str.Count >= 2) { response.ReturnPNR = str[1]; }
+                                        else if (request.PriceID.Count >= 2) { response.ReturnPNR = str[0]; }
+                                        for (int i = 0; i < tktList.Count; i++)
+                                        {
+                                            response.passengerDetails[i].ticketNo = tktList[i];
+                                        }
+                                        if (!string.IsNullOrEmpty(response.PNR))
+                                        {
+                                            response.invoice = new List<Invoice>();
+                                            response.invoice.Add(new Invoice() { InvoiceAmount = (daynamicObj["order"]["amount"] != null ? Convert.ToDecimal(daynamicObj["order"]["amount"]) : 0), InvoiceNo = request.TjBookingID });
+                                        }
+                                        response.bookingStatus = BookingStatus.Ticketed;
                                     }
-                                    if (str.Count >= 1) { response.PNR = str[0]; }
-                                    if (str.Count >= 2) { response.ReturnPNR = str[1]; }
-                                    else if (request.PriceID.Count >= 2) { response.ReturnPNR = str[0]; }
-                                    for (int i = 0; i < tktList.Count; i++)
-                                    {
-                                        response.passengerDetails[i].ticketNo = tktList[i];
-                                    }
-                                    if (!string.IsNullOrEmpty(response.PNR))
-                                    {
-                                        response.invoice = new List<Invoice>();
-                                        response.invoice.Add(new Invoice() { InvoiceAmount = (daynamicObj["order"]["amount"] != null ? Convert.ToDecimal(daynamicObj["order"]["amount"]) : 0), InvoiceNo = request.TjBookingID });
-                                    }
-                                    response.bookingStatus = BookingStatus.Ticketed;
                                 }
+                            }
+                            else
+                            {
+                                response.bookingStatus = BookingStatus.InProgress;
+                                //response.responseStatus.message = "Booking";
+                                bookingLog(ref sbLogger, "Trip Jack Booking Hold", response.responseStatus.message);
                             }
                         }
                     }

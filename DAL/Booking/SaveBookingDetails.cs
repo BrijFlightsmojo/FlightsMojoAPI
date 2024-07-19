@@ -233,8 +233,8 @@ namespace DAL.Booking
         }
         private bool SaveFMJ_FlightBookingDetails_WithOutPax(ref FlightBookingRequest flightBookingRequest, DataTable dtAmount, DataTable dtSector, ref string Eft, ref int outEft, ref int inEft, ref DateTime DepDate, ref DateTime arrDate, ref decimal TotalAmount)
         {
-            //SqlParameter[] param = new SqlParameter[86];
-            SqlParameter[] param = new SqlParameter[84];
+            SqlParameter[] param = new SqlParameter[87];
+          
             TripType tripType = TripType.OneWay;
             if (flightBookingRequest.flightResult.Count > 1)
                 tripType = TripType.RoundTrip;
@@ -465,15 +465,19 @@ namespace DAL.Booking
                 param[83].Value = (int)flightBookingRequest.flightResult[1].Fare.gdsType;
             }
 
-            //param[84] = new SqlParameter("@utm_campaign", SqlDbType.VarChar,50);
-            //param[84].Value = flightBookingRequest.utm_campaign;
+            param[84] = new SqlParameter("@device", SqlDbType.Int);
+            param[84].Value = flightBookingRequest.device;
 
-            //param[85] = new SqlParameter("@utm_medium", SqlDbType.VarChar, 50);
-            //param[85].Value = flightBookingRequest.utm_medium;
+            param[85] = new SqlParameter("@utm_campaign", SqlDbType.VarChar, 50);
+            param[85].Value = flightBookingRequest.utm_campaign;
+
+            param[86] = new SqlParameter("@utm_medium", SqlDbType.VarChar, 50);
+            param[86].Value = flightBookingRequest.utm_medium;
 
             using (SqlConnection con = DataConnection.GetConnection())
             {
-                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V2", param);
+                // SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V2", param);
+                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V3", param);
                 if (param[48].Value.ToString().ToUpper() == "SUCCESS")
                 {
                     return true;
@@ -514,7 +518,7 @@ namespace DAL.Booking
             using (SqlConnection con = DataConnection.GetConnection())
             {
 
-                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_UpdateBookingPaxDetail", param);
+                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_UpdateBookingPaxDetail_V1", param);
                 if (param[5].Value.ToString().ToUpper() == "SUCCESS")
                 {
                     return true;
@@ -1434,7 +1438,7 @@ namespace DAL.Booking
                 //}
 
 
-                if ( fare.gdsType == Core.GdsType.Travelopedia)/*fResult.gdsType == Core.GdsType.Travelogy ||*/
+                if (fare.gdsType == Core.GdsType.Travelopedia)/*fResult.gdsType == Core.GdsType.Travelogy ||*/
                 {
                     if (fare.ServiceFee > 0)
                     {
@@ -1597,6 +1601,7 @@ namespace DAL.Booking
             dt.Columns.Add("Passport_No", typeof(string));
             dt.Columns.Add("Nationality", typeof(string));
             dt.Columns.Add("Expiry_Date", typeof(DateTime));
+            dt.Columns.Add("Issue_Date", typeof(DateTime));
             dt.Columns.Add("Place_of_Issue", typeof(string));
             dt.Columns.Add("Place_of_Birth", typeof(string));
             dt.Columns.Add("Pax_DOB", typeof(DateTime));
@@ -1626,6 +1631,7 @@ namespace DAL.Booking
                 p["Passport_No"] = pax.passportNumber;
                 p["Nationality"] = pax.nationality;
                 p["Expiry_Date"] = (pax.expiryDate != null && pax.expiryDate.HasValue) ? pax.expiryDate : new DateTime(1900, 1, 1);
+                p["Issue_Date"] = (pax.passportIssueDate != null && pax.passportIssueDate.HasValue) ? pax.passportIssueDate : new DateTime(1900, 1, 1);
                 p["Place_of_Issue"] = pax.issueCountry;
                 p["Place_of_Birth"] = "";
                 p["Pax_DOB"] = pax.dateOfBirth;
@@ -1733,8 +1739,19 @@ namespace DAL.Booking
                         //}
 
                         segment["Flight_No"] = seg.FlightNumber;
-
                         segment["EqupmentType"] = seg.equipmentType;
+
+                        if (seg.equipmentType != null && seg.equipmentType.Length < 15)
+                        {
+                            segment["EqupmentType"] = seg.equipmentType;
+                            segment["Seg_Remarks"] = "";
+                        }
+                        else
+                        {
+                            segment["Seg_Remarks"] = seg.equipmentType;
+                            segment["EqupmentType"] = "";
+                        }
+
                         segment["CabinClass"] = (int)seg.CabinClass;
                         //if (fsr.sourceMedia == "1000" || fsr.sourceMedia == "1016")
                         //{
@@ -1763,7 +1780,7 @@ namespace DAL.Booking
                         segment["Terminal_From"] = seg.FromTerminal;
                         segment["Terminal_To"] = seg.ToTerminal;
                         segment["Eft"] = seg.Duration;
-                        segment["Seg_Remarks"] = "";
+
                         segment["ModifyBy"] = 1000;
                         dt.Rows.Add(segment);
                     }

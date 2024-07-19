@@ -219,7 +219,27 @@ namespace Core
         Flexi_Saver_Economy = 71,
         Flexible_Economy = 72,
         Business_Comfort = 73,
-        Super_Flexible_Business = 74
+        Super_Flexible_Business = 74,
+        NDC=75,
+        //NDC PUBLISHED = 75,
+        //NDC_COMFORT = 75,
+        //NDC_ECONOMY CONVENIENCE = 75,
+        //NDC_ECONOMY COMFORT = 75,
+        //NDC_ECONOMY CLASSIC = 75,
+        //NDC_FLEXI = 75,
+        //NDC_Economy Flexi = 75,
+        //NDC_Premium Economy Flexi = 75,
+        //NDC_VALUE = 75,
+        //NDC_STANDARD = 75,
+        //NDC_Economy Value = 75,
+        //NDC_Economy Standard = 75,
+        //NDC_LITE = 75,
+        //NDC_ECONOMY:ECONOMY = 75,
+        //NDC_ECONOMY:ECONOMY:ECONOMY = 75,
+        //NDC_ECONOMY:ECONOMY:ECONOMY:ECONOMY = 75,
+        //NDC_Business Flexi = 75,
+        //NDC_Business Standard = 75,
+
     }
     public enum MojoFareType : int
     {
@@ -235,7 +255,8 @@ namespace Core
         Promo = 9,
         Sale = 10,
         SME = 11,
-        Business = 12
+        Business = 12,
+        NDC=13
     }
     public enum AmountType : byte
     {

@@ -60,6 +60,18 @@ namespace ServicesHub.Tbo.TboClass
         public string ValidatingAirline { get; set; }
         [DataMember]
         public fareClassification FareClassification { get; set; }
+
+        // NDC
+        [DataMember]
+        public bool IsHoldAllowedWithSSR { get; set; }
+        [DataMember]
+        public bool GSTAllowed { get; set; }
+        [DataMember]
+        public bool IsGSTMandatory { get; set; }
+        [DataMember]
+        public bool IsCouponAppilcable { get; set; }
+        //
+
     }
     [DataContract]
     public class fareClassification

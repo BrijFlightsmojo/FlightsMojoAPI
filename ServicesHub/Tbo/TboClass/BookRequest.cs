@@ -22,6 +22,8 @@ namespace ServicesHub.Tbo.TboClass
         public List<PassengerBQ> Passengers { get; set; }
         //[DataMember]
         //public Payment Payment { get; set; }
+        [DataMember]
+        public string AgentReferenceNo { get; set; }
     }
     [DataContract]
     public class PassengerBQ
@@ -95,6 +97,13 @@ namespace ServicesHub.Tbo.TboClass
         //public List<Meal> Meal { get; set; }
         //[DataMember]
         //public Seat Seat { get; set; }
+
+        [DataMember]
+        public string CellCountryCode { get; set; }
+        [DataMember]
+        public string PassportIssueDate { get; set; }
+        [DataMember]
+        public string PassportIssueCountryCode { get; set; }
     }
 
 

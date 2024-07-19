@@ -21,7 +21,7 @@ namespace DAL.Deal
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[24];
+                SqlParameter[] param = new SqlParameter[26];
 
                 param[0] = new SqlParameter("@siteID", SqlDbType.Int);
                 param[0].Value = (int)fsr.siteId;
@@ -74,6 +74,10 @@ namespace DAL.Deal
                 param[22].Value = isCommingMeta;
                 param[23] = new SqlParameter("@device", SqlDbType.Int);
                 param[23].Value = (int)fsr.device;
+                param[24] = new SqlParameter("@utm_campaign", SqlDbType.VarChar, 50);
+                param[24].Value = fsr.utm_campaign;
+                param[25] = new SqlParameter("@utm_medium", SqlDbType.VarChar, 50);
+                param[25].Value = fsr.utm_medium;
                 using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
                 {
                     SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "usp_UserSearchHistoryInsert", param);
@@ -91,7 +95,7 @@ namespace DAL.Deal
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[16];
+                SqlParameter[] param = new SqlParameter[18];
 
                 param[0] = new SqlParameter("@siteID", SqlDbType.Int);
                 param[0].Value = (int)fsr.siteId;
@@ -128,6 +132,10 @@ namespace DAL.Deal
                 param[14].Value = (int)fsr.device;
                 param[15] = new SqlParameter("@provider", SqlDbType.VarChar, 20);
                 param[15].Value = Provider;
+                param[16] = new SqlParameter("@utm_campaign", SqlDbType.VarChar,50);
+                param[16].Value = fsr.utm_campaign;
+                param[17] = new SqlParameter("@utm_medium", SqlDbType.VarChar, 50);
+                param[17].Value = fsr.utm_medium;
                 using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
                 {
                     SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Set_UserSearchHistory_Meta", param);

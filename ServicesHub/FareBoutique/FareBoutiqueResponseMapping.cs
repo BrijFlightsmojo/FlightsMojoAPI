@@ -12,6 +12,7 @@ namespace ServicesHub.FareBoutique
     {
         public void getResults(Core.Flight.FlightSearchRequest request, ref FareBoutiqueClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
+            int totPax = request.adults + request.child + request.infants;
             if (fsr != null && fsr.data != null && ((fsr.errorCode != null && fsr.errorCode == 0) || (!string.IsNullOrEmpty(fsr.replyCode) && fsr.replyCode.Equals("success", StringComparison.OrdinalIgnoreCase))))
             {
                 response.FB_booking_token_id = fsr.booking_token_id;
@@ -29,7 +30,9 @@ namespace ServicesHub.FareBoutique
                        (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                        ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                        ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                       ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&&
+                       (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                     {
                         if (Itin.total_available_seats >= request.adults + request.child)
                         {
@@ -176,6 +179,8 @@ namespace ServicesHub.FareBoutique
                                              (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                              ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                               ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                              ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                               (o.device == Device.None || o.device == request.device) &&
                                              (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                 {
                                     fare.isBlock = true;

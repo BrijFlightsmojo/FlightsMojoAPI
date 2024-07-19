@@ -371,6 +371,16 @@ namespace Core
                                 {
                                     objBLA.device = (Device)Convert.ToInt32(dr["Device"]);
                                 }
+                                objBLA.NoOfPaxFrom = string.IsNullOrEmpty(dr["NoOfPaxFrom"].ToString()) ? 1 : Convert.ToInt32(dr["NoOfPaxFrom"]);
+                                if (objBLA.NoOfPaxFrom == 0)
+                                {
+                                    objBLA.NoOfPaxFrom = 1;
+                                }
+                                objBLA.NoOfPaxTo = string.IsNullOrEmpty(dr["NoOfPaxTo"].ToString()) ? 9 : Convert.ToInt32(dr["NoOfPaxTo"]);
+                                if (objBLA.NoOfPaxTo == 0)
+                                {
+                                    objBLA.NoOfPaxTo = 9;
+                                }
                                 objBLA.Action = (AirlineBlockAction)Convert.ToInt32(dr["Action"]);
                                 bla.Add(objBLA);
                             }
@@ -410,7 +420,22 @@ namespace Core
                             {
                                 try
                                 {
-                                    FlightSupplierNew objSupp = new FlightSupplierNew() { FromAirport = new List<string>(), FromCountry = new List<string>(), ToAirport = new List<string>(), ToCountry = new List<string>(), FarePriority = 1, Provider = 0, siteId = 0, SourceMedia = new List<string>(), SourceMedia_Not = new List<string>() };
+                                    FlightSupplierNew objSupp = new FlightSupplierNew()
+                                    {
+                                        FromAirport = new List<string>(),
+                                        ToAirport = new List<string>(),
+                                        FromAirportNot = new List<string>(),
+                                        ToAirportNot = new List<string>(),
+                                        FromCountry = new List<string>(),
+                                        ToCountry = new List<string>(),
+                                        FromCountryNot = new List<string>(),
+                                        ToCountryNot = new List<string>(),
+                                        FarePriority = 1,
+                                        Provider = 0,
+                                        siteId = 0,
+                                        SourceMedia = new List<string>(),
+                                        SourceMedia_Not = new List<string>()
+                                    };
                                     objSupp.Provider = (GdsType)Convert.ToInt32(dr["Supplier"]);
                                     if (string.IsNullOrEmpty(Convert.ToString(dr["SourceMedia"])) == false)
                                     {
@@ -447,6 +472,30 @@ namespace Core
                                             objSupp.FromCountry.Add(item);
                                         }
                                     }
+                                    if (string.IsNullOrEmpty(Convert.ToString(dr["OriginNot"])) == false)
+                                    {
+                                        List<string> lstString = Convert.ToString(dr["OriginNot"]).Split('-').ToList();
+                                        List<string> lstCountry = new List<string>();
+                                        foreach (string item in lstString)
+                                        {
+                                            if (item.Length == 2)
+                                            {
+                                                objSupp.FromCountryNot.Add(item);
+                                            }
+                                            else if (item.Length == 3)
+                                            {
+                                                objSupp.FromAirportNot.Add(item);
+                                            }
+                                            else if (item.Length == 4 || item.Length == 5)
+                                            {
+                                                setContinentCountry(item, ref lstCountry);
+                                            }
+                                        }
+                                        foreach (string item in lstCountry)
+                                        {
+                                            objSupp.FromCountryNot.Add(item);
+                                        }
+                                    }
                                     if (string.IsNullOrEmpty(Convert.ToString(dr["Destination"])) == false)
                                     {
                                         List<string> lstString = Convert.ToString(dr["Destination"]).Split('-').ToList();
@@ -471,12 +520,46 @@ namespace Core
                                             objSupp.ToCountry.Add(item);
                                         }
                                     }
+                                    if (string.IsNullOrEmpty(Convert.ToString(dr["DestinationNot"])) == false)
+                                    {
+                                        List<string> lstString = Convert.ToString(dr["DestinationNot"]).Split('-').ToList();
+                                        List<string> lstCountry = new List<string>();
+                                        foreach (string item in lstString)
+                                        {
+                                            if (item.Length == 2)
+                                            {
+                                                objSupp.ToCountryNot.Add(item);
+                                            }
+                                            else if (item.Length == 3)
+                                            {
+                                                objSupp.ToAirportNot.Add(item);
+                                            }
+                                            else if (item.Length == 4 || item.Length == 5)
+                                            {
+                                                setContinentCountry(item, ref lstCountry);
+                                            }
+                                        }
+                                        foreach (string item in lstCountry)
+                                        {
+                                            objSupp.ToCountryNot.Add(item);
+                                        }
+                                    }
                                     objSupp.isAirIQ = string.IsNullOrEmpty(dr["IsAirIQ"].ToString()) ? false : Convert.ToBoolean(dr["IsAirIQ"]);
                                     objSupp.FarePriority = Convert.ToInt16(dr["Priority"]);
                                     objSupp.siteId = (SiteId)Convert.ToInt32(dr["SiteId"]);
                                     if (!string.IsNullOrEmpty(Convert.ToString(dr["Device"])) )
                                     {
                                         objSupp.device = (Device)Convert.ToInt32(dr["Device"]);
+                                    }
+                                    objSupp.PaxCountFrom = string.IsNullOrEmpty(dr["PaxCountFrom"].ToString()) ? 1 : Convert.ToInt32(dr["PaxCountFrom"]);
+                                    if (objSupp.PaxCountFrom == 0)
+                                    {
+                                        objSupp.PaxCountFrom = 1;
+                                    }
+                                    objSupp.PaxCountTo = string.IsNullOrEmpty(dr["PaxCountTo"].ToString()) ? 9 : Convert.ToInt32(dr["PaxCountTo"]);
+                                    if (objSupp.PaxCountTo == 0)
+                                    {
+                                        objSupp.PaxCountTo = 9;
                                     }
                                     lstFlightSupplier.Add(objSupp);
                                 }
@@ -698,7 +781,7 @@ namespace Core
                         {
                             while (dr.Read())
                             {
-                                AirlineCommissionRule objFT = new AirlineCommissionRule() { Airline = new List<string>(), SourceMedia = new List<string>() ,Provider=new List<GdsType>()};
+                                AirlineCommissionRule objFT = new AirlineCommissionRule() { Airline = new List<string>(), AirlineNot = new List<string>(), SourceMedia = new List<string>() ,Provider=new List<GdsType>()};
 
                                 if (string.IsNullOrEmpty(Convert.ToString(dr["SourceMedia"])) == false)
                                 {
@@ -707,6 +790,10 @@ namespace Core
                                 if (string.IsNullOrEmpty(Convert.ToString(dr["Airline"])) == false)
                                 {
                                     objFT.Airline = Convert.ToString(dr["Airline"]).Split('-').ToList();
+                                }
+                                if (string.IsNullOrEmpty(Convert.ToString(dr["AirlineNot"])) == false)
+                                {
+                                    objFT.AirlineNot = Convert.ToString(dr["AirlineNot"]).Split('-').ToList();
                                 }
                                 if (string.IsNullOrEmpty(Convert.ToString(dr["Provider"])) == false)
                                 {                                   

@@ -92,6 +92,8 @@ namespace Core.Flight
         public List<MojoFareType> FareType { get; set; }
         public AirlineBlockAction Action { get; set; }
         public Device device { get; set; }
+        public int NoOfPaxFrom { get; set; }
+        public int NoOfPaxTo { get; set; }
         public AirlineBlock()
         {
             AffiliateId = new List<string>();

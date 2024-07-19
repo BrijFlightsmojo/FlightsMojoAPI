@@ -35,6 +35,7 @@ namespace Core.Markup
         public string RuleName { get; set; }
         public int GdsType { get; set; }   
         public List<SubProvider> SubProvider { get; set; }
+     
     }
     public class skyScannerMetaRankData
     {

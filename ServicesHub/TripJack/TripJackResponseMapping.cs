@@ -643,6 +643,7 @@ namespace ServicesHub.TripJack
         //}
         public void getResults(Core.Flight.FlightSearchRequest request, ref TripJackClass.TripJackFlightSearchResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
+            int totPax = request.adults + request.child + request.infants;
             try
             {
                 int ctrError = 0;
@@ -667,7 +668,9 @@ namespace ServicesHub.TripJack
                                        (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                        ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                         ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false) &&
+                                        ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                       (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                                 {
 
                                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
@@ -833,14 +836,16 @@ namespace ServicesHub.TripJack
 
                                             }
                                             if (Core.FlightUtility.airlineBlockList.Where(o => (o.Action == AirlineBlockAction.Block) && (o.Supplier == GdsType.TripJack) &&
-                                              (o.SiteId == request.siteId) && (o.FareType.Any() && o.FareType.Contains(fare.mojoFareType)) && 
-                                              ((o.airline.Any()&& o.airline.Contains(result.valCarrier))|| o.airline.Any()==false) &&
+                                              (o.SiteId == request.siteId) && (o.FareType.Any() && o.FareType.Contains(fare.mojoFareType)) &&
+                                              ((o.airline.Any() && o.airline.Contains(result.valCarrier)) || o.airline.Any() == false) &&
                                               ((o.CountryFrom.Any() && o.CountryFrom.Contains(request.segment[0].orgArp.countryCode)) || o.CountryFrom.Any() == false) &&
                                               ((o.CountryTo.Any() && o.CountryTo.Contains(request.segment[0].destArp.countryCode)) || o.CountryTo.Any() == false) &&
                                               (o.CountryFrom_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                               (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                               ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                               ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                               ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
                                               (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                             {
                                                 fare.isBlock = true;
@@ -882,7 +887,9 @@ namespace ServicesHub.TripJack
                                          (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                          ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                           ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                                           ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
+                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false) && (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                                 {
                                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                                     {
@@ -1046,6 +1053,8 @@ namespace ServicesHub.TripJack
                                              (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                              ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                               ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                               ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
                                              (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                             {
                                                 fare.isBlock = true;
@@ -1086,7 +1095,9 @@ namespace ServicesHub.TripJack
                                          (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                          ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                           ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                                           ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
+                                         (o.AffiliateId_Not.Contains(request.sourceMedia) == false) && (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                                 {
                                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                                     {
@@ -1306,6 +1317,8 @@ namespace ServicesHub.TripJack
                                               (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                               ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                                ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                                ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
                                               (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                             {
                                                 fare.isBlock = true;
@@ -1642,69 +1655,27 @@ namespace ServicesHub.TripJack
                 case "WEB SPECIAL ECONOMY": fareType = Core.FareType.PUBLISH; break;
 
                 // I5 fare Type
-
-                //case "SME": fareType = Core.FareType.SME; break;
-                //case "PUBLISHED": fareType = Core.FareType.PUBLISH; break;
                 case "VISTA_FLEX": fareType = Core.FareType.FLEXI; break;
-                //case "OFFER_FARE_WITHOUT_PNR": fareType = Core.FareType.PUBLISH; break;
-                //case "SPECIAL_RETURN": fareType = Core.FareType.PUBLISH; break;
-                //case "OFFER_RETURN_FARE_WITH_PNR": fareType = Core.FareType.PUBLISH; break;
-                //case "SOTO": fareType = Core.FareType.PUBLISH; break;
                 case "Xpress_Value": fareType = Core.FareType.PUBLISH; break;
-                //case "OFFER_FARE_WITH_PNR": fareType = Core.FareType.PUBLISH; break;
                 case "FAMILY": fareType = Core.FareType.FAMILYFARE; break;
                 case "PROMO": fareType = Core.FareType.PROMO; break;
 
                 // 6E fare Type
 
                 case "TACTICAL": fareType = Core.FareType.PROMO; break;
-                //case "SME": fareType = Core.FareType.; break;
                 case "SME.CRPCON": fareType = Core.FareType.SME; break;
                 case "SAVER": fareType = Core.FareType.PUBLISH; break;
                 case "SUPER6E": fareType = Core.FareType.PUBLISH; break;
-                //case "SPECIAL_RETURN": fareType = Core.FareType.; break;
-                //case "FAMILY": fareType = Core.FareType.; break;
-                //case "PUBLISH": fareType = Core.FareType.; break;
-                //case "OFFER_RETURN_FARE_WITH_PNR": fareType = Core.FareType.; break;
                 case "COUPON": fareType = Core.FareType.PROMO; break;
                 case "SALE": fareType = Core.FareType.SALE; break;
                 case "FLEXI_PLUS": fareType = Core.FareType.FLEXI; break;
-                //case "FLEXI": fareType = Core.FareType.; break;
-                //case "OFFER_FARE_WITHOUT_PNR": fareType = Core.FareType.; break;
-                //case "OFFER_FARE_WITH_PNR": fareType = Core.FareType.; break;
 
-                // SG fare Type
+                    //NDC Fare
 
-                //case "SME": fareType = Core.FareType.PROMO; break;
-                //case "COUPON": fareType = Core.FareType.PROMO; break;
-                //case "OFFER_FARE_WITH_PNR": fareType = Core.FareType.PROMO; break;
-                //case "COUPON": fareType = Core.FareType.PROMO; break;
-                //case "CORPORATE": fareType = Core.FareType.PROMO; break;
-                //case "SAVER": fareType = Core.FareType.PROMO; break;
-                //case "CORPORATE": fareType = Core.FareType.PROMO; break;
-                //case "PUBLISHED": fareType = Core.FareType.PROMO; break;
-                //case "SME.CRPCON": fareType = Core.FareType.PROMO; break;
-                //case "PUBLISH": fareType = Core.FareType.PROMO; break;
-                //case "OFFER_FARE_WITHOUT_PNR": fareType = Core.FareType.PROMO; break;
 
-                // QP fare Type
 
-                //case "CORPORATE": fareType = Core.FareType.PROMO; break;
-                //case "SME": fareType = Core.FareType.PROMO; break;
-                //  case "FLEXI": fareType = Core.FareType.PROMO; break;
-                //case "SALE": fareType = Core.FareType.PROMO; break;
-                //case "OFFER_FARE_WITH_PNR": fareType = Core.FareType.PROMO; break;
-                //case "COUPON": fareType = Core.FareType.PROMO; break;
-                //case "OFFER_RETURN_FARE_WITH_PNR": fareType = Core.FareType.PROMO; break;
-                //case "PUBLISHED": fareType = Core.FareType.PROMO; break;
-                //case "SME.CRPCON": fareType = Core.FareType.PROMO; break;
-                //case "SAVER": fareType = Core.FareType.PROMO; break;
-                //case "CORPORATE": fareType = Core.FareType.PROMO; break;
-                //case "FLEXI": fareType = Core.FareType.PROMO; break;
-                //case "OFFER_FARE_WITHOUT_PNR": fareType = Core.FareType.PROMO; break;
 
                 case "NONE": fareType = Core.FareType.NONE; break;
-
             }
             LogCreater.CreateLogFile(fType + "_" + airline + Environment.NewLine, "Log\\TripJack\\fare", DateTime.Today.ToString("ddMMyyy") + ".txt");
             if (fareType == Core.FareType.NONE)

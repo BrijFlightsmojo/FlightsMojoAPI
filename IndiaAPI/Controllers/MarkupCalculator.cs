@@ -33,11 +33,13 @@ namespace IndiaAPI.Controllers
             {
                 travelType = TravelType.Domestic;
             }
+            int totpax = (fsr.adults + fsr.child + fsr.infants);
             List<Core.Markup.skyScannerMetaRankData> metaData = new List<Core.Markup.skyScannerMetaRankData>();
             //List<Core.Markup.FlightMarkupNew> lstMarkup = new DAL.Markup.MarkupTransaction().getFlightMarkupNew((int)fsr.cabinType, ((int)travelType), fsr.sourceMedia);
-            List<Core.Markup.FlightMarkupNew> lstMarkup = new DAL.Markup.MarkupTransaction().getFlightMarkupWithSkyScanner((int)fsr.cabinType, ((int)travelType), fsr.sourceMedia, fsr.segment[0].originAirport, fsr.segment[0].destinationAirport, fsr.segment[0].travelDate,fsr.device, ref metaData);
+            List<Core.Markup.FlightMarkupNew> lstMarkup = new DAL.Markup.MarkupTransaction().getFlightMarkupWithSkyScanner((int)fsr.cabinType, ((int)travelType), fsr.sourceMedia, 
+                fsr.segment[0].originAirport, fsr.segment[0].destinationAirport, fsr.segment[0].travelDate,fsr.device, ref metaData,totpax);
 
-            int totpax = (fsr.adults + fsr.child + fsr.infants);
+          
             if (flightSearchResponse != null && flightSearchResponse.Results != null && flightSearchResponse.Results.Count() > 0
                 && flightSearchResponse.Results[0].Count > 0 && flightSearchResponse.Results.LastOrDefault().Count > 0)
             {
@@ -51,12 +53,13 @@ namespace IndiaAPI.Controllers
                             foreach (var itemFare in item.FareList)
                             {
                                 itemFare.scComprefare = 0;
-                              
+                                
+
                                 if (md.Count > 0 && (fsr.sourceMedia == "1015" || (itemFare.gdsType == GdsType.FareBoutique)) && item.FlightSegments[0].Segments.Count==1)
                                 {
                                     decimal totFare = md[0].Amount;
                                     totFare = (totFare * (fsr.adults + fsr.child)) + (1500 * fsr.infants);
-                                      decimal diff = totFare - (itemFare.grandTotal-(itemFare.CommissionEarned));
+                                      decimal diff = totFare - (itemFare.grandTotal-(itemFare.CommissionEarned+itemFare.pLBEarned));
                                    // decimal diff = totFare - itemFare.grandTotal;
                                     if (diff > 100)
                                     {
@@ -74,7 +77,7 @@ namespace IndiaAPI.Controllers
                                     {
                                         StringBuilder sb = new StringBuilder();
                                         #region setMarkup
-                                        if (item.valCarrier == "QP" || item.FlightSegments[0].Segments[0].Airline == "QP")
+                                        if (item.valCarrier == "I5" && itemFare.mojoFareType==MojoFareType.SeriesFareWithPNR)
                                         {
 
                                         }

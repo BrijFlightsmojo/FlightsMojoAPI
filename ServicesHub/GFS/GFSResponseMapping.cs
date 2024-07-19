@@ -11,6 +11,7 @@ namespace ServicesHub.GFS
     {
         public void getResults(Core.Flight.FlightSearchRequest request, ref GFSClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
+            int totPax = request.adults + request.child + request.infants;
             if ((fsr.success = true || fsr._data.flights.Count > 0) && fsr._data.flights != null)
             {
                 int itinCtr = 0;
@@ -20,14 +21,15 @@ namespace ServicesHub.GFS
                 foreach (GFSClass.Flight Itin in fsr._data.flights)
                 {
                     if (Core.FlightUtility.airlineBlockList.Where(o => (o.Action == AirlineBlockAction.Block) && (o.Supplier == GdsType.GFS) &&
-                       (o.SiteId == request.siteId) && (o.FareType.Count == 0) && o.airline.Contains(Itin.segments[0].legs[0].flight_number) &&
+                       (o.SiteId == request.siteId) && (o.FareType.Count == 0) && o.airline.Contains(Itin.segments[0].legs[0].airline) &&
                        ((o.CountryFrom.Any() && o.CountryFrom.Contains(request.segment[0].orgArp.countryCode)) || o.CountryFrom.Any() == false) &&
                        ((o.CountryTo.Any() && o.CountryTo.Contains(request.segment[0].destArp.countryCode)) || o.CountryTo.Any() == false) &&
                        (o.CountryFrom_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                        (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                        ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                        ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false) &&
+                        ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) && (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                     {
                         if (Itin.seats_available >= request.adults + request.child)
                         {
@@ -147,6 +149,8 @@ namespace ServicesHub.GFS
                                              (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                              ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                              ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                              ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                               (o.device == Device.None || o.device == request.device) &&
                                              (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                 {
                                     fare.isBlock = true;

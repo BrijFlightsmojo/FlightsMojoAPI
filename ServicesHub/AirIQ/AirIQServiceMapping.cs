@@ -354,8 +354,8 @@ namespace ServicesHub.AirIQ
                 foreach (var sectors in dobj["data"])
                 {
                     AirIQSegment seg = new AirIQSegment();
-                    seg.origin = sectors["origin"];
-                    seg.destination = sectors["destination"];
+                    seg.origin = sectors["Origin"];
+                    seg.destination = sectors["Destination"];
                     segm = JsonConvert.SerializeObject(seg);
                     var sec2 = GetResponse(Url + "availability", segm);
                     var kk1 = JsonConvert.DeserializeObject<dynamic>(sec2);
@@ -368,7 +368,7 @@ namespace ServicesHub.AirIQ
                             if (date.IndexOf(dt) == -1)
                                 date += (string.IsNullOrEmpty(date) ? dt : ("_" + dt));
                         }
-                        new DAL.FixDepartueRoute.RoutesDetails().SaveSatkarRouteswithDate(sectors["origin"].ToString(), sectors["destination"].ToString(), date, (int)GdsType.AirIQ);
+                        new DAL.FixDepartueRoute.RoutesDetails().SaveSatkarRouteswithDate(sectors["Origin"].ToString(), sectors["Destination"].ToString(), date, (int)GdsType.AirIQ);
                     }
                 }
             }

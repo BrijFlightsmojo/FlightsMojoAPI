@@ -291,6 +291,7 @@ namespace ServicesHub.Travelopedia
 
         public void getResults(Core.Flight.FlightSearchRequest request, ref TravelopediaClass.TravelopediaFlightSearchResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
+            int totPax = request.adults + request.child + request.infants;
             int ctrError = 0;
             try
             {
@@ -316,7 +317,9 @@ namespace ServicesHub.Travelopedia
                                     (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                     ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                      ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                                    (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                                    (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&&
+                                    ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                    (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                                 {
                                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                                     {
@@ -524,6 +527,9 @@ namespace ServicesHub.Travelopedia
                                              (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                              ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                               ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                                   (o.AffiliateId_Not.Contains(request.sourceMedia) == false) &&
+                                     ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
                                              (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                                             {
                                                 fare.isBlock = true;

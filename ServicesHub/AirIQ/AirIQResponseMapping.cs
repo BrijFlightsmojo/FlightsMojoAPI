@@ -11,6 +11,7 @@ namespace ServicesHub.AirIQ
     {
         public void getResults(Core.Flight.FlightSearchRequest request, ref AirIQClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
+            int totPax = request.adults + request.child + request.infants;
             if ((fsr.code == 200 ||(!string.IsNullOrEmpty(fsr.status)&& fsr.status.Equals("success", StringComparison.OrdinalIgnoreCase))) && fsr.data != null)
             {
                 int itinCtr = 0;
@@ -26,7 +27,9 @@ namespace ServicesHub.AirIQ
                        (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                        ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                        ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
-                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                       ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&&
+                       (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                     {
                         //if (Itin.total_available_seats >= request.adults + request.child)
                         //{
@@ -101,8 +104,7 @@ namespace ServicesHub.AirIQ
                             NetFare = totPric,
                             FareType = FareType.OFFER_FARE_WITH_PNR,
                             cabinType = result.cabinClass,
-                            gdsType = GdsType.AirIQ,
-                            subProvider = Core.SubProvider.AirIQ
+                            gdsType = GdsType.AirIQ
                         };
                         fare.mojoFareType = MojoFareType.SeriesFareWithPNR;
 
@@ -144,6 +146,8 @@ namespace ServicesHub.AirIQ
                                          (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
                                          ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                          ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                         ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                         (o.device == Device.None || o.device == request.device) &&
                                          (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
                             {
                                 fare.isBlock = true;
