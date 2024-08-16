@@ -163,9 +163,9 @@ namespace ServicesHub.Ease2Fly
 
                                 #endregion
                             }
-                            #endregion
-
-                            listFlightResult.Add(result);
+                    #endregion
+                    if (result.FlightSegments[0].Segments.Count == 1)
+                        listFlightResult.Add(result);
                         //}
                     }
                     itinCtr++;

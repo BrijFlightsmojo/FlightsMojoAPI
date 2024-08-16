@@ -20,8 +20,6 @@ namespace ServicesHub.TripJack
         public static string TripJackReviewUrl = ConfigurationManager.AppSettings["TripJackReviewUrl"].ToString();
         public static string TripJackBookUrl = ConfigurationManager.AppSettings["TripJackBookUrl"].ToString();
         public static string TripJackBookingDetailsUrl = ConfigurationManager.AppSettings["TripJackBookingDetailsUrl"].ToString();
-
-
         public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
         {
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);

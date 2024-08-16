@@ -48,49 +48,56 @@ namespace ServicesHub.Ease2Fly
                 }
                 else
                 {
-                    string org = request.segment[i].originAirport.ToLower();
-                    string dest = request.segment[i].destinationAirport.ToLower();
-                    string DepDate = request.segment[i].travelDate.ToString("yyyy-MM-dd");
-                    int adult = request.adults;
-                    int Chd = request.child;
-                    int Inf = request.infants;
-                    var url = string.Empty;
-                    WebClient client = new WebClient();
-                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                    if (string.IsNullOrEmpty(AuthToken))
+                    try
                     {
-                        getTokenID();
+                        string org = request.segment[i].originAirport.ToLower();
+                        string dest = request.segment[i].destinationAirport.ToLower();
+                        string DepDate = request.segment[i].travelDate.ToString("yyyy-MM-dd");
+                        int adult = request.adults;
+                        int Chd = request.child;
+                        int Inf = request.infants;
+                        var url = string.Empty;
+                        WebClient client = new WebClient();
+                        client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                        if (string.IsNullOrEmpty(AuthToken))
+                        {
+                            getTokenID();
+                        }
+                        client.Headers.Add("Authorization", "Bearer " + AuthToken);
+                        client.Headers.Add("efly_api_key", ApiKey);
+                        url = Url + "tp-api/search-flights?origin=" + org + "&destination=" + dest + "&airline=&departuredate=" + DepDate + "&adults=" + adult;
+                        if (request.child > 0)
+                        {
+                            url = url + "&child=" + Chd;
+                        }
+                        else
+                        {
+                            url = url + "&child=";
+                        }
+                        if (request.infants > 0)
+                        {
+                            url = url + "&infant=" + Inf;
+                        }
+                        else
+                        {
+                            url = url + "&infant=";
+                        }
+                        if (FlightUtility.isWriteLogSearch)
+                        {
+                            bookingLog(ref sbLogger, "Ease2Fly Request URL", url);
+                        }
+                        var kk = client.DownloadString(url);
+                        if (FlightUtility.isWriteLogSearch)
+                        {
+                            bookingLog(ref sbLogger, "Ease2Fly Response", kk.ToString());
+                        }
+                        Ease2FlyClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<Ease2FlyClass.FlightResponse>(kk.ToString());
+                        new Ease2FlyResponseMapping().getResults(request, ref Response, ref flightResponse);
                     }
-                    client.Headers.Add("Authorization", "Bearer " + AuthToken);
-                    client.Headers.Add("efly_api_key", ApiKey);
-                    url = Url + "tp-api/search-flights?origin=" + org + "&destination=" + dest + "&airline=&departuredate=" + DepDate + "&adults=" + adult;
-                    if (request.child > 0)
+                    catch (Exception ex)
                     {
-                        url = url + "&child=" + Chd;
+                        //bookingLog(ref sbLogger, "Ease2Fly errorMsg", errorMsg);
                     }
-                    else
-                    {
-                        url = url + "&child=";
-                    }
-                    if (request.infants > 0)
-                    {
-                        url = url + "&infant=" + Inf;
-                    }
-                    else
-                    {
-                        url = url + "&infant=";
-                    }
-                    if (FlightUtility.isWriteLogSearch)
-                    {
-                        bookingLog(ref sbLogger, "Ease2Fly Request URL", url);
-                    }
-                    var kk = client.DownloadString(url);
-                    if (FlightUtility.isWriteLogSearch)
-                    {
-                        bookingLog(ref sbLogger, "Ease2Fly Response", kk.ToString());
-                    }
-                    Ease2FlyClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<Ease2FlyClass.FlightResponse>(kk.ToString());
-                    new Ease2FlyResponseMapping().getResults(request, ref Response, ref flightResponse);
                 }
             }
             if (FlightUtility.isWriteLogSearch)
@@ -101,6 +108,8 @@ namespace ServicesHub.Ease2Fly
             }
             return flightResponse;
         }
+
+        
 
         public Core.Flight.FareQuoteResponse GetFareQuote(Core.Flight.PriceVerificationRequest request)
         {

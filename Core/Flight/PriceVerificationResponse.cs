@@ -49,6 +49,10 @@ namespace Core.Flight
 
         [DataMember]
         public string STSessionID { get; set; }
+
+
+        [DataMember]
+        public string BookingKey { get; set; }
     }
     [DataContract]
     public class FareRuleResponses

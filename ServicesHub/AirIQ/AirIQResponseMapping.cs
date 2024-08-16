@@ -157,8 +157,8 @@ namespace ServicesHub.AirIQ
                             #endregion
                         }
                         #endregion
-
-                        listFlightResult.Add(result);
+                        if (result.FlightSegments[0].Segments.Count == 1)
+                            listFlightResult.Add(result);
                         //}
                     }
                     itinCtr++;

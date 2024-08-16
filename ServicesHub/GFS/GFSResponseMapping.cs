@@ -58,36 +58,39 @@ namespace ServicesHub.GFS
 
                             Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment() { Segments = new List<Core.Flight.Segment>(), Duration = 0, stop = 0, LayoverTime = 0, SegName = "Depart" };
 
-                            Core.Flight.Segment segment = new Core.Flight.Segment()
-                            {
-                                Airline = Itin.segments[0].legs[0].airline,
-                                ArrTime = DateTime.ParseExact(Itin.segments[0].legs[0].arrival_time, "yyyy-MM-dd HH:mm:ss", new System.Globalization.CultureInfo("en-US")),
-                                DepTime = DateTime.ParseExact(Itin.segments[0].legs[0].departure_time, "yyyy-MM-dd HH:mm:ss", new System.Globalization.CultureInfo("en-US")),
-                                Origin = Itin.segments[0].legs[0].origin,
-                                Destination = Itin.segments[0].legs[0].destination,
-                                Duration = Itin.segments[0].duration,
-                                FareClass = "",
-                                FlightNumber = Itin.segments[0].legs[0].flight_number,
-                                FromTerminal = "",
-                                ToTerminal = "",
-                                IsETicketEligible = true,
-                                OperatingCarrier = Itin.segments[0].legs[0].airline,
-                                SegmentIndicator = 0,
-                                equipmentType = "",
-                                CabinClass = request.cabinType,
 
-                            };
-                            if (FlightUtility.GetAirport(segment.Origin).countryCode.Equals("IN", StringComparison.OrdinalIgnoreCase) && FlightUtility.GetAirport(segment.Destination).countryCode.Equals("IN", StringComparison.OrdinalIgnoreCase))
+
+                            foreach (var seg in Itin.segments)
                             {
-                                segment.Duration = (int)(segment.ArrTime - segment.DepTime).TotalMinutes;
+                                foreach (var leg in seg.legs)
+                                {
+                                    Core.Flight.Segment segment = new Core.Flight.Segment()
+                                    {
+                                        Airline = leg.airline,
+                                        ArrTime = DateTime.ParseExact(leg.arrival_time, "yyyy-MM-dd HH:mm:ss", new System.Globalization.CultureInfo("en-US")),
+                                        DepTime = DateTime.ParseExact(leg.departure_time, "yyyy-MM-dd HH:mm:ss", new System.Globalization.CultureInfo("en-US")),
+                                        Origin = leg.origin,
+                                        Destination = leg.destination,
+                                        Duration = leg.duration,
+                                        FareClass = "",
+                                        FlightNumber = leg.flight_number,
+                                        FromTerminal = "",
+                                        ToTerminal = "",
+                                        IsETicketEligible = true,
+                                        OperatingCarrier = leg.airline,
+                                        SegmentIndicator = 0,
+                                        equipmentType = "",
+                                        CabinClass = request.cabinType,
+                                    };
+                                    result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
+                                    fs.stop++;
+                                    fs.Duration = seg.duration;
+
+                                    fs.Segments.Add(segment);
+                                }
+                                result.FlightSegments.Add(fs);
                             }
 
-                            result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
-
-                            fs.stop++;
-                            fs.Duration += segment.Duration;
-                            fs.Segments.Add(segment);
-                            result.FlightSegments.Add(fs);
                             #endregion
 
                             #region set flight fare
@@ -161,7 +164,9 @@ namespace ServicesHub.GFS
                             }
                             #endregion
 
-                            listFlightResult.Add(result);
+
+                            if (result.FlightSegments[0].Segments.Count == 1)
+                                listFlightResult.Add(result);
                         }
                     }
                     itinCtr++;

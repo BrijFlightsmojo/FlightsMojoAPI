@@ -175,6 +175,14 @@ namespace Core.Flight
         public string utm_campaign { get; set; }
         [DataMember]
         public string utm_medium { get; set; }
+
+        //[DataMember]
+        //public List<SsrList> ssrList { get; set; }
+
+        [DataMember]
+        public string BookingKey { get; set; }
+        [DataMember]
+        public string txid { get; set; }
     }
 
     public class OfflineBookingRequest

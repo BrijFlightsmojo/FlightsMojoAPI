@@ -1407,6 +1407,27 @@ namespace DAL.Booking
                     dt.Rows.Add(othCharge);
                 }
 
+
+                if (fare.ServiceFee > 0)
+                {
+                    DataRow ServiceFee = dt.NewRow();
+                    ServiceFee["BookingID"] = fsr.bookingID;
+                    ServiceFee["ProdID"] = fsr.prodID;
+                    ServiceFee["ItinID"] = itinID;
+                    ServiceFee["ChargeID"] = ChargeID.ServiceFee;
+                    ServiceFee["ChargesFor"] = ChargeFor.NA;
+                    ServiceFee["TotalUnit"] = 1;
+                    ServiceFee["CostPrice"] = fare.ServiceFee;
+                    ServiceFee["SellPrice"] = fare.ServiceFee;
+                    ServiceFee["ChargesStatus"] = 0;
+                    ServiceFee["SupplierID"] = 0;
+                    ServiceFee["ChargesRemarks"] = "";
+                    ServiceFee["ModifyBy"] = 1000;
+                    dt.Rows.Add(ServiceFee);
+                }
+
+
+
                 // TripJack Case
                 //if (fResult.gdsType == Core.GdsType.TripJack)
                 //{
@@ -1752,30 +1773,30 @@ namespace DAL.Booking
                             segment["EqupmentType"] = "";
                         }
 
-                        segment["CabinClass"] = (int)seg.CabinClass;
+                        //  segment["CabinClass"] = (int)seg.CabinClass;
                         //if (fsr.sourceMedia == "1000" || fsr.sourceMedia == "1016")
                         //{
-                        segment["AClass"] = seg.FareClass;
+                        //    segment["AClass"] = seg.FareClass;
                         //}
                         //else
                         //{
-                        //    if ((int)seg.CabinClass == 1)
-                        //    {
-                        //        //
-                        //        segment["AClass"] = "Y";
-                        //    }
-                        //    if ((int)seg.CabinClass == 2)
-                        //    {
-                        //        segment["AClass"] = "M";
-                        //    }
-                        //    if ((int)seg.CabinClass == 3)
-                        //    {
-                        //        segment["AClass"] = "C";
-                        //    }
-                        //    if ((int)seg.CabinClass == 4)
-                        //    {
-                        //        segment["AClass"] = "F";
-                        //    }
+                        if ((int)seg.CabinClass == 1)
+                        {
+                            //
+                            segment["AClass"] = "Y";
+                        }
+                        if ((int)seg.CabinClass == 2)
+                        {
+                            segment["AClass"] = "M";
+                        }
+                        if ((int)seg.CabinClass == 3)
+                        {
+                            segment["AClass"] = "C";
+                        }
+                        if ((int)seg.CabinClass == 4)
+                        {
+                            segment["AClass"] = "F";
+                        }
                         //}
                         segment["Terminal_From"] = seg.FromTerminal;
                         segment["Terminal_To"] = seg.ToTerminal;

@@ -174,9 +174,9 @@ namespace ServicesHub.FareBoutique
                         }
                         else
                         {
-                            bookingLog(ref sbLogger, "FareBoutique  Else 1", "bookResponse.errorCode:" + bookResponse.replyMsg);
+                            bookingLog(ref sbLogger, "FareBoutique  Else 1", "bookResponse.errorCode:" + bookResponse.errorCode);
                             _response.bookingStatus = BookingStatus.InProgress;
-                            _response.responseStatus.message = "Booking InProgress Due to" + (string.IsNullOrEmpty(bookResponse.replyMsg) ? "" : ("replyMsg:" + bookResponse.replyMsg));
+                            _response.responseStatus.message = "Booking InProgress Due to" + (string.IsNullOrEmpty(bookResponse.errorMessage) ? "" : ("replyMsg:" + bookResponse.errorMessage));
                         }
                     }
                     ctr++;

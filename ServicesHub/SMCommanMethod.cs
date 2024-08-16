@@ -291,6 +291,9 @@ namespace ServicesHub
                 else if ("DOLPHINENTERPRISE".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.DOLPHINENTERPRISE; }
                 else if ("SAMAARAINTERNATIONALTOUR&TRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SAMAARAINTERNATIONALTOUR_TRAVELS; }
 
+                else if ("DTYHOLIDAYSLLP".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.DTYHOLIDAYSLLP; }
+                else if ("AIRHSPRIVATELIMITED".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.AIRHSPRIVATELIMITED; }
+
             }
             if (sp == SubProvider.None)
             {

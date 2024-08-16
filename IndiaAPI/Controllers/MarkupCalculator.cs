@@ -53,8 +53,7 @@ namespace IndiaAPI.Controllers
                             foreach (var itemFare in item.FareList)
                             {
                                 itemFare.scComprefare = 0;
-                                
-
+                              
                                 if (md.Count > 0 && (fsr.sourceMedia == "1015" || (itemFare.gdsType == GdsType.FareBoutique)) && item.FlightSegments[0].Segments.Count==1)
                                 {
                                     decimal totFare = md[0].Amount;
@@ -77,7 +76,8 @@ namespace IndiaAPI.Controllers
                                     {
                                         StringBuilder sb = new StringBuilder();
                                         #region setMarkup
-                                        if (item.valCarrier == "I5" && itemFare.mojoFareType==MojoFareType.SeriesFareWithPNR)
+                                        //if (item.valCarrier == "I5" && itemFare.mojoFareType==MojoFareType.SeriesFareWithPNR)
+                                        if (item.Fare.gdsType==Core.GdsType.TripShope && itemFare.mojoFareType == MojoFareType.SeriesFareWithPNR)
                                         {
 
                                         }

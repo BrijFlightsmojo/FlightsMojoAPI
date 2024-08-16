@@ -1297,14 +1297,14 @@ namespace ServicesHub.TripJack
                                             fare.CommissionEarned += (paxFare.CommissionEarned * request.infants);
                                             fare.fareBreakdown.Add(paxFare);
                                         }
-                                        if (result.FlightSegments[0].Segments[0].Airline == "UK")
-                                        {
-                                            fare.NetFare = fare.grandTotal = (fare.BaseFare + fare.Tax) - fare.CommissionEarned;
-                                        }
-                                        else
-                                        {
+                                        //if (result.FlightSegments[0].Segments[0].Airline == "UK")
+                                        //{
+                                        //    fare.NetFare = fare.grandTotal = (fare.BaseFare + fare.Tax) - fare.CommissionEarned;
+                                        //}
+                                        //else
+                                        //{
                                             fare.NetFare = fare.grandTotal = (fare.BaseFare + fare.Tax);
-                                        }
+                                        //}
                                         if (request.cabinType == fare.cabinType)
                                         {
                                             #region BlockAirlines

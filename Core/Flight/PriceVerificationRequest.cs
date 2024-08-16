@@ -62,6 +62,25 @@ namespace Core.Flight
         [DataMember]
         public string depDate { get; set; }
 
+
+        [DataMember]
+        public string nextraflightkey { get; set; }
+        [DataMember]
+        public string flightdeeplinkurl { get; set; }
+        [DataMember]
+        public string nextracustomstr { get; set; }
+        [DataMember]
+        public string TravelType { get; set; }
+
+        [DataMember]
+        public string Bookingkey { get; set; }
+
+        [DataMember]
+        public string triptype { get; set; }
+
+        [DataMember]
+        public string selectedflighttw { get; set; }
+
     }
 
     public class GfPriceVerifyResponse

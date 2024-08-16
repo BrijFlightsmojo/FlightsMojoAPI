@@ -26,6 +26,12 @@ public class DataConnection
         Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionFareCaching"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
         return Con;
     }
+    public static SqlConnection GetConnectionFareCachingGF()
+    {
+        SqlConnection Con = new SqlConnection();
+        Con.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionFareCachingGF"].ToString();//ConfigurationSettings.AppSettings["ConnectionString"].ToString();
+        return Con;
+    }
     public static SqlConnection GetConnectionMetaRank()
     {
         SqlConnection Con = new SqlConnection();

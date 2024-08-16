@@ -63,7 +63,8 @@ namespace Core
         SatkarTravel = 9,
         Ease2Fly = 10,
         Amadeus = 11,
-        Travelopedia=13
+        Travelopedia=13,
+        TripShope=14
     }
     public enum SubProvider : int
     {
@@ -256,7 +257,8 @@ namespace Core
         Sale = 10,
         SME = 11,
         Business = 12,
-        NDC=13
+        NDC=13,
+        SOTO=14
     }
     public enum AmountType : byte
     {
@@ -495,5 +497,20 @@ namespace Core
         MakePnr = 1,
         Inporgress = 2,
         Fail = 3
+    }
+  public  enum VirtualInterlineType:int
+    {
+        // Unspecified. Do not use.
+        VIRTUAL_INTERLINE_TYPE_UNSPECIFIED = 0,
+        
+        // Not "virtual".
+        DEFAULT_TYPE = 1,
+        
+        // If there are any "virtual" connections within a slice.
+        ON_SEGMENT_BOUNDARIES = 2,
+       
+        // If "virtual" connections are only on slice boundaries
+        // (== split ticket sold in 1 transaction).
+        ON_SLICE_BOUNDARIES_ONLY = 3
     }
 }
