@@ -17,70 +17,68 @@ namespace ServicesHub.Tbo
         public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request)
         {
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);
-
             StringBuilder sbLogger = new StringBuilder();
-            //if (FlightUtility.isWriteLog)
-            //{
-            //    bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
-            //}
-
-            Start:
-            ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
-            string TokenId = obj.getTokenID();
-            var Url = TboAuthentication.airSearchUrl;
-            bookingLog(ref sbLogger, "Tbo Search Url", Url);
-
-            string strRequest = new TboRequestMappking().getFlightSearchRequest(request, TokenId);
-            if (FlightUtility.isWriteLogSearch)
+            try
             {
-                bookingLog(ref sbLogger, "Tbo Search Request", strRequest);
-            }
-            string strResponse = string.Empty;
-            if (Core.FlightUtility.isTboWhiteListed)
-                strResponse = GetResponseSearch(Url, strRequest);
-            else
-                strResponse = GetResponseTboRowData(request);
-
-            if (FlightUtility.isWriteLogSearch)
-            {
-                bookingLog(ref sbLogger, "Tbo Search Response", strResponse);
-                //new LogWriter(sbLogger.ToString(), request.userSearchID , "Tbo");
-            }
-            if (!string.IsNullOrEmpty(strResponse))
-            {
-                TboClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<TboClass.FlightResponse>(strResponse);
-                if (Response.Response.ResponseStatus == 3 && Response.Response.Error.ErrorCode == 3 && Response.Response.Error.ErrorMessage.ToUpper() == "INVALID SESSION")
+                Start:
+                ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
+                string TokenId = obj.getTokenID();
+                var Url = TboAuthentication.airSearchUrl;
+                bookingLog(ref sbLogger, "Tbo Search Url", Url);
+                string strRequest = new TboRequestMappking().getFlightSearchRequest(request, TokenId);
+                if (FlightUtility.isWriteLogSearch)
                 {
-                    new DAL.Tbo.Tbo_DataSetGet().setLogoutByTokenID(TokenId);
-                    System.Web.HttpRuntime.Cache["TokenID"] = new TboClass.TboToken();
-                    goto Start;
+                    bookingLog(ref sbLogger, "Tbo Search Request", strRequest);
                 }
-                else if (Response.Response.ResponseStatus == 1 && Response.Response.Error.ErrorCode == 0)
-                {
-                    new TboResponseMapping().getResults(request, ref Response, ref flightResponse);
-                }
+                string strResponse = string.Empty;
+                if (Core.FlightUtility.isTboWhiteListed)
+                    strResponse = GetResponseSearch(Url, strRequest);
                 else
+                    strResponse = GetResponseTboRowData(request);
+
+                if (FlightUtility.isWriteLogSearch)
                 {
-                    flightResponse.response.status = Core.TransactionStatus.Error;
-                    flightResponse.response.message = "no result found";
+                    bookingLog(ref sbLogger, "Tbo Search Response", strResponse);
+                }
+                if (!string.IsNullOrEmpty(strResponse))
+                {
+                    TboClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<TboClass.FlightResponse>(strResponse);
+                    if (Response.Response.ResponseStatus == 3 && Response.Response.Error.ErrorCode == 3 && Response.Response.Error.ErrorMessage.ToUpper() == "INVALID SESSION")
+                    {
+                        new DAL.Tbo.Tbo_DataSetGet().setLogoutByTokenID(TokenId);
+                        System.Web.HttpRuntime.Cache["TokenID"] = new TboClass.TboToken();
+                        goto Start;
+                    }
+                    else if (Response.Response.ResponseStatus == 1 && Response.Response.Error.ErrorCode == 0)
+                    {
+                        new TboResponseMapping().getResults(request, ref Response, ref flightResponse);
+                    }
+                    else
+                    {
+                        flightResponse.response.status = Core.TransactionStatus.Error;
+                        flightResponse.response.message = "no result found";
+                    }
+                }
+                if (FlightUtility.isWriteLogSearch)
+                {
+                    new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
+                }
+                if (flightResponse.Results.Count == 0 || (flightResponse.Results.Count > 0 && flightResponse.Results.FirstOrDefault().Count == 0))
+                {
+                    //StringBuilder sbLogger2 = new StringBuilder();
+                    //bookingLog(ref sbLogger2, "Tbo Search Request", strRequest);
+                    //bookingLog(ref sbLogger2, "Tbo Search Response", strResponse);
+                    //  new LogWriter(sbLogger2.ToString(), "tbo" + request.userSearchID, "TboNoResult");
+                    new LogWriter("No" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+                }
+                if (flightResponse.Results.Count == 1 || (flightResponse.Results.Count > 1 && flightResponse.Results.FirstOrDefault().Count == 1))
+                {
+                    new LogWriter("Yes" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
                 }
             }
-            if (FlightUtility.isWriteLogSearch)
+            catch (Exception ex)
             {
-                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
-                //LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\TripJack\\Search", request.userSearchID );
-            }
-            if (flightResponse.Results.Count == 0 || (flightResponse.Results.Count > 0 && flightResponse.Results.FirstOrDefault().Count == 0))
-            {
-                //StringBuilder sbLogger2 = new StringBuilder();
-                //bookingLog(ref sbLogger2, "Tbo Search Request", strRequest);
-                //bookingLog(ref sbLogger2, "Tbo Search Response", strResponse);
-                //  new LogWriter(sbLogger2.ToString(), "tbo" + request.userSearchID, "TboNoResult");
-                new LogWriter("No" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
-            }
-            if (flightResponse.Results.Count == 1 || (flightResponse.Results.Count > 1 && flightResponse.Results.FirstOrDefault().Count == 1))
-            {
-                new LogWriter("Yes" + Environment.NewLine, "tbo" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+                new LogWriter(ex.ToString(), "tbo" + DateTime.Today.ToString("ddMMMyy"), "Exeption");
             }
             return flightResponse;
         }
@@ -304,15 +302,15 @@ namespace ServicesHub.Tbo
                     string strRequest = new TboRequestMappking().GetFareRuleRequest(request, ctr, TokenId);
                     //if (FlightUtility.isWriteLog)
                     //{
-                        bookingLog(ref sbLogger, "TBO FareRule Request", strRequest);
-                        // bookingLog(ref sbLogger, "FareRule Request", strRequest);
+                    bookingLog(ref sbLogger, "TBO FareRule Request", strRequest);
+                    // bookingLog(ref sbLogger, "FareRule Request", strRequest);
                     //}
                     var strResponse = GetResponse(Url, strRequest);
                     //if (FlightUtility.isWriteLog)
                     //{
-                        bookingLog(ref sbLogger, "TBO FareRule Response", strResponse);
-                        // bookingLog(ref sbLogger, "FareRule Response", strResponse);
-                   // }
+                    bookingLog(ref sbLogger, "TBO FareRule Response", strResponse);
+                    // bookingLog(ref sbLogger, "FareRule Response", strResponse);
+                    // }
                     new TboResponseMapping().getFareRuleResponse(strResponse, ref _response);
                     ctr++;
                 }
@@ -430,7 +428,7 @@ namespace ServicesHub.Tbo
                                         bookingLog(ref sbLogger, "TBO Gds BookingID", bookResponse.Response.Response.BookingId.ToString());
                                         _response.responseStatus.message += "; OutBoundPnr-" + _response.PNR;
                                         bookingLog(ref sbLogger, "TBO Gds Booking Message OutBoundPnr", _response.PNR);
-                                      
+
 
                                         _response.bookingStatus = BookingStatus.Ticketed;
                                         if (bookResponse.Response.Response.IsPriceChanged == true)
@@ -451,11 +449,11 @@ namespace ServicesHub.Tbo
                                             }
                                             else
                                             {
-                                            #region Ticketing Non Lcc
-                                            var UrlTicketing = TboAuthentication.ticketUrl;
-                                            bookingLog(ref sbLogger, "TBO GDS Ticketing Request URL", UrlTicketing);
-                                            string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
-                                            bookingLog(ref sbLogger, "TBO GDS Ticketing Request", strRequestTicketing);
+                                                #region Ticketing Non Lcc
+                                                var UrlTicketing = TboAuthentication.ticketUrl;
+                                                bookingLog(ref sbLogger, "TBO GDS Ticketing Request URL", UrlTicketing);
+                                                string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
+                                                bookingLog(ref sbLogger, "TBO GDS Ticketing Request", strRequestTicketing);
                                                 var responseTicketing = GetResponse(UrlTicketing, strRequestTicketing);
                                                 bookingLog(ref sbLogger, "TBO GDS Ticketing Response", responseTicketing);
                                                 if (!string.IsNullOrEmpty(responseTicketing))
@@ -466,22 +464,22 @@ namespace ServicesHub.Tbo
                                                         //if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount > 0)
                                                         //    _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
 
-                                                    if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare > 0)
-                                                        _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
-                                                    _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
-                                                    bookingLog(ref sbLogger, "TBO GDS Ticketing Response InvoiceNo", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
-                                                    _response.bookingStatus = BookingStatus.Ticketed;
-                                                    GetBookingDetails(request);
+                                                        if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare > 0)
+                                                            _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
+                                                        _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
+                                                        bookingLog(ref sbLogger, "TBO GDS Ticketing Response InvoiceNo", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
+                                                        _response.bookingStatus = BookingStatus.Ticketed;
+                                                        GetBookingDetails(request);
+                                                    }
+                                                    else
+                                                    {
+                                                        _response.bookingStatus = BookingStatus.Failed;
+                                                        _response.responseStatus.message += "; Booking Fail Due to" + bookResponseTicketing.Response.Error.ErrorMessage;
+                                                        isMakeBooking = false;
+                                                        bookingLog(ref sbLogger, "TBO  Else2", "Booking Fail Due to :" + bookResponse.Response.Error.ErrorMessage);
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    _response.bookingStatus = BookingStatus.Failed;
-                                                    _response.responseStatus.message += "; Booking Fail Due to" + bookResponseTicketing.Response.Error.ErrorMessage;
-                                                    isMakeBooking = false;
-                                                    bookingLog(ref sbLogger, "TBO  Else2", "Booking Fail Due to :" + bookResponse.Response.Error.ErrorMessage);
-                                                }
-                                            }
-                                            #endregion
+                                                #endregion
                                             }
                                         }
                                     }
@@ -521,19 +519,19 @@ namespace ServicesHub.Tbo
                                                 string strRequestTicketing = new TboRequestMappking().getGdsTicketingRequest(request, TokenId, bookResponse.Response.Response.PNR, bookResponse.Response.Response.BookingId);
                                                 bookingLog(ref sbLogger, "Else TBO Gds Ticketing Request", strRequestTicketing);
 
-                                            var responseTicketing = GetResponse(UrlTicketing, strRequestTicketing);
-                                            bookingLog(ref sbLogger, "Else TBO Gds Ticketing Response", responseTicketing);
+                                                var responseTicketing = GetResponse(UrlTicketing, strRequestTicketing);
+                                                bookingLog(ref sbLogger, "Else TBO Gds Ticketing Response", responseTicketing);
 
-                                            if (!string.IsNullOrEmpty(responseTicketing))
-                                            {
-                                                TboClass.LccTicketingResponse bookResponseTicketing = JsonConvert.DeserializeObject<TboClass.LccTicketingResponse>(responseTicketing.ToString());
-                                                if (bookResponseTicketing.Response.ResponseStatus == "1")
+                                                if (!string.IsNullOrEmpty(responseTicketing))
                                                 {
-                                                    //if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount > 0)
-                                                    //    _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
+                                                    TboClass.LccTicketingResponse bookResponseTicketing = JsonConvert.DeserializeObject<TboClass.LccTicketingResponse>(responseTicketing.ToString());
+                                                    if (bookResponseTicketing.Response.ResponseStatus == "1")
+                                                    {
+                                                        //if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount > 0)
+                                                        //    _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceAmount, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
 
-                                                    if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare > 0)
-                                                        _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
+                                                        if (bookResponseTicketing.Response.Response.FlightItinerary != null && bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare > 0)
+                                                            _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
 
                                                         _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
                                                         _response.bookingStatus = BookingStatus.Ticketed;
@@ -671,7 +669,7 @@ namespace ServicesHub.Tbo
         {
             StringBuilder sbLogger = new StringBuilder();
 
-            var Url = TboAuthentication.BookingDetailsUrl; 
+            var Url = TboAuthentication.BookingDetailsUrl;
             bookingLog(ref sbLogger, "GetBookingDetails Url", Url);
             ServicesHub.Tbo.TboAuthentication obj = new ServicesHub.Tbo.TboAuthentication();
             string TokenId = obj.getTokenID();
@@ -711,9 +709,6 @@ namespace ServicesHub.Tbo
             }
             if (FlightUtility.isWriteLog)
             {
-                //new LogWriter(sbLogger.ToString(), "Tbo_GetBookingDetails_" + DateTime.Today.ToString("ddMMyy"), "Tbo");
-                //LogCreater.CreateLogFile(sbLogger.ToString(), "Log\\Booking", request.bookingID.ToString(), "GetBookingDetails.txt");
-
                 new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "tbo");
             }
             return null;

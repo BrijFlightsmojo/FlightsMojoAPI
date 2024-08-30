@@ -27,10 +27,8 @@ namespace DAL.FixDepartueRoute
                         cmd.Parameters.AddWithValue("@supplier", supplier);
                         cmd.Parameters.AddWithValue("@sectorDate",date);
                         cmd.ExecuteNonQuery();
-                   
                     }
                 }
-
                 catch (Exception ex)
                 {
                     ex.ToString();
@@ -39,7 +37,6 @@ namespace DAL.FixDepartueRoute
                 {
                     conn.Close();
                 }
-
             }
         }
         public void DeleteSatkarRouteswithDate( int supplier)

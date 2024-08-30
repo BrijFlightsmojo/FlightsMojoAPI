@@ -16,14 +16,12 @@ namespace IndiaAPI.Controllers
         {
             return SecurityCode == securityCodeGet;
         }
+        [BasicAuthentication]
         [HttpPost]
         [Route("Flight")]
-        public HttpResponseMessage Flight(string authcode, Core.GoogleFlight.FlightSearchRequest searchRequest)
+        public HttpResponseMessage Flight( Core.GoogleFlight.FlightSearchRequest searchRequest)
         {
-            if (!authorizeRequest(authcode))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-            }
+            
             #region Make SearchRequest
             Core.Flight.FlightSearchRequest fsr = new Core.Flight.FlightSearchRequest()
             {

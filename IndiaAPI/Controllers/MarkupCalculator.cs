@@ -60,7 +60,7 @@ namespace IndiaAPI.Controllers
                                     totFare = (totFare * (fsr.adults + fsr.child)) + (1500 * fsr.infants);
                                       decimal diff = totFare - (itemFare.grandTotal-(itemFare.CommissionEarned+itemFare.pLBEarned));
                                    // decimal diff = totFare - itemFare.grandTotal;
-                                    if (diff > 100)
+                                    if (diff > 250)
                                     {
                                         int num = rnd.Next(1, 10);
                                         itemFare.scComprefare = md[0].Amount;

@@ -120,9 +120,9 @@ namespace ServicesHub.TripJack
             }
             //if (FlightUtility.isWriteLogSearch)
             //{
-                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
+            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
             //}
-                return response;
+            return response;
         }
 
 
@@ -250,7 +250,7 @@ namespace ServicesHub.TripJack
                             else
                             {
                                 response.bookingStatus = BookingStatus.InProgress;
-                                //response.responseStatus.message = "Booking";
+                                response.responseStatus.message = "Booking InProgress";
                                 bookingLog(ref sbLogger, "Trip Jack Booking Hold", response.responseStatus.message);
                             }
                         }
@@ -259,7 +259,7 @@ namespace ServicesHub.TripJack
                     {
                         if (dobj["errors"] != null && dobj["errors"].HasValues && dobj["errors"][0]["message"] != null)
                         {
-                            response.responseStatus = new ResponseStatus() { status = TransactionStatus.Success, message = (string)dobj["errors"][0]["message"] };                         
+                            response.responseStatus = new ResponseStatus() { status = TransactionStatus.Success, message = (string)dobj["errors"][0]["message"] };
                         }
                         else
                         {
@@ -272,11 +272,14 @@ namespace ServicesHub.TripJack
                 else
                 {
                     bookingLog(ref sbLogger, " Trip Jack  Else 1 ", "Booking Fail due to Trip Jack booking Respons is empty");
-                    response.bookingStatus = BookingStatus.Failed;                 
+                    response.bookingStatus = BookingStatus.Failed;
+                    response.responseStatus.message = "Booking Fail due to Trip Jack booking Respons is empty";
                 }
             }
             catch (Exception ex)
             {
+                response.bookingStatus = BookingStatus.Failed;
+                response.responseStatus.message = ex.ToString();
                 bookingLog(ref sbLogger, "Trip Jack Exption", ex.ToString());
                 new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Error");
             }
@@ -284,6 +287,172 @@ namespace ServicesHub.TripJack
             bookingLog(ref sbLogger, "Trip Jack  return Response", JsonConvert.SerializeObject(response));
             new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Booking");
         }
+
+
+
+
+        public void BookFlightCRM(FlightBookingRequest request, ref FlightBookingResponse response)
+        {
+            StringBuilder sbLogger = new StringBuilder();
+            try
+            {
+                string strRequest = new TripJackRequestMapping().getFlightBookRequest(request);
+                bookingLog(ref sbLogger, "Trip Jack BookFlight Request", strRequest);
+
+                string strResponse = MakeServiceCallPOST(TripJackBookUrl, strRequest, ref sbLogger);
+                bookingLog(ref sbLogger, "Trip Jack BookFlight Response", strResponse);
+
+                if (!string.IsNullOrEmpty(strResponse))
+                {
+                    var dobj = JsonConvert.DeserializeObject<dynamic>(strResponse);
+                    if (((string)dobj["status"]["success"]).Equals("true", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (dobj["order"] != null && ((string)dobj["order"]["status"]).Equals("SUCCESS", StringComparison.OrdinalIgnoreCase))
+                        {
+                            List<string> str = new List<string>();
+                            List<string> tktList = new List<string>();
+                            foreach (var travellerInfos in dobj["itemInfos"]["AIR"]["travellerInfos"])
+                            {
+                                foreach (var pnrDetails in travellerInfos["pnrDetails"])
+                                {
+                                    if (!str.Contains((string)pnrDetails.First))
+                                    {
+                                        str.Add((string)pnrDetails.First);
+                                    }
+                                }
+                                if (travellerInfos["ticketNumberDetails"] != null)
+                                {
+                                    List<string> tkt = new List<string>();
+                                    foreach (var tktNo in travellerInfos["ticketNumberDetails"])
+                                    {
+                                        if (!tkt.Contains((string)tktNo.First))
+                                        {
+                                            tkt.Add((string)tktNo.First);
+                                        }
+                                    }
+                                    string strTkt = string.Empty;
+                                    foreach (var t in tkt)
+                                    {
+                                        strTkt += (string.IsNullOrEmpty(strTkt) ? t : ("," + t));
+                                    }
+                                    if (!string.IsNullOrEmpty(strTkt))
+                                        tktList.Add(strTkt);
+                                }
+                            }
+                            if (str.Count >= 1) { response.PNR = str[0]; }
+                            if (str.Count >= 2) { response.ReturnPNR = str[1]; }
+                            else if (request.PriceID.Count >= 2) { response.ReturnPNR = str[0]; }
+                            for (int i = 0; i < tktList.Count; i++)
+                            {
+                                response.passengerDetails[i].ticketNo = tktList[i];
+                            }
+                            if (!string.IsNullOrEmpty(response.PNR))
+                            {
+                                response.invoice = new List<Invoice>();
+                                response.invoice.Add(new Invoice() { InvoiceAmount = (dobj["order"]["amount"] != null ? Convert.ToDecimal(dobj["order"]["amount"]) : 0), InvoiceNo = request.TjBookingID });
+                            }
+                            response.bookingStatus = BookingStatus.Ticketed;
+                        }
+                        else
+                        {
+
+                            string strRequestGetBookingDetails = new TripJackRequestMapping().getFlightBookingDetailsRequest(request);
+                            bookingLog(ref sbLogger, "Trip Jack GetBookingDetails Request", strRequestGetBookingDetails);
+                            string strResponseGetBookingDetails = MakeServiceCallPOST(TripJackBookingDetailsUrl, strRequest, ref sbLogger);
+                            bookingLog(ref sbLogger, "Trip Jack GetBookingDetails Response", strResponseGetBookingDetails);
+                            if (!string.IsNullOrEmpty(strResponseGetBookingDetails))
+                            {
+                                var daynamicObj = JsonConvert.DeserializeObject<dynamic>(strResponseGetBookingDetails);
+                                if (((string)daynamicObj["status"]["success"]).Equals("true", StringComparison.OrdinalIgnoreCase) && (daynamicObj["order"] != null && ((string)daynamicObj["order"]["status"]).Equals("SUCCESS", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    List<string> str = new List<string>();
+                                    List<string> tktList = new List<string>();
+                                    foreach (var travellerInfos in daynamicObj["itemInfos"]["AIR"]["travellerInfos"])
+                                    {
+                                        foreach (var pnrDetails in travellerInfos["pnrDetails"])
+                                        {
+                                            if (!str.Contains((string)pnrDetails.First))
+                                            {
+                                                str.Add((string)pnrDetails.First);
+                                            }
+                                        }
+                                        if (travellerInfos["ticketNumberDetails"] != null)
+                                        {
+                                            List<string> tkt = new List<string>();
+                                            foreach (var tktNo in travellerInfos["ticketNumberDetails"])
+                                            {
+                                                if (!tkt.Contains((string)tktNo.First))
+                                                {
+                                                    tkt.Add((string)tktNo.First);
+                                                }
+                                            }
+                                            string strTkt = string.Empty;
+                                            foreach (var t in tkt)
+                                            {
+                                                strTkt += (string.IsNullOrEmpty(strTkt) ? t : ("," + t));
+                                            }
+                                            if (!string.IsNullOrEmpty(strTkt))
+                                                tktList.Add(strTkt);
+                                        }
+                                    }
+                                    if (str.Count >= 1) { response.PNR = str[0]; }
+                                    if (str.Count >= 2) { response.ReturnPNR = str[1]; }
+                                    else if (request.PriceID.Count >= 2) { response.ReturnPNR = str[0]; }
+                                    for (int i = 0; i < tktList.Count; i++)
+                                    {
+                                        response.passengerDetails[i].ticketNo = tktList[i];
+                                    }
+                                    if (!string.IsNullOrEmpty(response.PNR))
+                                    {
+                                        response.invoice = new List<Invoice>();
+                                        response.invoice.Add(new Invoice() { InvoiceAmount = (daynamicObj["order"]["amount"] != null ? Convert.ToDecimal(daynamicObj["order"]["amount"]) : 0), InvoiceNo = request.TjBookingID });
+                                    }
+                                    response.bookingStatus = BookingStatus.Ticketed;
+                                }
+                            }
+                            else
+                            {
+                                response.bookingStatus = BookingStatus.InProgress;
+                                response.responseStatus.message = "Booking InProgress";
+                                bookingLog(ref sbLogger, "Trip Jack Booking Hold", response.responseStatus.message);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (dobj["errors"] != null && dobj["errors"].HasValues && dobj["errors"][0]["message"] != null)
+                        {
+                            response.responseStatus = new ResponseStatus() { status = TransactionStatus.Success, message = (string)dobj["errors"][0]["message"] };
+                        }
+                        else
+                        {
+                            response.responseStatus = new ResponseStatus() { status = TransactionStatus.Success, message = "Other resion" };
+                        }
+                        response.bookingStatus = BookingStatus.Failed;
+                        bookingLog(ref sbLogger, " Trip Jack  Else 2 ", response.responseStatus.message);
+                    }
+                }
+                else
+                {
+                    bookingLog(ref sbLogger, " Trip Jack  Else 1 ", "Booking Fail due to Trip Jack booking Respons is empty");
+                    response.bookingStatus = BookingStatus.Failed;
+                    response.responseStatus.message = "Booking Fail due to Trip Jack booking Respons is empty";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.bookingStatus = BookingStatus.Failed;
+                response.responseStatus.message = ex.ToString();
+
+                bookingLog(ref sbLogger, "Trip Jack Exption", ex.ToString());
+                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Error");
+            }
+
+            bookingLog(ref sbLogger, "Trip Jack  return Response", JsonConvert.SerializeObject(response));
+            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Booking");
+        }
+
+
         public void bookingLog(ref StringBuilder sbLogger, string requestTitle, string logText)
         {
             sbLogger.Append(Environment.NewLine + "---------------------------------------------" + requestTitle + "" + DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToLongDateString() + "---------------------------------------------");
@@ -368,7 +537,7 @@ namespace ServicesHub.TripJack
             request.ContentType = "application/json";
             request.Headers.Add("Accept-Encoding", "gzip");
             request.Headers.Add("apikey", TripJackApikey);
-         //   request.Timeout = 12000;
+            //   request.Timeout = 12000;
             try
             {
                 using (Stream strmWriter = request.GetRequestStream())

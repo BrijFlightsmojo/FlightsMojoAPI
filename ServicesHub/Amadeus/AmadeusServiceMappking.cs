@@ -131,32 +131,33 @@ namespace ServicesHub.Amadeus
                             #region fareDataInformation
                             if (true)
                             {
-                                //try
-                                //{
-                                //    decimal amount = (from fareDataInfo in Fare_PricePNRWithBookingClass_Response.Descendants(ns + "fareDataSupInformation")
-                                //                      where fareDataInfo.Element(ns + "fareDataQualifier").Value == "712"
-                                //                      select new
-                                //                      {
-                                //                          fareAmount = Convert.ToDecimal(fareDataInfo.Element(ns + "fareAmount").Value),
-                                //                          //  fareCurrency = fareDataInfo.Element(ns + "fareCurrency").Value,
-                                //                      }).Sum(x => x.fareAmount);
+                                try
+                                {
+                                    decimal amount = (from fareDataInfo in Fare_PricePNRWithBookingClass_Response.Descendants(ns + "fareDataSupInformation")
+                                                      where fareDataInfo.Element(ns + "fareDataQualifier").Value == "712"
+                                                      select new
+                                                      {
+                                                          fareAmount = Convert.ToDecimal(fareDataInfo.Element(ns + "fareAmount").Value),
+                                                          //  fareCurrency = fareDataInfo.Element(ns + "fareCurrency").Value,
+                                                      }).Sum(x => x.fareAmount);
 
-                                //    decimal publisFare = BookingRequest.updatedBookingAmount > 0 ? BookingRequest.updatedBookingAmount : (((BookingRequest.adults * (BookingRequest.flightResult.fare.adultFare + BookingRequest.flightResult.fare.adultTax))) +
-                                //        ((BookingRequest.child * (BookingRequest.flightResult[0].Fare.childFare + BookingRequest.flightResult.fare.childTax))) +
-                                //        ((BookingRequest.infants * (BookingRequest.flightResult.fare.infantFare + BookingRequest.flightResult.fare.infantFare))) +
-                                //        ((BookingRequest.infantsWs * (BookingRequest.flightResult.fare.infantWsFare + BookingRequest.flightResult.fare.infantWsTax))));
-                                //    if (amount - publisFare > 2)
-                                //    {
-                                //        bookingResponse.responseStatus.status = TransactionStatus.Error;
-                                //        bookingResponse.responseStatus.message = "Increase Passenger Fare";
-                                //        bookingResponse.updatedBookingAmount = amount;
-                                //        isErrorExist = false; isPriceChanged = true;
-                                //    }
-                                //}
-                                //catch (Exception)
-                                //{
+                                    //decimal publisFare = BookingRequest.updatedBookingAmount > 0 ? BookingRequest.updatedBookingAmount : (((BookingRequest.adults * (BookingRequest.flightResult.fare.adultFare + BookingRequest.flightResult.fare.adultTax))) +
+                                    //    ((BookingRequest.child * (BookingRequest.flightResult[0].Fare.childFare + BookingRequest.flightResult.fare.childTax))) +
+                                    //    ((BookingRequest.infants * (BookingRequest.flightResult.fare.infantFare + BookingRequest.flightResult.fare.infantFare))) +
+                                    //    ((BookingRequest.infantsWs * (BookingRequest.flightResult.fare.infantWsFare + BookingRequest.flightResult.fare.infantWsTax))));
+                                    decimal publisFare = BookingRequest.flightResult[0].Fare.PublishedFare;
+                                    if (amount - publisFare > 2)
+                                    {
+                                        bookingResponse.responseStatus.status = TransactionStatus.Error;
+                                        bookingResponse.responseStatus.message = "Increase Passenger Fare";
+                                        bookingResponse.updatedBookingAmount = amount;
+                                        isErrorExist = false; isPriceChanged = true;
+                                    }
+                                }
+                                catch (Exception)
+                                {
 
-                                //}
+                                }
                             }
                             #endregion
 

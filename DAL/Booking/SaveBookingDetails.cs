@@ -1764,7 +1764,8 @@ namespace DAL.Booking
 
                         if (seg.equipmentType != null && seg.equipmentType.Length < 15)
                         {
-                            segment["EqupmentType"] = seg.equipmentType;
+                            //   segment["EqupmentType"] = seg.equipmentType;
+                            segment["EqupmentType"] = "";
                             segment["Seg_Remarks"] = "";
                         }
                         else

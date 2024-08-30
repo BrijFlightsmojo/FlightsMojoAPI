@@ -48,10 +48,10 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "CCU",
-                orgArp = Core.FlightUtility.GetAirport("CCU"),
-                destinationAirport = "STV",
-                destArp = Core.FlightUtility.GetAirport("STV"),
+                originAirport = "BOM",
+                orgArp = Core.FlightUtility.GetAirport("BOM"),
+                destinationAirport = "IXD",
+                destArp = Core.FlightUtility.GetAirport("IXD"),
                 travelDate = Convert.ToDateTime("2024-08-23") //DateTime.Today.AddDays(61)//
             });
 
@@ -73,9 +73,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.device = Device.Desktop;
             flightSearchReq.sourceMedia = "1015";
             flightSearchReq.userSearchID = getSearchID();
-            //var kkdd = new ServicesHub.Tripshope.TripshopeServiceMapping().GetFlightResults(flightSearchReq);
+          //  var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq, true, true);
+            var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
+            //  var kkdd = new ServicesHub.Tripshope.TripshopeServiceMapping().GetFlightResults(flightSearchReq);
             //     var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
-            var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
+            // var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
 
 
             return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
@@ -1793,6 +1795,29 @@ namespace IndiaAPI.Controllers
                             }
                         }
 
+
+
+
+                        foreach (var item in bookRequest.flightResult)
+                        {
+                            foreach (var fs in item.FlightSegments)
+                            {
+                                foreach (var seg in fs.Segments)
+                                {
+                                    if (seg.Airline == "6E")
+                                    {
+                                        new FlightMapper().bookingLog(ref sbLog2, "set isMakeBooking false due to Airline is 6E", " ");
+                                        isMakeBooking = false;
+                                    }
+                                }
+                            }
+                        }
+
+
+
+
+
+
                         //if (bookRequest.travelType == Core.TravelType.International && (bookRequest.flightResult[0].Fare.gdsType == GdsType.TripJack))
                         //{
                         //    isMakeBooking = false;
@@ -2053,20 +2078,20 @@ namespace IndiaAPI.Controllers
                         depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
                         origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
                         destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
-                        flightResult=bookRequest.flightResult,
-                        infantsWs=bookRequest.infantsWs,
-                        isFareQuote=true,
-                        isSSR=false,isFareRule=false,PhoneNo="",PriceID=new List<string>(),
-                        siteID=bookRequest.siteID,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false, isFareRule = false, PhoneNo = "", PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
                         sourceMedia = bookRequest.sourceMedia,
                         userIP = bookRequest.userIP,
                         userSearchID = bookRequest.userSearchID,
-                        userSessionID=bookRequest.userSessionID,
+                        userSessionID = bookRequest.userSessionID,
                         TvoTraceId = bookRequest.TvoTraceId,
-                        tgy_Request_id="",
-                        ST_ResultSessionID="",
-                        tgy_Search_Key="",
-                        userLogID= bookRequest.userSearchID
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID
                     };
                     var pvResponse = new FlightMapper().TboVerifyThePrice(priceVerificationRequest);
                     if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
@@ -2078,8 +2103,292 @@ namespace IndiaAPI.Controllers
                         BookResponse.responseStatus.status = TransactionStatus.Error;
                         BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
                     }
-                  
+
                 }
+                else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.TripJack)
+                {
+                    PriceVerificationRequest priceVerificationRequest = new PriceVerificationRequest
+                    {
+                        adults = bookRequest.adults,
+                        child = bookRequest.child,
+                        infants = bookRequest.infants,
+                        depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
+                        origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
+                        destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false,
+                        isFareRule = false,
+                        PhoneNo = "",
+                        PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
+                        sourceMedia = bookRequest.sourceMedia,
+                        userIP = bookRequest.userIP,
+                        userSearchID = bookRequest.userSearchID,
+                        userSessionID = bookRequest.userSessionID,
+                        TvoTraceId = bookRequest.TvoTraceId,
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID
+                    };
+                    var pvResponse = new FlightMapper().TjVerifyThePrice(priceVerificationRequest);
+                    if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
+                    {
+                        //  new ServicesHub.TripJack.TripJackServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                        new ServicesHub.TripJack.TripJackServiceMapping().BookFlightCRM(bookRequest, ref BookResponse);
+                    }
+                    else
+                    {
+                        BookResponse.responseStatus.status = TransactionStatus.Error;
+                        BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
+                    }
+                }
+                else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.FareBoutique)
+                {
+                    PriceVerificationRequest priceVerificationRequest = new PriceVerificationRequest
+                    {
+                        adults = bookRequest.adults,
+                        child = bookRequest.child,
+                        infants = bookRequest.infants,
+                        depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
+                        origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
+                        destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false,
+                        isFareRule = false,
+                        PhoneNo = "",
+                        PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
+                        sourceMedia = bookRequest.sourceMedia,
+                        userIP = bookRequest.userIP,
+                        userSearchID = bookRequest.userSearchID,
+                        userSessionID = bookRequest.userSessionID,
+                        TvoTraceId = bookRequest.TvoTraceId,
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID
+                    };
+                    var pvResponse = new FlightMapper().FareBoutiqueVerifyThePrice(priceVerificationRequest);
+                    if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
+                    {
+                        new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                    }
+                    else
+                    {
+                        BookResponse.responseStatus.status = TransactionStatus.Error;
+                        BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
+                    }
+                }
+                else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.AirIQ)
+                {
+                    PriceVerificationRequest priceVerificationRequest = new PriceVerificationRequest
+                    {
+                        adults = bookRequest.adults,
+                        child = bookRequest.child,
+                        infants = bookRequest.infants,
+                        depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
+                        origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
+                        destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false,
+                        isFareRule = false,
+                        PhoneNo = "",
+                        PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
+                        sourceMedia = bookRequest.sourceMedia,
+                        userIP = bookRequest.userIP,
+                        userSearchID = bookRequest.userSearchID,
+                        userSessionID = bookRequest.userSessionID,
+                        TvoTraceId = bookRequest.TvoTraceId,
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID
+                    };
+                    var pvResponse = new FlightMapper().AirIQVerifyThePrice(priceVerificationRequest);
+                    if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
+                    {
+                        new ServicesHub.AirIQ.AirIQServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                    }
+                    else
+                    {
+                        BookResponse.responseStatus.status = TransactionStatus.Error;
+                        BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
+                    }
+                }
+                else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.GFS)
+                {
+                    PriceVerificationRequest priceVerificationRequest = new PriceVerificationRequest
+                    {
+                        adults = bookRequest.adults,
+                        child = bookRequest.child,
+                        infants = bookRequest.infants,
+                        depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
+                        origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
+                        destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false,
+                        isFareRule = false,
+                        PhoneNo = "",
+                        PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
+                        sourceMedia = bookRequest.sourceMedia,
+                        userIP = bookRequest.userIP,
+                        userSearchID = bookRequest.userSearchID,
+                        userSessionID = bookRequest.userSessionID,
+                        TvoTraceId = bookRequest.TvoTraceId,
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID
+                    };
+                    var pvResponse = new FlightMapper().GFSVerifyThePrice(priceVerificationRequest);
+                    if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
+                    {
+                        new ServicesHub.GFS.GFSServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                    }
+                    else
+                    {
+                        BookResponse.responseStatus.status = TransactionStatus.Error;
+                        BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
+                    }
+                }
+                else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.SatkarTravel)
+                {
+                    PriceVerificationRequest priceVerificationRequest = new PriceVerificationRequest
+                    {
+                        adults = bookRequest.adults,
+                        child = bookRequest.child,
+                        infants = bookRequest.infants,
+                        depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
+                        origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
+                        destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false,
+                        isFareRule = false,
+                        PhoneNo = "",
+                        PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
+                        sourceMedia = bookRequest.sourceMedia,
+                        userIP = bookRequest.userIP,
+                        userSearchID = bookRequest.userSearchID,
+                        userSessionID = bookRequest.userSessionID,
+                        TvoTraceId = bookRequest.TvoTraceId,
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID
+                    };
+                    var pvResponse = new FlightMapper().SatkarTravelVerifyThePrice(priceVerificationRequest);
+                    if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
+                    {
+                        new ServicesHub.SatkarTravel.SatkarTravelServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                    }
+                    else
+                    {
+                        BookResponse.responseStatus.status = TransactionStatus.Error;
+                        BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
+                    }
+                }
+                else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.Ease2Fly)
+                {
+                    PriceVerificationRequest priceVerificationRequest = new PriceVerificationRequest
+                    {
+                        adults = bookRequest.adults,
+                        child = bookRequest.child,
+                        infants = bookRequest.infants,
+                        depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
+                        origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
+                        destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false,
+                        isFareRule = false,
+                        PhoneNo = "",
+                        PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
+                        sourceMedia = bookRequest.sourceMedia,
+                        userIP = bookRequest.userIP,
+                        userSearchID = bookRequest.userSearchID,
+                        userSessionID = bookRequest.userSessionID,
+                        TvoTraceId = bookRequest.TvoTraceId,
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID
+                    };
+                    var pvResponse = new FlightMapper().E2FVerifyThePrice(priceVerificationRequest);
+                    if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
+                    {
+                        new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                    }
+                    else
+                    {
+                        BookResponse.responseStatus.status = TransactionStatus.Error;
+                        BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
+                    }
+                }
+                else if (bookRequest.flightResult[0].Fare.gdsType == GdsType.TripShope)
+                {
+                    PriceVerificationRequest priceVerificationRequest = new PriceVerificationRequest
+                    {
+                        adults = bookRequest.adults,
+                        child = bookRequest.child,
+                        infants = bookRequest.infants,
+                        depDate = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().DepTime.ToString("dd/MM/yyyy"),
+                        origin = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Origin,
+                        destination = bookRequest.flightResult.FirstOrDefault().FlightSegments.FirstOrDefault().Segments.LastOrDefault().Destination,
+                        flightResult = bookRequest.flightResult,
+                        infantsWs = bookRequest.infantsWs,
+                        isFareQuote = true,
+                        isSSR = false,
+                        isFareRule = false,
+                        PhoneNo = "",
+                        PriceID = new List<string>(),
+                        siteID = bookRequest.siteID,
+                        sourceMedia = bookRequest.sourceMedia,
+                        userIP = bookRequest.userIP,
+                        userSearchID = bookRequest.userSearchID,
+                        userSessionID = bookRequest.userSessionID,
+                        TvoTraceId = bookRequest.TvoTraceId,
+                        tgy_Request_id = "",
+                        ST_ResultSessionID = "",
+                        tgy_Search_Key = "",
+                        userLogID = bookRequest.userSearchID,
+                         //Bookingkey="",
+                         //flightdeeplinkurl="",
+                         //nextracustomstr="",
+                         //nextraflightkey="",
+                        // selectedflighttw=bookRequest.sw,
+                         //TravelType=bookRequest.travelType,
+                        // triptype= bookRequest.tr
+                    };
+                    //var pvResponse = new FlightMapper().E2FVerifyThePrice(priceVerificationRequest);
+                    //if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
+                    //{
+                    //    new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().BookFlight(bookRequest, ref BookResponse);
+                    //}
+                    //else
+                    //{
+                    //    BookResponse.responseStatus.status = TransactionStatus.Error;
+                    //    BookResponse.responseStatus.message = "Price change new price=" + pvResponse.fareQuoteResponse.VerifiedTotalPrice + ", Old Price=" + bookRequest.sumFare.PublishedFare;
+                    //}
+                }
+
+
+
                 //else  if (bookRequest.flightResult[0].Fare.gdsType == GdsType.TripJack)
                 //{                   
                 //    new ServicesHub.TripJack.TripJackServiceMapping().BookFlight(bookRequest, ref BookResponse);
@@ -2709,6 +3018,10 @@ namespace IndiaAPI.Controllers
                 {
                     returnData = pwd.Equals("Mojoindiaflights321", StringComparison.OrdinalIgnoreCase);
                 }
+                if (campain == "1008")//Facebook
+                {
+                    returnData = pwd.Equals("Mojoindiaflights321", StringComparison.OrdinalIgnoreCase);
+                }
             }
 
             return returnData;
@@ -2992,9 +3305,6 @@ namespace IndiaAPI.Controllers
             if (isEase2Fly || isEase2FlyR) Ease2Fly = GetSearchResultEase2Fly(request, isEase2Fly, isEase2FlyR);
             if (isGFS || isGFSR) GFS = GetSearchResultGFS(request, isGFS, isGFSR);
             if (isTravelopedia || isTravelopediaR) Travelopedia = GetSearchResultTravelopedia(request, isTravelopedia, isTravelopediaR);
-            
-
-
 
             List<Task> taskList = new List<Task>();
             if (istripJack) taskList.Add(tripJack);
@@ -3177,7 +3487,7 @@ namespace IndiaAPI.Controllers
                 isGFS = kkk.Contains(GdsType.GFS);
             }
 
-            //isTripShope = false;
+            //istbo = false;
 
             if (istripJack) tripJack = GetSearchResultTripJack(request);
             if (isOneDFare) OneDFare = GetSearchResultOneDFare(request);

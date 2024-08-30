@@ -891,7 +891,177 @@ namespace IndiaAPI.Controllers
 
                     #endregion
                 }
+                else if (request.gds == Core.GdsType.AirIQ)
+                {
+                    #region Travelopedia 
+                    ServicesHub.AirIQ.AirIQServiceMapping objAirIQ = new ServicesHub.AirIQ.AirIQServiceMapping();
+                    Core.Flight.FlightSearchResponseShort result = objAirIQ.GetFlightResults(fsr, true, false);
+                    bookingLog(ref sbLogger, "AirIQ Offline Booking result", JsonConvert.SerializeObject(result));
+                    var selectedResult = result.Results[0].Where(k => k.ResultCombination.Equals(SectorRef, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
+                    if (selectedResult != null && selectedResult.Fare != null)
+                    {
+                        selectedResult.Fare = selectedResult.FareList.FirstOrDefault();
+                        Core.Flight.PriceVerificationRequest pvRequest = new Core.Flight.PriceVerificationRequest()
+                        {
+                            adults = fsr.adults,
+                            child = fsr.child,
+                            depDate = fsr.segment[0].travelDate.ToString("dd/MM/yyyy"),
+                            destination = fsr.segment[0].destinationAirport.ToLower(),
+                            flightResult = new List<Core.Flight.FlightResult>(),
+                            infants = fsr.infants,
+                            infantsWs = 0,
+                            isFareQuote = true,
+                            isSSR = false,
+                            isFareRule = false,
+                            origin = fsr.segment[0].originAirport.ToLower(),
+                            PhoneNo = "",
+                            PriceID = new List<string>(),
+                            siteID = fsr.siteId,
+                            sourceMedia = fsr.sourceMedia,
+                            ST_ResultSessionID = selectedResult.Fare.ST_ResultSessionID,
+                            tgy_Request_id = "",
+                            tgy_Search_Key = "",
+                            TvoTraceId = result.TraceId,
+                            userIP = fsr.userIP,
+                            userLogID = fsr.userLogID,
+                            userSearchID = fsr.userSearchID,
+                            userSessionID = fsr.userSessionID,
+                        };
+                        pvRequest.flightResult.Add(selectedResult);
+                        Core.Flight.FareQuoteResponse pvResponse = objAirIQ.GetFareQuote(pvRequest);
+                        bookingLog(ref sbLogger, "AirIQ Offline Booking FareQuoteResponse", JsonConvert.SerializeObject(pvResponse));
+                        if (totPrice == pvResponse.VerifiedTotalPrice)
+                        {
+                            bookingRequest.AdminID = request.AdminID;
+                            bookingRequest.adults = fsr.adults;
+                            bookingRequest.affiliate = Core.FlightUtility.GetAffiliate(fsr.sourceMedia);
+                            bookingRequest.aircraftDetail = new List<Core.Flight.AircraftDetail>();
+                            bookingRequest.airline = new List<Core.Flight.Airline>();
+                            bookingRequest.airport = new List<Core.Flight.Airport>();
+                            bookingRequest.bookingID = request.BookingID;
+                            bookingRequest.bookingStatus = Core.BookingStatus.InProgress;
+                            bookingRequest.BrowserDetails = "";
+                            bookingRequest.CancellaionPolicyAmt = 0;
+                            bookingRequest.child = fsr.child;
+                            bookingRequest.infants = fsr.infants;
+                            bookingRequest.infantsWs = 0;
+                            bookingRequest.TvoTraceId = result.TraceId;
+                            bookingRequest.convenienceFee = 0;
+                            bookingRequest.CouponAmount = 0;
+                            bookingRequest.CouponCode = "";
+                            bookingRequest.CouponIncreaseAmount = 0;
+                            bookingRequest.currencyCode = selectedResult.Fare.Currency;
+                            bookingRequest.deepLink = "";
+                            //bookingRequest.emailID = "";
+                            bookingRequest.fareIncreaseAmount = 0;
+                            bookingRequest.fareRuleResponse = new List<Core.Flight.FareRuleResponses>();
+                            bookingRequest.FB_booking_token_id = result.FB_booking_token_id;
+                            bookingRequest.flightResult = new List<Core.Flight.FlightResult>();
+                            bookingRequest.gatewayType = Core.GetWayType.Razorpay;
+                            bookingRequest.GSTAddress = "";
+                            bookingRequest.GSTCompany = "";
+                            bookingRequest.GSTNo = "";
+                            bookingRequest.isBuyCancellaionPolicy = false;
+                            bookingRequest.isBuyRefundPolicy = false;
+                            bookingRequest.isFareChange = false;
+                            bookingRequest.isGST = false;
+                            bookingRequest.isMakeBookingInprogress = false;
+                            bookingRequest.isTickted = new List<bool>();
+                            bookingRequest.isWhatsapp = false;
+                            bookingRequest.LastCheckInDate = DateTime.Today;
+                            //bookingRequest.mobileNo = "";
+                            //bookingRequest.passengerDetails = new List<Core.PassengerDetails>();
+                            bookingRequest.paymentDetails = new Core.PaymentDetails();
+                            bookingRequest.paymentMode = Core.PaymentMode.NONE;
+                            bookingRequest.paymentStatus = Core.PaymentStatus.Completed;
+                            //bookingRequest.phoneNo = "";
+                            bookingRequest.PNR = "";
+                            bookingRequest.PriceID = new List<string>();
+                            bookingRequest.prodID = 1;
+                            bookingRequest.razorpayOrderID = "";
+                            bookingRequest.razorpayTransectionID = "";
+                            bookingRequest.RefundPolicyAmt = 0;
+                            bookingRequest.ReturnPNR = "";
+                            bookingRequest.siteID = fsr.siteId;
+                            bookingRequest.sourceMedia = fsr.sourceMedia;
+                            bookingRequest.STSessionID = selectedResult.ST_ResultSessionID;
+                            bookingRequest.ST_ResultSessionID = selectedResult.ST_ResultSessionID;
+                            bookingRequest.sumFare = new Core.Flight.Fare();
+                            bookingRequest.tgy_Block_Ticket_Allowed = new List<bool>();
+                            bookingRequest.tgy_Booking_RefNo = "";
+                            bookingRequest.tgy_Flight_Key = new List<string>();
+                            bookingRequest.tgy_Request_id = "";
+                            bookingRequest.tgy_Search_Key = "";
+                            bookingRequest.TjBookingID = "";
+                            bookingRequest.TjReturnBookingID = "";
+                            bookingRequest.transactionID = 0;
+                            bookingRequest.travelType = fsr.travelType;
+                            bookingRequest.TvoBookingID = 0;
+                            bookingRequest.TvoReturnBookingID = 0;
+                            bookingRequest.updatedBookingAmount = 0;
+                            bookingRequest.userIP = fsr.userIP;
+                            bookingRequest.userLogID = fsr.userLogID;
+                            bookingRequest.userSearchID = fsr.userSearchID;
+                            bookingRequest.userSessionID = fsr.userSessionID;
+                            bookingRequest.VerifiedTotalPrice = pvResponse.VerifiedTotalPrice;
+
+                            bookingRequest.flightResult.Add(selectedResult);
+                            Core.Flight.FlightBookingResponse bookingResponse = new Core.Flight.FlightBookingResponse(bookingRequest);
+                            bookingLog(ref sbLogger, "AirIQ Offline Booking bookingResponse", JsonConvert.SerializeObject(bookingResponse));
+
+                            objAirIQ.BookFlight(bookingRequest, ref bookingResponse);
+
+                            DAL.Booking.SaveBookingDetails objSaveBookingDetails = new DAL.Booking.SaveBookingDetails();
+                            objSaveBookingDetails.SaveFMJ_FlightBookingTransactionDetailsWithTickNo(ref bookingRequest, ref bookingResponse);
+                            new ServicesHub.LogWriter_New(sbLogger.ToString(), bookingRequest.bookingID.ToString(), "OfflineBooking", "AirIQ Offline BookFlight Original Response");
+                        }
+                        else
+                        {
+                            res.status = Core.TransactionStatus.Error;
+                            res.message = "Increase price";
+                            Core.Flight.BookingRemark BR = new Core.Flight.BookingRemark();
+                            BR.BookingID = request.BookingID;
+                            BR.Booking_Remarks = res.message;
+                            BR.ModifiedBy = request.AdminID;
+                            int i = DAL.Booking.Get_BookingDetails.SaveRemarks(BR);
+                            if (i > 0)
+                            {
+                                res.message = "success Increase price";
+                            }
+                            else
+                            {
+                                res.message = "Unsuccess";
+                            }
+                            bookingLog(ref sbLogger, "Travelopedia Offline Booking Else Increase price", res.message);
+                            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.BookingID.ToString(), "OfflineBooking", "E2F Offline BookFlight Original Response");
+
+                        }
+                    }
+                    else
+                    {
+                        res.status = Core.TransactionStatus.Error;
+                        res.message = "Same fare not available";
+                        Core.Flight.BookingRemark BR = new Core.Flight.BookingRemark();
+                        BR.BookingID = request.BookingID;
+                        BR.Booking_Remarks = res.message;
+                        BR.ModifiedBy = request.AdminID;
+                        int i = DAL.Booking.Get_BookingDetails.SaveRemarks(BR);
+                        if (i > 0)
+                        {
+                            res.message = "success Same fare not available";
+                        }
+                        else
+                        {
+                            res.message = "Unsuccess Same fare not available";
+                        }
+
+                        bookingLog(ref sbLogger, "Travelopedia Offline Booking Else Same fare not available", res.message);
+                        new ServicesHub.LogWriter_New(sbLogger.ToString(), request.BookingID.ToString(), "OfflineBooking", "Travelopedia Offline BookFlight Original Response");
+                    }
+
+                    #endregion
+                }
 
                 else if (request.gds == Core.GdsType.Tbo || request.gds == Core.GdsType.TripJack || request.gds == Core.GdsType.OneDFare)
                 {

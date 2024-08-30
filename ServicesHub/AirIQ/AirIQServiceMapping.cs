@@ -20,9 +20,17 @@ namespace ServicesHub.AirIQ
         string ApiKey = ConfigurationManager.AppSettings["AIQ_ApiKey"].ToString();
         public void getTokenID()
         {
-            var strResponse = GetTokenResponse(Url + "login", new AirIQRequestMappking().getSearchToken());
-            AirIQClass.TokenResponse res = Newtonsoft.Json.JsonConvert.DeserializeObject<AirIQClass.TokenResponse>(strResponse);
-            AuthToken = res.token;
+            try
+            {
+                var strResponse = GetTokenResponse(Url + "login", new AirIQRequestMappking().getSearchToken());
+                AirIQClass.TokenResponse res = Newtonsoft.Json.JsonConvert.DeserializeObject<AirIQClass.TokenResponse>(strResponse);
+                AuthToken = res.token;
+            }
+            catch (Exception ex)
+            {
+                new ServicesHub.LogWriter_New(ex.ToString(), "AIRIQGetToken" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+            }
+           
         }
 
         public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request, bool isAirIQGDS, bool isAirIQGDSR)
@@ -142,7 +150,7 @@ namespace ServicesHub.AirIQ
                         }
                         else
                         {
-                            bookingLog(ref sbLogger, " AirIQ  Else 1 ", "bookResponse.message:" + bookResponse.message);
+                            bookingLog(ref sbLogger, "AirIQ  Else 1", "bookResponse.message:" + bookResponse.message);
                             _response.bookingStatus = BookingStatus.InProgress;
                             _response.responseStatus.message = bookResponse.message;
                         }
@@ -250,7 +258,7 @@ namespace ServicesHub.AirIQ
             {
                 if (webEx != null)
                 {
-                    new ServicesHub.LogWriter_New(webEx.ToString(), "AIRIQGetResponseSearch" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                    new ServicesHub.LogWriter_New(webEx.ToString(), "AIRIQGetResponseSearch1" + DateTime.Today.ToString("ddMMyy"), "Exeption");
                     if (webEx.Message.Contains("timed out") == false && webEx.Response != null)
                     {
                         WebResponse errResp = webEx.Response;
@@ -265,7 +273,7 @@ namespace ServicesHub.AirIQ
                         }
                         StreamReader reader = new StreamReader(responseStream);
                         response = reader.ReadToEnd();
-                        new ServicesHub.LogWriter_New(response, "AIRIQGetResponseSearch" + DateTime.Today.ToString("ddMMyy"), "Exeption");
+                        new ServicesHub.LogWriter_New(response, "AIRIQGetResponseSearch2" + DateTime.Today.ToString("ddMMyy"), "Exeption");
                     }
                 }
             }

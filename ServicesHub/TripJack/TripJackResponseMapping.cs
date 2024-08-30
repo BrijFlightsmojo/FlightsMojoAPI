@@ -1670,11 +1670,7 @@ namespace ServicesHub.TripJack
                 case "SALE": fareType = Core.FareType.SALE; break;
                 case "FLEXI_PLUS": fareType = Core.FareType.FLEXI; break;
 
-                    //NDC Fare
-
-
-
-
+                //NDC Fare
                 case "NONE": fareType = Core.FareType.NONE; break;
             }
             LogCreater.CreateLogFile(fType + "_" + airline + Environment.NewLine, "Log\\TripJack\\fare", DateTime.Today.ToString("ddMMyyy") + ".txt");

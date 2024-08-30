@@ -293,7 +293,8 @@ namespace ServicesHub
 
                 else if ("DTYHOLIDAYSLLP".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.DTYHOLIDAYSLLP; }
                 else if ("AIRHSPRIVATELIMITED".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.AIRHSPRIVATELIMITED; }
-
+                else if ("SAITOURSNTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.SAITOURSNTRAVELS; }
+                else if ("AIRLCCTRAVELSPVTLTD".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.AIRLCCTRAVELSPVTLTD; }
             }
             if (sp == SubProvider.None)
             {
