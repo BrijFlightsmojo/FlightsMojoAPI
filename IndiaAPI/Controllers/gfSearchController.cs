@@ -19,9 +19,9 @@ namespace IndiaAPI.Controllers
         [BasicAuthentication]
         [HttpPost]
         [Route("Flight")]
-        public HttpResponseMessage Flight( Core.GoogleFlight.FlightSearchRequest searchRequest)
+        public HttpResponseMessage Flight(Core.GoogleFlight.FlightSearchRequest searchRequest)
         {
-            
+
             #region Make SearchRequest
             Core.Flight.FlightSearchRequest fsr = new Core.Flight.FlightSearchRequest()
             {
@@ -129,22 +129,23 @@ namespace IndiaAPI.Controllers
         }
         private Core.GoogleFlight.FlightResponse GetGfResponse(Core.Flight.FlightSearchResponse SearchRes, Core.Flight.FlightSearchRequest fsr)
         {
-           
-            Core.GoogleFlight.FlightResponse response = new Core.GoogleFlight.FlightResponse() { itineraries=new List<Core.GoogleFlight.Itinerary>(),warnings=new List<string>()};
+
+            Core.GoogleFlight.FlightResponse response = new Core.GoogleFlight.FlightResponse() { itineraries = new List<Core.GoogleFlight.Itinerary>()};
             if (SearchRes != null && SearchRes.Results != null && SearchRes.Results.Count() > 0 && SearchRes.Results[0].Count > 0 && SearchRes.Results.LastOrDefault().Count > 0)
             {
                 if (SearchRes.Results.Count == 1)
                 {
                     #region for one way
+
                     foreach (Core.Flight.FlightResult result in SearchRes.Results[0])
                     {
                         Core.GoogleFlight.Itinerary itin = new Core.GoogleFlight.Itinerary()
                         {
-                            booking_url= "http://test.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
-                            outbound=new Core.GoogleFlight.Outbound(),
-                            price=new Core.GoogleFlight.Price(),
-                            validity_seconds= "10800",
-                            virtual_interline_type=Convert.ToString( Core.VirtualInterlineType.DEFAULT_TYPE)
+                            booking_url = "https://www.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
+                            outbound = new Core.GoogleFlight.Outbound(),
+                            price = new Core.GoogleFlight.Price(),
+                            validity_seconds = "10800",
+                            virtual_interline_type = Convert.ToString(Core.VirtualInterlineType.DEFAULT_TYPE)
                         };
                         itin.price.currency_code = "INR";
                         itin.price.total_decimal = result.Fare.grandTotal.ToString("f2");
@@ -155,24 +156,26 @@ namespace IndiaAPI.Controllers
                         int ctrFseg = 0;
                         foreach (var fs in result.FlightSegments)
                         {
-                            if (ctrFseg == 1)
+                            if (ctrFseg == 1 && itin.inbound == null)
                             {
                                 itin.inbound = new Core.GoogleFlight.Inbound() { segments = new List<Core.GoogleFlight.Segment>() };
                             }
                             foreach (var seg in fs.Segments)
                             {
-                                Core.GoogleFlight.Segment gSeg = new Core.GoogleFlight.Segment() {
-                                    legs=new List<Core.GoogleFlight.Leg>(),
-                                    cabin_code= getCabinName(seg.CabinClass),
-                                    baggage_allowance=new Core.GoogleFlight.BaggageAllowance()
+                                Core.GoogleFlight.Segment gSeg = new Core.GoogleFlight.Segment()
+                                {
+                                    legs = new List<Core.GoogleFlight.Leg>(),
+                                    cabin_code = getCabinName(seg.CabinClass),
+                                    baggage_allowance = new Core.GoogleFlight.BaggageAllowance()
                                 };
-                                Core.GoogleFlight.Leg leg = new Core.GoogleFlight.Leg() {
+                                Core.GoogleFlight.Leg leg = new Core.GoogleFlight.Leg()
+                                {
                                     carrier = seg.Airline,
-                                    flight_number=seg.FlightNumber,
-                                    departure_airport=seg.Origin,
-                                    arrival_airport=seg.Destination,
-                                    departure_date_time=seg.DepTime,
-                                    arrival_date_time=seg.ArrTime
+                                    flight_number = seg.FlightNumber,
+                                    departure_airport = seg.Origin,
+                                    arrival_airport = seg.Destination,
+                                    departure_date_time = seg.DepTime,
+                                    arrival_date_time = seg.ArrTime
                                 };
                                 resultID += (leg.carrier + "_" + leg.flight_number + "_" + leg.departure_date_time.ToString("yyMMdd|HHmm") + "_" + leg.arrival_date_time.ToString("yyMMdd|HHmm"));
                                 gSeg.legs.Add(leg);
@@ -185,9 +188,10 @@ namespace IndiaAPI.Controllers
                                     itin.inbound.segments.Add(gSeg);
                                 }
                             }
+                            ctrFseg++;
                         }
                         itin.booking_url += ("&rdtl=" + resultID);
-                        response.itineraries.Add(itin);               
+                        response.itineraries.Add(itin);
                     }
                     #endregion
                 }
@@ -206,17 +210,17 @@ namespace IndiaAPI.Controllers
                                 TimeSpan ts = retSpecialReturnMatch[j].FlightSegments[0].Segments[0].DepTime - depSpecialReturn[i].FlightSegments[0].Segments.Last().ArrTime;
                                 if (ts.TotalMinutes > 240)
                                 {
-                                   
+
                                     Core.GoogleFlight.Itinerary itin = new Core.GoogleFlight.Itinerary()
                                     {
-                                        booking_url = "http://test.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
+                                        booking_url = "https://www.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
                                         outbound = new Core.GoogleFlight.Outbound(),
                                         price = new Core.GoogleFlight.Price(),
                                         validity_seconds = "10800",
                                         virtual_interline_type = Convert.ToString(Core.VirtualInterlineType.DEFAULT_TYPE)
                                     };
                                     itin.price.currency_code = "INR";
-                                    itin.price.total_decimal = (depSpecialReturn[i].Fare.grandTotal+ retSpecialReturn[j].Fare.grandTotal).ToString("f2");
+                                    itin.price.total_decimal = (depSpecialReturn[i].Fare.grandTotal + retSpecialReturn[j].Fare.grandTotal).ToString("f2");
                                     itin.booking_url += ("&price=" + itin.price.total_decimal);
 
                                     string resultID = string.Empty;
@@ -293,7 +297,7 @@ namespace IndiaAPI.Controllers
                             {
                                 Core.GoogleFlight.Itinerary itin = new Core.GoogleFlight.Itinerary()
                                 {
-                                    booking_url = "http://test.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
+                                    booking_url = "https://www.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
                                     outbound = new Core.GoogleFlight.Outbound(),
                                     price = new Core.GoogleFlight.Price(),
                                     validity_seconds = "10800",
@@ -373,7 +377,7 @@ namespace IndiaAPI.Controllers
                             {
                                 Core.GoogleFlight.Itinerary itin = new Core.GoogleFlight.Itinerary()
                                 {
-                                    booking_url = "http://test.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
+                                    booking_url = "https://www.flightsmojo.in/flight/itinerarygf?org=" + fsr.segment[0].originAirport + "&dest=" + fsr.segment[0].destinationAirport + "&depdate=" + fsr.segment[0].travelDate.ToString("dd-MM-yyyy") + "&retdate=" + (fsr.segment.Count > 1 ? fsr.segment[1].travelDate.ToString("dd-MM-yyyy") : "") + "&tripType=" + (fsr.segment.Count > 1 ? "R" : "O") + "&adults=" + fsr.adults + "&child=" + fsr.child + "&infants=" + fsr.infants + "&cabin=" + ((int)fsr.cabinType) + "&utm_source=" + fsr.sourceMedia + "&currency=inr",
                                     outbound = new Core.GoogleFlight.Outbound(),
                                     price = new Core.GoogleFlight.Price(),
                                     validity_seconds = "10800",

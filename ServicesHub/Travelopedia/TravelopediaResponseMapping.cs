@@ -534,6 +534,10 @@ namespace ServicesHub.Travelopedia
                                             {
                                                 fare.isBlock = true;
                                             }
+                                            //if (result.valCarrier == "SG" && request.segment[0].travelDate > DateTime.Today.AddDays(15) && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                            //{
+                                            //    fare.isBlock = true;
+                                            //}
                                             result.FareList.Add(fare);
 
                                             #endregion

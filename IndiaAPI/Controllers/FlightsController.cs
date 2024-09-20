@@ -48,11 +48,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "BOM",
-                orgArp = Core.FlightUtility.GetAirport("BOM"),
-                destinationAirport = "IXD",
-                destArp = Core.FlightUtility.GetAirport("IXD"),
-                travelDate = Convert.ToDateTime("2024-08-23") //DateTime.Today.AddDays(61)//
+                originAirport = "DEL",
+                orgArp = Core.FlightUtility.GetAirport("DEL"),
+                destinationAirport = "BOM",
+                destArp = Core.FlightUtility.GetAirport("BOM"),
+                travelDate = Convert.ToDateTime("2024-10-03") //DateTime.Today.AddDays(61)//
             });
 
             if (flightSearchReq.tripType != Core.TripType.OneWay)
@@ -74,7 +74,7 @@ namespace IndiaAPI.Controllers
             flightSearchReq.sourceMedia = "1015";
             flightSearchReq.userSearchID = getSearchID();
           //  var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq, true, true);
-            var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
+        //    var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
             //  var kkdd = new ServicesHub.Tripshope.TripshopeServiceMapping().GetFlightResults(flightSearchReq);
             //     var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
             // var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
@@ -86,7 +86,7 @@ namespace IndiaAPI.Controllers
             //    return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
             //   var kkdd = new ServicesHub.Travelopedia.TravelopediaServiceMapping().GetFlightResults(flightSearchReq, true, false);
             //       var kkdd = new ServicesHub.FareBoutique.FareBoutiqueServiceMapping().GetFlightResults(flightSearchReq);
-            //  var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
+             var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
             
             return Request.CreateResponse(HttpStatusCode.OK, kkdd);
             //  return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
@@ -2062,7 +2062,7 @@ namespace IndiaAPI.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
-            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(bookRequest), bookRequest.bookingID.ToString(), "Booking", "BookFlight Original Request");
+            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(bookRequest), bookRequest.bookingID.ToString(), "Booking", "BookFlight Original CRM Make Booking Request");
 
             FlightBookingResponse BookResponse = new FlightBookingResponse(bookRequest);
             BookResponse.bookingStatus = BookingStatus.InProgress;
@@ -2121,7 +2121,8 @@ namespace IndiaAPI.Controllers
                         isSSR = false,
                         isFareRule = false,
                         PhoneNo = "",
-                        PriceID = new List<string>(),
+                        //PriceID = new List<string>(),
+                        PriceID = bookRequest.PriceID,
                         siteID = bookRequest.siteID,
                         sourceMedia = bookRequest.sourceMedia,
                         userIP = bookRequest.userIP,
@@ -2136,6 +2137,7 @@ namespace IndiaAPI.Controllers
                     var pvResponse = new FlightMapper().TjVerifyThePrice(priceVerificationRequest);
                     if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
                     {
+                        bookRequest.TjBookingID = pvResponse.fareQuoteResponse.TjBookingID;
                         //  new ServicesHub.TripJack.TripJackServiceMapping().BookFlight(bookRequest, ref BookResponse);
                         new ServicesHub.TripJack.TripJackServiceMapping().BookFlightCRM(bookRequest, ref BookResponse);
                     }
@@ -2431,7 +2433,7 @@ namespace IndiaAPI.Controllers
                 new ServicesHub.LogWriter_New(ex.ToString(), bookRequest.bookingID.ToString(), "error", "BookFlight Exeption");
             }
 
-            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(BookResponse), bookRequest.bookingID.ToString(), "Booking", "BookFlight Original Response");
+            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(BookResponse), bookRequest.bookingID.ToString(), "Booking", "BookFlight CRM Make Booking Original Response");
 
             return Request.CreateResponse(HttpStatusCode.OK, BookResponse);
 
@@ -3630,7 +3632,7 @@ namespace IndiaAPI.Controllers
                                 }
                                 foreach (var flist in item.FareList)
                                 {
-                                    flist.FM_FareID = (++fareCtr).ToString();
+                                    flist.FM_FareID = (++fareCtr).ToString();                                  
                                     fare.Add(flist);
                                 }
                             }
@@ -3639,6 +3641,7 @@ namespace IndiaAPI.Controllers
 
                             if (firstResult.Fare != null)
                             {
+                               
                                 resutlDep.Add(firstResult);
                             }
                         }
@@ -3864,7 +3867,7 @@ namespace IndiaAPI.Controllers
                 if (request.travelType == Core.TravelType.International)
                 {
                     isOneDFare = false;
-                    istbo = false;
+                    istbo = true;
                     isfareBoutique = false;
                     isAirIQGDS = false;
                     isSatkarTravel = false;

@@ -72,8 +72,8 @@ namespace ServicesHub.Tripshope.TripshopeClass
         public string faretype_supplier { get; set; }
         public string issplrtfare { get; set; }
         public List<Othertaxesbreakup> othertaxesbreakup { get; set; }
-        public List<object> paxothertaxesbreakup { get; set; }
-        public List<object> amenities { get; set; }
+        //public List<object> paxothertaxesbreakup { get; set; }
+        //public List<object> amenities { get; set; }
         public string refundableinfo { get; set; }
     }
 
@@ -193,8 +193,4 @@ namespace ServicesHub.Tripshope.TripshopeClass
         public List<Flightleg> flightlegs { get; set; }
         public Flightfare flightfare { get; set; }
     }
-
-   
-
-
-}
+    }

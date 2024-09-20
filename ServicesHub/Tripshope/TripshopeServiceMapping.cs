@@ -20,42 +20,48 @@ namespace ServicesHub.Tripshope
             string errorMsg = string.Empty;
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);
             StringBuilder sbLogger = new StringBuilder();
-
-
-            string strRequest = new TripshopeRequestMappking().getFlightSearchRequest(request);
-            if (FlightUtility.isWriteLog)
+            try
             {
-                bookingLog(ref sbLogger, "TripShope Request", strRequest);
-            }
-            var strResponse = GetResponseSearch(URL + "nextra-flight-search.api", strRequest, ref errorMsg);
-
-            if (FlightUtility.isWriteLog)
-            {
-                bookingLog(ref sbLogger, "TripShope Response", strResponse.Trim());
-            }
-            if (!string.IsNullOrEmpty(strResponse))
-            {
-                TripshopeClass.SearchResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<TripshopeClass.SearchResponse>(strResponse);
-                bookingLog(ref sbLogger, "TripShope Response1", JsonConvert.SerializeObject(Response));
-                if (Response != null && Response.flightsearchresponse.totalresults > 0 && Response.flightsearchresponse.statuscode=="200")
+                string strRequest = new TripshopeRequestMappking().getFlightSearchRequest(request);
+                if (FlightUtility.isWriteLog)
                 {
-                    new TripshopeResponseMapping().getResults(request, ref Response, ref flightResponse);
+                    bookingLog(ref sbLogger, "TripShope Request", strRequest);
                 }
-                else
+                var strResponse = GetResponseSearch(URL + "nextra-flight-search.api", strRequest, ref errorMsg);
+
+                if (FlightUtility.isWriteLog)
                 {
-                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
-                    errorMsg += "Error";
-                    flightResponse.response.status = Core.TransactionStatus.Error;
-                    flightResponse.response.message = "no result found";
+                    bookingLog(ref sbLogger, "TripShope Response", strResponse.Trim());
+                }
+                if (!string.IsNullOrEmpty(strResponse))
+                {
+                    TripshopeClass.SearchResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<TripshopeClass.SearchResponse>(strResponse);
+                    bookingLog(ref sbLogger, "TripShope Response1", JsonConvert.SerializeObject(Response));
+                    if (Response != null && Response.flightsearchresponse != null && Response.flightsearchresponse.statuscode == "200")/*&& Response.flightsearchresponse.totalresults > 0 */
+                    {
+                        new TripshopeResponseMapping().getResults(request, ref Response, ref flightResponse);
+                    }
+                    else
+                    {
+                        flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                        errorMsg += "Error";
+                        flightResponse.response.status = Core.TransactionStatus.Error;
+                        flightResponse.response.message = "no result found";
+                    }
+                }
+
+                if (FlightUtility.isWriteLog)
+                {
+                    bookingLog(ref sbLogger, "TripShope errorMsg", errorMsg);
+                    new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
                 }
             }
-
-            if (FlightUtility.isWriteLog)
+            catch (Exception ex)
             {
-                bookingLog(ref sbLogger, "TripShope errorMsg", errorMsg);
-                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
+                bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
+                bookingLog(ref sbLogger, "Exception", ex.ToString());
+                new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "Tripshope Search Exeption");
             }
-
             return flightResponse;
         }
 
@@ -245,7 +251,7 @@ namespace ServicesHub.Tripshope
 
                                 TicketingDetailsResponse.GetTicketingDetailsResponse TDRes = JsonConvert.DeserializeObject<TicketingDetailsResponse.GetTicketingDetailsResponse>(responseD.ToString());
 
-                                if (!string.IsNullOrEmpty(TDRes.ApiStatus.Result.flightRecord.airline_pnr) && TDRes.ApiStatus.Result.flightRecord.airline_pnr.ToString()!="pending") /*&& TDRes.ApiStatus.Result.flightRecord.airline_pnr.Equals("pending", StringComparison.OrdinalIgnoreCase)*/
+                                if (!string.IsNullOrEmpty(TDRes.ApiStatus.Result.flightRecord.airline_pnr) && TDRes.ApiStatus.Result.flightRecord.airline_pnr.ToString() != "pending") /*&& TDRes.ApiStatus.Result.flightRecord.airline_pnr.Equals("pending", StringComparison.OrdinalIgnoreCase)*/
                                 {
                                     _response.PNR = TDRes.ApiStatus.Result.flightRecord.airline_pnr;
                                     bookingLog(ref sbLogger, "Tripshope Ticketing PNR", _response.PNR);
@@ -259,7 +265,7 @@ namespace ServicesHub.Tripshope
                                     _response.bookingStatus = BookingStatus.InProgress;
                                 }
 
-                                
+
 
                             }
                             else

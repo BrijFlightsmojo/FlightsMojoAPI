@@ -96,7 +96,9 @@ namespace ServicesHub.Ease2Fly
                     }
                     catch (Exception ex)
                     {
-                        //bookingLog(ref sbLogger, "Ease2Fly errorMsg", errorMsg);
+                        bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
+                        bookingLog(ref sbLogger, "Exception", ex.ToString());
+                        new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "e2f Search Exeption");
                     }
                 }
             }

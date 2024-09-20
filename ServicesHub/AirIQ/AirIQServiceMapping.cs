@@ -30,7 +30,7 @@ namespace ServicesHub.AirIQ
             {
                 new ServicesHub.LogWriter_New(ex.ToString(), "AIRIQGetToken" + DateTime.Today.ToString("ddMMyy"), "Exeption");
             }
-           
+
         }
 
         public FlightSearchResponseShort GetFlightResults(FlightSearchRequest request, bool isAirIQGDS, bool isAirIQGDSR)
@@ -39,43 +39,46 @@ namespace ServicesHub.AirIQ
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);
 
             StringBuilder sbLogger = new StringBuilder();
-            //if (FlightUtility.isWriteLog)
-            //{
-            //    bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
-            //}
-
-            string strRequest = new AirIQRequestMappking().getFlightSearchRequest(request);
-            strRequest = strRequest.Replace("-", "/");
-            if (FlightUtility.isWriteLogSearch)
+            try
             {
-                bookingLog(ref sbLogger, "AirIQ Request", strRequest);
-            }
-            var strResponse = GetResponseSearch(Url + "search", strRequest);
-
-            if (FlightUtility.isWriteLogSearch)
-            {
-                bookingLog(ref sbLogger, "AirIQ Response", strResponse);
-            }
-            if (!string.IsNullOrEmpty(strResponse))
-            {
-                AirIQClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<AirIQClass.FlightResponse>(strResponse);
-                bookingLog(ref sbLogger, "AirIQ Response 1", JsonConvert.SerializeObject(Response));
-                if ((Response.code == 200 || (Response.status!=null&& Response.status.Equals("success", StringComparison.OrdinalIgnoreCase))) && Response.code != 0)
+                string strRequest = new AirIQRequestMappking().getFlightSearchRequest(request);
+                strRequest = strRequest.Replace("-", "/");
+                if (FlightUtility.isWriteLogSearch)
                 {
-                    new AirIQResponseMapping().getResults(request, ref Response, ref flightResponse);
+                    bookingLog(ref sbLogger, "AirIQ Request", strRequest);
                 }
-                else
+                var strResponse = GetResponseSearch(Url + "search", strRequest);
+
+                if (FlightUtility.isWriteLogSearch)
                 {
-                    errorMsg += Response.message;
-                    flightResponse.response.status = Core.TransactionStatus.Error;
-                    flightResponse.response.message = "no result found";
+                    bookingLog(ref sbLogger, "AirIQ Response", strResponse);
+                }
+                if (!string.IsNullOrEmpty(strResponse))
+                {
+                    AirIQClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<AirIQClass.FlightResponse>(strResponse);
+                    bookingLog(ref sbLogger, "AirIQ Response 1", JsonConvert.SerializeObject(Response));
+                    if ((Response.code == 200 || (Response.status != null && Response.status.Equals("success", StringComparison.OrdinalIgnoreCase))) && Response.code != 0)
+                    {
+                        new AirIQResponseMapping().getResults(request, ref Response, ref flightResponse);
+                    }
+                    else
+                    {
+                        errorMsg += Response.message;
+                        flightResponse.response.status = Core.TransactionStatus.Error;
+                        flightResponse.response.message = "no result found";
+                    }
+                }
+                if (FlightUtility.isWriteLogSearch)
+                {
+                    bookingLog(ref sbLogger, "AirIQ errorMsg", errorMsg);
+                    new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
                 }
             }
-            if (FlightUtility.isWriteLogSearch)
+            catch (Exception ex)
             {
-                bookingLog(ref sbLogger, "AirIQ errorMsg", errorMsg);
-                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
-
+                bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
+                bookingLog(ref sbLogger, "Exception", ex.ToString());
+                new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "AirIQ Search Exeption");
             }
             return flightResponse;
         }
@@ -242,7 +245,7 @@ namespace ServicesHub.AirIQ
                 request.ContentType = "application/json";
                 request.Headers.Add("api-key", ApiKey);
                 request.Headers.Add("Authorization", AuthToken);
-             //   request.Timeout = 10000;
+                //   request.Timeout = 10000;
                 Stream dataStream = request.GetRequestStream();
                 dataStream.Write(data, 0, data.Length);
                 dataStream.Close();
@@ -325,7 +328,7 @@ namespace ServicesHub.AirIQ
                         }
                         StreamReader reader = new StreamReader(responseStream);
                         response = reader.ReadToEnd();
-                        
+
                     }
                 }
 

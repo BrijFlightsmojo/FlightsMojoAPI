@@ -43,53 +43,61 @@ namespace ServicesHub.SatkarTravel
         {
             string errorMsg = string.Empty;
             FlightSearchResponseShort flightResponse = new FlightSearchResponseShort(request);
-
             StringBuilder sbLogger = new StringBuilder();
-            for (int i = 0; i < request.segment.Count; i++)
+            try
             {
-                if (i == 0 && isSatkarTravel == false)
+                for (int i = 0; i < request.segment.Count; i++)
                 {
-                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
-                }
-                else if (i == 1 && isSatkarTravelR == false)
-                {
-                    flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
-                }
-                else
-                {
-                    string strRequest = new SatkarTravelRequestMappking().getFlightSearchRequest(request, i);
-                    if (FlightUtility.isWriteLog)
+                    if (i == 0 && isSatkarTravel == false)
                     {
-                        bookingLog(ref sbLogger, "Satkar Travel Request", strRequest);
+                        flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
                     }
-                    var strResponse = GetResponseSearch(ST_UrlSerch, strRequest, ref errorMsg);
+                    else if (i == 1 && isSatkarTravelR == false)
+                    {
+                        flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                    }
+                    else
+                    {
+                        string strRequest = new SatkarTravelRequestMappking().getFlightSearchRequest(request, i);
+                        if (FlightUtility.isWriteLog)
+                        {
+                            bookingLog(ref sbLogger, "Satkar Travel Request", strRequest);
+                        }
+                        var strResponse = GetResponseSearch(ST_UrlSerch, strRequest, ref errorMsg);
 
+                        if (FlightUtility.isWriteLog)
+                        {
+                            bookingLog(ref sbLogger, "Satkar Travel Response", strResponse);
+                        }
+                        if (!string.IsNullOrEmpty(strResponse))
+                        {
+                            SatkarTravelClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<SatkarTravelClass.FlightResponse>(strResponse);
+                            bookingLog(ref sbLogger, "Satkar Travel Response1", JsonConvert.SerializeObject(Response));
+                            if (Response != null && Response.error != null && Response.error.errorCode == 0 && Response.responseStatus == 1)
+                            {
+                                new SatkarTravelResponseMapping().getResults(request, ref Response, ref flightResponse);
+                            }
+                            else
+                            {
+                                flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
+                                errorMsg += "Error";
+                                flightResponse.response.status = Core.TransactionStatus.Error;
+                                flightResponse.response.message = "no result found";
+                            }
+                        }
+                    }
                     if (FlightUtility.isWriteLog)
                     {
-                        bookingLog(ref sbLogger, "Satkar Travel Response", strResponse);
-                    }
-                    if (!string.IsNullOrEmpty(strResponse))
-                    {
-                        SatkarTravelClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<SatkarTravelClass.FlightResponse>(strResponse);
-                        bookingLog(ref sbLogger, "Satkar Travel Response1", JsonConvert.SerializeObject(Response));
-                        if (Response != null && Response.error != null && Response.error.errorCode == 0 && Response.responseStatus == 1)
-                        {
-                            new SatkarTravelResponseMapping().getResults(request, ref Response, ref flightResponse);
-                        }
-                        else
-                        {
-                            flightResponse.Results.Add(new List<Core.Flight.FlightResult>());
-                            errorMsg += "Error";
-                            flightResponse.response.status = Core.TransactionStatus.Error;
-                            flightResponse.response.message = "no result found";
-                        }
+                        bookingLog(ref sbLogger, "Satkar Travel errorMsg", errorMsg);
+                        new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
                     }
                 }
-                if (FlightUtility.isWriteLog)
-                {
-                    bookingLog(ref sbLogger, "Satkar Travel errorMsg", errorMsg);
-                    new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Search");
-                }
+            }
+            catch (Exception ex)
+            {
+                bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
+                bookingLog(ref sbLogger, "Exception", ex.ToString());
+                new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "Satkar Search Exeption");
             }
             return flightResponse;
         }

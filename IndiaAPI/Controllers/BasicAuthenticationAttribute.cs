@@ -6,16 +6,19 @@ using System.Threading;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Security.Principal;
+using System.Threading.Tasks;
 
 namespace IndiaAPI.Controllers
 {
-    public class BasicAuthenticationAttribute: AuthorizationFilterAttribute
+    public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             if (actionContext.Request.Headers.Authorization == null)
             {
-                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+                Core.GoogleFlight.ErrorResponse errorResponse = new Core.GoogleFlight.ErrorResponse() { errors = new System.Collections.Generic.List<Core.GoogleFlight.Error>() };//new Core.GoogleFlight.FlightResponse() { responseStatus = new Core.GoogleFlight.ResponseStatus() { status = Core.TransactionStatus.Error, message = "Unauthorized access. Please provide valid credentials!" } };
+                errorResponse.errors.Add(new Core.GoogleFlight.Error() { code = "HTTP_UNAUTHORIZED", description = "Unauthorized access." });
+                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, errorResponse);
                 actionContext.Response.Headers.Add("WWW-Authenticate", "Basic realm=\"MyWebAPI\"");
             }
             else
@@ -23,16 +26,18 @@ namespace IndiaAPI.Controllers
                 var authHeader = actionContext.Request.Headers.Authorization.Parameter;
                 var decodedAuthHeader = Encoding.UTF8.GetString(Convert.FromBase64String(authHeader));
                 var usernamePasswordArray = decodedAuthHeader.Split(':');
-                var username = usernamePasswordArray[0];
-                var password = usernamePasswordArray[1];
+                //var username = usernamePasswordArray[0];
+                //var password = usernamePasswordArray[1];
 
-                if (IsAuthorizedUser(username, password))
+                if (IsAuthorizedUser(usernamePasswordArray[0], usernamePasswordArray[1]))
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null);
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(usernamePasswordArray[0]), null);
                 }
                 else
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+                    Core.GoogleFlight.ErrorResponse errorResponse = new Core.GoogleFlight.ErrorResponse() { errors = new System.Collections.Generic.List<Core.GoogleFlight.Error>() };//new Core.GoogleFlight.FlightResponse() { responseStatus = new Core.GoogleFlight.ResponseStatus() { status = Core.TransactionStatus.Error, message = "Unauthorized access. Please provide valid credentials!" } };
+                    errorResponse.errors.Add(new Core.GoogleFlight.Error() { code = "HTTP_UNAUTHORIZED", description = "Unauthorized access." });
+                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, errorResponse);
                     actionContext.Response.Headers.Add("WWW-Authenticate", "Basic realm=\"MyWebAPI\"");
                 }
             }

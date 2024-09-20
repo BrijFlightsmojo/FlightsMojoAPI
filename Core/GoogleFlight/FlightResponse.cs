@@ -4,23 +4,30 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 namespace Core.GoogleFlight
-{
+{   
     [DataContract]
     public class FlightResponse
     {
-        [DataMember]
+        //[DataMember(EmitDefaultValue = false)]
+        //[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        //public ErrorResponse errorResponse { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Itinerary> itineraries { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> warnings { get; set; }
+
     }
     [DataContract]
     public class Itinerary
     {
         [DataMember]
         public Outbound outbound { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Inbound inbound { get; set; }
         [DataMember]
         public Price price { get; set; }
@@ -37,7 +44,7 @@ namespace Core.GoogleFlight
         [DataMember]
         public List<Segment> segments { get; set; }
     }
-    [DataContract]
+   [DataContract]
     public class Inbound
     {
         [DataMember]
@@ -100,5 +107,34 @@ namespace Core.GoogleFlight
         public int max_weight { get; set; }
         [DataMember]
         public int count { get; set; }
-    }   
+    }
+
+    //[DataContract]
+    //public class ResponseStatus
+    //{
+    //    [DataMember]
+    //    public TransactionStatus status { get; set; }
+    //    [DataMember]
+    //    public string message { get; set; }
+    //    public ResponseStatus()
+    //    {
+    //        status = TransactionStatus.Success;
+    //        message = "Success";
+    //    }
+
+    //}
+    [DataContract]
+    public class Error
+    {
+        [DataMember]
+        public string code { get; set; }
+        [DataMember]
+        public string description { get; set; }
+    }
+    [DataContract]
+    public class ErrorResponse
+    {
+       [DataMember]
+        public List<Error> errors { get; set; }
+    }
 }
