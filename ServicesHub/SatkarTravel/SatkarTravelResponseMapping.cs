@@ -14,8 +14,6 @@ namespace ServicesHub.SatkarTravel
             int totPax = request.adults + request.child + request.infants;
             if (fsr.error.errorCode == 0 || fsr.responseStatus == 1)
             {
-
-
                 foreach (List<SatkarTravelClass.ResultsItem> listItin in fsr.results)
                 {
                     int itinCtr = 0;
@@ -33,8 +31,6 @@ namespace ServicesHub.SatkarTravel
                       ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
                       (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                         {
-                            //if (Itin.segments.FirstOrDefault().FirstOrDefault().noOfSeatAvailable >= request.adults + request.child)
-                            //{
                             Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                             {
                                 AirlineRemark = Itin.airlineRemark,
@@ -54,7 +50,7 @@ namespace ServicesHub.SatkarTravel
                                 FareList = new List<Core.Flight.Fare>()
                             };
                             #region set flight segment
-
+                            bool isSetCabinType = true;
                             Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment()
                             {
                                 Segments = new List<Core.Flight.Segment>(),
@@ -86,6 +82,16 @@ namespace ServicesHub.SatkarTravel
                             {
                                 segment.Duration = (int)(segment.ArrTime - segment.DepTime).TotalMinutes;
                             }
+
+                            if (segment.CabinClass == CabinType.None)
+                            {
+                                isSetCabinType = false;
+                            }
+                            string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                            GetBaggege(request.cabinType, request.travelType, segment.Baggage, segment.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                            segment.Baggage = retBaggage;
+                            segment.CabinBaggage = retCabinBaggage;
+
 
                             result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
                             fs.stop++;
@@ -146,7 +152,8 @@ namespace ServicesHub.SatkarTravel
                                 gdsType = GdsType.SatkarTravel,
                                 SeatAvailable = Itin.segments.FirstOrDefault().FirstOrDefault().noOfSeatAvailable,
                                 FareType = FareType.OFFER_FARE_WITH_PNR,
-                                ST_ResultSessionID = Itin.resultSessionId
+                                ST_ResultSessionID = Itin.resultSessionId,
+                                refundType = Core.RefundType.NonRefundable
                             };
 
                             fare.mojoFareType = MojoFareType.SeriesFareWithPNR;
@@ -238,6 +245,33 @@ namespace ServicesHub.SatkarTravel
         }
 
 
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
+            }
+        }
         public void getFareQuoteResponse(ref Core.Flight.PriceVerificationRequest request,
            ref ST_FareQuote.FareQuoteResponse fqr, ref Core.Flight.FareQuoteResponse response, int ctr)
         {

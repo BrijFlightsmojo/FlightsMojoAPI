@@ -17,7 +17,6 @@ namespace ServicesHub.FareBoutique
             {
                 response.FB_booking_token_id = fsr.booking_token_id;
                 int itinCtr = 0;
-                //int ctrError = 0;
 
                 List<Core.Flight.FlightResult> listFlightResult = new List<Core.Flight.FlightResult>();
                 foreach (FareBoutiqueClass.Datum Itin in fsr.data)
@@ -54,13 +53,12 @@ namespace ServicesHub.FareBoutique
                                 ffFareType = FareType.OFFERFARE,
                                 FareList = new List<Core.Flight.Fare>()
                             };
-
+                            bool isSetCabinType = true;
                             #region set flight segment
 
                             string Airline = string.Empty;
 
                             Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment() { Segments = new List<Core.Flight.Segment>(), Duration = 0, stop = 0, LayoverTime = 0, SegName = "Depart" };
-                            //DateTime.ParseExact(FormColl["departure_date3"].ToString(), "yyyy-MM-dd", new CultureInfo("en-US"));
                             Core.Flight.Segment segment = new Core.Flight.Segment()
                             {
                                 Airline = Itin.airline_code,
@@ -80,6 +78,16 @@ namespace ServicesHub.FareBoutique
                                 CabinClass = request.cabinType,
 
                             };
+
+                            if (segment.CabinClass == CabinType.None)
+                            {
+                                isSetCabinType = false;
+                            }
+                            string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                            GetBaggege(request.cabinType, request.travelType, segment.Baggage, segment.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                            segment.Baggage = retBaggage;
+                            segment.CabinBaggage = retCabinBaggage;
+
                             if (FlightUtility.GetAirport(segment.Origin).countryCode.Equals("IN", StringComparison.OrdinalIgnoreCase) && FlightUtility.GetAirport(segment.Destination).countryCode.Equals("IN", StringComparison.OrdinalIgnoreCase))
                             {
                                 segment.Duration = (int)(segment.ArrTime - segment.DepTime).TotalMinutes;
@@ -109,7 +117,8 @@ namespace ServicesHub.FareBoutique
                                 cabinType = result.cabinClass,
                                 gdsType = GdsType.FareBoutique,
                                 SeatAvailable = Itin.total_available_seats,
-                                subProvider = SMCommanMethod.getSubProvider(Itin.inventory_from != null ? Itin.inventory_from.company_name : "")
+                                subProvider = SMCommanMethod.getSubProvider(Itin.inventory_from != null ? Itin.inventory_from.company_name : ""),
+                                refundType = Core.RefundType.NonRefundable
                             };
                             fare.mojoFareType = MojoFareType.SeriesFareWithPNR;
 
@@ -138,27 +147,6 @@ namespace ServicesHub.FareBoutique
                                 chdFare.PassengerType = Core.PassengerType.Child;
                                 fare.fareBreakdown.Add(chdFare);
                             }
-                            //Core.Flight.FareBreakdown adtFare = new Core.Flight.FareBreakdown();
-                            //adtFare.BaseFare = Itin.per_adult_child_price * 0.75m;
-                            //adtFare.Tax = Itin.per_adult_child_price * 0.25m;
-                            //adtFare.PassengerType = Core.PassengerType.Adult;
-                            //fare.fareBreakdown.Add(adtFare);
-                            //if (request.child > 0)
-                            //{
-                            //    Core.Flight.FareBreakdown chdFare = new Core.Flight.FareBreakdown();
-                            //    chdFare.BaseFare = Itin.per_adult_child_price * 0.75m;
-                            //    chdFare.Tax = Itin.per_adult_child_price * 0.25m;
-                            //    chdFare.PassengerType = Core.PassengerType.Child;
-                            //    fare.fareBreakdown.Add(chdFare);
-                            //}
-                            //if (request.infants > 0)
-                            //{
-                            //    Core.Flight.FareBreakdown infFare = new Core.Flight.FareBreakdown();
-                            //    infFare.BaseFare = Itin.per_infant_price * 0.75m;
-                            //    infFare.Tax = Itin.per_infant_price * 0.25m;
-                            //    infFare.PassengerType = Core.PassengerType.Infant;
-                            //    fare.fareBreakdown.Add(infFare);
-                            //}
                             #endregion
                             fare.NetFare = fare.grandTotal = fare.PublishedFare + fare.Markup - fare.CommissionEarned;
 
@@ -207,6 +195,35 @@ namespace ServicesHub.FareBoutique
                 response.Results.Add(new List<Core.Flight.FlightResult>()); 
             }
         }
+
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
+            }
+        }
+
         public void getFareQuoteResponse(ref Core.Flight.PriceVerificationRequest request,
             ref FB_FareQuote.FareQuoteResponse fqr, ref Core.Flight.FareQuoteResponse response, int ctr)
         {

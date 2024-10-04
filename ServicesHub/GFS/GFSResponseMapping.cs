@@ -55,6 +55,7 @@ namespace ServicesHub.GFS
                             #region set flight segment
 
                             string Airline = string.Empty;
+                            bool isSetCabinType = true;
 
                             Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment() { Segments = new List<Core.Flight.Segment>(), Duration = 0, stop = 0, LayoverTime = 0, SegName = "Depart" };
 
@@ -82,6 +83,16 @@ namespace ServicesHub.GFS
                                         equipmentType = "",
                                         CabinClass = request.cabinType,
                                     };
+                                    if (segment.CabinClass == CabinType.None)
+                                    {
+                                        isSetCabinType = false;
+                                    }
+                                    string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                                    GetBaggege(request.cabinType, request.travelType, segment.Baggage, segment.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                                    segment.Baggage = retBaggage;
+                                    segment.CabinBaggage = retCabinBaggage;
+
+
                                     result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
                                     fs.stop++;
                                     fs.Duration = seg.duration;
@@ -110,7 +121,8 @@ namespace ServicesHub.GFS
                                 FareType = FareType.OFFER_FARE_WITH_PNR,
                                 cabinType = result.cabinClass,
                                 SeatAvailable = Itin.seats_available,
-                                gdsType = GdsType.GFS
+                                gdsType = GdsType.GFS,
+                                refundType = Core.RefundType.NonRefundable
                             };
                             fare.mojoFareType = MojoFareType.SeriesFareWithPNR;
 
@@ -200,6 +212,35 @@ namespace ServicesHub.GFS
             {
                 response.fareIncreaseAmount = 0;
                 response.VerifiedTotalPrice = request.flightResult[ctr].Fare.PublishedFare;
+            }
+        }
+
+
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
             }
         }
     }

@@ -12,8 +12,7 @@ namespace ServicesHub.Ease2Fly
         public void getResults(Core.Flight.FlightSearchRequest request, ref Ease2FlyClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
         {
             int totPax = request.adults + request.child + request.infants;
-            //if ((fsr.status = true || fsr.flightresult.Count > 0) && fsr.flightresult != null)
-            //{
+
             int itinCtr = 0;
             List<Core.Flight.FlightResult> listFlightResult = new List<Core.Flight.FlightResult>();
 
@@ -31,8 +30,6 @@ namespace ServicesHub.Ease2Fly
                                 ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
                    (o.AffiliateId_Not.Contains(request.sourceMedia) == false) && (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                 {
-                    //if (Itin.seat >= request.adults + request.child)
-                    //{
                     Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                     {
                         AirlineRemark = "",
@@ -55,6 +52,7 @@ namespace ServicesHub.Ease2Fly
                     #region set flight segment
 
                     string Airline = string.Empty;
+                    bool isSetCabinType = true;
 
                     Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment() { Segments = new List<Core.Flight.Segment>(), Duration = 0, stop = 0, LayoverTime = 0, SegName = "Depart" };
 
@@ -84,6 +82,15 @@ namespace ServicesHub.Ease2Fly
                         segment.Duration = (int)(segment.ArrTime - segment.DepTime).TotalMinutes;
                     }
 
+                    if (segment.CabinClass == CabinType.None)
+                    {
+                        isSetCabinType = false;
+                    }
+                    string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                    GetBaggege(request.cabinType, request.travelType, segment.Baggage, segment.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                    segment.Baggage = retBaggage;
+                    segment.CabinBaggage = retCabinBaggage;
+
                     result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
 
                     fs.stop++;
@@ -111,7 +118,8 @@ namespace ServicesHub.Ease2Fly
                         SeatAvailable = Itin.seat,
                         d_owner = Itin.d_owner,
                         FlightKey = Itin.flight_key,
-                        gdsType = GdsType.Ease2Fly
+                        gdsType = GdsType.Ease2Fly,
+                        refundType = Core.RefundType.NonRefundable
                     };
                     fare.mojoFareType = MojoFareType.SeriesFareWithPNR;
 
@@ -176,6 +184,34 @@ namespace ServicesHub.Ease2Fly
             }
             response.Results.Add(listFlightResult);
             //}
+        }
+
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
+            }
         }
     }
 }

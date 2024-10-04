@@ -695,6 +695,8 @@ namespace ServicesHub.TripJack
                                     };
 
                                     #region set Segment
+                                    bool isSetCabinType = true;
+
                                     result.FlightSegments = new List<Core.Flight.FlightSegment>();
                                     Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment()
                                     {
@@ -704,6 +706,8 @@ namespace ServicesHub.TripJack
                                         LayoverTime = 0
                                     };
                                     int segCtr = 0;
+                                   
+
                                     foreach (var tjSeg in Itin.sI)
                                     {
                                         Core.Flight.Segment seg = new Core.Flight.Segment()
@@ -715,7 +719,7 @@ namespace ServicesHub.TripJack
                                             Destination = tjSeg.aa.code,
                                             DepTime = tjSeg.dt,
                                             ArrTime = tjSeg.at,
-                                            CabinClass = request.cabinType,
+                                            CabinClass = getCabinType(Itin.totalPriceList[0].fd.ADULT.cc),
                                             Duration = tjSeg.duration,
                                             FareClass = Itin.totalPriceList[0].fd.ADULT.cB,
                                             FromTerminal = tjSeg.da.terminal,
@@ -725,6 +729,18 @@ namespace ServicesHub.TripJack
                                             OperatingCarrier = (tjSeg.oB != null && !string.IsNullOrEmpty(tjSeg.oB.code) && (tjSeg.fD.aI.code != tjSeg.oB.code)) ? tjSeg.oB.code : tjSeg.fD.aI.code,
                                             id = tjSeg.id.ToString()
                                         };
+
+                                        if (seg.CabinClass == CabinType.None)
+                                        {
+                                            isSetCabinType = false;
+                                        }
+
+                                        string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                                        GetBaggege(request.cabinType, request.travelType, seg.Baggage, seg.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                                        seg.Baggage = retBaggage;
+                                        seg.CabinBaggage = retCabinBaggage;
+
+
                                         result.ResultCombination += (seg.Airline + seg.FlightNumber + seg.DepTime.ToString("ddMMHHmm"));
                                         #region LayOverTime
                                         if (segCtr > 0)
@@ -926,6 +942,7 @@ namespace ServicesHub.TripJack
                                         LayoverTime = 0
                                     };
                                     int segCtr = 0;
+                                    bool isSetCabinType = true;
                                     foreach (var tjSeg in Itin.sI)
                                     {
                                         Core.Flight.Segment seg = new Core.Flight.Segment()
@@ -947,6 +964,18 @@ namespace ServicesHub.TripJack
                                             OperatingCarrier = (tjSeg.oB != null && !string.IsNullOrEmpty(tjSeg.oB.code) && (tjSeg.fD.aI.code != tjSeg.oB.code)) ? tjSeg.oB.code : tjSeg.fD.aI.code,
                                             id = tjSeg.id.ToString()
                                         };
+
+
+                                        if (seg.CabinClass == CabinType.None)
+                                        {
+                                            isSetCabinType = false;
+                                        }
+
+                                        string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                                        GetBaggege(request.cabinType, request.travelType, seg.Baggage, seg.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                                        seg.Baggage = retBaggage;
+                                        seg.CabinBaggage = retCabinBaggage;
+
                                         result.ResultCombination += (seg.Airline + seg.FlightNumber + seg.DepTime.ToString("ddMMHHmm"));
                                         #region LayOverTime
                                         if (segCtr > 0)
@@ -1140,6 +1169,7 @@ namespace ServicesHub.TripJack
                                             LayoverTime = 0
                                         };
                                         int segCtr = 0;
+                                        bool isSetCabinType = true;
                                         foreach (var tjSeg in Itin.sI.Where(k => k.isRs == false))
                                         {
                                             Core.Flight.Segment seg = new Core.Flight.Segment()
@@ -1161,6 +1191,18 @@ namespace ServicesHub.TripJack
                                                 OperatingCarrier = (tjSeg.oB != null && !string.IsNullOrEmpty(tjSeg.oB.code) && (tjSeg.fD.aI.code != tjSeg.oB.code)) ? tjSeg.oB.code : tjSeg.fD.aI.code,
                                                 id = tjSeg.id.ToString()
                                             };
+
+                                            if (seg.CabinClass == CabinType.None)
+                                            {
+                                                isSetCabinType = false;
+                                            }
+
+                                            string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                                            GetBaggege(request.cabinType, request.travelType, seg.Baggage, seg.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                                            seg.Baggage = retBaggage;
+                                            seg.CabinBaggage = retCabinBaggage;
+
+
                                             result.ResultCombination += (seg.Airline + seg.FlightNumber + seg.DepTime.ToString("ddMMHHmm"));
                                             #region LayOverTime
                                             if (segCtr > 0)
@@ -1194,6 +1236,7 @@ namespace ServicesHub.TripJack
                                             LayoverTime = 0
                                         };
                                         int segCtr = 0;
+                                        bool isSetCabinType = true;
                                         foreach (var tjSeg in Itin.sI.Where(k => k.isRs))
                                         {
                                             Core.Flight.Segment seg = new Core.Flight.Segment()
@@ -1215,6 +1258,17 @@ namespace ServicesHub.TripJack
                                                 OperatingCarrier = (tjSeg.oB != null && !string.IsNullOrEmpty(tjSeg.oB.code) && (tjSeg.fD.aI.code != tjSeg.oB.code)) ? tjSeg.oB.code : tjSeg.fD.aI.code,
                                                 id = tjSeg.id.ToString()
                                             };
+
+                                            if (seg.CabinClass == CabinType.None)
+                                            {
+                                                isSetCabinType = false;
+                                            }
+
+                                            string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                                            GetBaggege(request.cabinType, request.travelType, seg.Baggage, seg.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                                            seg.Baggage = retBaggage;
+                                            seg.CabinBaggage = retCabinBaggage;
+
                                             result.ResultCombination += (seg.Airline + seg.FlightNumber + seg.DepTime.ToString("ddMMHHmm"));
                                             #region LayOverTime
                                             if (segCtr > 0)
@@ -1311,7 +1365,7 @@ namespace ServicesHub.TripJack
                                         //}
                                         //else
                                         //{
-                                            fare.NetFare = fare.grandTotal = (fare.BaseFare + fare.Tax);
+                                        fare.NetFare = fare.grandTotal = (fare.BaseFare + fare.Tax);
                                         //}
                                         if (request.cabinType == fare.cabinType)
                                         {
@@ -1361,6 +1415,36 @@ namespace ServicesHub.TripJack
             catch (Exception ex)
             { }
         }
+
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
+            }
+        }
+
+
         public Core.FareType getFareType(string fType)
         {
             Core.FareType fareType = Core.FareType.NONE;
@@ -1693,12 +1777,5 @@ namespace ServicesHub.TripJack
             return fareType;
         }
 
-        //private void saveFareType(int FMFareType, string Airline, string FareType, int Provider)
-        //{
-        //    var save = Task.Run(async () =>
-        //    {
-        //        await new DAL.Deal.FareType().SetFareType(FMFareType, Airline, FareType, Provider);
-        //    });
-        //}
     }
 }

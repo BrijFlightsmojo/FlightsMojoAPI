@@ -56,10 +56,12 @@ namespace ServicesHub.Tripshope
                                 gdsType = Core.GdsType.TripShope,
                                 valCarrier = flightlist.flightlegs[0].validatingcarrier,
                                 Color = "",
-                                ffFareType = getFareType((flightlist.flightfare.faretype != null ? flightlist.flightfare.faretype : ""),(string.IsNullOrEmpty(flightlist.flightfare.refundableinfo)?true:Convert.ToBoolean(flightlist.flightfare.refundableinfo))),
+                                ffFareType = getFareType((flightlist.flightfare.faretype != null ? flightlist.flightfare.faretype : ""), (string.IsNullOrEmpty(flightlist.flightfare.refundableinfo) ? true : Convert.ToBoolean(flightlist.flightfare.refundableinfo))),
                                 FareList = new List<Core.Flight.Fare>()
 
                             };
+
+                            bool isSetCabinType = true;
                             Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment()
                             {
                                 Segments = new List<Core.Flight.Segment>(),
@@ -91,6 +93,17 @@ namespace ServicesHub.Tripshope
                                     //CabinClass = request.cabinType,
                                     CabinClass = GetCabinType(fseg.cabinclass, request.cabinType),
                                 };
+
+                                if (segment.CabinClass == CabinType.None)
+                                {
+                                    isSetCabinType = false;
+                                }
+                                string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                                GetBaggege(request.cabinType, request.travelType, segment.Baggage, segment.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                                segment.Baggage = retBaggage;
+                                segment.CabinBaggage = retCabinBaggage;
+
+
                                 result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
                                 // CabinClass = fseg.cabinclass;
 
@@ -151,7 +164,8 @@ namespace ServicesHub.Tripshope
                                 gdsType = Core.GdsType.TripShope,
                                 nextracustomstr = flightlist.nextracustomstr,
                                 nextraflightkey = flightlist.nextraflightkey,
-                           };
+                                refundType = Core.RefundType.NonRefundable
+                            };
                             if (fare.mojoFareType == MojoFareType.None || fare.mojoFareType == MojoFareType.Unknown)
                             {
                                 LogCreater.CreateLogFile(flightlist.flightfare.faretype + "~" + result.valCarrier, "Log\\FareType", "TS" + DateTime.Today.ToString("ddMMyyy") + ".txt");
@@ -228,8 +242,34 @@ namespace ServicesHub.Tripshope
             }
         }
 
-    
 
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
+            }
+        }
         public Core.FareType getFareType(string type, bool refundable)
         {
             Core.FareType ft = Core.FareType.NONE;
@@ -242,7 +282,8 @@ namespace ServicesHub.Tripshope
                     case "saver": ft = Core.FareType.SAVER; break;
                     case "flexi": ft = Core.FareType.FLEXI; break;
                     case "sme": ft = Core.FareType.SME; break;
-                    default: ft = (refundable ?Core.FareType.PUBLISH : Core.FareType.INSTANTPUR ); break;
+                    case "Flexi Group Fare": ft = Core.FareType.INSTANTPUR; break;
+                    default: ft = (refundable ? Core.FareType.PUBLISH : Core.FareType.INSTANTPUR); break;
                 }
             }
             if (ft == Core.FareType.NONE)

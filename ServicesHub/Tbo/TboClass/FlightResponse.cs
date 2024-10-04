@@ -209,6 +209,13 @@ namespace ServicesHub.Tbo.TboClass
         public string Status { get; set; }
         [DataMember]
         public int NoOfSeatAvailable { get; set; }
+        [DataMember]
+        public string CabinClass { get; set; }
+        [DataMember]
+        public string Baggage { get; set; }
+        [DataMember]
+        public string CabinBaggage { get; set; }
+       
     }
     [DataContract]
     public class Airline

@@ -53,7 +53,7 @@ namespace ServicesHub.AirIQ
                         };
 
                         #region set flight segment
-
+                        bool isSetCabinType = true;
                         string Airline = string.Empty;
 
                         Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment() { Segments = new List<Core.Flight.Segment>(), Duration = 0, stop = 0, LayoverTime = 0, SegName = "Depart" };
@@ -82,6 +82,15 @@ namespace ServicesHub.AirIQ
                             segment.Duration = (int)(segment.ArrTime - segment.DepTime).TotalMinutes;
                         }
 
+                        if (segment.CabinClass == CabinType.None)
+                        {
+                            isSetCabinType = false;
+                        }
+                        string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                        GetBaggege(request.cabinType, request.travelType, segment.Baggage, segment.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                        segment.Baggage = retBaggage;
+                        segment.CabinBaggage = retCabinBaggage;
+
                         result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
 
                         fs.stop++;
@@ -104,7 +113,8 @@ namespace ServicesHub.AirIQ
                             NetFare = totPric,
                             FareType = FareType.OFFER_FARE_WITH_PNR,
                             cabinType = result.cabinClass,
-                            gdsType = GdsType.AirIQ
+                            gdsType = GdsType.AirIQ,
+                            refundType = Core.RefundType.NonRefundable
                         };
                         fare.mojoFareType = MojoFareType.SeriesFareWithPNR;
 
@@ -168,6 +178,34 @@ namespace ServicesHub.AirIQ
                     itinCtr++;
                 }
                 response.Results.Add(listFlightResult);
+            }
+        }
+
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
             }
         }
     }

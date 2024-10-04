@@ -55,7 +55,7 @@ namespace IndiaAPI.Controllers
                 sID = "",
                 tgy_Request_id = "",
                 tripType = string.IsNullOrEmpty(searchRequest.tripSpec.returnDate) ? Core.TripType.OneWay : Core.TripType.RoundTrip,
-                userIP = "",
+                userIP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"],
                 userSearchID = getSearchID(),
 
             };

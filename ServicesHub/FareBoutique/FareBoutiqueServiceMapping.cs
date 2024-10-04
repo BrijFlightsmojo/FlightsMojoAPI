@@ -183,6 +183,11 @@ namespace ServicesHub.FareBoutique
                             _response.responseStatus.message = "Booking InProgress Due to" + (string.IsNullOrEmpty(bookResponse.errorMessage) ? "" : ("replyMsg:" + bookResponse.errorMessage));
                         }
                     }
+                    else
+                    {
+                        _response.bookingStatus = BookingStatus.InProgress;
+                        _response.responseStatus.message = "InProgress";
+                    }
                     ctr++;
                 }
             }

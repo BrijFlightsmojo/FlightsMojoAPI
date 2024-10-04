@@ -17,6 +17,353 @@ namespace ServicesHub.Tbo
             {
                 response.TraceId = fsr.Response.TraceId;
                 int itinCtr = 0;
+
+                foreach (List<TboClass.Itinerary> listItin in fsr.Response.Results)
+                {
+                    List<Core.Flight.FlightResult> listFlightResult = new List<Core.Flight.FlightResult>();
+
+                    foreach (TboClass.Itinerary Itin in listItin)
+                    {
+                        if (Core.FlightUtility.airlineBlockList.Where(o => (o.Action == AirlineBlockAction.Block) && (o.Supplier == GdsType.Tbo) &&
+                                   (o.SiteId == request.siteId) && (o.FareType.Count == 0) && o.airline.Contains(Itin.ValidatingAirline) &&
+                                   ((o.CountryFrom.Any() && o.CountryFrom.Contains(request.segment[0].orgArp.countryCode)) || o.CountryFrom.Any() == false) &&
+                                   ((o.CountryTo.Any() && o.CountryTo.Contains(request.segment[0].destArp.countryCode)) || o.CountryTo.Any() == false) &&
+                                   (o.CountryFrom_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
+                                   (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
+                                   ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
+                                   ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                   ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                   (o.AffiliateId_Not.Contains(request.sourceMedia) == false) &&
+                                   (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                        {
+                            Core.Flight.FlightResult result = new Core.Flight.FlightResult()
+                            {
+                                AirlineRemark = Itin.AirlineRemark,
+                                Fare = new Core.Flight.Fare(),
+                                IsLCC = Itin.IsLCC,
+                                IsRefundable = Itin.IsRefundable,
+                                LastTicketDate = Itin.LastTicketDate,
+                                ResultIndex = Itin.ResultIndex,
+                                FlightSegments = new List<Core.Flight.FlightSegment>(),
+                                Source = Itin.Source,
+                                TicketAdvisory = Itin.TicketAdvisory,
+                                cabinClass = request.cabinType,
+                                gdsType = Core.GdsType.Tbo,
+                                valCarrier = Itin.ValidatingAirline,
+                                Color = Itin.FareClassification != null ? Itin.FareClassification.Color : "",
+                                ffFareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
+                                FareList = new List<Core.Flight.Fare>()
+                            };
+                            bool isSetCabinType = true;
+                            if (result.Color == "RosyBrown")
+                            {
+
+                            }
+                            #region set flight segment
+                            int segCtr = 0;
+                            string Airline = string.Empty;
+                             int seatAvail = 9;
+                            foreach (List<TboClass.FlightSegment> fseg in Itin.Segments)
+                            {
+                                Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment() { Segments = new List<Core.Flight.Segment>(), Duration = 0, stop = 0, LayoverTime = 0, SegName = (segCtr == 0 && itinCtr == 0 ? "Depart" : "Return") };
+                                int layCtr = 1;
+                                foreach (TboClass.FlightSegment seg in fseg)
+                                {
+                                    Core.Flight.Segment segment = new Core.Flight.Segment()
+                                    {
+                                        Airline = seg.Airline.AirlineCode,
+                                        ArrTime = seg.Destination.ArrTime,
+                                        DepTime = seg.Origin.DepTime,
+                                        Origin = seg.Origin.Airport.AirportCode,
+                                        Destination = seg.Destination.Airport.AirportCode,
+                                        Duration = seg.Duration,
+                                        FareClass = seg.Airline.FareClass,
+                                        FlightNumber = seg.Airline.FlightNumber,
+                                        FromTerminal = seg.Origin.Airport.Terminal,
+                                        ToTerminal = seg.Destination.Airport.Terminal,
+                                        IsETicketEligible = seg.IsETicketEligible,
+                                        OperatingCarrier = string.IsNullOrEmpty(seg.Airline.OperatingCarrier) ? seg.Airline.AirlineCode : seg.Airline.OperatingCarrier,
+                                        SegmentIndicator = seg.SegmentIndicator,
+                                        equipmentType = seg.Craft,
+                                        CabinClass = GetCabinType(request.cabinType, seg.CabinClass),
+
+                                    };
+                                    if (segment.CabinClass == CabinType.None)
+                                    {
+                                        isSetCabinType = false;
+                                    }
+                                    string retBaggage = string.Empty, retCabinBaggage = string.Empty;
+                                    GetBaggege(request.cabinType, request.travelType, seg.Baggage, seg.CabinBaggage, ref retBaggage, ref retCabinBaggage);
+                                    segment.Baggage = retBaggage;
+                                    segment.CabinBaggage = retCabinBaggage;
+                                    seatAvail = seatAvail < seg.NoOfSeatAvailable ? seg.NoOfSeatAvailable : seatAvail;
+                                    result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
+                                    #region LayOverTime
+                                    if (fseg.Count > layCtr)
+                                    {
+                                        TimeSpan ts = fseg[layCtr].Origin.DepTime - segment.ArrTime;
+                                        if (ts.Hours > 0 || ts.Minutes > 0)
+                                        {
+                                            if (ts.Hours > 0 && ts.Minutes > 0)
+                                            {
+                                                segment.layOverTime = (ts.Hours * 60) + ts.Minutes;
+                                            }
+                                            else if (ts.Hours > 0)
+                                            {
+                                                segment.layOverTime = ts.Hours * 60;
+                                            }
+                                            else if (ts.Minutes > 0)
+                                            {
+                                                segment.layOverTime = ts.Minutes;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            segment.layOverTime = 0;
+                                        }
+                                        fs.LayoverTime += segment.layOverTime;
+                                    }
+                                    layCtr++;
+                                    #endregion
+                                    fs.stop++;
+                                    fs.Duration += segment.Duration;
+                                    fs.Segments.Add(segment);
+                                }
+                                result.FlightSegments.Add(fs);
+                                segCtr++;
+                            }
+                            #endregion
+                            #region set flight fare
+
+                            Core.Flight.Fare fare = new Core.Flight.Fare()
+                            {
+                                BaseFare = Itin.Fare.BaseFare,
+                                Tax = Itin.Fare.Tax,
+                                Currency = Itin.Fare.Currency,
+                                Markup = 0,
+                                PublishedFare = Itin.Fare.PublishedFare,
+                                NetFare = Itin.Fare.PublishedFare,
+                                AdditionalTxnFeeOfrd = Itin.Fare.AdditionalTxnFeeOfrd,
+                                AdditionalTxnFeePub = Itin.Fare.AdditionalTxnFeePub,
+                                Discount = Itin.Fare.Discount,
+                                OfferedFare = Itin.Fare.OfferedFare,
+                                OtherCharges = Itin.Fare.OtherCharges,
+                                ServiceFee = Itin.Fare.ServiceFee,
+                                TdsOnCommission = Itin.Fare.TdsOnCommission,
+                                CommissionEarned = Itin.Fare.CommissionEarned,
+                                TdsOnIncentive = Itin.Fare.TdsOnIncentive,
+                                TdsOnPLB = Itin.Fare.TdsOnPLB,
+                                YQTax = Itin.Fare.YQTax,
+                                FareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
+                                mojoFareType = Core.FlightUtility.GetFmFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : "", result.valCarrier, GdsType.Tbo),
+                                 cabinType = result.cabinClass,
+                                pLBEarned = Itin.Fare.PLBEarned,
+                                gdsType = GdsType.Tbo,
+                                tboResultIndex = Itin.ResultIndex,
+                                SeatAvailable = seatAvail,
+                                refundType = Itin.IsRefundable ? RefundType.Refundable : RefundType.NonRefundable
+                            };
+                            if (fare.mojoFareType == MojoFareType.None || fare.mojoFareType == MojoFareType.Unknown)
+                            {
+                                LogCreater.CreateLogFile(Itin.FareClassification != null ? Itin.FareClassification.Type : "" + "~" + result.valCarrier, "Log\\FareType", "tbo" + DateTime.Today.ToString("ddMMyyy") + ".txt");
+                            }
+
+                            fare.fareBreakdown = new List<Core.Flight.FareBreakdown>();
+                            Core.Flight.FareBreakdown adtFare = new Core.Flight.FareBreakdown();
+                            var adtBreakDown = Itin.FareBreakdown.Where(k => k.PassengerType == "1").ToList();
+                            adtFare.BaseFare = adtBreakDown[0].BaseFare;
+                            adtFare.Tax = adtBreakDown[0].Tax;
+                            adtFare.AdditionalTxnFeeOfrd = adtBreakDown[0].AdditionalTxnFeeOfrd;
+                            adtFare.AdditionalTxnFeePub = adtBreakDown[0].AdditionalTxnFeePub;
+                            adtFare.PGCharge = adtBreakDown[0].PGCharge;
+                            adtFare.YQTax = adtBreakDown[0].YQTax;
+                            adtFare.PassengerType = Core.PassengerType.Adult;
+                            fare.fareBreakdown.Add(adtFare);
+                            if (request.child > 0)
+                            {
+                                Core.Flight.FareBreakdown chdFare = new Core.Flight.FareBreakdown();
+                                var chdBreakDown = Itin.FareBreakdown.Where(k => k.PassengerType == "2").ToList();
+                                chdFare.BaseFare = chdBreakDown[0].BaseFare;
+                                chdFare.Tax = chdBreakDown[0].Tax;
+                                chdFare.AdditionalTxnFeeOfrd = chdBreakDown[0].AdditionalTxnFeeOfrd;
+                                chdFare.AdditionalTxnFeePub = chdBreakDown[0].AdditionalTxnFeePub;
+                                chdFare.PGCharge = chdBreakDown[0].PGCharge;
+                                chdFare.YQTax = chdBreakDown[0].YQTax;
+                                chdFare.PassengerType = Core.PassengerType.Child;
+                                fare.fareBreakdown.Add(chdFare);
+                            }
+                            if (request.infants > 0)
+                            {
+                                Core.Flight.FareBreakdown infFare = new Core.Flight.FareBreakdown();
+                                var infBreakDown = Itin.FareBreakdown.Where(k => k.PassengerType == "3").ToList();
+                                infFare.BaseFare = infBreakDown[0].BaseFare;
+                                infFare.Tax = infBreakDown[0].Tax;
+                                infFare.AdditionalTxnFeeOfrd = infBreakDown[0].AdditionalTxnFeeOfrd;
+                                infFare.AdditionalTxnFeePub = infBreakDown[0].AdditionalTxnFeePub;
+                                infFare.PGCharge = infBreakDown[0].PGCharge;
+                                infFare.YQTax = infBreakDown[0].YQTax;
+                                infFare.PassengerType = Core.PassengerType.Infant;
+                                fare.fareBreakdown.Add(infFare);
+                            }
+                            if (fare.PublishedFare > (fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee))
+                            {
+                                fare.Tax += (fare.PublishedFare - (fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee));
+                            }
+
+                            fare.grandTotal = fare.PublishedFare + fare.Markup - (fare.CommissionEarned + fare.pLBEarned);
+                            if (request.cabinType == fare.cabinType)
+                            {
+                                #region BlockAirlines
+                                if (Core.FlightUtility.airlineBlockList.Where(o => (o.Action == AirlineBlockAction.Block) && (o.Supplier == GdsType.Tbo) &&
+                                             (o.SiteId == request.siteId) && (o.FareType.Any() && o.FareType.Contains(fare.mojoFareType)) &&
+                                             ((o.airline.Any() && o.airline.Contains(result.valCarrier)) || o.airline.Any() == false) &&
+                                             ((o.CountryFrom.Any() && o.CountryFrom.Contains(request.segment[0].orgArp.countryCode)) || o.CountryFrom.Any() == false) &&
+                                             ((o.CountryTo.Any() && o.CountryTo.Contains(request.segment[0].destArp.countryCode)) || o.CountryTo.Any() == false) &&
+                                             (o.CountryFrom_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
+                                             (o.CountryTo_Not.Contains(request.segment[0].orgArp.countryCode) == false) &&
+                                             ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
+                                             ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
+                                             ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
+                                             (o.device == Device.None || o.device == request.device) &&
+                                             (o.AffiliateId_Not.Contains(request.sourceMedia) == false)).ToList().Count > 0)
+                                {
+                                    fare.isBlock = true;
+                                }
+                                if (request.segment.Count > 1 && fare.mojoFareType == MojoFareType.Promo && (request.sourceMedia == "1015" || request.sourceMedia == "1013"))
+                                {
+                                    fare.isBlock = true;
+                                }
+
+                                if (request.cabinType == CabinType.Business && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                {
+                                    fare.isBlock = true;
+                                }
+                                //   if (result.valCarrier == "SG" && request.segment[0].travelDate > DateTime.Today.AddDays(15) && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                //  {
+                                //       fare.isBlock = true;
+                                //   }
+                                //if (request.sourceMedia == "1037" && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                //{
+                                //    fare.isBlock = true;
+                                //}
+
+
+                                result.FareList.Add(fare);
+
+                                #endregion
+                            }
+                            #endregion
+                            //if (!response.listGroupID.Exists(k => k == groupID))
+                            //{
+                            //    response.listGroupID.Add(groupID);
+                            //}
+                            if (isSetCabinType)
+                                listFlightResult.Add(result);
+                        }
+                    }
+                    itinCtr++;
+                    response.Results.Add(listFlightResult);
+                }
+                //string kk = Newtonsoft.Json.JsonConvert.SerializeObject(fc);
+            }
+
+        }
+        public CabinType GetCabinType(CabinType ct, string cabinCode)
+        {
+            if (ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(cabinCode))
+                {
+                    if (cabinCode == "2")
+                    {
+                        return CabinType.Economy;
+                    }
+                    else if (cabinCode == "3")
+                    {
+                        return CabinType.PremiumEconomy;
+                    }
+                    else if (cabinCode == "4" || cabinCode == "5")
+                    {
+                        return CabinType.Business;
+                    }
+                    else if (cabinCode == "6")
+                    {
+                        return CabinType.First;
+                    }
+                    else
+                    {
+                        return ct;
+                    }
+                }
+                else
+                    return ct;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(cabinCode))
+                {
+                    if (cabinCode == "2")
+                    {
+                        return CabinType.Economy;
+                    }
+                    else if (cabinCode == "3")
+                    {
+                        return CabinType.PremiumEconomy;
+                    }
+                    else if (cabinCode == "4" || cabinCode == "5")
+                    {
+                        return CabinType.Business;
+                    }
+                    else if (cabinCode == "6")
+                    {
+                        return CabinType.First;
+                    }
+                    else
+                    {
+                        return CabinType.None;
+                    }
+                }
+                else
+                    return CabinType.None;
+            }
+        }
+        public void GetBaggege(CabinType ct, TravelType tt, string Baggage, string CabinBaggage, ref string retBaggage, ref string retCabinBaggage)
+        {
+            if (tt == TravelType.Domestic && ct == CabinType.Economy)
+            {
+                if (string.IsNullOrEmpty(Baggage))
+                {
+                    retBaggage = "15KG";
+                }
+                else
+                {
+                    retBaggage = Baggage;
+                }
+                if (string.IsNullOrEmpty(CabinBaggage))
+                {
+                    retCabinBaggage = "7KG";
+                }
+                else
+                {
+                    retCabinBaggage = CabinBaggage;
+                }
+            }
+            else
+            {
+                retBaggage = Baggage;
+                retCabinBaggage = CabinBaggage;
+            }
+        }
+
+
+
+        public void getResultsOld(Core.Flight.FlightSearchRequest request, ref TboClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponseShort response)
+        {
+            int totPax = request.adults + request.child + request.infants;
+            if (fsr.Response != null && fsr.Response.Results != null && fsr.Response.Results.Count > 0)
+            {
+                response.TraceId = fsr.Response.TraceId;
+                int itinCtr = 0;
                 int ctrError = 0;
                 //List<TboClass.fareClassification> fc = new List<TboClass.fareClassification>();
 
@@ -35,7 +382,7 @@ namespace ServicesHub.Tbo
                                    ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                                    ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
                                    ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
-                                   (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&&
+                                   (o.AffiliateId_Not.Contains(request.sourceMedia) == false) &&
                                    (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                         {
                             Core.Flight.FlightResult result = new Core.Flight.FlightResult()
@@ -87,7 +434,7 @@ namespace ServicesHub.Tbo
                                         FromTerminal = seg.Origin.Airport.Terminal,
                                         ToTerminal = seg.Destination.Airport.Terminal,
                                         IsETicketEligible = seg.IsETicketEligible,
-                                        OperatingCarrier =string.IsNullOrEmpty( seg.Airline.OperatingCarrier) ?seg.Airline.AirlineCode: seg.Airline.OperatingCarrier  ,
+                                        OperatingCarrier = string.IsNullOrEmpty(seg.Airline.OperatingCarrier) ? seg.Airline.AirlineCode : seg.Airline.OperatingCarrier,
                                         SegmentIndicator = seg.SegmentIndicator,
                                         equipmentType = seg.Craft,
                                         CabinClass = request.cabinType,
@@ -157,7 +504,7 @@ namespace ServicesHub.Tbo
                                 // FareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
                                 //  Itin.FareClassification != null ? Itin.FareClassification.Type : ""
                                 cabinType = result.cabinClass,
-                                pLBEarned=Itin.Fare.PLBEarned,
+                                pLBEarned = Itin.Fare.PLBEarned,
                                 gdsType = GdsType.Tbo,
                                 tboResultIndex = Itin.ResultIndex,
                                 SeatAvailable = seatAvail,

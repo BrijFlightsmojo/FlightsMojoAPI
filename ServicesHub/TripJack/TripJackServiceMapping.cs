@@ -26,12 +26,15 @@ namespace ServicesHub.TripJack
             StringBuilder sbLogger = new StringBuilder();
             try
             {
-                string strRequest = new TripJackRequestMapping().getFlightSearchRequest(request);
+               string strRequest = new TripJackRequestMapping().getFlightSearchRequest(request);
                 if (FlightUtility.isWriteLogSearch)
                 {
+                    bookingLog(ref sbLogger, "TripJack End Point Url", TripJackSearchUrl);
                     bookingLog(ref sbLogger, "TripJack Request", strRequest);
                 }
                 // string strResponse = MakeServiceCallPOST(TripJackSearchUrl, strRequest, ref sbLogger);
+
+
                 string strResponse = MakeServiceCallPOSTSearch(TripJackSearchUrl, strRequest, ref sbLogger);
                 if (FlightUtility.isWriteLogSearch)
                 {
