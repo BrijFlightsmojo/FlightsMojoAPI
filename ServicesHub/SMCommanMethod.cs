@@ -299,7 +299,10 @@ namespace ServicesHub
                 else if ("ROSETOURANDTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.ROSETOURANDTRAVELS; }
                 else if ("NUTANTRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.NUTANTRAVELS; }
                 else if ("MADHUBANTOUR&TRAVELS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.MADHUBANTOUR_TRAVELS; }
-                
+
+                else if ("GOIMOMIHOLIDAYS".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.GOIMOMIHOLIDAYS; }
+                else if ("AIR2SKY".Equals(subProvider, StringComparison.OrdinalIgnoreCase)) { sp = SubProvider.AIR2SKY; }
+
 
             }
             if (sp == SubProvider.None)

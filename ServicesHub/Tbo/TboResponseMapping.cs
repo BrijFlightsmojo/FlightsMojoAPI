@@ -55,14 +55,12 @@ namespace ServicesHub.Tbo
                                 FareList = new List<Core.Flight.Fare>()
                             };
                             bool isSetCabinType = true;
-                            if (result.Color == "RosyBrown")
-                            {
 
-                            }
                             #region set flight segment
                             int segCtr = 0;
                             string Airline = string.Empty;
-                             int seatAvail = 9;
+                            int seatAvail = 9;
+
                             foreach (List<TboClass.FlightSegment> fseg in Itin.Segments)
                             {
                                 Core.Flight.FlightSegment fs = new Core.Flight.FlightSegment() { Segments = new List<Core.Flight.Segment>(), Duration = 0, stop = 0, LayoverTime = 0, SegName = (segCtr == 0 && itinCtr == 0 ? "Depart" : "Return") };
@@ -156,7 +154,8 @@ namespace ServicesHub.Tbo
                                 YQTax = Itin.Fare.YQTax,
                                 FareType = getFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : ""),
                                 mojoFareType = Core.FlightUtility.GetFmFareType(Itin.FareClassification != null ? Itin.FareClassification.Type : "", result.valCarrier, GdsType.Tbo),
-                                 cabinType = result.cabinClass,
+                                cabinType = request.cabinType,
+                                //  cabinType = result.FlightSegments[0].Segments[0].CabinClass,
                                 pLBEarned = Itin.Fare.PLBEarned,
                                 gdsType = GdsType.Tbo,
                                 tboResultIndex = Itin.ResultIndex,
@@ -210,7 +209,7 @@ namespace ServicesHub.Tbo
                                 fare.Tax += (fare.PublishedFare - (fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee));
                             }
 
-                            fare.grandTotal = fare.PublishedFare + fare.Markup - (fare.CommissionEarned + fare.pLBEarned);
+                            fare.grandTotal = fare.PublishedFare + fare.Markup;
                             if (request.cabinType == fare.cabinType)
                             {
                                 #region BlockAirlines
@@ -234,20 +233,14 @@ namespace ServicesHub.Tbo
                                     fare.isBlock = true;
                                 }
 
-                                if (request.cabinType == CabinType.Business && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                if (request.cabinType != CabinType.Economy && 
+                                    (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR
+                                    || fare.mojoFareType == MojoFareType.Unknown || fare.mojoFareType == MojoFareType.None)
+                                    &&(result.IsRefundable==false))
                                 {
                                     fare.isBlock = true;
                                 }
-                                //   if (result.valCarrier == "SG" && request.segment[0].travelDate > DateTime.Today.AddDays(15) && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
-                                //  {
-                                //       fare.isBlock = true;
-                                //   }
-                                //if (request.sourceMedia == "1037" && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
-                                //{
-                                //    fare.isBlock = true;
-                                //}
-
-
+                               
                                 result.FareList.Add(fare);
 
                                 #endregion
@@ -257,7 +250,7 @@ namespace ServicesHub.Tbo
                             //{
                             //    response.listGroupID.Add(groupID);
                             //}
-                            if (isSetCabinType)
+                            //if (isSetCabinType)
                                 listFlightResult.Add(result);
                         }
                     }
@@ -552,12 +545,12 @@ namespace ServicesHub.Tbo
                                 infFare.PassengerType = Core.PassengerType.Infant;
                                 fare.fareBreakdown.Add(infFare);
                             }
-                            if (fare.PublishedFare>(fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee))
+                            if (fare.PublishedFare > (fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee))
                             {
                                 fare.Tax += (fare.PublishedFare - (fare.BaseFare + fare.Tax + fare.OtherCharges + fare.ServiceFee));
                             }
-                               
-                            fare.grandTotal = fare.PublishedFare + fare.Markup - (fare.CommissionEarned+fare.pLBEarned);
+
+                            fare.grandTotal = fare.PublishedFare + fare.Markup - (fare.CommissionEarned + fare.pLBEarned);
                             if (request.cabinType == fare.cabinType)
                             {
                                 #region BlockAirlines
@@ -581,14 +574,14 @@ namespace ServicesHub.Tbo
                                     fare.isBlock = true;
                                 }
 
-                                if (request.cabinType==CabinType.Business && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR|| fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                if (request.cabinType == CabinType.Business && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
                                 {
                                     fare.isBlock = true;
                                 }
-                             //   if (result.valCarrier == "SG" && request.segment[0].travelDate > DateTime.Today.AddDays(15) && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
-                              //  {
-                             //       fare.isBlock = true;
-                             //   }
+                                //   if (result.valCarrier == "SG" && request.segment[0].travelDate > DateTime.Today.AddDays(15) && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
+                                //  {
+                                //       fare.isBlock = true;
+                                //   }
                                 //if (request.sourceMedia == "1037" && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
                                 //{
                                 //    fare.isBlock = true;
@@ -612,7 +605,7 @@ namespace ServicesHub.Tbo
                 }
                 //string kk = Newtonsoft.Json.JsonConvert.SerializeObject(fc);
             }
-           
+
         }
 
         //public void getResult(ref Core.Flight.FlightSearchRequest request, ref TboClass.FlightResponse fsr, ref Core.Flight.FlightSearchResponse response)

@@ -35,7 +35,7 @@ namespace IndiaAPI.Controllers
             StringBuilder sbLogger = new StringBuilder();
             FlightSearchRequest flightSearchReq = new FlightSearchRequest();
 
-            flightSearchReq.adults = 3;
+            flightSearchReq.adults = 1;
             flightSearchReq.child = 0;
             flightSearchReq.infants = 0;
             flightSearchReq.tripType = Core.TripType.OneWay;
@@ -48,11 +48,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "BOM",
-                orgArp = Core.FlightUtility.GetAirport("BOM"),
-                destinationAirport = "CCU",
-                destArp = Core.FlightUtility.GetAirport("CCU"),
-                travelDate = Convert.ToDateTime("2024-10-08") //DateTime.Today.AddDays(61)//
+                originAirport = "DEL",
+                orgArp = Core.FlightUtility.GetAirport("DEL"),
+                destinationAirport = "BOM",
+                destArp = Core.FlightUtility.GetAirport("BOM"),
+                travelDate = Convert.ToDateTime("2024-10-22") //DateTime.Today.AddDays(61)//
             });
 
             if (flightSearchReq.tripType != Core.TripType.OneWay)
@@ -63,10 +63,10 @@ namespace IndiaAPI.Controllers
                     orgArp = Core.FlightUtility.GetAirport("SIN"),
                     destinationAirport = "DEL",
                     destArp = Core.FlightUtility.GetAirport("DEL"),
-                    travelDate = Convert.ToDateTime("2024-09-23") //DateTime.Today.AddDays(73)
+                    travelDate = Convert.ToDateTime("2024-10-24") //DateTime.Today.AddDays(73)
                 });
             }
-            flightSearchReq.cabinType = CabinType.Economy;
+            flightSearchReq.cabinType = CabinType.Business;
             flightSearchReq.tgy_Request_id = DateTime.Now.ToString("ddMMyyyHHmmsss");
             flightSearchReq.travelType = new Core.FlightUtility().getTravelType(flightSearchReq.segment[0].orgArp.countryCode, flightSearchReq.segment[0].destArp.countryCode);
             flightSearchReq.siteId = SiteId.FlightsMojoIN;
@@ -76,9 +76,9 @@ namespace IndiaAPI.Controllers
             //    var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq, true, true);
             //    var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
             //  var kkdd = new ServicesHub.Tripshope.TripshopeServiceMapping().GetFlightResults(flightSearchReq);
-                var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
-            //  var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
-          //  var kkdd = new ServicesHub.Tbo.TboServiceMapping().GetFlightResults(flightSearchReq);
+                 var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
+          //   var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
+            //  var kkdd = new ServicesHub.Tbo.TboServiceMapping().GetFlightResults(flightSearchReq);
 
             return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
 
@@ -1013,74 +1013,33 @@ namespace IndiaAPI.Controllers
             {
                 new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(fsr), fsr.userSearchID, "Search", "Original Request");
             }
-            //if (fsr.sourceMedia != "1010")
-            //{
-            if (isFreshSearch)
+            if (fsr.sourceMedia != "1010")
             {
-                fsr.fareCachingKey = ((int)fsr.siteId).ToString() + "_" + fsr.sourceMedia;
-                bookingLog(ref sbLogger, "Search1 ", DateTime.Now.ToString());
-                foreach (var item in fsr.segment)
+                if (isFreshSearch)
                 {
-                    fsr.fareCachingKey += (item.originAirport + item.destinationAirport + item.travelDate.ToString("ddMMyy"));
+                    fsr.fareCachingKey = ((int)fsr.siteId).ToString() + "_" + fsr.sourceMedia;
+                    bookingLog(ref sbLogger, "Search1 ", DateTime.Now.ToString());
+                    foreach (var item in fsr.segment)
+                    {
+                        fsr.fareCachingKey += (item.originAirport + item.destinationAirport + item.travelDate.ToString("ddMMyy"));
+                    }
+                    fsr.fareCachingKey += (fsr.adults.ToString() + fsr.child.ToString() + fsr.infants.ToString() +
+                        ((int)fsr.cabinType).ToString());
                 }
-                fsr.fareCachingKey += (fsr.adults.ToString() + fsr.child.ToString() + fsr.infants.ToString() +
-                    ((int)fsr.cabinType).ToString());
-
-                //    SearchRes = new FlightMapper().GetFlightResultMultiGDS(fsr);
-                //if (GlobalData.isUseCaching && (fsr.segment[0].originAirport == "DEL" && fsr.segment[0].destinationAirport == "BOM" && fsr.segment[0].travelDate > DateTime.Today.AddDays(1)))/*&& fsr.segment[0].travelDate > DateTime.Today.AddDays(4)*/ /*&& (fsr.segment[0].originAirport == "DEL" && fsr.segment[0].destinationAirport == "BOM" && fsr.segment[0].travelDate > DateTime.Today.AddDays(1))*/
-                //{
-                //    bookingLog(ref sbLogger, "Search2 ", DateTime.Now.ToString());
-                //    string str = new CacheRedis().getResult(fsr.fareCachingKey);
-                //    str = StringHelper.DecompressString(str);
-                //    if (!string.IsNullOrEmpty(str))
-                //    {
-                //        bookingLog(ref sbLogger, "Search3 ", DateTime.Now.ToString());
-                //        string ss = StringHelper.DecompressString(str);
-                //        SearchRes = JsonConvert.DeserializeObject<FlightSearchResponse>(ss);
-                //        isFreshSearch = false;
-                //    }
-
-                //}
 
                 if (isFreshSearch)
                 {
                     bookingLog(ref sbLogger, "Search4 ", DateTime.Now.ToString());
                     fsr.isMetaRequest = false;
                     SearchRes = new FlightMapper().GetFlightResultMultiGDS(fsr);
-                    //if (GlobalData.isUseCaching && (fsr.segment[0].originAirport == "DEL" && fsr.segment[0].destinationAirport == "BOM" && fsr.segment[0].travelDate > DateTime.Today.AddDays(1))) /*&& (fsr.segment[0].originAirport == "DEL" && fsr.segment[0].destinationAirport == "BOM" && fsr.segment[0].travelDate > DateTime.Today.AddDays(1))*/
-                    //{
-                    //    bookingLog(ref sbLogger, "Search5 ", DateTime.Now.ToString());
-                    //    new CacheRedis().setResult(fsr.fareCachingKey, StringHelper.CompressString(JsonConvert.SerializeObject(SearchRes)));
-                    //}
-                    //if (SearchRes != null && SearchRes.Results != null && SearchRes.Results.Count() > 0 && SearchRes.Results[0].Count > 0 && SearchRes.Results.LastOrDefault().Count > 0 && SearchRes.isCacheFare == false)
-                    //{
-                    //    bookingLog(ref sbLogger, "Search6 ", DateTime.Now.ToString());
-                    //    saveTopFare(fsr, SearchRes.Results);
-                    //}
                 }
 
                 if (SearchRes != null && SearchRes.Results != null && SearchRes.Results.Count() > 0 && SearchRes.Results[0].Count > 0 && SearchRes.Results.LastOrDefault().Count > 0)
                 {
                     saveMetaSearchDetails(SearchID, StringHelper.CompressString(JsonConvert.SerializeObject(SearchRes)));
-                    //new CacheRedis().setResult(SearchID, StringHelper.CompressString(JsonConvert.SerializeObject(SearchRes)));
-                    saveSearchListMeta(fsr, SearchRes.Results[0].Count, strProvider);
+                     saveSearchListMeta(fsr, SearchRes.Results[0].Count, strProvider);
                 }
             }
-            //}
-
-            //if (SearchRes != null && SearchRes.Results != null && SearchRes.Results.Count() > 0 && SearchRes.Results[0].Count > 0 && SearchRes.Results.LastOrDefault().Count > 0)
-            //{
-
-            //    saveMetaSearchDetails(SearchID, StringHelper.CompressString(JsonConvert.SerializeObject(SearchRes)));
-
-            //    //new CacheRedis().setResult(SearchID, StringHelper.CompressString(JsonConvert.SerializeObject(SearchRes)));
-            //    saveSearchListMeta(fsr, SearchRes.Results[0].Count, strProvider);
-
-            //}
-            //else
-            //{
-            //saveSearchListMeta(fsr, 0, strProvider);
-            //  }
             if (FlightUtility.isWriteLogSearch)
             {
                 new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(SearchRes), fsr.userSearchID, "Search", "Original Response");
@@ -3298,7 +3257,6 @@ namespace IndiaAPI.Controllers
                     isTravelopedia = kkk.Contains(GdsType.Travelopedia);
                 }
             }
-            //isTripShope = true;
 
             if (istripJack) tripJack = GetSearchResultTripJack(request);
             if (isOneDFare) OneDFare = GetSearchResultOneDFare(request);
@@ -3953,9 +3911,10 @@ namespace IndiaAPI.Controllers
                     isTravelopedia = kkk.Contains(GdsType.Travelopedia);
                 }
             }
-            istbo = true;
-            istripJack = true;
-
+            //istbo = false;
+            //istripJack = false;
+            //isOneDFare = false;
+            //isTravelopedia
             if (istripJack) tripJack = GetSearchResultTripJack(request);
             if (isOneDFare) OneDFare = GetSearchResultOneDFare(request);
             if (istbo) tbo = GetSearchResultTbo(request);
@@ -4013,7 +3972,7 @@ namespace IndiaAPI.Controllers
                                      ).ToList();
                         if (commisionData.Any())
                         {
-                            item.Fare.Markup -= (item.Fare.CommissionEarned + item.Fare.pLBEarned);
+                            //item.Fare.Markup -= (item.Fare.CommissionEarned + item.Fare.pLBEarned);
                             item.Fare.grandTotal = (item.Fare.BaseFare + item.Fare.Tax + item.Fare.OtherCharges + item.Fare.ServiceFee + item.Fare.ConvenienceFee + item.Fare.Markup);
                             item.Fare.markupID += "GF Comm(-)";
                         }

@@ -135,20 +135,20 @@ namespace ServicesHub.Ease2Fly
                     }
 
                     Core.Flight.FareBreakdown adtFare = new Core.Flight.FareBreakdown();
-                    adtFare.BaseFare = ((Itin.total_fare / request.adults)) * 0.75m;
-                    adtFare.Tax = ((Itin.total_fare / request.adults)) * 0.25m;
+                    adtFare.BaseFare = ((Itin.total_fare)) * 0.75m;
+                    adtFare.Tax = ((Itin.total_fare)) * 0.25m;
                     adtFare.PassengerType = Core.PassengerType.Adult;
                     fare.fareBreakdown.Add(adtFare);
                     if (request.child > 0)
                     {
                         Core.Flight.FareBreakdown chdFare = new Core.Flight.FareBreakdown();
-                        chdFare.BaseFare = ((Itin.total_fare / request.adults)) * 0.75m;
-                        chdFare.Tax = ((Itin.total_fare / request.adults)) * 0.25m;
+                        chdFare.BaseFare = ((Itin.total_fare)) * 0.75m;
+                        chdFare.Tax = ((Itin.total_fare)) * 0.25m;
                         chdFare.PassengerType = Core.PassengerType.Child;
                         fare.fareBreakdown.Add(chdFare);
                     }
                     #endregion
-                    fare.NetFare = fare.grandTotal = fare.PublishedFare + fare.Markup - fare.CommissionEarned;
+                    fare.NetFare = fare.grandTotal = fare.PublishedFare + fare.Markup;
                     if (request.cabinType == fare.cabinType)
                     {
                         #region BlockAirlines

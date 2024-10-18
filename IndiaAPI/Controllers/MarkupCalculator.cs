@@ -175,6 +175,10 @@ namespace IndiaAPI.Controllers
                         if (item != null)
                         {
 
+                            item.Fare.Markup = 295 * (fsr.adults+ fsr.child+fsr.infants);
+                            item.Fare.grandTotal += item.Fare.Markup;
+                            item.Fare.markupID = "GF Fix Markup " + item.Fare.Markup + "";
+
                             #region Set Airline and Airport Library
                             foreach (var fs in item.FlightSegments)
                             {
@@ -217,6 +221,137 @@ namespace IndiaAPI.Controllers
             }
 
         }
+
+
+
+        public void SetNoMarkupNew(ref Core.Flight.FlightSearchRequest fsr, ref Core.Flight.FlightSearchResponse flightSearchResponse)
+        {
+
+
+            StringBuilder sbLogger = new StringBuilder();
+
+            TravelType travelType = TravelType.International;
+            if (fsr.segment[0].orgArp == null)
+            {
+                fsr.segment[0].orgArp = FlightUtility.GetAirport(fsr.segment[0].originAirport);
+            }
+            if (fsr.segment[0].destArp == null)
+            {
+                fsr.segment[0].destArp = FlightUtility.GetAirport(fsr.segment[0].destinationAirport);
+            }
+            if (fsr.segment[0].orgArp.countryCode == "IN" && fsr.segment[0].destArp.countryCode == "IN")
+            {
+                travelType = TravelType.Domestic;
+            }
+            int totpax = (fsr.adults + fsr.child + fsr.infants);
+             List<Core.Markup.FlightMarkupNew> lstMarkup = new DAL.Markup.MarkupTransaction().getFlightMarkupWithGF((int)fsr.cabinType, ((int)travelType), fsr.sourceMedia,
+                fsr.segment[0].originAirport, fsr.segment[0].destinationAirport, fsr.segment[0].travelDate, fsr.device, totpax);
+
+
+            if (flightSearchResponse != null && flightSearchResponse.Results != null && flightSearchResponse.Results.Count() > 0
+                && flightSearchResponse.Results[0].Count > 0 && flightSearchResponse.Results.LastOrDefault().Count > 0)
+            {
+                foreach (var res in flightSearchResponse.Results)
+                {
+                    foreach (var item in res)
+                    {
+                        if (item != null)
+                        {
+                            foreach (var itemFare in item.FareList)
+                            {
+                                itemFare.scComprefare = 0;
+
+
+                                if (itemFare.scComprefare == 0)
+                                {
+                                    if (lstMarkup.Count > 0)
+                                    {
+                                        StringBuilder sb = new StringBuilder();
+                                        #region setMarkup
+                                        var extractMarkup = lstMarkup.Where(x =>
+                                        ((x.Airline.Any() && x.Airline.Contains(item.FlightSegments[0].Segments[0].Airline)) || x.Airline.Any() == false) &&
+                                        (x.AirlineNot.Contains(item.FlightSegments[0].Segments[0].Airline) == false) &&
+                                        ((x.FmFareType.Any() && x.FmFareType.Contains(itemFare.mojoFareType)) || x.FmFareType.Any() == false) &&
+                                        ((x.GdsType == (int)itemFare.gdsType) || (x.GdsType == (int)GdsType.None)) &&
+                                        ((x.SubProvider.Any() && itemFare.subProvider != SubProvider.None && x.SubProvider.Contains(itemFare.subProvider)) || x.SubProvider.Any() == false)
+                                        );
+                                        if (extractMarkup.Any())
+                                        {
+                                            var markup = extractMarkup.FirstOrDefault();
+                                            if (markup.AmountType == 1)
+                                            {
+                                                itemFare.Markup = markup.Amount * totpax;
+                                                itemFare.markupID = markup.RuleName + "=>TotalMakup: " + itemFare.Markup + "";
+                                                itemFare.grandTotal = (itemFare.BaseFare + itemFare.Tax + itemFare.OtherCharges + itemFare.ServiceFee + itemFare.ConvenienceFee + itemFare.Markup);
+                                            }
+                                            else
+                                            {
+                                                itemFare.grandTotal = (itemFare.BaseFare + itemFare.Tax + itemFare.OtherCharges + itemFare.ServiceFee + itemFare.ConvenienceFee);
+                                                itemFare.Markup = Math.Round((itemFare.grandTotal * markup.Amount) / 100, 2);
+                                                itemFare.grandTotal = (itemFare.BaseFare + itemFare.Tax + itemFare.OtherCharges + itemFare.ServiceFee + itemFare.ConvenienceFee + itemFare.Markup);
+                                                itemFare.markupID = markup.RuleName + "=>TotalMakup: " + itemFare.Markup + "";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            itemFare.grandTotal = (itemFare.BaseFare + itemFare.Tax + itemFare.OtherCharges + itemFare.ServiceFee + itemFare.ConvenienceFee);
+                                            itemFare.markupID = "NoRule";
+                                        }
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                        itemFare.grandTotal = (itemFare.BaseFare + itemFare.Tax + itemFare.OtherCharges + itemFare.ServiceFee + itemFare.ConvenienceFee);
+                                        itemFare.markupID = "NoRule";
+                                    }
+                                }
+                            }
+                            #region Set Airline and Airport Library
+                            foreach (var fs in item.FlightSegments)
+                            {
+                                foreach (var seg in fs.Segments)
+                                {
+                                    if (flightSearchResponse.airline.Where(o => o.code.Equals(seg.Airline, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airline.Add(Core.FlightUtility.GetAirline(seg.Airline));
+                                    }
+                                    if (flightSearchResponse.airline.Where(o => o.code.Equals(seg.OperatingCarrier, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airline.Add(Core.FlightUtility.GetAirline(seg.OperatingCarrier));
+                                    }
+                                    if (flightSearchResponse.airport.Where(o => o.airportCode.Equals(seg.Origin, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airport.Add(Core.FlightUtility.GetAirport(seg.Origin));
+                                    }
+
+                                    if (flightSearchResponse.airport.Where(o => o.airportCode.Equals(seg.Destination, StringComparison.OrdinalIgnoreCase)).ToList().Count == 0)
+                                    {
+                                        flightSearchResponse.airport.Add(Core.FlightUtility.GetAirport(seg.Destination));
+                                    }
+                                }
+                            }
+
+
+                            #endregion
+
+                            if (item.Fare == null)
+                            {
+                                item.Fare = item.FareList.OrderBy(k => k.grandTotal).FirstOrDefault();
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+
         public void SetMarkupOld(ref Core.Flight.FlightSearchRequest fsr, ref Core.Flight.FlightSearchResponse flightSearchResponse)
         {
             StringBuilder sbLogger = new StringBuilder();

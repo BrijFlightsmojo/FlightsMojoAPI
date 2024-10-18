@@ -233,7 +233,7 @@ namespace DAL.Booking
         }
         private bool SaveFMJ_FlightBookingDetails_WithOutPax(ref FlightBookingRequest flightBookingRequest, DataTable dtAmount, DataTable dtSector, ref string Eft, ref int outEft, ref int inEft, ref DateTime DepDate, ref DateTime arrDate, ref decimal TotalAmount)
         {
-            SqlParameter[] param = new SqlParameter[87];
+            SqlParameter[] param = new SqlParameter[89];
           
             TripType tripType = TripType.OneWay;
             if (flightBookingRequest.flightResult.Count > 1)
@@ -474,10 +474,17 @@ namespace DAL.Booking
             param[86] = new SqlParameter("@utm_medium", SqlDbType.VarChar, 50);
             param[86].Value = flightBookingRequest.utm_medium;
 
+            param[87] = new SqlParameter("@CheckInBaggage", SqlDbType.VarChar, 50);
+            param[87].Value = flightBookingRequest.flightResult[0].FlightSegments.FirstOrDefault().Segments.FirstOrDefault().Baggage;
+
+            param[88] = new SqlParameter("@CabinBaggage", SqlDbType.VarChar, 50);
+            param[88].Value = flightBookingRequest.flightResult[0].FlightSegments.FirstOrDefault().Segments.FirstOrDefault().CabinBaggage;
+
             using (SqlConnection con = DataConnection.GetConnection())
             {
                 // SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V2", param);
-                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V3", param);
+                //SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V3", param);
+                SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Save_FlightBookingDetails_WithOutPax_V4", param);
                 if (param[48].Value.ToString().ToUpper() == "SUCCESS")
                 {
                     return true;

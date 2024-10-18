@@ -63,8 +63,8 @@ namespace Core
         SatkarTravel = 9,
         Ease2Fly = 10,
         Amadeus = 11,
-        Travelopedia=13,
-        TripShope=14
+        Travelopedia = 13,
+        TripShope = 14
     }
     public enum SubProvider : int
     {
@@ -131,15 +131,19 @@ namespace Core
         SKYAMARTRAVELS = 60,
         BOOKMYFLYINDIAPVTLTD = 61,
         KUMAWATTRAVELS = 62,
-        SAMRATTOURANDTRAVELS=63,
-        VINAYAKINTERNATIONAL=64,
-        DOLPHINENTERPRISE=65,
-        SAMAARAINTERNATIONALTOUR_TRAVELS=66,
-        DTYHOLIDAYSLLP=67,
-        AIRHSPRIVATELIMITED=68,
-        SAITOURSNTRAVELS=69,
-        AIRLCCTRAVELSPVTLTD=70
-
+        SAMRATTOURANDTRAVELS = 63,
+        VINAYAKINTERNATIONAL = 64,
+        DOLPHINENTERPRISE = 65,
+        SAMAARAINTERNATIONALTOUR_TRAVELS = 66,
+        DTYHOLIDAYSLLP = 67,
+        AIRHSPRIVATELIMITED = 68,
+        SAITOURSNTRAVELS = 69,
+        AIRLCCTRAVELSPVTLTD = 70,
+        ROSETOURANDTRAVELS = 71,
+        NUTANTRAVELS = 72,
+        MADHUBANTOUR_TRAVELS = 73,
+        GOIMOMIHOLIDAYS = 74,
+        AIR2SKY = 75
     }
     public enum TransactionStatus : int
     {
@@ -223,26 +227,7 @@ namespace Core
         Flexible_Economy = 72,
         Business_Comfort = 73,
         Super_Flexible_Business = 74,
-        NDC=75,
-        //NDC PUBLISHED = 75,
-        //NDC_COMFORT = 75,
-        //NDC_ECONOMY CONVENIENCE = 75,
-        //NDC_ECONOMY COMFORT = 75,
-        //NDC_ECONOMY CLASSIC = 75,
-        //NDC_FLEXI = 75,
-        //NDC_Economy Flexi = 75,
-        //NDC_Premium Economy Flexi = 75,
-        //NDC_VALUE = 75,
-        //NDC_STANDARD = 75,
-        //NDC_Economy Value = 75,
-        //NDC_Economy Standard = 75,
-        //NDC_LITE = 75,
-        //NDC_ECONOMY:ECONOMY = 75,
-        //NDC_ECONOMY:ECONOMY:ECONOMY = 75,
-        //NDC_ECONOMY:ECONOMY:ECONOMY:ECONOMY = 75,
-        //NDC_Business Flexi = 75,
-        //NDC_Business Standard = 75,
-
+        NDC = 75,
     }
     public enum MojoFareType : int
     {
@@ -259,8 +244,8 @@ namespace Core
         Sale = 10,
         SME = 11,
         Business = 12,
-        NDC=13,
-        SOTO=14
+        NDC = 13,
+        SOTO = 14
     }
     public enum AmountType : byte
     {
@@ -500,17 +485,17 @@ namespace Core
         Inporgress = 2,
         Fail = 3
     }
-  public  enum VirtualInterlineType:int
+    public enum VirtualInterlineType : int
     {
         // Unspecified. Do not use.
         VIRTUAL_INTERLINE_TYPE_UNSPECIFIED = 0,
-        
+
         // Not "virtual".
         DEFAULT_TYPE = 1,
-        
+
         // If there are any "virtual" connections within a slice.
         ON_SEGMENT_BOUNDARIES = 2,
-       
+
         // If "virtual" connections are only on slice boundaries
         // (== split ticket sold in 1 transaction).
         ON_SLICE_BOUNDARIES_ONLY = 3

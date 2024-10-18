@@ -505,6 +505,10 @@ namespace Core.Flight
         public bool IsETicketEligible { get; set; }
         [DataMember]
         public string resDesignCode { get; set; }
+        [DataMember]
+        public string Baggage { get; set; }
+        [DataMember]
+        public string CabinBaggage { get; set; }       
     }
 
     [DataContract]

@@ -160,6 +160,101 @@ namespace DAL.Markup
             }
             return markList;
         }
+
+        //
+
+
+        public List<Core.Markup.FlightMarkupNew> getFlightMarkupWithGF(int cabinType, int journeyType, string sourceMedia, string Org,
+       string Dest, DateTime TravelType, Core.Device device, int totPax)
+        {
+            List<Core.Markup.FlightMarkupNew> markList = new List<Core.Markup.FlightMarkupNew>();
+            try
+            {
+                //if (sourceMedia == "1015")
+                //{
+                //    SqlParameter[] prm1 = new SqlParameter[]
+                //    {
+                //        new SqlParameter("@org",Org),
+                //        new SqlParameter("@dest",Dest),
+                //        new SqlParameter("@depDate",TravelType)
+                //    };
+                //    DataSet ds1 = SqlHelper.ExecuteDataset(DataConnection.GetConnectionMetaRank(), CommandType.StoredProcedure, "get_MetaRankWithAirline", prm1);
+                //    if (ds1 != null && ds1.Tables.Count > 0)
+                //    {
+                //        foreach (DataRow dr in ds1.Tables[0].Rows)
+                //        {
+                //            Core.Markup.skyScannerMetaRankData objMetaRank = new Core.Markup.skyScannerMetaRankData();
+                //            objMetaRank.Airline = dr["Airline"].ToString();
+                //            objMetaRank.flightNo = dr["flightNo"].ToString();
+                //            objMetaRank.Amount = Convert.ToDecimal(dr["minFare"]);
+                //            //metaData.Add(objMetaRank);
+                //        }
+                //    }
+                //}
+                SqlParameter[] prm = new SqlParameter[]
+               {
+                    new SqlParameter("@cabinType",cabinType),
+                    new SqlParameter("@journeyType",journeyType),
+                    new SqlParameter("@AffiliateId",sourceMedia),
+                    new SqlParameter("@device",(int)device),
+                    new SqlParameter("@totPax",totPax)
+               };
+
+                DataSet ds = SqlHelper.ExecuteDataset(DataConnection.GetConnection(), CommandType.StoredProcedure, "usp_GetFlightMarkupNew_V2", prm);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        Core.Markup.FlightMarkupNew objMarkup = new Core.Markup.FlightMarkupNew();
+                        objMarkup.Airline = (string.IsNullOrEmpty(Convert.ToString(dr["Airline"])) == false ? Convert.ToString(dr["Airline"]).Split('-').ToList() : new List<string>());
+                        objMarkup.AirlineNot = (string.IsNullOrEmpty(Convert.ToString(dr["AirlineNot"])) == false ? Convert.ToString(dr["AirlineNot"]).Split('-').ToList() : new List<string>());
+                        objMarkup.FmFareType = new List<Core.MojoFareType>();
+                        if (!string.IsNullOrEmpty(dr["FMFareType"].ToString()))
+                        {
+                            foreach (string str in Convert.ToString(dr["FMFareType"]).Trim().Split('-').ToList())
+                            {
+                                if (!string.IsNullOrEmpty(str) && str != "0")
+                                    objMarkup.FmFareType.Add((Core.MojoFareType)Convert.ToInt32(str));
+                            }
+                        }
+
+                        string amt = dr["Amount"].ToString();
+                        if (amt.IndexOf("%") != -1)
+                        {
+                            objMarkup.Amount = Convert.ToDecimal(amt.Replace("%", ""));
+                            objMarkup.AmountType = 2;
+                        }
+                        else
+                        {
+                            objMarkup.Amount = Convert.ToDecimal(amt);
+                            objMarkup.AmountType = 1;
+                        }
+                        objMarkup.SubProvider = new List<Core.SubProvider>();
+                        if (!string.IsNullOrEmpty(dr["SubProvider"].ToString()))
+                        {
+                            foreach (string str in Convert.ToString(dr["SubProvider"]).Trim().Split('-').ToList())
+                            {
+                                if (!string.IsNullOrEmpty(str) && str != "0")
+                                    objMarkup.SubProvider.Add((Core.SubProvider)Convert.ToInt32(str));
+                            }
+                        }
+                        objMarkup.GdsType = (string.IsNullOrEmpty(Convert.ToString(dr["Supplier"])) ? 0 : Convert.ToInt32(dr["Supplier"]));
+
+                        objMarkup.RuleName = Convert.ToString(Convert.ToString(dr["RuleName"]));
+                        markList.Add(objMarkup);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return markList;
+        }
+
+
+
         public List<Core.Markup.FlightMarkup> getFlightMarkup(DateTime departureDate, int cabinType, int siteId, string countryFrom,
            string countryTo, string airportFrom, string airportTo, int tripType, int journeyType, string sourceMedia, int totalPax,
            int DayDiffrence)
