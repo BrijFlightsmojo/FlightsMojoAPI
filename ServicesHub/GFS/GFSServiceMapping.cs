@@ -66,8 +66,13 @@ namespace ServicesHub.GFS
                         {
                             bookingLog(ref sbLogger, "GFS Response", kk.ToString());
                         }
-                        GFSClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<GFSClass.FlightResponse>(kk.ToString());
-                        new GFSResponseMapping().getResults(request, ref Response, ref flightResponse);
+                        if (kk.IndexOf("We are getting too many requests from your end.", StringComparison.OrdinalIgnoreCase) == -1)
+                        {
+                            GFSClass.FlightResponse Response = Newtonsoft.Json.JsonConvert.DeserializeObject<GFSClass.FlightResponse>(kk.ToString());
+                            //bookingLog(ref sbLogger, "Original Response", JsonConvert.SerializeObject(Response));
+                            new GFSResponseMapping().getResults(request, ref Response, ref flightResponse);
+                        }
+
                     }
                 }
 
@@ -82,7 +87,8 @@ namespace ServicesHub.GFS
             {
                 bookingLog(ref sbLogger, "Original Request", JsonConvert.SerializeObject(request));
                 bookingLog(ref sbLogger, "Exception", ex.ToString());
-                new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "GFS Search Exeption");
+                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.userSearchID, "Exeption", "GFS Search Exeption");
+                //new ServicesHub.LogWriter_New(ex.ToString(), request.userSearchID, "Exeption", "GFS Search Exeption");
             }
             return flightResponse;
         }

@@ -48,11 +48,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "DEL",
-                orgArp = Core.FlightUtility.GetAirport("DEL"),
-                destinationAirport = "BOM",
-                destArp = Core.FlightUtility.GetAirport("BOM"),
-                travelDate = Convert.ToDateTime("2024-10-22") //DateTime.Today.AddDays(61)//
+                originAirport = "ISK",
+                orgArp = Core.FlightUtility.GetAirport("ISK"),
+                destinationAirport = "BLR",
+                destArp = Core.FlightUtility.GetAirport("BLR"),
+                travelDate = Convert.ToDateTime("2024-11-10") //DateTime.Today.AddDays(61)//
             });
 
             if (flightSearchReq.tripType != Core.TripType.OneWay)
@@ -73,11 +73,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.device = Device.Desktop;
             flightSearchReq.sourceMedia = "1015";
             flightSearchReq.userSearchID = getSearchID();
-            //    var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq, true, true);
-            //    var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
+            //var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq, true, true);
+                var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
             //  var kkdd = new ServicesHub.Tripshope.TripshopeServiceMapping().GetFlightResults(flightSearchReq);
-                 var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
-          //   var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
+            //    var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
+         //   var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
             //  var kkdd = new ServicesHub.Tbo.TboServiceMapping().GetFlightResults(flightSearchReq);
 
             return SearchFlight("fl1asdfghasdftmoasdfjado2o", flightSearchReq);
@@ -1763,28 +1763,20 @@ namespace IndiaAPI.Controllers
                             {
                                 foreach (var seg in fs.Segments)
                                 {
-                                    if (seg.Airline == "6E")
+                                    if (
+                                        (seg.Airline == "6E") && (item.Fare.mojoFareType != MojoFareType.SeriesFareWithoutPNR && item.Fare.mojoFareType != MojoFareType.SeriesFareWithPNR && item.Fare.mojoFareType != MojoFareType.None)
+                                        && bookRequest.flightResult[0].Fare.gdsType!=GdsType.TripJack)
                                     {
                                         new FlightMapper().bookingLog(ref sbLog2, "set isMakeBooking false due to Airline is 6E", " ");
                                         isMakeBooking = false;
                                     }
+                                    else
+                                    {
+                                        isMakeBooking = true;
+                                    }
                                 }
                             }
                         }
-
-
-
-
-
-
-                        //if (bookRequest.travelType == Core.TravelType.International && (bookRequest.flightResult[0].Fare.gdsType == GdsType.TripJack))
-                        //{
-                        //    isMakeBooking = false;
-                        //}
-                        //else
-                        //{
-                        //    isMakeBooking = true;
-                        //}
 
                         if ((bookRequest.flightResult.Count > 1) && (bookRequest.flightResult[0].Fare.gdsType == GdsType.FareBoutique
                             || bookRequest.flightResult[0].Fare.gdsType == GdsType.AirIQ
@@ -2021,8 +2013,8 @@ namespace IndiaAPI.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
-            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(bookRequest), bookRequest.bookingID.ToString(), "Booking", "BookFlight Original CRM Make Booking Request");
-
+            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(bookRequest), bookRequest.bookingID.ToString(), "CRM", "BookFlight Original CRM Make Booking Request");
+            StringBuilder sbLogger = new StringBuilder();
             FlightBookingResponse BookResponse = new FlightBookingResponse(bookRequest);
             BookResponse.bookingStatus = BookingStatus.InProgress;
             try
@@ -2096,10 +2088,14 @@ namespace IndiaAPI.Controllers
                         tgy_Search_Key = "",
                         userLogID = bookRequest.userSearchID
                     };
+                    bookingLog(ref sbLogger, "TripJack Offline Booking PriceVerification", JsonConvert.SerializeObject(priceVerificationRequest));
                     var pvResponse = new FlightMapper().TjVerifyThePrice(priceVerificationRequest);
+                    bookingLog(ref sbLogger, "TripJack Offline Booking pvResponse", JsonConvert.SerializeObject(pvResponse));
                     if (pvResponse.fareQuoteResponse.VerifiedTotalPrice == bookRequest.sumFare.PublishedFare)
                     {
                         bookRequest.TjBookingID = pvResponse.fareQuoteResponse.TjBookingID;
+                        bookRequest.VerifiedTotalPrice = pvResponse.fareQuoteResponse.VerifiedTotalPrice;
+                        bookingLog(ref sbLogger, "TripJack Offline Booking TjBookingID", bookRequest.TjBookingID);
                         //  new ServicesHub.TripJack.TripJackServiceMapping().BookFlight(bookRequest, ref BookResponse);
                         new ServicesHub.TripJack.TripJackServiceMapping().BookFlightCRM(bookRequest, ref BookResponse);
                     }
@@ -2395,7 +2391,7 @@ namespace IndiaAPI.Controllers
                 new ServicesHub.LogWriter_New(ex.ToString(), bookRequest.bookingID.ToString(), "error", "BookFlight Exeption");
             }
 
-            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(BookResponse), bookRequest.bookingID.ToString(), "Booking", "BookFlight CRM Make Booking Original Response");
+            new ServicesHub.LogWriter_New(JsonConvert.SerializeObject(BookResponse), bookRequest.bookingID.ToString(), "CRM", "BookFlight CRM Make Booking Original Response");
 
             return Request.CreateResponse(HttpStatusCode.OK, BookResponse);
 
@@ -3300,7 +3296,16 @@ namespace IndiaAPI.Controllers
             if (response != null && response.Results != null && response.Results.Count() > 0 && response.Results[0].Count > 0 && response.Results.LastOrDefault().Count > 0)
             {
                 MarkupCalculator objMarkupCalculator = new MarkupCalculator();
-                objMarkupCalculator.SetMarkup(ref request, ref response);
+                if (request.sourceMedia=="1037")
+                {
+                     objMarkupCalculator.SetNoMarkup(ref request, ref response);
+                   // objMarkupCalculator.SetGFMarkup(ref request, ref response);
+                }
+                else
+                {
+                    objMarkupCalculator.SetMarkup(ref request, ref response);
+                }
+                
                 for (int i = 0; i < response.Results.Count; i++)
                 {
                     #region Set Commisson 
@@ -3492,7 +3497,16 @@ namespace IndiaAPI.Controllers
             if (response != null && response.Results != null && response.Results.Count() > 0 && response.Results[0].Count > 0 && response.Results.LastOrDefault().Count > 0)
             {
                 MarkupCalculator objMarkupCalculator = new MarkupCalculator();
-                objMarkupCalculator.SetNoMarkup(ref request, ref response);
+
+                if (request.sourceMedia == "1037")
+                {
+                    objMarkupCalculator.SetNoMarkup(ref request, ref response);
+                   response.Results.FirstOrDefault().FirstOrDefault().Fare.markupID = "GF Fix Markup " + response.Results.FirstOrDefault().FirstOrDefault().Fare.Markup + "";
+                }
+                else
+                {
+                    objMarkupCalculator.SetMarkup(ref request, ref response);
+                }
                 for (int i = 0; i < response.Results.Count; i++)
                 {
                     //#region Set Commisson 
@@ -3845,7 +3859,7 @@ namespace IndiaAPI.Controllers
                 if (request.travelType == Core.TravelType.International)
                 {
                     istbo = false;
-                    istripJack = true;
+                    istripJack = false;
                 }
             }
             bool isfareBoutiqueR = false;
@@ -3911,10 +3925,13 @@ namespace IndiaAPI.Controllers
                     isTravelopedia = kkk.Contains(GdsType.Travelopedia);
                 }
             }
-            //istbo = false;
-            //istripJack = false;
-            //isOneDFare = false;
+            istbo = false;
+            istripJack = false;
+            isOneDFare = false;
             //isTravelopedia
+
+
+
             if (istripJack) tripJack = GetSearchResultTripJack(request);
             if (isOneDFare) OneDFare = GetSearchResultOneDFare(request);
             if (istbo) tbo = GetSearchResultTbo(request);
@@ -3955,7 +3972,16 @@ namespace IndiaAPI.Controllers
             if (response != null && response.Results != null && response.Results.Count() > 0 && response.Results[0].Count > 0 && response.Results.LastOrDefault().Count > 0)
             {
                 MarkupCalculator objMarkupCalculator = new MarkupCalculator();
-                objMarkupCalculator.SetNoMarkup(ref request, ref response);
+                if (request.sourceMedia == "1037")
+                {
+                    objMarkupCalculator.SetNoMarkup(ref request, ref response);
+                  //  objMarkupCalculator.SetGFMarkup(ref request, ref response);
+                    response.Results.FirstOrDefault().FirstOrDefault().Fare.markupID = "GF Fix Markup " + response.Results.FirstOrDefault().FirstOrDefault().Fare.Markup + "";
+                }
+                else
+                {
+                    objMarkupCalculator.SetMarkup(ref request, ref response);
+                }
                 for (int i = 0; i < response.Results.Count; i++)
                 {
                     #region Set Commisson 

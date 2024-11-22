@@ -233,14 +233,14 @@ namespace ServicesHub.Tbo
                                     fare.isBlock = true;
                                 }
 
-                                if (request.cabinType != CabinType.Economy && 
+                                if (request.cabinType != CabinType.Economy &&
                                     (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR
                                     || fare.mojoFareType == MojoFareType.Unknown || fare.mojoFareType == MojoFareType.None)
-                                    &&(result.IsRefundable==false))
+                                    && (result.IsRefundable == false))
                                 {
                                     fare.isBlock = true;
                                 }
-                               
+
                                 result.FareList.Add(fare);
 
                                 #endregion
@@ -251,13 +251,19 @@ namespace ServicesHub.Tbo
                             //    response.listGroupID.Add(groupID);
                             //}
                             //if (isSetCabinType)
+                            var CheapFare = result.FareList.Where(k => k.isBlock == false).OrderBy(k => k.grandTotal).FirstOrDefault();
+                            if (CheapFare != null)
+                            {
+                                result.Fare = CheapFare;
                                 listFlightResult.Add(result);
+                            }
+                           
                         }
                     }
                     itinCtr++;
                     response.Results.Add(listFlightResult);
                 }
-                //string kk = Newtonsoft.Json.JsonConvert.SerializeObject(fc);
+                //string kk = Newtonsoft.Json.JsonConvert.SerializeObject(response);
             }
 
         }

@@ -147,6 +147,62 @@ namespace DAL.Deal
             }
         }
 
+        public async System.Threading.Tasks.Task SaveUserSearchHistoryGoogleApi(FlightSearchRequest fsr, int totalResult, string Provider, string serverIP)
+        {
+            try
+            {
+                SqlParameter[] param = new SqlParameter[18];
+
+                param[0] = new SqlParameter("@siteID", SqlDbType.Int);
+                param[0].Value = (int)fsr.siteId;
+                param[1] = new SqlParameter("@sourchMedia", SqlDbType.Int);
+                param[1].Value = fsr.sourceMedia;
+                param[2] = new SqlParameter("@origin", SqlDbType.VarChar, 3);
+                param[2].Value = fsr.segment[0].originAirport;
+                param[3] = new SqlParameter("@destination", SqlDbType.VarChar, 3);
+                param[3].Value = fsr.segment[0].destinationAirport;
+                param[4] = new SqlParameter("@depDate", SqlDbType.DateTime);
+                param[4].Value = fsr.segment[0].travelDate;
+                if (fsr.segment.Count > 1)
+                {
+                    param[5] = new SqlParameter("@retDate", SqlDbType.DateTime);
+                    param[5].Value = fsr.segment[1].travelDate;
+                }
+                param[6] = new SqlParameter("@tripType", SqlDbType.SmallInt);
+                param[6].Value = (int)fsr.tripType;
+                param[7] = new SqlParameter("@cabinClass", SqlDbType.SmallInt);
+                param[7].Value = (int)fsr.cabinType;
+                param[8] = new SqlParameter("@adult", SqlDbType.SmallInt);
+                param[8].Value = fsr.adults;
+                param[9] = new SqlParameter("@child", SqlDbType.SmallInt);
+                param[9].Value = fsr.child;
+                param[10] = new SqlParameter("@infatnt", SqlDbType.SmallInt);
+                param[10].Value = fsr.infants;
+                param[11] = new SqlParameter("@userIP", SqlDbType.VarChar, 20);
+                param[11].Value = fsr.userIP;
+                param[12] = new SqlParameter("@serverIP", SqlDbType.VarChar, 20);
+                param[12].Value = serverIP;
+                param[13] = new SqlParameter("@totalResult", SqlDbType.Int);
+                param[13].Value = totalResult;
+                param[14] = new SqlParameter("@device", SqlDbType.Int);
+                param[14].Value = (int)fsr.device;
+                param[15] = new SqlParameter("@provider", SqlDbType.VarChar, 20);
+                param[15].Value = Provider;
+                param[16] = new SqlParameter("@utm_campaign", SqlDbType.VarChar, 50);
+                param[16].Value = fsr.utm_campaign;
+                param[17] = new SqlParameter("@utm_medium", SqlDbType.VarChar, 50);
+                param[17].Value = fsr.utm_medium;
+                using (SqlConnection con = DataConnection.GetConSearchHistoryAndDeal_RDS())
+                {
+                    SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "Set_UserSearchHistory_GoogleApi", param);
+                }
+            }
+            catch (Exception ex)
+            {
+                DalLog.LogCreater.CreateLogFile(ex.ToString(), "Log\\TripJack\\Error", "SaveUserSearchHistoryGoogleApi" + ".txt");
+            }
+        }
+
         public async System.Threading.Tasks.Task DeleteUserSearchHistoryMeta()
         {
             try

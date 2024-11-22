@@ -262,67 +262,11 @@ namespace Core.Flight
         public SubProvider subProvider { get; set; }
         [DataMember]
         public decimal scComprefare { get; set; }
-
-        #region Satkar
-        [DataMember]
-        public decimal cgstax { get; set; }
-        [DataMember]
-        public decimal igstax { get; set; }
-        [DataMember]
-        public decimal sgstax { get; set; }
-
-
-        [DataMember]
-        public decimal flat { get; set; }
-
-        [DataMember]
-        public decimal additionalTxnFeeOfrd { get; set; }
-        [DataMember]
-        public decimal additionalTxnFeePub { get; set; }
-        [DataMember]
-        public decimal artGST { get; set; }
-        [DataMember]
-        public decimal artGSTOnMFee { get; set; }
-        [DataMember]
-        public decimal artTDS { get; set; }
         [DataMember]
         public decimal pLBEarned { get; set; }
-        [DataMember]
-        public decimal incentiveEarned { get; set; }
-        [DataMember]
-        public decimal artIncentive { get; set; }
-        [DataMember]
-        public decimal totalBaggageCharges { get; set; }
-        [DataMember]
-        public decimal totalMealCharges { get; set; }
-        [DataMember]
-        public decimal totalSeatCharges { get; set; }
-        [DataMember]
-        public decimal totalSpecialServiceCharges { get; set; }
-        [DataMember]
-        public decimal transactionFee { get; set; }
-        [DataMember]
-        public decimal managementFee { get; set; }
-        [DataMember]
-        public decimal cGSTax { get; set; }
-        [DataMember]
-        public decimal sGSTax { get; set; }
-        [DataMember]
-        public decimal iGSTax { get; set; }
-        [DataMember]
-        public decimal feeSurcharges { get; set; }
-        [DataMember]
-        public decimal instantDiscontOnFare { get; set; }
-        [DataMember]
-        public decimal publishedFareSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal taxSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal baseFareSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal instantDiscountSoldInSwapping { get; set; }
-        [DataMember]
-        public decimal yqSoldInSwapping { get; set; }
+
+        #region Satkar
+
         [DataMember]
         public bool isFareSwapped { get; set; }
         [DataMember]
@@ -343,66 +287,7 @@ namespace Core.Flight
 
         [DataMember]
         public string GFS_FlightKey { get; set; }
-
-
-        // Tripshope
-
-        //[DataMember]
-        //public decimal adultbasefare { get; set; }
-        //[DataMember]
-        //public decimal adulttax { get; set; }
-        //[DataMember]
-        //public decimal adultyq { get; set; }
-        //[DataMember]
-        //public decimal childbasefare { get; set; }
-        //[DataMember]
-        //public decimal childtax { get; set; }
-        //[DataMember]
-        //public decimal childyq { get; set; }
-        //[DataMember]
-        //public decimal infantbasefare { get; set; }
-        //[DataMember]
-        //public decimal infanttax { get; set; }
-        //[DataMember]
-        //public decimal infantyq { get; set; }
-        ////[DataMember]
-        ////public string faretype { get; set; }
-        //[DataMember]
-        //public decimal totalfq { get; set; }
-        //[DataMember]
-        //public decimal adultinvoice { get; set; }
-        //[DataMember]
-        //public decimal childinvoice { get; set; }
-        //[DataMember]
-        //public decimal infantinvoice { get; set; }
-        //[DataMember]
-        //public decimal handlingcharges { get; set; }
-        //[DataMember]
-        //public decimal adtreissuecharge { get; set; }
-        //[DataMember]
-        //public decimal chdreissuecharge { get; set; }
-        //[DataMember]
-        //public decimal inftreissuecharge { get; set; }
-        //[DataMember]
-        //public string cancelable { get; set; }
-        //[DataMember]
-        //public string changable { get; set; }
-        //[DataMember]
-        //public string ticketbydate { get; set; }
-        //[DataMember]
-        //public string cabinbaggage { get; set; }
-        //[DataMember]
-        //public decimal originalbasefare { get; set; }
-        //[DataMember]
-        //public decimal originaltotalnet { get; set; }
-        //[DataMember]
-        //public decimal originaltotalfq { get; set; }
-        //[DataMember]
-        //public string faretype_supplier { get; set; }
-        //[DataMember]
-        //public string issplrtfare { get; set; }
-        //[DataMember]
-        //public decimal ServiceTax { get; set; }
+        
         [DataMember]
         public string flightdeeplinkurl { get; set; }
 
@@ -410,11 +295,6 @@ namespace Core.Flight
         public string nextraflightkey { get; set; }
         [DataMember]
         public string nextracustomstr { get; set; }
-
-        //
-
-
-
     }
 
     [DataContract]

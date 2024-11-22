@@ -29,7 +29,7 @@ namespace ServicesHub.SatkarTravel
                       ((o.WeekOfDays.Any() && o.WeekOfDays.Contains((WeekDays)Enum.Parse(typeof(WeekDays), Convert.ToString(DateTime.Today.DayOfWeek)))) || o.WeekOfDays.Any() == false) &&
                       ((o.AffiliateId.Any() && o.AffiliateId.Contains(request.sourceMedia)) || o.AffiliateId.Any() == false) &&
                       ((o.NoOfPaxFrom <= totPax && o.NoOfPaxTo >= totPax)) &&
-                      (o.AffiliateId_Not.Contains(request.sourceMedia) == false)&& (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
+                      (o.AffiliateId_Not.Contains(request.sourceMedia) == false) && (o.device == Device.None || o.device == request.device)).ToList().Count == 0)
                         {
                             Core.Flight.FlightResult result = new Core.Flight.FlightResult()
                             {
@@ -105,47 +105,20 @@ namespace ServicesHub.SatkarTravel
                             Core.Flight.Fare fare = new Core.Flight.Fare()
                             {
                                 Currency = request.currencyCode,
-                                cgstax = Itin.fare.cgstax,
-                                igstax = Itin.fare.igstax,
-                                sgstax = Itin.fare.sgstax,
                                 BaseFare = Itin.fare.baseFare,
-                                Tax = Itin.fare.tax,
-                                flat = Itin.fare.flat,
+                                Tax = Itin.fare.tax + Itin.fare.cgstax + Itin.fare.igstax + Itin.fare.sgstax + Itin.fare.cGSTax + Itin.fare.sGSTax + Itin.fare.iGSTax + Itin.fare.instantDiscountSoldInSwapping
+                                + Itin.fare.yqSoldInSwapping + Itin.fare.baseFareSoldInSwapping + Itin.fare.taxSoldInSwapping + Itin.fare.totalBaggageCharges + Itin.fare.totalMealCharges + Itin.fare.totalSeatCharges
+                                + Itin.fare.totalSpecialServiceCharges + Itin.fare.additionalTxnFeeOfrd + Itin.fare.additionalTxnFeePub + Itin.fare.pGCharge + Itin.fare.artGST + Itin.fare.artGSTOnMFee
+                                + Itin.fare.artTDS + Itin.fare.incentiveEarned + Itin.fare.artIncentive + Itin.fare.tdsOnCommission + Itin.fare.tdsOnPLB + Itin.fare.tdsOnIncentive + Itin.fare.publishedFareSoldInSwapping
+                                + Itin.fare.instantDiscontOnFare + Itin.fare.feeSurcharges + Itin.fare.managementFee + Itin.fare.transactionFee + Itin.fare.flat,
                                 YQTax = Itin.fare.yQTax,
-                                additionalTxnFeeOfrd = Itin.fare.additionalTxnFeeOfrd,
-                                additionalTxnFeePub = Itin.fare.additionalTxnFeePub,
-                                PGCharge = Itin.fare.pGCharge,
-                                artGST = Itin.fare.artGST,
-                                artGSTOnMFee = Itin.fare.artGSTOnMFee,
-                                artTDS = Itin.fare.artTDS,
                                 OtherCharges = Itin.fare.otherCharges,
                                 Discount = Itin.fare.discount,
                                 PublishedFare = Itin.fare.publishedFare,
                                 CommissionEarned = Itin.fare.commissionEarned,
                                 pLBEarned = Itin.fare.pLBEarned,
-                                incentiveEarned = Itin.fare.incentiveEarned,
-                                artIncentive = Itin.fare.artIncentive,
                                 OfferedFare = Itin.fare.offeredFare,
-                                TdsOnCommission = Itin.fare.tdsOnCommission,
-                                TdsOnPLB = Itin.fare.tdsOnPLB,
-                                TdsOnIncentive = Itin.fare.tdsOnIncentive,
                                 ServiceFee = Itin.fare.serviceFee,
-                                totalBaggageCharges = Itin.fare.totalBaggageCharges,
-                                totalMealCharges = Itin.fare.totalMealCharges,
-                                totalSeatCharges = Itin.fare.totalSeatCharges,
-                                totalSpecialServiceCharges = Itin.fare.totalSpecialServiceCharges,
-                                transactionFee = Itin.fare.transactionFee,
-                                managementFee = Itin.fare.managementFee,
-                                cGSTax = Itin.fare.cGSTax,
-                                sGSTax = Itin.fare.sGSTax,
-                                iGSTax = Itin.fare.iGSTax,
-                                feeSurcharges = Itin.fare.feeSurcharges,
-                                instantDiscontOnFare = Itin.fare.instantDiscontOnFare,
-                                publishedFareSoldInSwapping = Itin.fare.publishedFareSoldInSwapping,
-                                taxSoldInSwapping = Itin.fare.taxSoldInSwapping,
-                                baseFareSoldInSwapping = Itin.fare.baseFareSoldInSwapping,
-                                instantDiscountSoldInSwapping = Itin.fare.instantDiscountSoldInSwapping,
-                                yqSoldInSwapping = Itin.fare.yqSoldInSwapping,
                                 isFareSwapped = false,
                                 Markup = 0,
                                 cabinType = request.cabinType,

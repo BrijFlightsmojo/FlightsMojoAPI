@@ -93,10 +93,10 @@ namespace ServicesHub.TripJack
                     lN = pax.lastName,
                     ti = pax.title,
                     pt = getPaxType(pax.passengerType),
-                    pNum = pax.passportNumber,
-                    eD = pax.expiryDate.Value.ToString("yyyy-MM-dd"),
-                    pid = pax.passportIssueDate.Value.ToString("yyyy-MM-dd"),
-                    pNat = "IN"
+                  //  pNum = pax.passportNumber,
+                 //   eD = pax.expiryDate.Value.ToString("yyyy-MM-dd"),
+                 //   pid = pax.passportIssueDate.Value.ToString("yyyy-MM-dd"),
+                 //   pNat = "IN"
                 };
                 request.travellerInfo.Add(tinfo);
             }

@@ -113,7 +113,7 @@ namespace DAL
         public string getMetaSearchDetails(string SearchID)
         {
             string base64String = "";
-            using (SqlConnection con = DataConnection.GetConnectionFareCaching())
+              using (SqlConnection con = DataConnection.GetConnectionFareCaching())
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {

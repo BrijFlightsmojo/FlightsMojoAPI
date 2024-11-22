@@ -149,15 +149,13 @@ namespace ServicesHub.Tripshope
                                 flightdeeplinkurl = flightlist.flightdeeplinkurl,
                                 BaseFare = flightlist.flightfare.totalbasefare,
                                 Currency = request.currencyCode,
-                                Tax = flightlist.flightfare.totaltax,
+                                Tax = flightlist.flightfare.totaltax + flightlist.flightfare.tds,
                                 YQTax = flightlist.flightfare.totalyq,
                                 PublishedFare = flightlist.flightfare.totalnet,
                                 Discount = flightlist.flightfare.discount,
-                                artTDS = flightlist.flightfare.tds,
                                 Markup = flightlist.flightfare.markup,
-                                ServiceFee = flightlist.flightfare.servicefee + flightlist.flightfare.servicetax + flightlist.flightfare.handlingcharges,
+                                ServiceFee = flightlist.flightfare.servicefee + flightlist.flightfare.servicetax + flightlist.flightfare.handlingcharges + flightlist.flightfare.transactionfee,
                                 pLBEarned = flightlist.flightfare.plb,
-                                transactionFee = flightlist.flightfare.transactionfee,
                                 FareType = getFareType((flightlist.flightfare.faretype != null ? flightlist.flightfare.faretype : ""), (string.IsNullOrEmpty(flightlist.flightfare.refundableinfo) ? true : Convert.ToBoolean(flightlist.flightfare.refundableinfo))),
                                 mojoFareType = Core.FlightUtility.GetFmFareType(flightlist.flightfare.faretype != null ? flightlist.flightfare.faretype : "", result.valCarrier, GdsType.TripShope),
                                 cabinType = result.FlightSegments[0].Segments[0].CabinClass,
@@ -225,6 +223,12 @@ namespace ServicesHub.Tripshope
                                 {
                                     fare.isBlock = true;
                                 }
+
+                                if (request.cabinType!=CabinType.Economy)
+                                {
+                                    fare.isBlock = true;    
+                                }
+
                                 //if (result.valCarrier == "SG" && request.segment[0].travelDate > DateTime.Today.AddDays(15) && (fare.mojoFareType == MojoFareType.SeriesFareWithoutPNR || fare.mojoFareType == MojoFareType.SeriesFareWithPNR))
                                 //{
                                 //    fare.isBlock = true;

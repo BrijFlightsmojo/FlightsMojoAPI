@@ -198,6 +198,8 @@ namespace Core.Flight
         // GFS
         [DataMember]
         public Device device { get; set; }
+        [DataMember]
+        public TravelType travelType { get; set; }
         public FlightBookingResponse()
         {
 
@@ -263,6 +265,7 @@ namespace Core.Flight
             RefundPolicyAmt = fbr.RefundPolicyAmt;
             CancellaionPolicyAmt = fbr.CancellaionPolicyAmt;
             device = fbr.device;
+            travelType = fbr.travelType;
         }
     }
     [DataContract]

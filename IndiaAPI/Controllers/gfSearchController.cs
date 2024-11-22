@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace IndiaAPI.Controllers
@@ -85,7 +86,7 @@ namespace IndiaAPI.Controllers
             }
             #endregion
             Core.Flight.FlightSearchResponse result = new FlightMapper().GetFlightResultMultiGDSGF(fsr);
-
+            saveSearchListGoogleApi(fsr,result.Results.First().Count,"");
             var gfResponse = GetGfResponse(result, fsr);
             return Request.CreateResponse(HttpStatusCode.OK, gfResponse);
 
@@ -463,6 +464,14 @@ namespace IndiaAPI.Controllers
                 return Core.Device.Mobile;
             }
             return Core.Device.Desktop;
+        }
+
+        private void saveSearchListGoogleApi(Core.Flight.FlightSearchRequest flightSearchRequest, int totalResult, string Provider)
+        {
+            var save = Task.Run(async () =>
+            {
+                await new DAL.Deal.UserSearchHistory().SaveUserSearchHistoryGoogleApi(flightSearchRequest, totalResult, Provider, GlobalData.ServerID);
+            });
         }
     }
 }

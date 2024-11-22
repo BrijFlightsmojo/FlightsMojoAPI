@@ -26,7 +26,7 @@ namespace ServicesHub.TripJack
             StringBuilder sbLogger = new StringBuilder();
             try
             {
-               string strRequest = new TripJackRequestMapping().getFlightSearchRequest(request);
+                string strRequest = new TripJackRequestMapping().getFlightSearchRequest(request);
                 if (FlightUtility.isWriteLogSearch)
                 {
                     bookingLog(ref sbLogger, "TripJack End Point Url", TripJackSearchUrl);
@@ -51,7 +51,10 @@ namespace ServicesHub.TripJack
                         //{
                         //    bookingLog(ref sbLogger, "Original Response", JsonConvert.SerializeObject(flightResponse));
                         //}
+
+                        //SuccessCount();
                     }
+
                 }
             }
             catch (Exception ex)
@@ -77,11 +80,12 @@ namespace ServicesHub.TripJack
             }
             if (flightResponse.Results.Count == 0 || (flightResponse.Results.Count > 0 && flightResponse.Results.FirstOrDefault().Count == 0))
             {
-                new LogWriter("No" + Environment.NewLine, "Tj" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+                //new LogWriter("No" + Environment.NewLine, "Tj" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
             }
             if (flightResponse.Results.Count == 1 || (flightResponse.Results.Count > 1 && flightResponse.Results.FirstOrDefault().Count == 1))
             {
-                new LogWriter("Yes" + Environment.NewLine, "Tj" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+                //new LogWriter("Yes" + Environment.NewLine, "Tj" + DateTime.Today.ToString("ddMMMyy"), "NoResult");
+                //SuccessCount();
             }
             return flightResponse;
         }
@@ -248,6 +252,18 @@ namespace ServicesHub.TripJack
                                         }
                                         response.bookingStatus = BookingStatus.Ticketed;
                                     }
+                                    else
+                                    {
+                                        response.bookingStatus = BookingStatus.InProgress;
+                                        response.responseStatus.message = "Booking InProgress";
+                                        bookingLog(ref sbLogger, "Trip Jack Booking No PNR Found", response.responseStatus.message);
+                                    }
+                                }
+                                else
+                                {
+                                    response.bookingStatus = BookingStatus.InProgress;
+                                    response.responseStatus.message = "Booking InProgress";
+                                    bookingLog(ref sbLogger, "Trip Jack Booking No PNR Found2", response.responseStatus.message);
                                 }
                             }
                             else
@@ -448,11 +464,11 @@ namespace ServicesHub.TripJack
                 response.responseStatus.message = ex.ToString();
 
                 bookingLog(ref sbLogger, "Trip Jack Exption", ex.ToString());
-                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Error");
+                new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString() + "_CRM", "CRM");
             }
 
             bookingLog(ref sbLogger, "Trip Jack  return Response", JsonConvert.SerializeObject(response));
-            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "Booking");
+            new ServicesHub.LogWriter_New(sbLogger.ToString(), request.bookingID.ToString(), "CRM");
         }
 
 
@@ -637,5 +653,57 @@ namespace ServicesHub.TripJack
         //        return "";
         //    }
         //}
+        //public static void SuccessCount()
+        //{
+        //    string filePath = "counter.txt";
+
+        //    int counter = ReadCounterFromFile(filePath);
+        //    counter++;
+        //    WriteCounterToFile(filePath, counter);
+
+        //    //Console.WriteLine($"Counter updated to: {counter}");
+        //}
+
+        //public static int ReadCounterFromFile(string filePath)
+        //{
+        //    if (File.Exists(filePath))
+        //    {
+        //        try
+        //        {
+        //            string content = File.ReadAllText(filePath);
+        //            if (int.TryParse(content, out int counter))
+        //            {
+        //                return counter;
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("File content is not a valid integer. Initializing counter to 0.");
+        //                return 0;
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine($"Error reading from file: {ex.Message}");
+        //            return 0;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Counter file not found. Initializing counter to 0.");
+        //        return 0;
+        //    }
+        //}
+
+        ////public static void WriteCounterToFile(string filePath, int counter)
+        ////{
+        ////    try
+        ////    {
+        ////        File.WriteAllText(filePath, counter.ToString());
+        ////    }
+        ////    catch (Exception ex)
+        ////    {
+        ////        Console.WriteLine($"Error writing to file: {ex.Message}");
+        ////    }
+        ////}
     }
 }
