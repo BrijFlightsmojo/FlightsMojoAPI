@@ -92,7 +92,6 @@ namespace ServicesHub.GFS
                                     segment.Baggage = retBaggage;
                                     segment.CabinBaggage = retCabinBaggage;
 
-
                                     result.ResultCombination += (segment.Airline + segment.FlightNumber + segment.DepTime.ToString("ddMMHHmm"));
                                     fs.stop++;
                                     fs.Duration = seg.duration;

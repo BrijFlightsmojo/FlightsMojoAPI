@@ -369,7 +369,15 @@ namespace ServicesHub.Tbo
                                             _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponse.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo });
                                         _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
                                         bookingLog(ref sbLogger, "TBO Response Invoice", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
-                                        _response.bookingStatus = BookingStatus.Ticketed;
+                                        if (_response.TvoInvoiceNo == "" || _response.TvoInvoiceNo == null || _response.TvoInvoiceNo.Equals("", StringComparison.OrdinalIgnoreCase))
+                                        {
+                                            _response.bookingStatus = BookingStatus.InProgress;
+                                        }
+                                        else
+                                        {
+                                            _response.bookingStatus = BookingStatus.Ticketed;
+                                        }
+                                        //_response.bookingStatus = BookingStatus.Ticketed;
                                     }
                                     else
                                     {
@@ -384,7 +392,15 @@ namespace ServicesHub.Tbo
                                             _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponse.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo });
                                         _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
                                         bookingLog(ref sbLogger, "TBO Return Response Invoice", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
-                                        _response.bookingStatus = BookingStatus.Ticketed;
+
+                                        if (_response.TvoInvoiceNo ==""|| _response.TvoInvoiceNo == null || _response.TvoInvoiceNo.Equals("", StringComparison.OrdinalIgnoreCase))
+                                        {
+                                            _response.bookingStatus = BookingStatus.InProgress;
+                                        }
+                                        else
+                                        {
+                                            _response.bookingStatus = BookingStatus.Ticketed;
+                                        }
                                     }
                                     //_response.bookingStatus = BookingStatus.Ticketed;
                                 }
@@ -469,7 +485,15 @@ namespace ServicesHub.Tbo
                                                             _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
                                                         _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
                                                         bookingLog(ref sbLogger, "TBO GDS Ticketing Response InvoiceNo", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
-                                                        _response.bookingStatus = BookingStatus.Ticketed;
+                                                        //_response.bookingStatus = BookingStatus.Ticketed;
+                                                        if (_response.TvoInvoiceNo == "" || _response.TvoInvoiceNo == null || _response.TvoInvoiceNo.Equals("", StringComparison.OrdinalIgnoreCase))
+                                                        {
+                                                            _response.bookingStatus = BookingStatus.InProgress;
+                                                        }
+                                                        else
+                                                        {
+                                                            _response.bookingStatus = BookingStatus.Ticketed;
+                                                        }
                                                         GetBookingDetails(request);
                                                     }
                                                     else
@@ -535,8 +559,16 @@ namespace ServicesHub.Tbo
                                                             _response.invoice.Add(new Invoice() { InvoiceAmount = bookResponseTicketing.Response.Response.FlightItinerary.Fare.PublishedFare, InvoiceNo = bookResponseTicketing.Response.Response.FlightItinerary.InvoiceNo });
 
                                                         _response.TvoInvoiceNo = bookResponse.Response.Response.FlightItinerary.InvoiceNo;
-                                                        _response.bookingStatus = BookingStatus.Ticketed;
+                                                        //_response.bookingStatus = BookingStatus.Ticketed;
                                                         bookingLog(ref sbLogger, "Else TBO Gds Ticketing TvoInvoiceNo", bookResponse.Response.Response.FlightItinerary.InvoiceNo);
+                                                        if (_response.TvoInvoiceNo == "" || _response.TvoInvoiceNo == null || _response.TvoInvoiceNo.Equals("", StringComparison.OrdinalIgnoreCase))
+                                                        {
+                                                            _response.bookingStatus = BookingStatus.InProgress;
+                                                        }
+                                                        else
+                                                        {
+                                                            _response.bookingStatus = BookingStatus.Ticketed;
+                                                        }
                                                     }
                                                     else
                                                     {

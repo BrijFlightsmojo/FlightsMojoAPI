@@ -48,11 +48,11 @@ namespace IndiaAPI.Controllers
             flightSearchReq.segment = new List<SearchSegment>();
             flightSearchReq.segment.Add(new SearchSegment()
             {
-                originAirport = "ISK",
-                orgArp = Core.FlightUtility.GetAirport("ISK"),
-                destinationAirport = "BLR",
-                destArp = Core.FlightUtility.GetAirport("BLR"),
-                travelDate = Convert.ToDateTime("2024-11-10") //DateTime.Today.AddDays(61)//
+                originAirport = "JAI",
+                orgArp = Core.FlightUtility.GetAirport("JAI"),
+                destinationAirport = "CCU",
+                destArp = Core.FlightUtility.GetAirport("CCU"),
+                travelDate = Convert.ToDateTime("2025-03-08") //DateTime.Today.AddDays(61)//
             });
 
             if (flightSearchReq.tripType != Core.TripType.OneWay)
@@ -74,9 +74,9 @@ namespace IndiaAPI.Controllers
             flightSearchReq.sourceMedia = "1015";
             flightSearchReq.userSearchID = getSearchID();
             //var kkdd = new ServicesHub.AirIQ.AirIQServiceMapping().GetFlightResults(flightSearchReq, true, true);
-                var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
+             //     var kkdd = new ServicesHub.GFS.GFSServiceMapping().GetFlightResults(flightSearchReq, true, false);
             //  var kkdd = new ServicesHub.Tripshope.TripshopeServiceMapping().GetFlightResults(flightSearchReq);
-            //    var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
+              var kkdd = new ServicesHub.Ease2Fly.Ease2FlyServiceMapping().GetFlightResults(flightSearchReq, true, false);
          //   var kkdd = new ServicesHub.TripJack.TripJackServiceMapping().GetFlightResults(flightSearchReq);
             //  var kkdd = new ServicesHub.Tbo.TboServiceMapping().GetFlightResults(flightSearchReq);
 
